@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Научная революция</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===========================================
+   THEME TOKENS
+   Night Orbit: deep navy, cobalt light, one warm sun accent
+   =========================================== */
+:root {
+  --stage-bg: #04060d;
+  --slide-bg: #070b1a;
+  --ink: #eef2ff;
+  --muted: #a9b6dd;          /* 9:1 on slide-bg */
+  --blue: #3f7bff;
+  --blue-soft: #9db8ff;
+  --sun: #ffb347;
+  --line: rgba(157, 184, 255, 0.20);
+  --panel: rgba(13, 24, 60, 0.72);
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+::selection { background: var(--blue); color: #fff; }
+
+/* ===========================================
+   FIXED STAGE BASE (viewport-base.css, verbatim)
+   =========================================== */
+/* ===========================================
+   FIXED 16:9 STAGE: MANDATORY BASE STYLES
+   Include this ENTIRE file in every presentation.
+   Slides are authored at 1920×1080 and scaled as a whole.
+   =========================================== */
+
+/* 1. Lock the browser viewport */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 2. Full-window deck viewport */
+.deck-viewport {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 3. Fixed 16:9 design canvas.
+   JavaScript sets transform: translate(...) scale(...). */
+.deck-stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    transform-origin: 0 0;
+    background: var(--slide-bg, #fff);
+}
+
+/* 4. Slides stack inside the fixed stage.
+   Content must be laid out at 1920×1080, not reflowed per device. */
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--slide-bg, #fff);
+}
+
+.slide.active,
+.slide.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+/* 5. Keep media inside authored slide bounds */
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 6. Presentation chrome stays outside the slide design system */
+.deck-controls {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+/* 7. Print one fixed-size slide per page */
+@media print {
+    html,
+    body {
+        width: 1920px;
+        height: auto;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-viewport {
+        position: static;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-stage {
+        position: static;
+        width: auto;
+        height: auto;
+        transform: none !important;
+        background: none;
+    }
+
+    .slide {
+        position: relative;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        width: 1920px;
+        height: 1080px;
+        break-after: page;
+        page-break-after: always;
+    }
+
+    .slide:last-child {
+        break-after: auto;
+        page-break-after: auto;
+    }
+
+    .deck-controls {
+        display: none !important;
+    }
+}
+
+/* 8. Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+}
+
+
+/* ===========================================
+   SLIDE SURFACE: navy with low cobalt glows and a faint grid
+   =========================================== */
+.slide {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 700px at 50% 125%, #163791 0%, rgba(22, 55, 145, 0) 60%),
+    radial-gradient(900px 520px at 88% -12%, #10225e 0%, rgba(16, 34, 94, 0) 70%),
+    var(--slide-bg);
+  font-variant-numeric: tabular-nums;
+}
+.slide::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity: 0.28;
+  -webkit-mask-image: radial-gradient(circle at 50% 55%, #000 15%, transparent 72%);
+          mask-image: radial-gradient(circle at 50% 55%, #000 15%, transparent 72%);
+  pointer-events: none;
+}
+
+/* ===========================================
+   DECK CHROME: running title, course, page number
+   =========================================== */
+.chrome {
+  position: absolute; left: 96px; right: 96px; top: 56px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 18px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+.chrome .tag { border: 1px solid var(--line); padding: 9px 16px; border-radius: 8px; background: rgba(255,255,255,0.03); }
+.pageno {
+  position: absolute; right: 96px; bottom: 52px;
+  font-family: var(--font-display); font-weight: 300; font-size: 20px; color: var(--muted);
+}
+
+/* ===========================================
+   TYPE
+   =========================================== */
+h1, h2, h3 { font-family: var(--font-display); font-weight: 300; letter-spacing: -0.03em; text-wrap: balance; }
+h2 { font-size: 68px; line-height: 1.08; }
+h2 em, h1 em { font-style: normal; color: var(--blue-soft); }
+h3 { font-size: 30px; font-weight: 400; letter-spacing: -0.01em; line-height: 1.2; }
+p, li { font-size: 28px; line-height: 1.45; }
+.muted { color: var(--muted); }
+.small { font-size: 22px; line-height: 1.45; }
+.year { font-family: var(--font-display); font-weight: 300; letter-spacing: -0.02em; color: var(--blue-soft); }
+cite { font-style: normal; color: var(--muted); }
+
+.panel {
+  border: 1px solid var(--line); border-radius: 20px; background: var(--panel);
+  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.8);
+}
+
+/* ===========================================
+   ENTRANCE MOTION: staggered rise on the active slide
+   =========================================== */
+.reveal { opacity: 0; transform: translateY(28px); filter: blur(6px);
+  transition: opacity .9s var(--ease), transform .9s var(--ease), filter .9s var(--ease); }
+.slide.visible .reveal { opacity: 1; transform: none; filter: none; }
+.d1 { transition-delay: .12s !important; } .d2 { transition-delay: .24s !important; }
+.d3 { transition-delay: .36s !important; } .d4 { transition-delay: .48s !important; }
+.d5 { transition-delay: .60s !important; } .d6 { transition-delay: .72s !important; }
+
+/* ===========================================
+   SLIDE 1: TITLE
+   =========================================== */
+.s-title h1 { position: absolute; top: 190px; width: 100%; text-align: center; font-size: 120px; line-height: 1.02; }
+.s-title .sub { position: absolute; top: 462px; left: 200px; right: 200px; text-align: center; font-size: 30px; color: var(--muted); }
+.orbits { position: absolute; left: 50%; top: 730px; transform: translate(-50%, -50%); }
+.orbits ellipse { fill: none; stroke: var(--blue); stroke-width: 2; }
+.orbit-spin { animation: spin 40s linear infinite; }
+.orbit-spin.slow { animation-duration: 90s; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.stat { position: absolute; bottom: 72px; display: flex; }
+.stat > div { padding: 24px 36px; }
+.stat > div + div { border-left: 1px solid var(--line); }
+.stat small { display: block; font-size: 18px; color: var(--muted); margin-bottom: 8px; }
+.stat span { font-family: var(--font-display); font-size: 44px; font-weight: 300; }
+
+/* ===========================================
+   SLIDE 2: DEFINITION
+   =========================================== */
+.s-def h2 { position: absolute; left: 96px; top: 170px; width: 1050px; }
+.s-def .list { position: absolute; left: 96px; top: 470px; width: 1020px; display: grid; gap: 30px; }
+.s-def .row { display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: baseline; padding-bottom: 26px; border-bottom: 1px solid var(--line); }
+.s-def .row h3 { color: var(--blue-soft); font-size: 28px; }
+.s-def .row p { font-size: 27px; }
+.s-def .side { position: absolute; right: 96px; top: 170px; width: 560px; padding: 44px; }
+.s-def .side p { font-size: 26px; }
+.s-def .side blockquote { margin-top: 26px; padding-top: 26px; border-top: 1px solid var(--line); font-family: var(--font-display); font-weight: 300; font-size: 34px; line-height: 1.25; }
+.s-def .mini { position: absolute; right: 96px; bottom: 96px; width: 560px; height: 260px; }
+
+/* ===========================================
+   SLIDE 3: TIMELINE
+   =========================================== */
+.s-time h2 { position: absolute; left: 96px; top: 150px; width: 1500px; }
+.s-time .axis { position: absolute; left: 96px; right: 96px; top: 610px; height: 2px; background: linear-gradient(90deg, var(--blue), rgba(63,123,255,.25)); }
+.s-time .ev { position: absolute; width: 330px; }
+.s-time .ev .dot { position: absolute; left: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--blue-soft); box-shadow: 0 0 0 6px rgba(63,123,255,.25); }
+.s-time .ev.up { bottom: 470px; padding-bottom: 46px; }
+.s-time .ev.up .dot { bottom: -9px; }
+.s-time .ev.down { top: 610px; padding-top: 46px; }
+.s-time .ev.down .dot { top: -9px; }
+.s-time .ev .stem { position: absolute; left: 8px; width: 1px; height: 34px; background: var(--line); }
+.s-time .ev.up .stem { bottom: 9px; } .s-time .ev.down .stem { top: 9px; }
+.s-time .ev .year { font-size: 40px; display: block; margin-bottom: 6px; }
+.s-time .ev p { font-size: 24px; line-height: 1.35; }
+.s-time .ev p b { color: var(--ink); font-weight: 700; }
+.s-time .ev p span { color: var(--muted); }
+.s-time .ev.sun .dot { background: var(--sun); box-shadow: 0 0 0 6px rgba(255,179,71,.25); }
+.s-time .ev.sun .year { color: var(--sun); }
+
+/* ===========================================
+   SLIDE 4: TWO WORLD PICTURES
+   =========================================== */
+.s-world h2 { position: absolute; left: 96px; top: 150px; width: 1400px; }
+.s-world .tbl { position: absolute; left: 96px; right: 96px; top: 330px; }
+.s-world .head, .s-world .tr { display: grid; grid-template-columns: 1fr 120px 1fr; align-items: center; }
+.s-world .head { padding-bottom: 18px; border-bottom: 1px solid var(--blue); }
+.s-world .head h3 { display: flex; align-items: center; gap: 22px; }
+.s-world .head h3 small { font-family: var(--font-body); font-size: 20px; color: var(--muted); letter-spacing: 0; }
+.s-world .tr { padding: 19px 0; border-bottom: 1px solid var(--line); }
+.s-world .tr p { font-size: 26px; }
+.s-world .tr p.old { color: var(--muted); }
+.s-world .arrow { justify-self: center; width: 46px; height: 14px; }
+.s-world .note { position: absolute; left: 96px; bottom: 60px; width: 1400px; }
+
+/* ===========================================
+   SLIDE 5: METHOD (quotes)
+   =========================================== */
+.s-method h2 { position: absolute; left: 96px; top: 150px; width: 1500px; }
+.s-method .big { position: absolute; left: 96px; top: 340px; width: 780px; height: 620px; padding: 56px; display: flex; flex-direction: column; justify-content: space-between; }
+.s-method .big blockquote { font-family: var(--font-display); font-weight: 300; font-size: 50px; line-height: 1.2; letter-spacing: -0.02em; }
+.s-method .big blockquote em { font-style: normal; color: var(--blue-soft); }
+.s-method .who { display: flex; flex-direction: column; gap: 6px; }
+.s-method .who b { font-size: 28px; white-space: nowrap; }
+.s-method .who span { font-size: 22px; color: var(--muted); }
+.s-method .q { position: absolute; left: 940px; width: 884px; padding: 0 0 28px 0; border-bottom: 1px solid var(--line); }
+.s-method .q blockquote { font-size: 29px; line-height: 1.38; margin-bottom: 12px; }
+.s-method .q .who b { font-size: 24px; }
+.s-method .q .who span { font-size: 21px; }
+.s-method .q .who { flex-direction: row; gap: 16px; align-items: baseline; }
+
+/* ===========================================
+   SLIDE 6: INSTITUTIONS
+   =========================================== */
+.s-inst h2 { position: absolute; left: 96px; top: 150px; width: 1300px; }
+.s-inst .lead { position: absolute; left: 96px; top: 345px; width: 1150px; color: var(--muted); }
+.s-inst .grid4 { position: absolute; left: 96px; right: 96px; top: 540px; display: grid; grid-template-columns: 1fr 1.25fr 1fr 1fr; gap: 28px; }
+.s-inst .cell { padding: 40px 36px; min-height: 400px; }
+.s-inst .cell .year { font-size: 56px; display: block; margin-bottom: 18px; }
+.s-inst .cell h3 { margin-bottom: 14px; font-size: 28px; }
+.s-inst .cell p { font-size: 24px; color: var(--muted); }
+.s-inst .cell.hi { background: linear-gradient(160deg, #1d3fa8 0%, #0f1f57 100%); border-color: rgba(157,184,255,.4); }
+.s-inst .cell.hi p { color: #d4defa; }
+.s-inst .motto { font-family: var(--font-display); font-weight: 300; font-size: 34px; color: #fff; margin: 4px 0 10px; display: block; }
+.s-inst .foot { position: absolute; left: 96px; bottom: 60px; width: 1500px; }
+
+/* ===========================================
+   SLIDE 7: BIRTH OF THE CONCEPT
+   =========================================== */
+.s-birth h2 { position: absolute; left: 96px; top: 150px; width: 1300px; }
+.s-birth .col { position: absolute; top: 400px; width: 540px; }
+.s-birth .col .year { font-size: 84px; display: block; line-height: 1; margin-bottom: 22px; }
+.s-birth .col h3 { margin-bottom: 8px; }
+.s-birth .col .book { font-size: 22px; color: var(--muted); margin-bottom: 22px; }
+.s-birth .col p { font-size: 27px; }
+.s-birth .col blockquote { margin-top: 18px; padding: 30px 32px; font-size: 27px; line-height: 1.42; }
+.s-birth .vline { position: absolute; top: 400px; width: 1px; height: 560px; background: var(--line); }
+
+/* ===========================================
+   SLIDE 8: KUHN
+   =========================================== */
+.s-kuhn h2 { position: absolute; left: 96px; top: 150px; width: 900px; }
+.s-kuhn .def { position: absolute; left: 96px; top: 400px; width: 820px; }
+.s-kuhn .def blockquote { padding: 34px 36px; font-size: 27px; line-height: 1.42; }
+.s-kuhn .def blockquote cite { display: block; margin-top: 14px; font-size: 21px; }
+.s-kuhn .terms { position: absolute; left: 96px; top: 740px; width: 820px; display: grid; gap: 18px; }
+.s-kuhn .terms div { display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: baseline; }
+.s-kuhn .terms b { font-family: var(--font-display); font-weight: 400; font-size: 22px; color: var(--blue-soft); }
+.s-kuhn .terms p { font-size: 23px; }
+.s-kuhn .cycle { position: absolute; left: 1000px; top: 150px; width: 840px; height: 840px; }
+.s-kuhn .cycle text { font-family: var(--font-body); fill: var(--ink); }
+
+/* ===========================================
+   SLIDE 9: DEBATES
+   =========================================== */
+.s-debate h2 { position: absolute; left: 96px; top: 150px; width: 1500px; }
+.s-debate .spec { position: absolute; left: 96px; right: 96px; top: 360px; height: 2px; background: linear-gradient(90deg, rgba(157,184,255,.35), var(--blue), rgba(157,184,255,.35)); }
+.s-debate .spec-l, .s-debate .spec-r { position: absolute; top: 300px; font-size: 20px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.s-debate .spec-l { left: 96px; } .s-debate .spec-r { right: 96px; }
+.s-debate .pos { position: absolute; top: 400px; width: 520px; }
+.s-debate .pos .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--blue-soft); position: absolute; top: -49px; left: 0; box-shadow: 0 0 0 6px rgba(63,123,255,.25); }
+.s-debate .pos h3 { margin-bottom: 6px; }
+.s-debate .pos .who { font-size: 21px; color: var(--muted); margin-bottom: 14px; }
+.s-debate .pos p { font-size: 26px; }
+.s-debate .shapin { position: absolute; left: 96px; right: 96px; bottom: 120px; padding: 38px 48px; display: grid; grid-template-columns: 1fr 420px; gap: 48px; align-items: center; }
+.s-debate .shapin blockquote { font-family: var(--font-display); font-weight: 300; font-size: 38px; line-height: 1.22; letter-spacing: -0.02em; }
+.s-debate .shapin p { font-size: 22px; color: var(--muted); }
+
+/* ===========================================
+   SLIDE 10: QUIZ
+   =========================================== */
+.s-quiz h2 { position: absolute; left: 96px; top: 150px; width: 1400px; }
+.s-quiz .hint { position: absolute; right: 96px; top: 176px; font-size: 20px; color: var(--muted); }
+.s-quiz .qs { position: absolute; left: 96px; right: 96px; top: 300px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.s-quiz .qq { padding: 40px 36px; height: 680px; display: flex; flex-direction: column; }
+.s-quiz .qq .n { font-family: var(--font-display); font-weight: 300; font-size: 22px; color: var(--blue-soft); margin-bottom: 18px; }
+.s-quiz .qq h3 { font-family: var(--font-body); font-weight: 600; font-size: 28px; line-height: 1.32; letter-spacing: 0; margin-bottom: 28px; min-height: 148px; }
+.s-quiz .qq ol { list-style: none; display: grid; gap: 14px; }
+.s-quiz .qq li { font-size: 23px; line-height: 1.3; padding: 14px 18px; border: 1px solid var(--line); border-radius: 12px; display: grid; grid-template-columns: 34px 1fr; transition: background .5s var(--ease), border-color .5s var(--ease); }
+.s-quiz .qq li b { color: var(--blue-soft); font-weight: 700; }
+.s-quiz.answers .qq li.ok { background: rgba(63,123,255,.28); border-color: var(--blue-soft); }
+.s-quiz.answers .qq li.ok b { color: var(--sun); }
+
+/* ===========================================
+   PROGRESS + EDIT MODE (outside slide design)
+   =========================================== */
+.progress { position: fixed; left: 0; bottom: 0; height: 3px; background: var(--blue); z-index: 1001; transition: width .5s var(--ease); }
+.edit-hot { position: fixed; top: 0; left: 0; width: 60px; height: 60px; z-index: 1002; }
+.edit-btn { position: fixed; top: 14px; left: 14px; z-index: 1003; opacity: 0; transition: opacity .3s; font: 600 13px var(--font-body); color: #fff; background: var(--blue); border: 0; border-radius: 8px; padding: 8px 12px; cursor: pointer; }
+.edit-hot:hover + .edit-btn, .edit-btn:hover, body.editing .edit-btn { opacity: 1; }
+body.editing [contenteditable="true"]:focus { outline: 2px dashed var(--blue-soft); outline-offset: 4px; }
+</style>
+</head>
+<body>
+<div class="deck-viewport"><div class="deck-stage">
+
+<!-- ============ 1. TITLE ============ -->
+<section class="slide s-title">
+  <div class="chrome"><span class="tag">История философии</span><span class="tag">1543 – 1687</span></div>
+  <svg class="orbits" width="1900" height="900" viewBox="-950 -450 1900 900" aria-hidden="true">
+    <ellipse rx="380" ry="120" opacity=".9"/><ellipse rx="620" ry="210" opacity=".5"/><ellipse rx="880" ry="300" opacity=".25"/>
+    <circle r="34" fill="#ffb347" style="filter:drop-shadow(0 0 40px #ff9a2e)"/>
+    <g transform="scale(1 .316)"><g class="orbit-spin"><circle cx="380" cy="0" r="10" fill="#9db8ff" transform="scale(1 3.16)"/></g></g>
+    <g transform="scale(1 .339)"><g class="orbit-spin slow"><circle cx="-620" cy="0" r="7" fill="#9db8ff" opacity=".7" transform="scale(1 2.95)"/></g></g>
+  </svg>
+  <h1 class="reveal">Научная<br><em>революция</em></h1>
+  <p class="sub reveal d1">Как историки назвали поворот в европейской мысли и почему о нём спорят до сих пор</p>
+  <div class="stat panel reveal d2" style="left:96px"><div><small>Коперник</small><span>1543</span></div><div><small>«Начала» Ньютона</small><span>1687</span></div></div>
+  <div class="stat panel reveal d3" style="right:96px"><div><small>Термин Койре</small><span>1939</span></div><div><small>«Структура» Куна</small><span>1962</span></div></div>
+</section>
+
+<!-- ============ 2. DEFINITION ============ -->
+<section class="slide s-def">
+  <div class="chrome"><span>Научная революция</span><span>Понятие</span></div>
+  <h2 class="reveal" style="font-size:60px">Перемена в том, как европейцы <em>изучали природу</em> в 1543–1687 годах</h2>
+  <div class="list">
+    <div class="row reveal d1"><h3>Космос</h3><p>Земля стала одной из планет, которые обращаются вокруг Солнца.</p></div>
+    <div class="row reveal d2"><h3>Физика</h3><p>Движение стали описывать математическими законами, а не «естественными местами» и целями Аристотеля.</p></div>
+    <div class="row reveal d3"><h3>Метод</h3><p>Наблюдение, эксперимент и измерение стали весомее авторитета древних текстов.</p></div>
+  </div>
+  <div class="side panel reveal d4">
+    <p class="muted">Сами участники этих событий так не говорили. Они писали о «новой философии» и «новой науке». Последняя книга Галилея (1638) называлась «Беседы… о двух новых науках».</p>
+    <blockquote>«И новая философия всё ставит под сомнение»<br><cite style="font-family:var(--font-body);font-size:21px">Джон Донн, «Анатомия мира», 1611</cite></blockquote>
+  </div>
+  <svg class="mini reveal d5" viewBox="0 0 560 260" aria-hidden="true">
+    <g fill="none" stroke="#3f7bff" stroke-width="1.5"><ellipse cx="280" cy="130" rx="110" ry="40" opacity=".9"/><ellipse cx="280" cy="130" rx="190" ry="72" opacity=".55"/><ellipse cx="280" cy="130" rx="270" ry="104" opacity=".3"/></g>
+    <circle cx="280" cy="130" r="20" fill="#ffb347"/><circle cx="390" cy="130" r="8" fill="#9db8ff"/><circle cx="130" cy="80" r="6" fill="#9db8ff" opacity=".7"/>
+  </svg>
+  <div class="pageno">02 / 10</div>
+</section>
+
+<!-- ============ 3. TIMELINE ============ -->
+<section class="slide s-time">
+  <div class="chrome"><span>Научная революция</span><span>Хронология</span></div>
+  <h2 class="reveal">От одной книги до другой: <em>144 года</em></h2>
+  <div class="axis reveal d1"></div>
+  <div class="ev up sun reveal d1" style="left:96px"><span class="year">1543</span><p><b>Коперник</b>, «О вращении небесных сфер»: Солнце в центре. <span>В том же году: Везалий, «О строении человеческого тела»</span></p><i class="stem"></i><i class="dot"></i></div>
+  <div class="ev down reveal d2" style="left:290px"><span class="year">1609</span><p><b>Кеплер</b>, «Новая астрономия»: <span>планеты движутся по эллипсам</span></p><i class="stem"></i><i class="dot"></i></div>
+  <div class="ev up reveal d2" style="left:480px"><span class="year">1610</span><p><b>Галилей</b>, «Звёздный вестник»: <span>в телескоп видны спутники Юпитера</span></p><i class="stem"></i><i class="dot"></i></div>
+  <div class="ev down reveal d3" style="left:670px"><span class="year">1620</span><p><b>Бэкон</b>, «Новый органон»: <span>знание строится на опыте</span></p><i class="stem"></i><i class="dot"></i></div>
+  <div class="ev up reveal d3" style="left:860px"><span class="year">1628</span><p><b>Гарвей</b>, «О движении сердца»: <span>кровь движется по кругу</span></p><i class="stem"></i><i class="dot"></i></div>
+  <div class="ev down reveal d4" style="left:1050px"><span class="year">1633</span><p><b>Галилея</b> <span>осуждает римская инквизиция</span></p><i class="stem"></i><i class="dot"></i></div>
+  <div class="ev up reveal d4" style="left:1240px"><span class="year">1637</span><p><b>Декарт</b>, «Рассуждение о методе»</p><i class="stem"></i><i class="dot"></i></div>
+  <div class="ev down reveal d5" style="left:1430px"><span class="year">1660</span><p><b>Королевское общество</b> <span>основано в Лондоне</span></p><i class="stem"></i><i class="dot"></i></div>
+  <div class="ev up sun reveal d6" style="left:1560px;width:264px"><span class="year">1687</span><p><b>Ньютон</b>, «Начала»: <span>единый закон тяготения для неба и Земли</span></p><i class="stem"></i><i class="dot"></i></div>
+  <div class="pageno">03 / 10</div>
+</section>
+
+<!-- ============ 4. TWO WORLD PICTURES ============ -->
+<section class="slide s-world">
+  <div class="chrome"><span>Научная революция</span><span>Что изменилось</span></div>
+  <h2 class="reveal">Две картины мира</h2>
+  <div class="tbl">
+    <div class="head reveal d1">
+      <h3><svg width="54" height="54" viewBox="-27 -27 54 54" aria-hidden="true"><g fill="none" stroke="#a9b6dd" stroke-width="1.5"><circle r="12"/><circle r="19"/><circle r="26"/></g><circle r="5" fill="#9db8ff"/></svg>Аристотель и Птолемей <small>до 1543</small></h3>
+      <span></span>
+      <h3><svg width="54" height="54" viewBox="-27 -27 54 54" aria-hidden="true"><g fill="none" stroke="#3f7bff" stroke-width="1.5"><ellipse rx="16" ry="8"/><ellipse rx="26" ry="13"/></g><circle r="5" fill="#ffb347"/><circle cx="16" r="3" fill="#9db8ff"/></svg>От Коперника до Ньютона <small>1543–1687</small></h3>
+    </div>
+    <div class="tr reveal d2"><p class="old">Земля неподвижна и находится в центре</p><svg class="arrow" viewBox="0 0 46 14"><path d="M0 7h42M36 1l6 6-6 6" fill="none" stroke="#3f7bff" stroke-width="2"/></svg><p>Земля обращается вокруг Солнца</p></div>
+    <div class="tr reveal d2"><p class="old">Замкнутый космос из вложенных сфер</p><svg class="arrow" viewBox="0 0 46 14"><path d="M0 7h42M36 1l6 6-6 6" fill="none" stroke="#3f7bff" stroke-width="2"/></svg><p>Вселенная без внешней границы</p></div>
+    <div class="tr reveal d3"><p class="old">Небо и Земля живут по разным законам</p><svg class="arrow" viewBox="0 0 46 14"><path d="M0 7h42M36 1l6 6-6 6" fill="none" stroke="#3f7bff" stroke-width="2"/></svg><p>Одни и те же законы действуют везде</p></div>
+    <div class="tr reveal d3"><p class="old">Всё движется к своей цели</p><svg class="arrow" viewBox="0 0 46 14"><path d="M0 7h42M36 1l6 6-6 6" fill="none" stroke="#3f7bff" stroke-width="2"/></svg><p>Материя в движении, как в механизме</p></div>
+    <div class="tr reveal d4"><p class="old">Качества: горячее, холодное, тяжёлое, лёгкое</p><svg class="arrow" viewBox="0 0 46 14"><path d="M0 7h42M36 1l6 6-6 6" fill="none" stroke="#3f7bff" stroke-width="2"/></svg><p>Величины, которые можно измерить</p></div>
+    <div class="tr reveal d4"><p class="old">Истина в трудах древних авторитетов</p><svg class="arrow" viewBox="0 0 46 14"><path d="M0 7h42M36 1l6 6-6 6" fill="none" stroke="#3f7bff" stroke-width="2"/></svg><p>Истину проверяют наблюдением и опытом</p></div>
+  </div>
+  <p class="note small muted reveal d5">Койре выразил этот сдвиг в названии своей книги 1957 года: «От замкнутого мира к бесконечной Вселенной».</p>
+  <div class="pageno">04 / 10</div>
+</section>
+
+<!-- ============ 5. METHOD ============ -->
+<section class="slide s-method">
+  <div class="chrome"><span>Научная революция</span><span>Новый метод</span></div>
+  <h2 class="reveal">Новые способы <em>познания</em></h2>
+  <div class="big panel reveal d1">
+    <blockquote style="font-size:40px">«Философия написана в величайшей книге, которая всегда открыта перед нашими глазами (я разумею Вселенную)… Написана она на <em>языке математики</em>».</blockquote>
+    <div class="who"><b>Галилео Галилей</b><span>«Пробирных дел мастер», 1623</span></div>
+  </div>
+  <div class="q reveal d2" style="top:340px"><blockquote>«Знание и могущество человека совпадают, ибо незнание причины затрудняет действие».</blockquote><div class="who"><b>Фрэнсис Бэкон</b><span>«Новый органон», 1620. Знание растёт из опыта.</span></div></div>
+  <div class="q reveal d3" style="top:550px"><blockquote>Не принимать за истинное ничего, что не познано как истинное с очевидностью.</blockquote><div class="who"><b>Рене Декарт</b><span>«Рассуждение о методе», 1637. Первое из четырёх правил.</span></div></div>
+  <div class="q reveal d4" style="top:760px"><blockquote>«Hypotheses non fingo». (Гипотез не измышляю.)</blockquote><div class="who"><b>Исаак Ньютон</b><span>«Начала», Общее поучение, издание 1713 года</span></div></div>
+  <div class="pageno">05 / 10</div>
+</section>
+
+<!-- ============ 6. INSTITUTIONS ============ -->
+<section class="slide s-inst">
+  <div class="chrome"><span>Научная революция</span><span>Институты</span></div>
+  <h2 class="reveal">У науки появляются <em>общества и журналы</em></h2>
+  <p class="lead reveal d1">Результаты перестали жить только в частных письмах. Общества ставили опыты при свидетелях и печатали отчёты.</p>
+  <div class="grid4">
+    <div class="cell panel reveal d2"><span class="year">1603</span><h3>Академия деи Линчеи</h3><p>Рим. Галилей стал её членом в 1611 году.</p></div>
+    <div class="cell panel hi reveal d3"><span class="year">1660</span><h3>Королевское общество, Лондон</h3><span class="motto">Nullius in verba</span><p>«Ничего со слов». Королевская хартия получена в 1662 году.</p></div>
+    <div class="cell panel reveal d4"><span class="year">1665</span><h3>Philosophical Transactions</h3><p>Один из первых научных журналов, вместе с парижским Journal des sçavans.</p></div>
+    <div class="cell panel reveal d5"><span class="year">1666</span><h3>Парижская академия наук</h3><p>Основана при поддержке Кольбера в правление Людовика XIV.</p></div>
+  </div>
+  <div class="pageno">06 / 10</div>
+</section>
+
+<!-- ============ 7. BIRTH OF THE CONCEPT ============ -->
+<section class="slide s-birth">
+  <div class="chrome"><span>Научная революция</span><span>Историография</span></div>
+  <h2 class="reveal">Термин моложе <em>самих событий</em></h2>
+  <div class="col reveal d1" style="left:96px">
+    <span class="year">1939</span><h3>Александр Койре</h3><p class="book">«Этюды о Галилее»</p>
+    <p>Ввёл «научную революцию» как понятие для историков. Для него это перемена в мышлении: замкнутый космос распался, пространство стало геометрическим.</p>
+  </div>
+  <i class="vline reveal d2" style="left:690px"></i>
+  <div class="col reveal d2" style="left:740px">
+    <span class="year">1949</span><h3>Герберт Баттерфилд</h3><p class="book">«Происхождение современной науки»</p>
+    <blockquote class="panel">Она «затмевает всё, что было со времён возникновения христианства, и низводит Ренессанс и Реформацию до уровня простых эпизодов».</blockquote>
+  </div>
+  <i class="vline reveal d3" style="left:1334px"></i>
+  <div class="col reveal d3" style="left:1384px;width:440px">
+    <span class="year">1954</span><h3>А. Руперт Холл</h3><p class="book">«Научная революция 1500–1800»</p>
+    <p>К 1950-м годам выражение уже стояло в названиях учебников и университетских курсов.</p>
+  </div>
+  <div class="pageno">07 / 10</div>
+</section>
+
+<!-- ============ 8. KUHN ============ -->
+<section class="slide s-kuhn">
+  <div class="chrome"><span>Научная революция</span><span>Томас Кун</span></div>
+  <h2 class="reveal">Кун: революции <em>во множественном числе</em></h2>
+  <div class="def reveal d1">
+    <blockquote class="panel">Научные революции — это «некумулятивные эпизоды развития науки, во время которых старая парадигма замещается целиком или частично новой парадигмой, несовместимой со старой».<cite>«Структура научных революций», 1962</cite></blockquote>
+  </div>
+  <div class="terms reveal d2">
+    <div><b>Парадигма</b><p>общие для научного сообщества теория, методы и образцы решения задач</p></div>
+    <div><b>Нормальная наука</b><p>решение «головоломок» внутри одной парадигмы</p></div>
+    <div><b>Несоизмеримость</b><p>соперничающие парадигмы нельзя полностью сравнить общей мерой</p></div>
+  </div>
+  <svg class="cycle reveal d3" viewBox="-420 -420 840 840" aria-label="Цикл Куна: нормальная наука, аномалии, кризис, революция, новая парадигма">
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3f7bff"/></marker></defs>
+    <circle r="290" fill="none" stroke="rgba(157,184,255,.2)" stroke-width="1"/>
+    <g fill="none" stroke="#3f7bff" stroke-width="3" marker-end="url(#ah)">
+      <path d="M 75 -280 A 290 290 0 0 1 250 -146"/>
+      <path d="M 285 55 A 290 290 0 0 1 170 235"/>
+      <path d="M 40 288 A 290 290 0 0 1 -190 220"/>
+      <path d="M -272 100 A 290 290 0 0 1 -270 -105"/>
+      <path d="M -200 -210 A 290 290 0 0 1 -75 -280"/>
+    </g>
+    <g class="orbit-spin slow"><circle cx="0" cy="-290" r="7" fill="#ffb347"/></g>
+    <g text-anchor="middle">
+      <g transform="translate(0,-290)"><rect x="-160" y="-36" width="320" height="72" rx="36" fill="#0d1838" stroke="#9db8ff"/><text y="10" font-size="27" font-weight="600">Нормальная наука</text></g>
+      <g transform="translate(276,-90)"><rect x="-120" y="-36" width="240" height="72" rx="36" fill="#0d1838" stroke="#9db8ff"/><text y="10" font-size="27" font-weight="600">Аномалии</text></g>
+      <g transform="translate(120,264)"><rect x="-100" y="-36" width="200" height="72" rx="36" fill="#1d3fa8" stroke="#9db8ff"/><text y="10" font-size="27" font-weight="600">Кризис</text></g>
+      <g transform="translate(-230,176)"><rect x="-130" y="-36" width="260" height="72" rx="36" fill="#0d1838" stroke="#ffb347"/><text y="10" font-size="27" font-weight="600" fill="#ffb347">Революция</text></g>
+      <g transform="translate(-260,-150)"><rect x="-150" y="-36" width="300" height="72" rx="36" fill="#0d1838" stroke="#9db8ff"/><text y="10" font-size="27" font-weight="600">Новая парадигма</text></g>
+      <text y="-12" font-size="24" fill="#a9b6dd">Цикл развития</text>
+      <text y="26" font-size="22" fill="#a9b6dd">науки по Куну</text>
+    </g>
+  </svg>
+  <div class="pageno">08 / 10</div>
+</section>
+
+<!-- ============ 9. DEBATES ============ -->
+<section class="slide s-debate">
+  <div class="chrome"><span>Научная революция</span><span>Дискуссии</span></div>
+  <h2 class="reveal">А была ли революция?</h2>
+  <span class="spec-l reveal d1">Преемственность</span><span class="spec-r reveal d1">Резкий разрыв</span>
+  <div class="spec reveal d1"></div>
+  <div class="pos reveal d2" style="left:96px"><i class="dot"></i><h3>Средневековые корни</h3><p class="who">Пьер Дюэм, начало XX века</p><p>Идеи новой механики восходят к Парижу XIV века: импетус Жана Буридана, графики движения Николая Орема.</p></div>
+  <div class="pos reveal d3" style="left:700px"><i class="dot"></i><h3>Много практик</h3><p class="who">Стивен Шейпин, 1996</p><p>Единого события не было. Природу изучали в разных местах, с разными целями и разными средствами.</p></div>
+  <div class="pos reveal d4" style="left:1304px"><i class="dot" style="left:auto;right:0;background:#ffb347;box-shadow:0 0 0 6px rgba(255,179,71,.25)"></i><h3>Разрыв в мышлении</h3><p class="who">Койре, Баттерфилд</p><p>Новая картина космоса и новый тип объяснения. Перемена так глубока, что её можно назвать революцией.</p></div>
+  <div class="shapin panel reveal d5">
+    <blockquote>«Никакой научной революции не было, и эта книга о ней».</blockquote>
+    <p>Этой фразой Стивен Шейпин открывает книгу «Научная революция» (1996). Термином он пользуется, но сомневается, что за ним стоит одно цельное событие.</p>
+  </div>
+  <div class="pageno">09 / 10</div>
+</section>
+
+<!-- ============ 10. QUIZ ============ -->
+<section class="slide s-quiz">
+  <div class="chrome"><span>Научная революция</span><span>Проверь себя</span></div>
+  <h2 class="reveal">Три вопроса</h2>
+  <p class="hint reveal d1">Клавиша A показывает ответы</p>
+  <div class="qs">
+    <div class="qq panel reveal d2"><span class="n">Вопрос 1</span><h3>Кто в 1939 году ввёл «научную революцию» как историческое понятие?</h3>
+      <ol><li><b>A</b>Томас Кун</li><li class="ok"><b>B</b>Александр Койре</li><li><b>C</b>Фрэнсис Бэкон</li><li><b>D</b>Герберт Баттерфилд</li></ol></div>
+    <div class="qq panel reveal d3"><span class="n">Вопрос 2</span><h3>Что в модели Куна непосредственно предшествует научной революции?</h3>
+      <ol><li><b>A</b>Нормальная наука</li><li class="ok"><b>B</b>Кризис, вызванный аномалиями</li><li><b>C</b>Новая парадигма</li><li><b>D</b>Индукция из опытов</li></ol></div>
+    <div class="qq panel reveal d4"><span class="n">Вопрос 3</span><h3>Какие две книги обычно считают началом и концом научной революции?</h3>
+      <ol><li><b>A</b><span>«Новый органон» и «Рассуждение о методе»</span></li><li><b>B</b><span>«Звёздный вестник» и «Беседы о двух новых науках»</span></li><li class="ok"><b>C</b><span>«О вращении небесных сфер» (1543) и «Начала» (1687)</span></li><li><b>D</b><span>«Этюды о Галилее» и «Структура научных революций»</span></li></ol></div>
+  </div>
+  <div class="pageno">10 / 10</div>
+</section>
+
+</div></div>
+<div class="progress"></div>
+<div class="edit-hot"></div><button class="edit-btn" type="button">Редактировать (E)</button>
+
+<script>
+/* ===========================================
+   DECK CONTROLLER: scaling, navigation, quiz answers, edit mode
+   =========================================== */
+(() => {
+  const stage = document.querySelector('.deck-stage');
+  const slides = [...document.querySelectorAll('.slide')];
+  const bar = document.querySelector('.progress');
+  let i = Math.max(0, Math.min(slides.length - 1, (parseInt(location.hash.slice(1)) || 1) - 1));
+
+  function fit() {
+    const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`;
+  }
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, j) => { s.classList.toggle('active', j === i); if (j !== i) s.classList.remove('visible'); });
+    requestAnimationFrame(() => requestAnimationFrame(() => slides[i].classList.add('visible')));
+    bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    history.replaceState(null, '', '#' + (i + 1));
+  }
+  const editing = () => document.body.classList.contains('editing');
+  function toggleEdit() {
+    const on = !editing();
+    document.body.classList.toggle('editing', on);
+    document.querySelectorAll('.slide h1, .slide h2, .slide h3, .slide p, .slide blockquote, .slide li span, .slide li').forEach(el => el.contentEditable = on);
+  }
+  addEventListener('resize', fit);
+  addEventListener('keydown', e => {
+    if (e.key.toLowerCase() === 's' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob(['<!DOCTYPE html>\n' + document.documentElement.outerHTML], { type: 'text/html' }));
+      a.download = 'nauchnaya-revolyutsiya.html'; a.click(); return;
+    }
+    if (editing()) { if (e.key === 'Escape') toggleEdit(); return; }
+    if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(slides.length - 1);
+    if (e.key.toLowerCase() === 'a') document.querySelector('.s-quiz').classList.toggle('answers');
+    if (e.key.toLowerCase() === 'e') toggleEdit();
+  });
+  document.querySelector('.edit-btn').addEventListener('click', toggleEdit);
+  let x0 = null;
+  addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+  addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1)); x0 = null; });
+  fit(); show(i);
+})();
+</script>
+</body>
+</html>
