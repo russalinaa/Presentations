@@ -498,6 +498,39 @@ p, li { font-size: 27px; line-height: 1.45; }
 .ask small { display: block; font-size: 18px; color: #ffcf6e; font-weight: 600; margin-bottom: 8px; }
 .ask p { font-size: 24px; line-height: 1.35; }
 
+
+/* ===========================================
+   FINAL GAMES: TRUE/FALSE + TRAFFIC LIGHT
+   =========================================== */
+.tf-rule { position: absolute; left: 96px; top: 225px; font-size: 25px; color: var(--ink-2); z-index: 2; }
+.tfs { position: absolute; left: 96px; right: 96px; top: 290px; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 330px; gap: 22px; z-index: 2; }
+.tf { padding: 26px 28px; display: flex; flex-direction: column; gap: 14px; position: relative; }
+.tf .n { width: 46px; height: 46px; border-radius: 14px; color: #fff; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 22px; }
+.tf .st { font-size: 24px; font-weight: 600; line-height: 1.3; }
+.cnt { display: inline-flex; align-items: center; gap: 8px; font-size: 19px; color: var(--ink-2); }
+.cnt button { width: 34px; height: 34px; border: 0; border-radius: 10px; background: var(--slide-bg); font-size: 20px; font-weight: 700; }
+.cnt b { font-family: var(--font-display); font-size: 22px; color: var(--ink); min-width: 20px; }
+.tf .votes { display: flex; gap: 22px; }
+.tf .ans { margin-top: auto; font-size: 20px; line-height: 1.35; color: var(--ink-2); }
+.tf .ans b { font-family: var(--font-display); font-size: 21px; margin-right: 4px; }
+.tf .ans b.yes { color: var(--emerald); } .tf .ans b.no { color: var(--coral); }
+.lights { position: absolute; left: 96px; right: 96px; top: 250px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; z-index: 2; }
+.lights div { display: grid; grid-template-columns: 40px 1fr; column-gap: 16px; align-items: center; }
+.lights i { width: 40px; height: 40px; border-radius: 50%; grid-row: span 2; }
+.lights b { font-family: var(--font-display); font-size: 22px; }
+.lights span { font-size: 20px; color: var(--ink-2); }
+.tl-rows { position: absolute; left: 96px; right: 96px; top: 400px; display: grid; gap: 26px; z-index: 2; }
+.tl-row { display: grid; grid-template-columns: 520px 1fr 330px; gap: 30px; align-items: center; padding: 26px 30px; background: var(--card); border-radius: 22px; box-shadow: 0 18px 40px -24px rgba(28,27,51,.35); }
+.tl-row h3 { font-size: 25px; display: flex; gap: 14px; align-items: center; }
+.tl-row h3 i { width: 16px; height: 16px; border-radius: 50%; flex: none; }
+.tl-bar { display: flex; height: 46px; border-radius: 12px; overflow: hidden; gap: 3px; background: rgba(28,27,51,.06); }
+.tl-bar span { flex: 0 0 0; flex-grow: 0; transition: flex-grow .6s var(--ease); }
+.tl-bar .g { background: var(--emerald); } .tl-bar .y { background: var(--sun); } .tl-bar .r { background: var(--coral); }
+.tl-ctrl { display: flex; gap: 20px; justify-content: flex-end; }
+.tl-ctrl .cnt:nth-child(1) b { color: var(--emerald); } .tl-ctrl .cnt:nth-child(2) b { color: #a06d00; } .tl-ctrl .cnt:nth-child(3) b { color: var(--coral); }
+.tl-ask { position: absolute; left: 96px; right: 96px; bottom: 110px; padding: 26px 34px; z-index: 2; background: var(--ink); color: #fff; }
+.tl-ask p { font-size: 25px; }
+
 /* ===========================================
    PRESENTER UI (outside the slide design)
    =========================================== */
@@ -542,17 +575,17 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
       <div class="seg" style="flex:4;background:var(--sun)">0–4</div>
       <div class="seg" style="flex:11;background:var(--coral)">4–15</div>
       <div class="seg" style="flex:11;background:var(--cobalt)">15–26</div>
-      <div class="seg" style="flex:12;background:var(--emerald)">26–38</div>
-      <div class="seg" style="flex:7;background:var(--ink)">38–45</div>
-      <div class="seg" style="flex:5;background:var(--sun)">45–50</div>
+      <div class="seg" style="flex:14;background:var(--emerald)">26–40</div>
+      <div class="seg" style="flex:7;background:var(--ink)">40–47</div>
+      <div class="seg" style="flex:3;background:var(--sun)">47–50</div>
     </div>
     <div class="labels reveal d2">
       <div style="flex:4"><h3>Старт</h3><p>Опрос</p></div>
       <div style="flex:11"><h3>Студент</h3><p>Студенчество как группа. Субъект воспитания</p></div>
       <div style="flex:11"><h3>Эдвайзер</h3><p>Элективы, ИУП и траектория обучения</p></div>
-      <div style="flex:12"><h3>Группа и куратор</h3><p>Внеучебная жизнь, игра «1 000 000 ₸», гражданская позиция</p></div>
-      <div style="flex:7"><h3>Кейсы</h3><p>5 ситуаций</p></div>
-      <div style="flex:5"><h3>Финал</h3><p>Тест</p></div>
+      <div style="flex:14"><h3>Группа и куратор</h3><p>Внеучебная жизнь, игра «1 000 000 ₸», гражданская позиция</p></div>
+      <div style="flex:7"><h3>Итоговая игра</h3><p>Верю — не верю, светофор</p></div>
+      <div style="flex:3"><h3>Финал</h3><p>Одно слово</p></div>
     </div>
   </div>
   <div class="rule card reveal d3">
@@ -896,7 +929,7 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
 </section>
 
 <!-- ============ 19. HART LADDER ============ -->
-<section class="slide s-hart b3" data-who="Наданбаева" data-next="Теперь ваш ход: кейсы">
+<section class="slide s-hart b3" data-who="Наданбаева" data-next="Итоговая игра: верю — не верю">
   <div class="chrome"><span>Блок 3 · Гражданская позиция</span><span class="who"><i></i>Наданбаева Р.</span></div>
   <h2 class="reveal">Лестница участия: <em>где ваша группа?</em></h2>
   <div class="ladder reveal d1" id="ladder">
@@ -917,37 +950,55 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
   <p class="hint">Клик по ступени отмечает выбор аудитории</p>
 </section>
 
-<!-- ============ 20. CASES ============ -->
-<section class="slide s-cases b0" data-who="Все трое" data-next="Проверим себя">
-  <div class="chrome"><span>Работа в командах</span><span class="who"><i style="background:var(--ink)"></i>Все трое</span></div>
-  <h2 class="reveal">Пять кейсов: <em>ваш ход</em></h2>
-  <div class="cases">
-    <div class="k card reveal d1"><b style="background:var(--coral)">1</b><p>На кураторский час приходят пять человек из всей группы. Что изменить куратору и что самой группе?</p></div>
-    <div class="k card reveal d1"><b style="background:var(--cobalt)">2</b><p>Студент взял элективы «полегче», а к третьему курсу понял, что для его профессии они бесполезны. Что делать ему и эдвайзеру?</p></div>
-    <div class="k card reveal d2"><b style="background:var(--emerald)">3</b><p>Половина группы работает, половина нет. Каждый раз спор, когда собираться на групповой проект. Как договориться?</p></div>
-    <div class="k card reveal d2"><b style="background:var(--sun)">4</b><p>Группа хочет запустить волонтёрский проект, но староста всё решает сам. Как подняться по лестнице Харта?</p></div>
-    <div class="k card reveal d3"><b style="background:var(--ink)">5</b><p>Студент приехал из другого региона и за месяц ни с кем не подружился. Пропускает занятия. Кто это заметит и что сделает?</p></div>
+<!-- ============ 20. FINAL GAME: TRUE OR FALSE ============ -->
+<section class="slide s-tf b0" data-who="Даулетова" data-next="Светофор: как вы поняли тему">
+  <div class="chrome"><span>Итоговая игра</span><span class="who"><i style="background:var(--cobalt)"></i>Даулетова А.</span></div>
+  <h2 class="reveal">Верю — <em>не верю</em></h2>
+  <p class="tf-rule reveal d1">Большой палец вверх: верю. Вниз: не верю. Потом открываем ответ.</p>
+  <div class="tfs">
+    <div class="tf card reveal d1"><span class="n" style="background:var(--coral)">1</span><p class="st">В вузах Казахстана учится больше 600 тысяч студентов.</p>
+      <div class="votes"><span class="cnt" data-k="y"><button data-d="1" aria-label="плюс">+</button><b>0</b> верю</span><span class="cnt" data-k="n"><button data-d="1" aria-label="плюс">+</button><b>0</b> не верю</span></div>
+      <p class="ans step"><b class="yes">Верю.</b> На начало 2024/2025 учебного года их было 624,5 тысячи.</p></div>
+    <div class="tf card reveal d1"><span class="n" style="background:var(--cobalt)">2</span><p class="st">Эдвайзер выбирает элективы за студента.</p>
+      <div class="votes"><span class="cnt" data-k="y"><button data-d="1" aria-label="плюс">+</button><b>0</b> верю</span><span class="cnt" data-k="n"><button data-d="1" aria-label="плюс">+</button><b>0</b> не верю</span></div>
+      <p class="ans step"><b class="no">Не верю.</b> Он помогает выбрать, а решает сам студент.</p></div>
+    <div class="tf card reveal d2"><span class="n" style="background:var(--emerald)">3</span><p class="st">Если в группе начались споры, значит, она разваливается.</p>
+      <div class="votes"><span class="cnt" data-k="y"><button data-d="1" aria-label="плюс">+</button><b>0</b> верю</span><span class="cnt" data-k="n"><button data-d="1" aria-label="плюс">+</button><b>0</b> не верю</span></div>
+      <p class="ans step"><b class="no">Не верю.</b> По Такману «шторм» — нормальная стадия перед нормированием.</p></div>
+    <div class="tf card reveal d2"><span class="n" style="background:var(--coral)">4</span><p class="st">Студенту нужны автономия, компетентность и связанность.</p>
+      <div class="votes"><span class="cnt" data-k="y"><button data-d="1" aria-label="плюс">+</button><b>0</b> верю</span><span class="cnt" data-k="n"><button data-d="1" aria-label="плюс">+</button><b>0</b> не верю</span></div>
+      <p class="ans step"><b class="yes">Верю.</b> Это три базовые потребности по теории Деси и Райана.</p></div>
+    <div class="tf card reveal d3"><span class="n" style="background:var(--emerald)">5</span><p class="st">Участие «для галочки» — уже настоящее участие студентов.</p>
+      <div class="votes"><span class="cnt" data-k="y"><button data-d="1" aria-label="плюс">+</button><b>0</b> верю</span><span class="cnt" data-k="n"><button data-d="1" aria-label="плюс">+</button><b>0</b> не верю</span></div>
+      <p class="ans step"><b class="no">Не верю.</b> Харт отнёс его к нижним ступеням, где участия ещё нет.</p></div>
+    <div class="tf card reveal d3"><span class="n" style="background:var(--cobalt)">6</span><p class="st">Кураторский час — зона куратора, ИУП — зона эдвайзера.</p>
+      <div class="votes"><span class="cnt" data-k="y"><button data-d="1" aria-label="плюс">+</button><b>0</b> верю</span><span class="cnt" data-k="n"><button data-d="1" aria-label="плюс">+</button><b>0</b> не верю</span></div>
+      <p class="ans step"><b class="yes">Верю.</b> Хотя во многих вузах обе роли совмещает один человек.</p></div>
   </div>
-  <button class="timer reveal d2" id="timer" aria-label="Таймер: старт и пауза">
-    <small>Обсуждение · клик или T</small>
-    <svg width="260" height="260" viewBox="-130 -130 260 260"><circle r="110" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="18"/><circle id="tArc" r="110" fill="none" stroke="#e3a21a" stroke-width="18" stroke-linecap="round" stroke-dasharray="691.15" stroke-dashoffset="0" transform="rotate(-90)"/><text class="t" id="tTxt" y="24" text-anchor="middle" fill="#fff" font-family="Unbounded" font-size="64" font-weight="600">3:00</text></svg>
-  </button>
-  <div class="plan card reveal d3"><p><b>3 минуты</b> на обсуждение в мини-командах.<br><b>Полминуты</b> на ответ каждой команды.<br>Отвечает тот, кто сегодня ещё не говорил.</p></div>
+  <p class="hint">→ открывает ответы по одному. Клик по «+» считает руки.</p>
 </section>
 
-<!-- ============ 21. QUIZ ============ -->
-<section class="slide s-quiz b0" data-who="Даулетова" data-next="Одно слово напоследок">
-  <div class="chrome"><span>Проверим себя</span><span class="who"><i style="background:var(--cobalt)"></i>Даулетова А.</span></div>
-  <h2 class="reveal">Три вопроса <em>на одну минуту</em></h2>
-  <div class="quiz">
-    <div class="qq card reveal d1 qstep"><span class="n" style="background:var(--coral)">1</span><h3>Сколько студентов училось в вузах Казахстана на начало 2024/2025 учебного года?</h3>
-      <ol><li><b>А</b>около 300 тысяч</li><li class="ok"><b>Б</b>624,5 тысячи</li><li><b>В</b>больше миллиона</li></ol></div>
-    <div class="qq card reveal d2 qstep"><span class="n" style="background:var(--cobalt)">2</span><h3>Кто помогает студенту составить индивидуальный учебный план?</h3>
-      <ol><li><b>А</b>староста</li><li class="ok"><b>Б</b>эдвайзер</li><li><b>В</b>офис регистратора</li></ol></div>
-    <div class="qq card reveal d3 qstep"><span class="n" style="background:var(--emerald)">3</span><h3>Какая стадия по Такману идёт сразу после «формирования»?</h3>
-      <ol><li><b>А</b>нормирование</li><li class="ok"><b>Б</b>шторм</li><li><b>В</b>работа</li></ol></div>
+<!-- ============ 21. FINAL GAME: TRAFFIC LIGHT ============ -->
+<section class="slide s-light b0" data-who="Наданбаева" data-next="Одно слово напоследок">
+  <div class="chrome"><span>Итоговая игра</span><span class="who"><i style="background:var(--emerald)"></i>Наданбаева Р.</span></div>
+  <h2 class="reveal">Светофор: <em>как вы поняли тему?</em></h2>
+  <div class="lights reveal d1" aria-hidden="true">
+    <div><i style="background:var(--emerald)"></i><b>Зелёный</b><span>всё понятно, могу объяснить другому</span></div>
+    <div><i style="background:var(--sun)"></i><b>Жёлтый</b><span>в целом понятно, но есть вопрос</span></div>
+    <div><i style="background:var(--coral)"></i><b>Красный</b><span>не понял, нужно объяснить ещё раз</span></div>
   </div>
-  <p class="hint">→ открывает ответы по одному</p>
+  <div class="tl-rows">
+    <div class="tl-row reveal d2"><h3><i style="background:var(--coral)"></i>Студент как субъект воспитания</h3>
+      <div class="tl-bar"><span class="g"></span><span class="y"></span><span class="r"></span></div>
+      <div class="tl-ctrl"><span class="cnt" data-k="g"><button data-d="1">+</button><b>0</b></span><span class="cnt" data-k="y"><button data-d="1">+</button><b>0</b></span><span class="cnt" data-k="r"><button data-d="1">+</button><b>0</b></span></div></div>
+    <div class="tl-row reveal d3"><h3><i style="background:var(--cobalt)"></i>Эдвайзер и учебная траектория</h3>
+      <div class="tl-bar"><span class="g"></span><span class="y"></span><span class="r"></span></div>
+      <div class="tl-ctrl"><span class="cnt" data-k="g"><button data-d="1">+</button><b>0</b></span><span class="cnt" data-k="y"><button data-d="1">+</button><b>0</b></span><span class="cnt" data-k="r"><button data-d="1">+</button><b>0</b></span></div></div>
+    <div class="tl-row reveal d4"><h3><i style="background:var(--emerald)"></i>Группа, куратор, гражданская позиция</h3>
+      <div class="tl-bar"><span class="g"></span><span class="y"></span><span class="r"></span></div>
+      <div class="tl-ctrl"><span class="cnt" data-k="g"><button data-d="1">+</button><b>0</b></span><span class="cnt" data-k="y"><button data-d="1">+</button><b>0</b></span><span class="cnt" data-k="r"><button data-d="1">+</button><b>0</b></span></div></div>
+  </div>
+  <div class="tl-ask card reveal d5"><p>Жёлтые и красные руки: задайте свой вопрос прямо сейчас. Для этого мы и спрашиваем.</p></div>
 </section>
 
 <!-- ============ 22. REFLECTION ============ -->
@@ -1101,20 +1152,21 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     if (!was) b.classList.add('sel');
   });
 
-  /* 3-minute timer */
-  const T = 180; let left = T, tick = null;
-  const arc = document.getElementById('tArc'), txt = document.getElementById('tTxt');
-  function drawT() {
-    txt.textContent = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`;
-    arc.style.strokeDashoffset = (691.15 * (1 - left / T)).toFixed(1);
-    arc.style.stroke = left <= 30 ? '#e8573a' : '#e3a21a';
+
+  /* counters for the final games: + adds a raised hand */
+  function drawLights() {
+    document.querySelectorAll('.tl-row').forEach(r => {
+      const v = k => +r.querySelector(`[data-k=${k}] b`).textContent;
+      const g = v('g'), y = v('y'), rr = v('r'), t = Math.max(1, g + y + rr);
+      r.querySelector('.g').style.flexGrow = g; r.querySelector('.y').style.flexGrow = y; r.querySelector('.r').style.flexGrow = rr;
+      r.querySelector('.tl-bar').classList.toggle('empty', g + y + rr === 0);
+    });
   }
-  function toggleTimer() {
-    if (tick) { clearInterval(tick); tick = null; return; }
-    if (left === 0) left = T;
-    tick = setInterval(() => { left = Math.max(0, left - 1); drawT(); if (!left) { clearInterval(tick); tick = null; } }, 1000);
-  }
-  document.getElementById('timer').addEventListener('click', toggleTimer);
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.cnt button'); if (!b) return;
+    const n = b.parentElement.querySelector('b'); n.textContent = Math.max(0, +n.textContent + +b.dataset.d);
+    drawLights();
+  });
 
   /* edit mode */
   const editing = () => document.body.classList.contains('editing');
@@ -1140,13 +1192,12 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     if (e.key === 'End') show(slides.length - 1);
     const k = e.key.toLowerCase();
     if (k === 'c' || k === 'с') checkSort();
-    if (k === 't' || k === 'е') toggleTimer();
     if (k === 'e' || k === 'у') toggleEdit();
   });
   let x0 = null;
   addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
   addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) (dx < 0 ? next : prev)(); x0 = null; });
-  fit(); drawPoll(); drawT(); drawBudget(); show(i);
+  fit(); drawPoll(); drawBudget(); drawLights(); show(i);
 })();
 </script>
 </body>
