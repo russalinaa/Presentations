@@ -463,6 +463,41 @@ p, li { font-size: 27px; line-height: 1.45; }
 .thanks .p i { width: 18px; height: 18px; border-radius: 50%; }
 .srcs { position: absolute; left: 96px; right: 280px; bottom: 60px; font-size: 16px; line-height: 1.5; color: var(--ink-2); z-index: 2; columns: 2; column-gap: 60px; }
 
+
+/* ===========================================
+   BRIDGE TO THE NEXT SLIDE + PAGE NUMBER (rendered by JS)
+   =========================================== */
+.foot-r { position: absolute; right: 96px; bottom: 40px; display: flex; align-items: center; gap: 22px; z-index: 3; font-size: 19px; color: var(--ink-2); }
+.foot-r .nx { display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border-radius: 99px; background: var(--card); box-shadow: 0 6px 16px -12px rgba(28,27,51,.5); color: var(--ink); font-weight: 500; }
+.foot-r .nx b { color: var(--c); font-weight: 700; }
+.foot-r .pg { font-family: var(--font-display); font-size: 18px; }
+.s-sec .foot-r { color: rgba(255,255,255,.85); }
+.s-sec .foot-r .nx { background: rgba(255,255,255,.18); color: #fff; box-shadow: none; }
+.s-sec .foot-r .nx b { color: #fff; }
+.src, .hint { max-width: 1000px; }
+
+/* ===========================================
+   BUDGET GAME: 1 000 000 ₸
+   =========================================== */
+.lead-b { position: absolute; left: 96px; top: 250px; width: 1150px; font-size: 26px; color: var(--ink-2); z-index: 2; }
+.proj { position: absolute; left: 96px; top: 340px; width: 1080px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; z-index: 2; }
+.pj { border: 0; display: grid; grid-template-columns: 18px 1fr auto; gap: 16px; align-items: center; text-align: left; padding: 22px 24px; border-radius: 18px; background: var(--card); box-shadow: 0 8px 20px -14px rgba(28,27,51,.6); font-size: 23px; font-weight: 500; line-height: 1.25; transition: transform .3s var(--ease), box-shadow .3s, background .3s; }
+.pj i { width: 18px; height: 18px; border-radius: 50%; }
+.pj b { font-family: var(--font-display); font-size: 21px; font-weight: 600; white-space: nowrap; }
+.pj:hover { transform: translateY(-2px); }
+.pj.on { background: var(--ink); color: #fff; box-shadow: 0 0 0 3px var(--sun); }
+.wallet { position: absolute; left: 1230px; right: 96px; top: 340px; padding: 40px; z-index: 2; }
+.wallet small { font-size: 20px; font-weight: 600; color: var(--ink-2); }
+.wallet .left { font-family: var(--font-display); font-size: 66px; font-weight: 700; line-height: 1.1; margin: 10px 0 24px; color: var(--cobalt); white-space: nowrap; }
+.wallet .gauge { height: 26px; border-radius: 13px; background: rgba(28,27,51,.08); overflow: hidden; }
+.wallet .gfill { height: 100%; width: 0; background: var(--cobalt); border-radius: 13px; transition: width .6s var(--ease), background .3s; }
+.wallet .spent { margin-top: 16px; font-size: 21px; color: var(--ink-2); }
+.wallet .msg { margin-top: 14px; font-size: 22px; font-weight: 600; }
+.wallet.over .left { color: var(--coral); } .wallet.over .gfill { background: var(--coral); } .wallet.over .msg { color: var(--coral); }
+.ask { position: absolute; left: 1230px; right: 96px; top: 720px; padding: 30px 34px; background: var(--ink); color: #fff; border-radius: 26px; z-index: 2; }
+.ask small { display: block; font-size: 18px; color: #ffcf6e; font-weight: 600; margin-bottom: 8px; }
+.ask p { font-size: 24px; line-height: 1.35; }
+
 /* ===========================================
    PRESENTER UI (outside the slide design)
    =========================================== */
@@ -479,7 +514,7 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
 <div class="deck-viewport"><div class="deck-stage">
 
 <!-- ============ 1. TITLE ============ -->
-<section class="slide s-title b1" data-who="Абдуллаева">
+<section class="slide s-title b1" data-who="Абдуллаева" data-next="Как пройдут 50 минут">
   <div class="chrome"><span>Педагогика высшей школы · Тема 14</span><span>Сократическая лекция</span></div>
   <h1 class="reveal">Академическая группа: <em>центр воспитательной работы</em></h1>
   <p class="sub reveal d1">Студент как субъект воспитания. Эдвайзер, куратор и группа, в которой взрослый человек решает, кем ему стать</p>
@@ -499,7 +534,7 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
 </section>
 
 <!-- ============ 2. AGENDA ============ -->
-<section class="slide s-agenda b0" data-who="Наданбаева">
+<section class="slide s-agenda b0" data-who="Наданбаева" data-next="Начнём с вас: кто на вас влияет?">
   <div class="chrome"><span>Педагогика высшей школы · Тема 14</span><span class="who"><i style="background:var(--emerald)"></i>Наданбаева Р.</span></div>
   <h2 class="reveal">Как пройдут <em>50 минут</em></h2>
   <div class="agenda">
@@ -507,16 +542,16 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
       <div class="seg" style="flex:4;background:var(--sun)">0–4</div>
       <div class="seg" style="flex:11;background:var(--coral)">4–15</div>
       <div class="seg" style="flex:11;background:var(--cobalt)">15–26</div>
-      <div class="seg" style="flex:10;background:var(--emerald)">26–36</div>
-      <div class="seg" style="flex:9;background:var(--ink)">36–45</div>
+      <div class="seg" style="flex:12;background:var(--emerald)">26–38</div>
+      <div class="seg" style="flex:7;background:var(--ink)">38–45</div>
       <div class="seg" style="flex:5;background:var(--sun)">45–50</div>
     </div>
     <div class="labels reveal d2">
       <div style="flex:4"><h3>Старт</h3><p>Опрос</p></div>
       <div style="flex:11"><h3>Студент</h3><p>Студенчество как группа. Субъект воспитания</p></div>
       <div style="flex:11"><h3>Эдвайзер</h3><p>Элективы, ИУП и траектория обучения</p></div>
-      <div style="flex:10"><h3>Группа и куратор</h3><p>Внеучебная жизнь и гражданская позиция</p></div>
-      <div style="flex:9"><h3>Кейсы</h3><p>5 команд, 5 ситуаций</p></div>
+      <div style="flex:12"><h3>Группа и куратор</h3><p>Внеучебная жизнь, игра «1 000 000 ₸», гражданская позиция</p></div>
+      <div style="flex:7"><h3>Кейсы</h3><p>5 ситуаций</p></div>
       <div style="flex:5"><h3>Финал</h3><p>Тест</p></div>
     </div>
   </div>
@@ -524,11 +559,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="#fcf1d6"/><path d="M34 44h52a8 8 0 0 1 8 8v22a8 8 0 0 1-8 8H58l-16 12V82h-8a8 8 0 0 1-8-8V52a8 8 0 0 1 8-8z" fill="#e3a21a"/><text x="60" y="73" text-anchor="middle" font-family="Unbounded" font-size="30" font-weight="700" fill="#fff">?</text></svg>
     <p>Сократическая лекция работает так: <b>мы спрашиваем, вы отвечаете.</b> Неправильных ответов нет, есть недодуманные. Их мы додумаем вместе.</p>
   </div>
-  <div class="pageno">02 / 21</div>
 </section>
 
 <!-- ============ 3. LIVE POLL ============ -->
-<section class="slide s-poll b0" data-who="Даулетова">
+<section class="slide s-poll b0" data-who="Даулетова" data-next="Сколько нас, студентов, в стране?">
   <div class="chrome"><span>Старт</span><span class="who"><i style="background:var(--cobalt)"></i>Даулетова А.</span></div>
   <h2 class="reveal">Кто в университете влияет на вас <em>сильнее всего?</em></h2>
   <div class="poll reveal d1" id="poll">
@@ -542,11 +576,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <div class="big" id="pollTotal">0</div>
     <p class="ink2">голосов. В конце лекции вернёмся к этой диаграмме.</p>
   </div>
-  <div class="pageno">03 / 21</div>
 </section>
 
 <!-- ============ 4. STATS ============ -->
-<section class="slide s-stats b1" data-who="Абдуллаева">
+<section class="slide s-stats b1" data-who="Абдуллаева" data-next="Что делает студентов одной группой?">
   <div class="chrome"><span>Блок 1 · Студент</span><span class="who"><i></i>Абдуллаева А.</span></div>
   <h2 class="reveal">Студентов в Казахстане <em>624,5 тысячи</em></h2>
   <div class="chart card reveal d1">
@@ -577,11 +610,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <div class="tile card reveal d4"><b style="color:var(--coral)">≈16</b><p>студентов на одного преподавателя: 592,7 тыс. и 37&nbsp;391 преподаватель (2023/2024)</p></div>
   </div>
   <p class="src">Источник: Бюро национальной статистики АСПиР РК, stat.gov.kz. Отношение студентов к преподавателям посчитали мы.</p>
-  <div class="pageno">04 / 21</div>
 </section>
 
 <!-- ============ 5. SOCIAL GROUP ============ -->
-<section class="slide s-group b1" data-who="Абдуллаева">
+<section class="slide s-group b1" data-who="Абдуллаева" data-next="Почему именно в эти годы человек так меняется?">
   <div class="chrome"><span>Блок 1 · Студент</span><span class="who"><i></i>Абдуллаева А.</span></div>
   <h2 class="reveal">Студенчество: <em>особая социальная группа</em></h2>
   <div class="orbit">
@@ -592,14 +624,13 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
   <div class="sat card reveal d2" style="left:1420px;top:280px"><h3>Главное дело: учёба</h3><p>Вся группа занята одной деятельностью и живёт по одному расписанию</p></div>
   <div class="sat card reveal d3" style="left:1420px;top:510px"><h3>Временный статус</h3><p>Студентом становятся на несколько лет, потом группа распадается</p></div>
   <div class="sat card reveal d4" style="left:1420px;top:740px"><h3>Мобильность</h3><p>Переезды, обмены, смена планов: здесь это норма</p></div>
-  <div class="sat card reveal d4" style="left:760px;top:880px"><h3>Своя культура</h3><p>Свой язык, юмор, чаты и традиции</p></div>
+  <div class="sat card reveal d4" style="left:760px;top:830px"><h3>Своя культура</h3><p>Свой язык, юмор, чаты и традиции</p></div>
   <div class="sat card reveal d3" style="left:96px;top:480px"><h3>Переход</h3><p>Между зависимостью от семьи и самостоятельностью</p></div>
   <div class="socq reveal d5"><small>Вопрос к аудитории</small><p>Что общего у вас с первокурсником из другого города, кроме студенческого билета?</p></div>
-  <div class="pageno">05 / 21</div>
 </section>
 
 <!-- ============ 6. 18-25 ============ -->
-<section class="slide s-adult b1" data-who="Абдуллаева">
+<section class="slide s-adult b1" data-who="Абдуллаева" data-next="Значит, можно ли воспитать взрослого?">
   <div class="chrome"><span>Блок 1 · Студент</span><span class="who"><i></i>Абдуллаева А.</span></div>
   <h2 class="reveal">От 18 до 25: <em>«становящаяся взрослость»</em></h2>
   <div class="arnett">
@@ -616,11 +647,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <div class="stair" aria-hidden="true"><i style="height:20%"></i><i style="height:30%"></i><i style="height:40%"></i><i style="height:50%"></i><i style="height:60%"></i><i class="on" style="height:72%"></i><i style="height:84%"></i><i style="height:100%"></i></div>
   </div>
   <p class="src">Слева: пять черт периода по Дж. Арнетту («Emerging adulthood», American Psychologist, 2000). Справа: периодизация Э. Эриксона.</p>
-  <div class="pageno">06 / 21</div>
 </section>
 
 <!-- ============ 7. SOCRATIC CHAIN ============ -->
-<section class="slide s-chain b1" data-who="Абдуллаева">
+<section class="slide s-chain b1" data-who="Абдуллаева" data-next="Студент: объект или субъект?">
   <div class="chrome"><span>Блок 1 · Сократический диалог</span><span class="who"><i></i>Абдуллаева А.</span></div>
   <h2 class="reveal">Можно ли <em>воспитать</em> взрослого?</h2>
   <div class="chain">
@@ -635,11 +665,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#ffcf6e" stroke-width="4"/><path d="M38 62l15 15 30-34" fill="none" stroke="#ffcf6e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </div>
   <p class="hint">Вопросы появляются по нажатию →</p>
-  <div class="pageno">07 / 21</div>
 </section>
 
 <!-- ============ 8. OBJECT vs SUBJECT ============ -->
-<section class="slide s-subj b1" data-who="Абдуллаева">
+<section class="slide s-subj b1" data-who="Абдуллаева" data-next="Кто помогает субъекту выбирать?">
   <div class="chrome"><span>Блок 1 · Студент</span><span class="who"><i></i>Абдуллаева А.</span></div>
   <h2 class="reveal">Студент: <em>объект или субъект</em> воспитания</h2>
   <div class="vs reveal d1">
@@ -663,11 +692,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <text x="320" y="356" text-anchor="middle" font-family="Golos Text" font-size="20" fill="#4a4866">Э. Деси и Р. Райан</text>
   </svg>
   <div class="quote reveal d3"><p>«Как можно больше требования к человеку, но вместе с тем и как можно больше уважения к нему»</p><span>А. С. Макаренко</span></div>
-  <div class="pageno">08 / 21</div>
 </section>
 
 <!-- ============ 9. SECTION: ADVISOR ============ -->
-<section class="slide s-sec b2" data-who="Даулетова">
+<section class="slide s-sec b2" data-who="Даулетова" data-next="Откуда в вузах взялся эдвайзер">
   <div class="chrome"><span>Блок 2</span><span class="who"><i></i>Даулетова А.</span></div>
   <div class="num reveal">02</div>
   <h2 class="reveal d1">Эдвайзер: навигатор по учёбе</h2>
@@ -679,11 +707,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <circle cx="210" cy="210" r="14" fill="#1c1b33"/>
     <g fill="#fff" font-family="Unbounded" font-size="26" font-weight="700" text-anchor="middle"><text x="210" y="44">С</text><text x="210" y="398">Ю</text><text x="388" y="219">В</text><text x="32" y="219">З</text></g>
   </svg>
-  <div class="pageno">09 / 21</div>
 </section>
 
 <!-- ============ 10. CREDIT SYSTEM ============ -->
-<section class="slide s-credit b2" data-who="Даулетова">
+<section class="slide s-credit b2" data-who="Даулетова" data-next="Как выглядит путь студента">
   <div class="chrome"><span>Блок 2 · Эдвайзер</span><span class="who"><i></i>Даулетова А.</span></div>
   <h2 class="reveal">Откуда в наших вузах <em>взялся эдвайзер</em></h2>
   <div class="facts">
@@ -697,11 +724,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <p>Преподаватель-наставник, который помогает студенту выбрать траекторию обучения, составить ИУП и пройти образовательную программу до конца</p>
     <p class="cite">По Правилам организации учебного процесса по кредитной технологии обучения</p>
   </div>
-  <div class="pageno">10 / 21</div>
 </section>
 
 <!-- ============ 11. PATH FLOW ============ -->
-<section class="slide s-path b2" data-who="Даулетова">
+<section class="slide s-path b2" data-who="Даулетова" data-next="Что конкретно делает эдвайзер">
   <div class="chrome"><span>Блок 2 · Эдвайзер</span><span class="who"><i></i>Даулетова А.</span></div>
   <h2 class="reveal">Путь студента <em>по кредитной системе</em></h2>
   <svg class="flow reveal d1" viewBox="0 0 1800 700" aria-label="Путь: каталог элективов, разговор с эдвайзером, ИУП, регистрация, учёба, GPA, корректировка">
@@ -724,11 +750,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
       <text x="170" y="430" font-size="21" font-weight="600" fill="#a06d00">и снова к эдвайзеру</text>
     </g>
   </svg>
-  <div class="pageno">11 / 21</div>
 </section>
 
 <!-- ============ 12. ADVISOR FUNCTIONS ============ -->
-<section class="slide s-fn b2" data-who="Даулетова">
+<section class="slide s-fn b2" data-who="Даулетова" data-next="Проверим: эдвайзер или куратор?">
   <div class="chrome"><span>Блок 2 · Эдвайзер</span><span class="who"><i></i>Даулетова А.</span></div>
   <h2 class="reveal">Что делает эдвайзер в <em>высшей школе</em></h2>
   <div class="fn">
@@ -739,11 +764,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <div class="c reveal d5"><div class="ic"><svg width="44" height="44" viewBox="0 0 44 44"><path d="M6 34 L18 20 L26 26 L38 10" fill="none" stroke="#3554e0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="38" cy="10" r="4" fill="#e3a21a"/></svg></div><h3>Строит траекторию</h3><p>Связывает выбор курсов с будущей работой, магистратурой, стажировками</p></div>
     <div class="c reveal d6"><div class="ic"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="12" cy="22" r="6" fill="#3554e0"/><circle cx="32" cy="12" r="6" fill="none" stroke="#3554e0" stroke-width="3"/><circle cx="32" cy="32" r="6" fill="none" stroke="#3554e0" stroke-width="3"/><path d="M17 19l10-5M17 25l10 5" stroke="#3554e0" stroke-width="3"/></svg></div><h3>Связывает с вузом</h3><p>Кафедра, офис регистратора, деканат: эдвайзер знает, куда идти</p></div>
   </div>
-  <div class="pageno">12 / 21</div>
 </section>
 
 <!-- ============ 13. SORT GAME ============ -->
-<section class="slide s-sort b2" data-who="Даулетова">
+<section class="slide s-sort b2" data-who="Даулетова" data-next="А что происходит с самой группой?">
   <div class="chrome"><span>Блок 2 · Интерактив</span><span class="who"><i></i>Даулетова А.</span></div>
   <h2 class="reveal">Игра: <em>эдвайзер или куратор?</em></h2>
   <div class="sort reveal d1" id="sort">
@@ -762,11 +786,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
   </div>
   <div class="score" id="score"></div>
   <p class="hint">Клик по карточке: влево, вправо, обратно. Клавиша C показывает ответ. Во многих вузах обе роли совмещает один человек, «куратор-эдвайзер».</p>
-  <div class="pageno">13 / 21</div>
 </section>
 
 <!-- ============ 14. SECTION: GROUP ============ -->
-<section class="slide s-sec b3" data-who="Наданбаева">
+<section class="slide s-sec b3" data-who="Наданбаева" data-next="Как группа становится командой">
   <div class="chrome"><span>Блок 3</span><span class="who"><i></i>Наданбаева Р.</span></div>
   <div class="num reveal">03</div>
   <h2 class="reveal d1">Академическая группа и куратор</h2>
@@ -776,11 +799,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <g fill="rgba(255,255,255,.55)"><circle cx="90" cy="180" r="34"/><path d="M28 300c0-40 28-68 62-68s62 28 62 68z"/><circle cx="370" cy="180" r="34"/><path d="M308 300c0-40 28-68 62-68s62 28 62 68z"/></g>
     <path d="M40 360 H 420" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".6"/>
   </svg>
-  <div class="pageno">14 / 21</div>
 </section>
 
 <!-- ============ 15. TUCKMAN ============ -->
-<section class="slide s-tuck b3" data-who="Наданбаева">
+<section class="slide s-tuck b3" data-who="Наданбаева" data-next="Кто ведёт группу через эти стадии">
   <div class="chrome"><span>Блок 3 · Группа</span><span class="who"><i></i>Наданбаева Р.</span></div>
   <h2 class="reveal">Как группа <em>становится командой</em></h2>
   <svg class="tuck reveal d1" viewBox="0 0 1100 520" aria-label="Стадии развития группы по Такману: формирование, шторм, нормирование, работа, завершение">
@@ -809,11 +831,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <div class="s card step"><p>Группа сама придумала проект и подала его на конкурс.</p><p class="ans step">Работа</p></div>
   </div>
   <p class="src">Б. Такман, 1965; пятая стадия добавлена Такманом и М. Дженсен в 1977. Кривая показывает идею модели, а не измеренные данные.</p>
-  <div class="pageno">15 / 21</div>
 </section>
 
 <!-- ============ 16. CURATOR ============ -->
-<section class="slide s-cur b3" data-who="Наданбаева">
+<section class="slide s-cur b3" data-who="Наданбаева" data-next="Где группа растёт вне пар">
   <div class="chrome"><span>Блок 3 · Куратор</span><span class="who"><i></i>Наданбаева Р.</span></div>
   <h2 class="reveal">Направления <em>кураторской работы</em></h2>
   <svg class="radial reveal d1" viewBox="0 0 1120 760" aria-label="Шесть направлений кураторской работы">
@@ -831,11 +852,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     </g>
   </svg>
   <p class="src">Обобщение типовых положений о кураторе казахстанских и российских вузов. Набор функций в каждом вузе свой.</p>
-  <div class="pageno">16 / 21</div>
 </section>
 
 <!-- ============ 17. EXTRACURRICULAR ============ -->
-<section class="slide s-mx b3" data-who="Наданбаева">
+<section class="slide s-mx b3" data-who="Наданбаева" data-next="Игра: у вас миллион тенге">
   <div class="chrome"><span>Блок 3 · Внеучебная деятельность</span><span class="who"><i></i>Наданбаева Р.</span></div>
   <h2 class="reveal">Виды и формы <em>внеучебной деятельности</em></h2>
   <div class="mx">
@@ -846,12 +866,37 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <div class="r reveal d4" style="background:var(--sun)">Волонтёрская</div><div class="c reveal d4">Наставник для первокурсника</div><div class="c reveal d4">Акция группы</div><div class="c reveal d4">Городской марафон добрых дел</div>
     <div class="r reveal d5" style="background:var(--ink)">Общественная</div><div class="c reveal d5">Староста</div><div class="c reveal d5">Студенческий совет</div><div class="c reveal d5">Форум, выборы в совет</div>
   </div>
-  <div class="socq reveal d6" style="left:96px;right:96px;width:auto;bottom:70px;display:flex;gap:24px;align-items:center;padding:24px 32px"><small style="margin:0">Вопрос к аудитории</small><p>В какой клетке вы были хотя бы раз за этот год? А в какой хотели бы оказаться?</p></div>
-  <div class="pageno">17 / 21</div>
+  <div class="socq reveal d6" style="left:96px;right:96px;width:auto;bottom:120px;display:flex;gap:24px;align-items:center;padding:24px 32px"><small style="margin:0">Вопрос к аудитории</small><p>В какой клетке вы были хотя бы раз за этот год? А в какой хотели бы оказаться?</p></div>
 </section>
 
-<!-- ============ 18. HART LADDER ============ -->
-<section class="slide s-hart b3" data-who="Наданбаева">
+
+<!-- ============ 18. BUDGET GAME ============ -->
+<section class="slide s-budget b2" data-who="Даулетова" data-next="Кто решает в группе: вы или за вас?">
+  <div class="chrome"><span>Блок 3 · Игра</span><span class="who"><i></i>Даулетова А.</span></div>
+  <h2 class="reveal">Игра: у вас <em>1 000 000 ₸</em></h2>
+  <p class="lead-b reveal d1">Вы стали руководителем академии и получили миллион тенге на внеучебную жизнь студентов. Что вы проведёте? Бюджет превышать нельзя.</p>
+  <div class="proj" id="proj">
+    <button class="pj reveal d1" data-cost="300000"><i style="background:var(--cobalt)"></i><span>Авиационный научный клуб</span><b>300 000 ₸</b></button>
+    <button class="pj reveal d1" data-cost="200000"><i style="background:var(--emerald)"></i><span>Спортивный турнир</span><b>200 000 ₸</b></button>
+    <button class="pj reveal d2" data-cost="150000"><i style="background:var(--sun)"></i><span>Волонтёрский проект</span><b>150 000 ₸</b></button>
+    <button class="pj reveal d2" data-cost="350000"><i style="background:var(--cobalt)"></i><span>Конференция по безопасности полётов</span><b>350 000 ₸</b></button>
+    <button class="pj reveal d3" data-cost="250000"><i style="background:var(--coral)"></i><span>Культурный фестиваль</span><b>250 000 ₸</b></button>
+    <button class="pj reveal d3" data-cost="200000"><i style="background:var(--ink)"></i><span>Встречи с действующими пилотами</span><b>200 000 ₸</b></button>
+    <button class="pj reveal d4" data-cost="250000"><i style="background:var(--ink)"></i><span>Школа студенческого лидерства</span><b>250 000 ₸</b></button>
+  </div>
+  <div class="wallet card reveal d2">
+    <small>Осталось</small>
+    <div class="left" id="bLeft">1 000 000 ₸</div>
+    <div class="gauge"><div class="gfill" id="bFill"></div></div>
+    <p class="spent" id="bSpent">Потрачено 0 ₸ из 1 000 000 ₸</p>
+    <p class="msg" id="bMsg">Нажимайте на проекты, которые выбирает группа</p>
+  </div>
+  <div class="ask reveal d4"><small>Потом обсуждаем</small><p>Какие качества развивают выбранные проекты? Почему вы отказались от остальных?</p></div>
+  <p class="src">Суммы условные.</p>
+</section>
+
+<!-- ============ 19. HART LADDER ============ -->
+<section class="slide s-hart b3" data-who="Наданбаева" data-next="Теперь ваш ход: кейсы">
   <div class="chrome"><span>Блок 3 · Гражданская позиция</span><span class="who"><i></i>Наданбаева Р.</span></div>
   <h2 class="reveal">Лестница участия: <em>где ваша группа?</em></h2>
   <div class="ladder reveal d1" id="ladder">
@@ -870,13 +915,12 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <div class="card reveal d4"><p class="ink2">Гражданская позиция начинается в группе: кто предлагает идею, кто решает и кто за неё отвечает.</p></div>
   </div>
   <p class="hint">Клик по ступени отмечает выбор аудитории</p>
-  <div class="pageno">18 / 21</div>
 </section>
 
-<!-- ============ 19. CASES ============ -->
-<section class="slide s-cases b0" data-who="Все трое">
+<!-- ============ 20. CASES ============ -->
+<section class="slide s-cases b0" data-who="Все трое" data-next="Проверим себя">
   <div class="chrome"><span>Работа в командах</span><span class="who"><i style="background:var(--ink)"></i>Все трое</span></div>
-  <h2 class="reveal">Пять кейсов, <em>пять команд</em></h2>
+  <h2 class="reveal">Пять кейсов: <em>ваш ход</em></h2>
   <div class="cases">
     <div class="k card reveal d1"><b style="background:var(--coral)">1</b><p>На кураторский час приходят пять человек из всей группы. Что изменить куратору и что самой группе?</p></div>
     <div class="k card reveal d1"><b style="background:var(--cobalt)">2</b><p>Студент взял элективы «полегче», а к третьему курсу понял, что для его профессии они бесполезны. Что делать ему и эдвайзеру?</p></div>
@@ -886,14 +930,13 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
   </div>
   <button class="timer reveal d2" id="timer" aria-label="Таймер: старт и пауза">
     <small>Обсуждение · клик или T</small>
-    <svg width="260" height="260" viewBox="-130 -130 260 260"><circle r="110" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="18"/><circle id="tArc" r="110" fill="none" stroke="#e3a21a" stroke-width="18" stroke-linecap="round" stroke-dasharray="691.15" stroke-dashoffset="0" transform="rotate(-90)"/><text class="t" id="tTxt" y="24" text-anchor="middle" fill="#fff" font-family="Unbounded" font-size="64" font-weight="600">4:00</text></svg>
+    <svg width="260" height="260" viewBox="-130 -130 260 260"><circle r="110" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="18"/><circle id="tArc" r="110" fill="none" stroke="#e3a21a" stroke-width="18" stroke-linecap="round" stroke-dasharray="691.15" stroke-dashoffset="0" transform="rotate(-90)"/><text class="t" id="tTxt" y="24" text-anchor="middle" fill="#fff" font-family="Unbounded" font-size="64" font-weight="600">3:00</text></svg>
   </button>
-  <div class="plan card reveal d3"><p><b>4 минуты</b> на обсуждение.<br><b>1 минута</b> на ответ каждой команды.<br>Отвечает тот, кто сегодня ещё не говорил.</p></div>
-  <div class="pageno">19 / 21</div>
+  <div class="plan card reveal d3"><p><b>3 минуты</b> на обсуждение в мини-командах.<br><b>Полминуты</b> на ответ каждой команды.<br>Отвечает тот, кто сегодня ещё не говорил.</p></div>
 </section>
 
-<!-- ============ 20. QUIZ ============ -->
-<section class="slide s-quiz b0" data-who="Даулетова">
+<!-- ============ 21. QUIZ ============ -->
+<section class="slide s-quiz b0" data-who="Даулетова" data-next="Одно слово напоследок">
   <div class="chrome"><span>Проверим себя</span><span class="who"><i style="background:var(--cobalt)"></i>Даулетова А.</span></div>
   <h2 class="reveal">Три вопроса <em>на одну минуту</em></h2>
   <div class="quiz">
@@ -905,11 +948,10 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
       <ol><li><b>А</b>нормирование</li><li class="ok"><b>Б</b>шторм</li><li><b>В</b>работа</li></ol></div>
   </div>
   <p class="hint">→ открывает ответы по одному</p>
-  <div class="pageno">20 / 21</div>
 </section>
 
-<!-- ============ 21. REFLECTION ============ -->
-<section class="slide s-end b3" data-who="Абдуллаева, Наданбаева">
+<!-- ============ 22. REFLECTION ============ -->
+<section class="slide s-end b3" data-who="Абдуллаева, Наданбаева" data-next="">
   <div class="chrome"><span>Финал</span><span class="who"><i style="background:var(--coral)"></i>Абдуллаева А. · Наданбаева Р.</span></div>
   <h2 class="reveal">Одно слово <em>напоследок</em></h2>
   <div class="refl reveal d1">
@@ -934,7 +976,6 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     Tuckman B. Developmental sequence in small groups // Psychological Bulletin. 1965; Tuckman B., Jensen M. 1977.<br>
     Hart R. Children's participation: from tokenism to citizenship. UNICEF, 1992.
   </div>
-  <div class="pageno">21 / 21</div>
 </section>
 
 </div></div>
@@ -989,6 +1030,29 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     show(i - 1);
   }
 
+
+  /* page number + bridge to the next slide on every slide */
+  slides.forEach((sl, k) => {
+    const f = document.createElement('div'); f.className = 'foot-r';
+    const nx = sl.dataset.next;
+    f.innerHTML = (nx ? `<span class="nx"><b>Дальше</b>${nx}</span>` : '') + (k ? `<span class="pg">${String(k + 1).padStart(2, '0')} / ${slides.length}</span>` : '');
+    sl.appendChild(f);
+  });
+
+  /* budget game: 1 000 000 ₸ */
+  const BUDGET = 1000000, fmt = v => v.toLocaleString('ru-RU').replace(/\u00a0/g, ' ') + ' ₸';
+  const wallet = document.querySelector('.wallet');
+  function drawBudget() {
+    const spent = [...document.querySelectorAll('.pj.on')].reduce((a, b) => a + +b.dataset.cost, 0);
+    const left = BUDGET - spent, over = left < 0;
+    wallet.classList.toggle('over', over);
+    document.getElementById('bLeft').textContent = over ? '−' + fmt(-left) : fmt(left);
+    document.getElementById('bFill').style.width = Math.min(100, spent / BUDGET * 100) + '%';
+    document.getElementById('bSpent').textContent = `Потрачено ${fmt(spent)} из ${fmt(BUDGET)}`;
+    document.getElementById('bMsg').textContent = over ? `Бюджет превышен на ${fmt(-left)}. От чего откажемся?` : spent === 0 ? 'Нажимайте на проекты, которые выбирает группа' : left === 0 ? 'Бюджет потрачен до тенге' : `Можно добавить проекты ещё на ${fmt(left)}`;
+  }
+  document.getElementById('proj').addEventListener('click', e => { const b = e.target.closest('.pj'); if (!b) return; b.classList.toggle('on'); drawBudget(); });
+
   /* live poll */
   const votes = [0, 0, 0, 0];
   const poll = document.getElementById('poll');
@@ -1037,8 +1101,8 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     if (!was) b.classList.add('sel');
   });
 
-  /* 4-minute timer */
-  const T = 240; let left = T, tick = null;
+  /* 3-minute timer */
+  const T = 180; let left = T, tick = null;
   const arc = document.getElementById('tArc'), txt = document.getElementById('tTxt');
   function drawT() {
     txt.textContent = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`;
@@ -1082,7 +1146,7 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
   let x0 = null;
   addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
   addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) (dx < 0 ? next : prev)(); x0 = null; });
-  fit(); drawPoll(); drawT(); show(i);
+  fit(); drawPoll(); drawT(); drawBudget(); show(i);
 })();
 </script>
 </body>
