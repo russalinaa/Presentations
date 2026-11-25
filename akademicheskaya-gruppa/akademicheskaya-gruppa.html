@@ -574,16 +574,16 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <div class="bar reveal d1">
       <div class="seg" style="flex:4;background:var(--sun)">0–4</div>
       <div class="seg" style="flex:11;background:var(--coral)">4–15</div>
-      <div class="seg" style="flex:11;background:var(--cobalt)">15–26</div>
-      <div class="seg" style="flex:14;background:var(--emerald)">26–40</div>
+      <div class="seg" style="flex:6;background:var(--cobalt)">15–21</div>
+      <div class="seg" style="flex:19;background:var(--emerald)">21–40</div>
       <div class="seg" style="flex:7;background:var(--ink)">40–47</div>
       <div class="seg" style="flex:3;background:var(--sun)">47–50</div>
     </div>
     <div class="labels reveal d2">
       <div style="flex:4"><h3>Старт</h3><p>Опрос</p></div>
       <div style="flex:11"><h3>Студент</h3><p>Студенчество как группа. Субъект воспитания</p></div>
-      <div style="flex:11"><h3>Эдвайзер</h3><p>Элективы, ИУП и траектория обучения</p></div>
-      <div style="flex:14"><h3>Группа и куратор</h3><p>Внеучебная жизнь, игра «1 000 000 ₸», гражданская позиция</p></div>
+      <div style="flex:6"><h3>Эдвайзер</h3><p>Элективы, ИУП, траектория</p></div>
+      <div style="flex:19"><h3>Группа и куратор</h3><p>Куратор, игра «Эдвайзер или куратор?», внеучебная жизнь, игра «1 000 000 ₸», гражданская позиция</p></div>
       <div style="flex:7"><h3>Итоговая игра</h3><p>Верю — не верю, светофор</p></div>
       <div style="flex:3"><h3>Финал</h3><p>Одно слово</p></div>
     </div>
@@ -786,7 +786,7 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
 </section>
 
 <!-- ============ 12. ADVISOR FUNCTIONS ============ -->
-<section class="slide s-fn b2" data-who="Даулетова" data-next="Проверим: эдвайзер или куратор?">
+<section class="slide s-fn b2" data-who="Даулетова" data-next="А что происходит с самой группой?">
   <div class="chrome"><span>Блок 2 · Эдвайзер</span><span class="who"><i></i>Даулетова А.</span></div>
   <h2 class="reveal">Что делает эдвайзер в <em>высшей школе</em></h2>
   <div class="fn">
@@ -797,28 +797,6 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <div class="c reveal d5"><div class="ic"><svg width="44" height="44" viewBox="0 0 44 44"><path d="M6 34 L18 20 L26 26 L38 10" fill="none" stroke="#3554e0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="38" cy="10" r="4" fill="#e3a21a"/></svg></div><h3>Строит траекторию</h3><p>Связывает выбор курсов с будущей работой, магистратурой, стажировками</p></div>
     <div class="c reveal d6"><div class="ic"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="12" cy="22" r="6" fill="#3554e0"/><circle cx="32" cy="12" r="6" fill="none" stroke="#3554e0" stroke-width="3"/><circle cx="32" cy="32" r="6" fill="none" stroke="#3554e0" stroke-width="3"/><path d="M17 19l10-5M17 25l10 5" stroke="#3554e0" stroke-width="3"/></svg></div><h3>Связывает с вузом</h3><p>Кафедра, офис регистратора, деканат: эдвайзер знает, куда идти</p></div>
   </div>
-</section>
-
-<!-- ============ 13. SORT GAME ============ -->
-<section class="slide s-sort b2" data-who="Даулетова" data-next="А что происходит с самой группой?">
-  <div class="chrome"><span>Блок 2 · Интерактив</span><span class="who"><i></i>Даулетова А.</span></div>
-  <h2 class="reveal">Игра: <em>эдвайзер или куратор?</em></h2>
-  <div class="sort reveal d1" id="sort">
-    <div class="col adv" data-col="a"><h3><svg width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="#3554e0"/></svg>Эдвайзер</h3></div>
-    <div class="pool" data-col="p">
-      <button class="tile" data-k="a"><span class="mark"></span>Помогает выбрать элективы</button>
-      <button class="tile" data-k="c"><span class="mark"></span>Проводит кураторский час</button>
-      <button class="tile" data-k="a"><span class="mark"></span>Согласует индивидуальный учебный план</button>
-      <button class="tile" data-k="c"><span class="mark"></span>Помогает первокурсникам освоиться в вузе</button>
-      <button class="tile" data-k="a"><span class="mark"></span>Разбирает со студентом, почему упал GPA</button>
-      <button class="tile" data-k="c"><span class="mark"></span>Собирает группу на мероприятие</button>
-      <button class="tile" data-k="a"><span class="mark"></span>Объясняет, что такое пререквизиты</button>
-      <button class="tile" data-k="c"><span class="mark"></span>Поддерживает связь с родителями</button>
-    </div>
-    <div class="col cur" data-col="c"><h3><svg width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="#0e9f6e"/></svg>Куратор</h3></div>
-  </div>
-  <div class="score" id="score"></div>
-  <p class="hint">Клик по карточке: влево, вправо, обратно. Клавиша C показывает ответ. Во многих вузах обе роли совмещает один человек, «куратор-эдвайзер».</p>
 </section>
 
 <!-- ============ 14. SECTION: GROUP ============ -->
@@ -867,7 +845,7 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
 </section>
 
 <!-- ============ 16. CURATOR ============ -->
-<section class="slide s-cur b3" data-who="Наданбаева" data-next="Где группа растёт вне пар">
+<section class="slide s-cur b3" data-who="Наданбаева" data-next="Проверим: эдвайзер или куратор?">
   <div class="chrome"><span>Блок 3 · Куратор</span><span class="who"><i></i>Наданбаева Р.</span></div>
   <h2 class="reveal">Направления <em>кураторской работы</em></h2>
   <svg class="radial reveal d1" viewBox="0 0 1120 760" aria-label="Шесть направлений кураторской работы">
@@ -885,6 +863,28 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     </g>
   </svg>
   <p class="src">Обобщение типовых положений о кураторе казахстанских и российских вузов. Набор функций в каждом вузе свой.</p>
+</section>
+
+<!-- ============ 16. SORT GAME (after curator) ============ -->
+<section class="slide s-sort b2" data-who="Даулетова" data-next="Где группа растёт вне пар">
+  <div class="chrome"><span>Блок 3 · Интерактив</span><span class="who"><i></i>Даулетова А.</span></div>
+  <h2 class="reveal">Игра: <em>эдвайзер или куратор?</em></h2>
+  <div class="sort reveal d1" id="sort">
+    <div class="col adv" data-col="a"><h3><svg width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="#3554e0"/></svg>Эдвайзер</h3></div>
+    <div class="pool" data-col="p">
+      <button class="tile" data-k="a"><span class="mark"></span>Помогает выбрать элективы</button>
+      <button class="tile" data-k="c"><span class="mark"></span>Проводит кураторский час</button>
+      <button class="tile" data-k="a"><span class="mark"></span>Согласует индивидуальный учебный план</button>
+      <button class="tile" data-k="c"><span class="mark"></span>Помогает первокурсникам освоиться в вузе</button>
+      <button class="tile" data-k="a"><span class="mark"></span>Разбирает со студентом, почему упал GPA</button>
+      <button class="tile" data-k="c"><span class="mark"></span>Собирает группу на мероприятие</button>
+      <button class="tile" data-k="a"><span class="mark"></span>Объясняет, что такое пререквизиты</button>
+      <button class="tile" data-k="c"><span class="mark"></span>Поддерживает связь с родителями</button>
+    </div>
+    <div class="col cur" data-col="c"><h3><svg width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="#0e9f6e"/></svg>Куратор</h3></div>
+  </div>
+  <div class="score" id="score"></div>
+  <p class="hint">Клик по карточке: влево, вправо, обратно. Клавиша C показывает ответ. Во многих вузах обе роли совмещает один человек, «куратор-эдвайзер».</p>
 </section>
 
 <!-- ============ 17. EXTRACURRICULAR ============ -->
