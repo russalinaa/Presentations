@@ -488,13 +488,13 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
     <span><i style="background:var(--cobalt)"></i>Даулетова А.</span>
     <span><i style="background:var(--emerald)"></i>Наданбаева Р.</span>
   </div>
-  <svg class="crowd reveal d3" width="760" height="760" viewBox="0 0 760 760" aria-label="Академическая группа из 25 человек">
+  <svg class="crowd reveal d3" width="760" height="760" viewBox="0 0 760 760" aria-label="Академическая группа, средний возраст 25 лет">
     <circle cx="380" cy="380" r="350" fill="#fff"/>
     <circle cx="380" cy="380" r="350" fill="none" stroke="#e7dccb" stroke-width="2" stroke-dasharray="6 10"/>
     <g id="crowd"></g>
     <circle cx="380" cy="380" r="104" fill="#1c1b33"/>
-    <text x="380" y="372" text-anchor="middle" font-family="Unbounded" font-size="44" font-weight="700" fill="#fff">25</text>
-    <text x="380" y="408" text-anchor="middle" font-family="Golos Text" font-size="18" fill="#ffcf6e">человек в группе</text>
+    <text x="380" y="378" text-anchor="middle" font-family="Unbounded" font-size="44" font-weight="700" fill="#fff">25 лет</text>
+    <text x="380" y="414" text-anchor="middle" font-family="Golos Text" font-size="19" fill="#ffcf6e">средний возраст</text>
   </svg>
 </section>
 
@@ -770,7 +770,7 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
   <div class="chrome"><span>Блок 3</span><span class="who"><i></i>Наданбаева Р.</span></div>
   <div class="num reveal">03</div>
   <h2 class="reveal d1">Академическая группа и куратор</h2>
-  <p class="lead reveal d2">Как 25 незнакомых людей становятся командой и при чём здесь гражданская позиция</p>
+  <p class="lead reveal d2">Как незнакомые люди становятся командой и при чём здесь гражданская позиция</p>
   <svg class="art reveal d3" width="460" height="420" viewBox="0 0 460 420" aria-hidden="true">
     <g fill="#fff"><circle cx="230" cy="120" r="44"/><path d="M150 260c0-50 36-86 80-86s80 36 80 86z"/></g>
     <g fill="rgba(255,255,255,.55)"><circle cx="90" cy="180" r="34"/><path d="M28 300c0-40 28-68 62-68s62 28 62 68z"/><circle cx="370" cy="180" r="34"/><path d="M308 300c0-40 28-68 62-68s62 28 62 68z"/></g>
@@ -878,7 +878,7 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
   <div class="chrome"><span>Работа в командах</span><span class="who"><i style="background:var(--ink)"></i>Все трое</span></div>
   <h2 class="reveal">Пять кейсов, <em>пять команд</em></h2>
   <div class="cases">
-    <div class="k card reveal d1"><b style="background:var(--coral)">1</b><p>В группе 25 человек, на кураторский час приходят пятеро. Что изменить куратору и что самой группе?</p></div>
+    <div class="k card reveal d1"><b style="background:var(--coral)">1</b><p>На кураторский час приходят пять человек из всей группы. Что изменить куратору и что самой группе?</p></div>
     <div class="k card reveal d1"><b style="background:var(--cobalt)">2</b><p>Студент взял элективы «полегче», а к третьему курсу понял, что для его профессии они бесполезны. Что делать ему и эдвайзеру?</p></div>
     <div class="k card reveal d2"><b style="background:var(--emerald)">3</b><p>Половина группы работает, половина нет. Каждый раз спор, когда собираться на групповой проект. Как договориться?</p></div>
     <div class="k card reveal d2"><b style="background:var(--sun)">4</b><p>Группа хочет запустить волонтёрский проект, но староста всё решает сам. Как подняться по лестнице Харта?</p></div>
@@ -952,12 +952,12 @@ button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
   const bar = document.querySelector('.progress');
   let i = Math.max(0, Math.min(slides.length - 1, (parseInt(location.hash.slice(1)) || 1) - 1));
 
-  /* crowd of 25 on the title slide, five colours in fixed order */
+  /* crowd illustration on the title slide, five colours in fixed order */
   const crowd = document.getElementById('crowd');
   const cols = ['#e8573a', '#3554e0', '#0e9f6e', '#e3a21a', '#1c1b33'];
   let html = '';
-  for (let k = 0; k < 25; k++) {
-    const ring = k < 9 ? 0 : 1, n = ring ? 16 : 9, idx = ring ? k - 9 : k;
+  for (let k = 0; k < 18; k++) {
+    const ring = k < 7 ? 0 : 1, n = ring ? 11 : 7, idx = ring ? k - 7 : k;
     const r = ring ? 290 : 185, a = (idx / n) * Math.PI * 2 - Math.PI / 2 + (ring ? 0.2 : 0);
     const x = 380 + r * Math.cos(a), y = 380 + r * Math.sin(a), c = cols[k % 5];
     html += `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})"><g class="pop" style="animation-delay:${(k * 0.13).toFixed(2)}s"><circle cy="-16" r="15" fill="${c}"/><path d="M-24 26c0-18 10-28 24-28s24 10 24 28z" fill="${c}"/></g></g>`;
