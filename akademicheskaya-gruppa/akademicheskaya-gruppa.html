@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Академическая группа</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===========================================
+   THEME TOKENS
+   Warm paper, one colour per speaker, sun as the shared accent.
+   Palette validated (dataviz validate_palette.js, light, #FFFFFF).
+   =========================================== */
+:root {
+  --stage-bg: #f1e9dc;
+  --slide-bg: #fff8ef;
+  --ink: #1c1b33;
+  --ink-2: #4a4866;          /* secondary text, 8:1 on paper */
+  --line: #e7dccb;
+  --card: #ffffff;
+  --coral: #e8573a;          /* Абдуллаева */
+  --cobalt: #3554e0;         /* Даулетова */
+  --emerald: #0e9f6e;        /* Наданбаева */
+  --sun: #e3a21a;            /* общий акцент */
+  --coral-50: #fdebe5; --cobalt-50: #e8ecfd; --emerald-50: #e1f5ee; --sun-50: #fcf1d6;
+  --c: var(--sun); --c-50: var(--sun-50);
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Golos Text', sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+::selection { background: var(--c); color: #fff; }
+button { font: inherit; color: inherit; cursor: pointer; }
+
+/* ===========================================
+   FIXED STAGE BASE (viewport-base.css, verbatim)
+   =========================================== */
+/* ===========================================
+   FIXED 16:9 STAGE: MANDATORY BASE STYLES
+   Include this ENTIRE file in every presentation.
+   Slides are authored at 1920×1080 and scaled as a whole.
+   =========================================== */
+
+/* 1. Lock the browser viewport */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 2. Full-window deck viewport */
+.deck-viewport {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 3. Fixed 16:9 design canvas.
+   JavaScript sets transform: translate(...) scale(...). */
+.deck-stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    transform-origin: 0 0;
+    background: var(--slide-bg, #fff);
+}
+
+/* 4. Slides stack inside the fixed stage.
+   Content must be laid out at 1920×1080, not reflowed per device. */
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--slide-bg, #fff);
+}
+
+.slide.active,
+.slide.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+/* 5. Keep media inside authored slide bounds */
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 6. Presentation chrome stays outside the slide design system */
+.deck-controls {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+/* 7. Print one fixed-size slide per page */
+@media print {
+    html,
+    body {
+        width: 1920px;
+        height: auto;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-viewport {
+        position: static;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-stage {
+        position: static;
+        width: auto;
+        height: auto;
+        transform: none !important;
+        background: none;
+    }
+
+    .slide {
+        position: relative;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        width: 1920px;
+        height: 1080px;
+        break-after: page;
+        page-break-after: always;
+    }
+
+    .slide:last-child {
+        break-after: auto;
+        page-break-after: auto;
+    }
+
+    .deck-controls {
+        display: none !important;
+    }
+}
+
+/* 8. Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+}
+
+
+/* ===========================================
+   SLIDE SURFACE
+   =========================================== */
+.slide { font-family: var(--font-body); color: var(--ink); background: var(--slide-bg); font-variant-numeric: tabular-nums; }
+.b1 { --c: var(--coral); --c-50: var(--coral-50); }
+.b2 { --c: var(--cobalt); --c-50: var(--cobalt-50); }
+.b3 { --c: var(--emerald); --c-50: var(--emerald-50); }
+.b0 { --c: var(--sun); --c-50: var(--sun-50); }
+/* soft colour field in the corner of every slide */
+.slide::before { content: ""; position: absolute; width: 900px; height: 900px; right: -380px; top: -420px; border-radius: 50%; background: var(--c-50); opacity: .9; }
+
+.chrome { position: absolute; left: 96px; right: 96px; top: 48px; display: flex; justify-content: space-between; align-items: center; font-size: 19px; font-weight: 500; color: var(--ink-2); z-index: 2; }
+.who { display: inline-flex; align-items: center; gap: 12px; padding: 8px 18px 8px 10px; border-radius: 99px; background: var(--card); box-shadow: 0 6px 18px -10px rgba(28,27,51,.35); color: var(--ink); font-weight: 600; }
+.who i { width: 22px; height: 22px; border-radius: 50%; background: var(--c); }
+.pageno { position: absolute; right: 96px; bottom: 44px; font-family: var(--font-display); font-size: 18px; color: var(--ink-2); z-index: 2; }
+
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.025em; text-wrap: balance; }
+h2 { position: absolute; left: 96px; top: 120px; width: 1500px; font-size: 56px; font-weight: 600; line-height: 1.1; z-index: 2; }
+h2 em { font-style: normal; color: var(--c); }
+h3 { font-size: 28px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+p, li { font-size: 27px; line-height: 1.45; }
+.ink2 { color: var(--ink-2); }
+.small { font-size: 21px; line-height: 1.45; }
+.src { position: absolute; left: 96px; bottom: 44px; font-size: 17px; color: var(--ink-2); z-index: 2; max-width: 1500px; }
+.card { background: var(--card); border-radius: 26px; box-shadow: 0 18px 40px -24px rgba(28,27,51,.35); }
+.z { position: absolute; z-index: 2; }
+
+/* ===========================================
+   MOTION: one rise on entry, steps for Socratic reveals
+   =========================================== */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.slide.visible .reveal { opacity: 1; transform: none; }
+.d1 { transition-delay: .1s !important; } .d2 { transition-delay: .2s !important; } .d3 { transition-delay: .3s !important; }
+.d4 { transition-delay: .4s !important; } .d5 { transition-delay: .5s !important; } .d6 { transition-delay: .6s !important; }
+.step { opacity: .0; transform: translateY(16px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.step.shown { opacity: 1; transform: none; }
+.pop { animation: pop 2.6s var(--ease) infinite alternate; }
+@keyframes pop { to { transform: translateY(-10px); } }
+
+/* ===========================================
+   1. TITLE
+   =========================================== */
+.s-title h1 { position: absolute; left: 96px; top: 190px; width: 1000px; font-size: 76px; font-weight: 700; line-height: 1.02; z-index: 2; }
+.s-title h1 em { font-style: normal; color: var(--coral); }
+.s-title .sub { position: absolute; left: 100px; top: 590px; width: 900px; font-size: 32px; line-height: 1.35; color: var(--ink-2); z-index: 2; }
+.s-title .team { position: absolute; left: 96px; bottom: 96px; display: flex; gap: 18px; z-index: 2; }
+.s-title .team span { display: inline-flex; align-items: center; gap: 12px; padding: 16px 26px; border-radius: 99px; background: var(--card); font-size: 26px; font-weight: 600; box-shadow: 0 10px 26px -16px rgba(28,27,51,.4); }
+.s-title .team i { width: 18px; height: 18px; border-radius: 50%; }
+.s-title .crowd { position: absolute; right: 80px; top: 170px; z-index: 2; }
+
+/* ===========================================
+   2. AGENDA
+   =========================================== */
+.agenda { position: absolute; left: 96px; right: 96px; top: 330px; z-index: 2; }
+.agenda .bar { display: flex; height: 92px; gap: 6px; }
+.agenda .seg { border-radius: 18px; display: flex; align-items: center; padding: 0 22px; color: #fff; font-family: var(--font-display); font-weight: 600; font-size: 22px; }
+.agenda .labels { display: flex; gap: 6px; margin-top: 22px; }
+.agenda .labels > div { padding: 0 6px; }
+.agenda .labels h3 { font-size: 23px; margin-bottom: 8px; }
+.agenda .labels p { font-size: 21px; line-height: 1.35; color: var(--ink-2); }
+.rule { position: absolute; left: 96px; right: 96px; bottom: 110px; padding: 38px 48px; display: grid; grid-template-columns: 120px 1fr; gap: 36px; align-items: center; z-index: 2; }
+.rule p { font-size: 30px; line-height: 1.35; }
+.rule b { color: var(--coral); }
+
+/* ===========================================
+   3. LIVE POLL
+   =========================================== */
+.poll { position: absolute; left: 96px; top: 330px; width: 1200px; display: grid; gap: 26px; z-index: 2; }
+.poll .row { display: grid; grid-template-columns: 360px 1fr 120px; align-items: center; gap: 24px; }
+.poll .lab { font-size: 27px; font-weight: 600; }
+.poll .track { height: 64px; border-radius: 0 14px 14px 0; background: rgba(28,27,51,.05); position: relative; overflow: hidden; }
+.poll .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 0 12px 12px 0; transition: width .7s var(--ease); }
+.poll .num { font-family: var(--font-display); font-size: 36px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+.poll .ctrl { display: flex; gap: 6px; }
+.poll .ctrl button { width: 40px; height: 40px; border: 0; border-radius: 10px; background: var(--card); box-shadow: 0 4px 12px -6px rgba(0,0,0,.4); font-size: 24px; line-height: 1; }
+.poll-side { position: absolute; right: 96px; top: 330px; width: 460px; padding: 40px; z-index: 2; }
+.poll-side p { font-size: 25px; }
+.poll-side .big { font-family: var(--font-display); font-size: 84px; font-weight: 700; color: var(--sun); line-height: 1; margin: 18px 0 6px; }
+
+/* ===========================================
+   4. STATS
+   =========================================== */
+.s-stats .chart { position: absolute; left: 96px; top: 300px; width: 760px; height: 640px; padding: 40px 48px; z-index: 2; }
+.s-stats .chart h3 { font-size: 24px; margin-bottom: 6px; }
+.s-stats .donut { position: absolute; left: 900px; top: 300px; width: 440px; height: 640px; padding: 40px; z-index: 2; text-align: center; }
+.s-stats .tiles { position: absolute; left: 1380px; right: 96px; top: 300px; display: grid; gap: 24px; z-index: 2; }
+.s-stats .tile { padding: 34px 34px; height: 308px; display: flex; flex-direction: column; justify-content: space-between; }
+.s-stats .tile b { font-family: var(--font-display); font-size: 62px; font-weight: 700; line-height: 1; }
+.s-stats .tile p { font-size: 22px; line-height: 1.35; color: var(--ink-2); }
+
+/* ===========================================
+   5. SOCIAL GROUP ORBIT
+   =========================================== */
+.orbit { position: absolute; left: 560px; top: 250px; width: 800px; height: 760px; z-index: 2; }
+.orbit .core { position: absolute; left: 250px; top: 230px; width: 300px; height: 300px; border-radius: 50%; background: var(--coral); color: #fff; display: flex; align-items: center; justify-content: center; text-align: center; font-family: var(--font-display); font-weight: 600; font-size: 30px; line-height: 1.2; box-shadow: 0 24px 50px -24px var(--coral); }
+.sat { position: absolute; width: 400px; padding: 26px 30px; z-index: 3; }
+.sat h3 { font-size: 24px; margin-bottom: 6px; color: var(--coral); }
+.sat p { font-size: 21px; line-height: 1.38; color: var(--ink-2); }
+.socq { position: absolute; left: 96px; bottom: 80px; width: 400px; padding: 32px; background: var(--ink); color: #fff; border-radius: 26px; z-index: 2; }
+.socq small { display: block; font-size: 18px; color: #ffcf6e; font-weight: 600; margin-bottom: 10px; }
+.socq p { font-size: 26px; line-height: 1.35; }
+
+/* ===========================================
+   6. EMERGING ADULTHOOD
+   =========================================== */
+.arnett { position: absolute; left: 96px; top: 300px; width: 1000px; display: grid; gap: 16px; z-index: 2; }
+.arnett .it { display: grid; grid-template-columns: 76px 1fr; gap: 24px; align-items: center; padding: 18px 26px; }
+.arnett .ic { width: 76px; height: 76px; border-radius: 22px; background: var(--coral-50); display: grid; place-items: center; }
+.arnett h3 { font-size: 25px; margin-bottom: 4px; }
+.arnett p { font-size: 21px; line-height: 1.35; color: var(--ink-2); }
+.erik { position: absolute; left: 1160px; right: 96px; top: 300px; padding: 44px; background: var(--coral); color: #fff; border-radius: 26px; z-index: 2; }
+.erik small { font-size: 19px; font-weight: 600; opacity: .9; }
+.erik h3 { font-size: 34px; margin: 14px 0 18px; }
+.erik p { font-size: 23px; line-height: 1.42; }
+.erik .stair { margin-top: 26px; display: flex; gap: 6px; align-items: flex-end; height: 120px; }
+.erik .stair i { flex: 1; background: rgba(255,255,255,.35); border-radius: 6px 6px 0 0; }
+.erik .stair i.on { background: #fff; }
+
+/* ===========================================
+   7. SOCRATIC CHAIN
+   =========================================== */
+.chain { position: absolute; left: 96px; top: 300px; width: 1150px; display: grid; gap: 20px; z-index: 2; }
+.chain .q { display: grid; grid-template-columns: 70px 1fr; gap: 26px; align-items: center; padding: 24px 30px; }
+.chain .q b { width: 70px; height: 70px; border-radius: 50%; background: var(--coral); color: #fff; display: grid; place-items: center; font-family: var(--font-display); font-size: 28px; }
+.chain .q p { font-size: 29px; font-weight: 500; }
+.chain-out { position: absolute; left: 1310px; right: 96px; top: 300px; height: 640px; padding: 46px; background: var(--ink); color: #fff; border-radius: 26px; display: flex; flex-direction: column; justify-content: space-between; z-index: 2; }
+.chain-out p { font-size: 31px; line-height: 1.32; font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; }
+.chain-out small { font-size: 20px; color: #ffcf6e; font-weight: 600; }
+.hint { position: absolute; left: 96px; bottom: 50px; font-size: 18px; color: var(--ink-2); z-index: 2; }
+
+/* ===========================================
+   8. OBJECT vs SUBJECT + SDT
+   =========================================== */
+.vs { position: absolute; left: 96px; top: 290px; width: 1040px; z-index: 2; }
+.vs .hd, .vs .tr { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.vs .hd h3 { padding: 18px 26px; border-radius: 18px; font-size: 25px; }
+.vs .hd h3:first-child { background: #ebe5da; color: var(--ink-2); }
+.vs .hd h3:last-child { background: var(--coral); color: #fff; }
+.vs .tr { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.vs .tr p { font-size: 23px; padding: 0 26px; line-height: 1.35; }
+.vs .tr p:first-child { color: var(--ink-2); }
+.sdt { position: absolute; left: 1190px; top: 270px; width: 640px; height: 520px; z-index: 2; }
+.quote { position: absolute; left: 96px; right: 96px; bottom: 90px; padding: 28px 40px; display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: center; background: var(--coral-50); border-radius: 22px; z-index: 2; }
+.quote p { font-size: 26px; font-weight: 500; }
+.quote span { font-size: 20px; color: var(--ink-2); }
+
+/* ===========================================
+   SECTION DIVIDERS
+   =========================================== */
+.s-sec { background: var(--c); color: #fff; }
+.s-sec::before { background: rgba(255,255,255,.12); width: 1300px; height: 1300px; right: -420px; top: -360px; }
+.s-sec .chrome, .s-sec .pageno { color: rgba(255,255,255,.85); }
+.s-sec .num { position: absolute; left: 96px; top: 210px; font-family: var(--font-display); font-weight: 700; font-size: 220px; line-height: 1; opacity: .25; z-index: 2; }
+.s-sec h2 { top: 470px; font-size: 84px; width: 1300px; line-height: 1.05; }
+.s-sec .lead { position: absolute; left: 100px; top: 720px; width: 1000px; font-size: 30px; z-index: 2; opacity: .95; }
+.s-sec .who { background: rgba(255,255,255,.18); color: #fff; box-shadow: none; }
+.s-sec .who i { background: #fff; }
+.s-sec .art { position: absolute; right: 120px; bottom: 90px; z-index: 2; }
+
+/* ===========================================
+   10. CREDIT SYSTEM + ADVISOR DEFINITION
+   =========================================== */
+.facts { position: absolute; left: 96px; top: 300px; width: 860px; display: grid; gap: 22px; z-index: 2; }
+.facts .f { display: grid; grid-template-columns: 170px 1fr; gap: 24px; align-items: baseline; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.facts .f b { font-family: var(--font-display); font-size: 46px; font-weight: 700; color: var(--cobalt); }
+.facts .f p { font-size: 24px; line-height: 1.4; }
+.def { position: absolute; left: 1040px; right: 96px; top: 300px; padding: 46px; background: var(--cobalt); color: #fff; border-radius: 26px; z-index: 2; }
+.def small { font-size: 19px; font-weight: 600; opacity: .85; }
+.def p { margin-top: 18px; font-size: 32px; line-height: 1.3; font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; }
+.def .cite { margin-top: 26px; font-family: var(--font-body); font-size: 19px; line-height: 1.4; opacity: .85; }
+.compass { position: absolute; right: 140px; bottom: 70px; z-index: 2; }
+
+/* ===========================================
+   11. STUDENT PATH FLOW
+   =========================================== */
+.flow { position: absolute; left: 230px; top: 300px; width: 1800px; height: 700px; z-index: 2; }
+.flow text { font-family: var(--font-body); }
+
+/* ===========================================
+   12. ADVISOR FUNCTIONS
+   =========================================== */
+.fn { position: absolute; left: 96px; right: 96px; top: 300px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; z-index: 2; }
+.fn .c { padding: 36px 40px 40px; border-left: 1px solid var(--line); }
+.fn .c:nth-child(3n+1) { border-left: 0; padding-left: 0; }
+.fn .c:nth-child(-n+3) { border-bottom: 1px solid var(--line); }
+.fn .ic { width: 84px; height: 84px; border-radius: 24px; background: var(--cobalt-50); display: grid; place-items: center; margin-bottom: 22px; }
+.fn h3 { font-size: 26px; margin-bottom: 10px; }
+.fn p { font-size: 22px; line-height: 1.4; color: var(--ink-2); }
+
+/* ===========================================
+   13. SORT GAME
+   =========================================== */
+.sort { position: absolute; left: 96px; right: 96px; top: 280px; display: grid; grid-template-columns: 1fr 640px 1fr; gap: 30px; z-index: 2; }
+.sort .col { min-height: 640px; border-radius: 26px; padding: 26px; display: flex; flex-direction: column; gap: 14px; }
+.sort .col h3 { font-size: 26px; padding: 6px 6px 12px; display: flex; align-items: center; gap: 12px; }
+.sort .col.adv { background: var(--cobalt-50); } .sort .col.adv h3 { color: var(--cobalt); }
+.sort .col.cur { background: var(--emerald-50); } .sort .col.cur h3 { color: var(--emerald); }
+.sort .pool { display: flex; flex-direction: column; gap: 14px; padding-top: 58px; }
+.sort .tile { border: 0; text-align: left; padding: 18px 22px; border-radius: 16px; background: var(--card); box-shadow: 0 8px 20px -14px rgba(28,27,51,.6); font-size: 22px; line-height: 1.3; font-weight: 500; transition: transform .3s var(--ease), box-shadow .3s; display: flex; gap: 14px; align-items: center; }
+.sort .tile:hover { transform: translateY(-2px); }
+.sort .tile .mark { width: 30px; height: 30px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: 18px; font-weight: 700; color: #fff; background: transparent; }
+.sort.checked .tile.ok .mark { background: var(--emerald); }
+.sort.checked .tile.bad .mark { background: var(--coral); }
+.sort.checked .tile.ok { box-shadow: 0 0 0 3px var(--emerald); }
+.sort.checked .tile.bad { box-shadow: 0 0 0 3px var(--coral); }
+.score { position: absolute; left: 50%; transform: translateX(-50%); bottom: 96px; font-family: var(--font-display); font-size: 26px; font-weight: 600; z-index: 2; }
+
+/* ===========================================
+   15. TUCKMAN
+   =========================================== */
+.tuck { position: absolute; left: 70px; top: 255px; width: 1100px; height: 520px; z-index: 2; }
+.tuck text { font-family: var(--font-body); }
+.sit { position: absolute; left: 1220px; right: 96px; top: 280px; display: grid; gap: 16px; z-index: 2; }
+.sit .s { padding: 20px 26px; }
+.sit .s p { font-size: 21px; line-height: 1.38; }
+.sit .s .ans { margin-top: 10px; font-family: var(--font-display); font-weight: 600; font-size: 20px; color: var(--emerald); }
+.legend-t { position: absolute; left: 96px; top: 800px; width: 1080px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; z-index: 2; }
+.legend-t div { font-size: 18px; line-height: 1.35; color: var(--ink-2); }
+.legend-t b { display: block; font-size: 19px; color: var(--ink); margin-bottom: 4px; }
+
+/* ===========================================
+   16. CURATOR RADIAL
+   =========================================== */
+.radial { position: absolute; left: 400px; top: 240px; width: 1120px; height: 760px; z-index: 2; }
+.radial text { font-family: var(--font-body); }
+
+/* ===========================================
+   17. EXTRACURRICULAR MATRIX
+   =========================================== */
+.mx { position: absolute; left: 96px; right: 96px; top: 290px; z-index: 2; display: grid; grid-template-columns: 290px repeat(3, 1fr); gap: 10px; }
+.mx .h { font-family: var(--font-display); font-weight: 600; font-size: 22px; padding: 10px 18px; color: var(--ink-2); }
+.mx .r { display: flex; align-items: center; gap: 14px; padding: 30px 24px; border-radius: 16px; color: #fff; font-family: var(--font-display); font-weight: 600; font-size: 22px; }
+.mx .c { background: var(--card); border-radius: 16px; padding: 30px 24px; font-size: 24px; line-height: 1.3; display: flex; align-items: center; box-shadow: 0 6px 16px -12px rgba(28,27,51,.4); }
+
+/* ===========================================
+   18. HART LADDER
+   =========================================== */
+.ladder { position: absolute; left: 96px; top: 270px; width: 1060px; display: flex; flex-direction: column-reverse; gap: 10px; z-index: 2; }
+.ladder button { border: 0; text-align: left; display: grid; grid-template-columns: 64px 1fr auto; gap: 20px; align-items: center; padding: 12px 22px; border-radius: 16px; font-size: 22px; font-weight: 500; color: #fff; transition: transform .35s var(--ease), box-shadow .35s; }
+.ladder button b { font-family: var(--font-display); font-size: 24px; }
+.ladder button .tag { font-size: 17px; font-weight: 600; padding: 6px 14px; border-radius: 99px; background: #fff; color: var(--ink); opacity: 0; transition: opacity .3s; }
+.ladder button.sel { transform: translateX(26px); box-shadow: 0 0 0 4px var(--sun); }
+.ladder button.sel .tag { opacity: 1; }
+.hart-side { position: absolute; left: 1220px; right: 96px; top: 280px; z-index: 2; display: grid; gap: 22px; }
+.hart-side .card { padding: 34px; }
+.hart-side p { font-size: 23px; line-height: 1.4; }
+.hart-side .dark { background: var(--ink); color: #fff; }
+.hart-side .dark small { display: block; color: #ffcf6e; font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+.hart-side .dark p { font-size: 26px; }
+
+/* ===========================================
+   19. CASES + TIMER
+   =========================================== */
+.cases { position: absolute; left: 96px; top: 270px; width: 1200px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; z-index: 2; }
+.cases .k { padding: 32px 30px; display: grid; grid-template-columns: 56px 1fr; gap: 18px; }
+.cases .k:last-child { grid-column: span 2; }
+.cases .k b { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; color: #fff; font-family: var(--font-display); font-size: 24px; }
+.cases .k p { font-size: 24px; line-height: 1.38; }
+.timer { position: absolute; left: 1350px; right: 96px; top: 270px; height: 470px; padding: 40px; background: var(--ink); color: #fff; border-radius: 26px; text-align: center; z-index: 2; border: 0; }
+.timer small { font-size: 20px; color: #ffcf6e; font-weight: 600; }
+.timer svg { display: block; margin: 20px auto 0; }
+.timer .t { font-family: var(--font-display); font-size: 72px; font-weight: 600; }
+.plan { position: absolute; left: 1350px; right: 96px; top: 770px; padding: 30px 34px; z-index: 2; }
+.plan p { font-size: 21px; line-height: 1.5; }
+
+/* ===========================================
+   20. QUIZ
+   =========================================== */
+.quiz { position: absolute; left: 96px; right: 96px; top: 280px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; z-index: 2; }
+.quiz .qq { padding: 36px 34px; height: 660px; display: flex; flex-direction: column; }
+.quiz .qq .n { width: 64px; height: 64px; border-radius: 20px; display: grid; place-items: center; color: #fff; font-family: var(--font-display); font-size: 28px; font-weight: 700; margin-bottom: 22px; }
+.quiz h3 { font-family: var(--font-body); font-weight: 600; letter-spacing: 0; font-size: 27px; line-height: 1.32; min-height: 150px; margin-bottom: 22px; }
+.quiz ol { list-style: none; display: grid; gap: 14px; }
+.quiz li { font-size: 23px; padding: 16px 20px; border-radius: 14px; background: var(--slide-bg); display: grid; grid-template-columns: 36px 1fr; transition: background .5s var(--ease), color .5s; }
+.quiz li b { font-family: var(--font-display); }
+.quiz .qq.shown li.ok { background: var(--emerald); color: #fff; }
+
+/* ===========================================
+   21. REFLECTION + THANKS
+   =========================================== */
+.refl { position: absolute; left: 96px; top: 300px; width: 1060px; padding: 50px; background: var(--ink); color: #fff; border-radius: 30px; z-index: 2; }
+.refl small { font-size: 20px; color: #ffcf6e; font-weight: 600; }
+.refl p { margin-top: 18px; font-family: var(--font-display); font-size: 44px; font-weight: 600; line-height: 1.18; letter-spacing: -0.02em; }
+.refl .words { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+.refl .words span { padding: 10px 20px; border-radius: 99px; background: rgba(255,255,255,.12); font-size: 22px; }
+.thanks { position: absolute; left: 1220px; right: 96px; top: 300px; z-index: 2; }
+.thanks h3 { font-size: 44px; margin-bottom: 26px; }
+.thanks .p { display: flex; align-items: center; gap: 14px; font-size: 26px; font-weight: 600; margin-bottom: 14px; }
+.thanks .p i { width: 18px; height: 18px; border-radius: 50%; }
+.srcs { position: absolute; left: 96px; right: 280px; bottom: 60px; font-size: 16px; line-height: 1.5; color: var(--ink-2); z-index: 2; columns: 2; column-gap: 60px; }
+
+/* ===========================================
+   PRESENTER UI (outside the slide design)
+   =========================================== */
+.progress { position: fixed; left: 0; bottom: 0; height: 4px; background: var(--ink); z-index: 1001; transition: width .5s var(--ease); }
+.edit-hot { position: fixed; top: 0; left: 0; width: 60px; height: 60px; z-index: 1002; }
+.edit-btn { position: fixed; top: 14px; left: 14px; z-index: 1003; opacity: 0; transition: opacity .3s; font: 600 13px var(--font-body); color: #fff; background: var(--ink); border: 0; border-radius: 8px; padding: 8px 12px; }
+.edit-hot:hover + .edit-btn, .edit-btn:hover, body.editing .edit-btn { opacity: 1; }
+body.editing [contenteditable="true"]:focus { outline: 2px dashed var(--cobalt); outline-offset: 4px; }
+button:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
+@media print { .step { opacity: 1 !important; transform: none !important; } }
+</style>
+</head>
+<body>
+<div class="deck-viewport"><div class="deck-stage">
+
+<!-- ============ 1. TITLE ============ -->
+<section class="slide s-title b1" data-who="Абдуллаева">
+  <div class="chrome"><span>Педагогика высшей школы · Тема 14</span><span>Сократическая лекция</span></div>
+  <h1 class="reveal">Академическая группа: <em>центр воспитательной работы</em></h1>
+  <p class="sub reveal d1">Студент как субъект воспитания. Эдвайзер, куратор и группа, в которой взрослый человек решает, кем ему стать</p>
+  <div class="team reveal d2">
+    <span><i style="background:var(--coral)"></i>Абдуллаева А.</span>
+    <span><i style="background:var(--cobalt)"></i>Даулетова А.</span>
+    <span><i style="background:var(--emerald)"></i>Наданбаева Р.</span>
+  </div>
+  <svg class="crowd reveal d3" width="760" height="760" viewBox="0 0 760 760" aria-label="Академическая группа из 25 человек">
+    <circle cx="380" cy="380" r="350" fill="#fff"/>
+    <circle cx="380" cy="380" r="350" fill="none" stroke="#e7dccb" stroke-width="2" stroke-dasharray="6 10"/>
+    <g id="crowd"></g>
+    <circle cx="380" cy="380" r="104" fill="#1c1b33"/>
+    <text x="380" y="372" text-anchor="middle" font-family="Unbounded" font-size="44" font-weight="700" fill="#fff">25</text>
+    <text x="380" y="408" text-anchor="middle" font-family="Golos Text" font-size="18" fill="#ffcf6e">человек в группе</text>
+  </svg>
+</section>
+
+<!-- ============ 2. AGENDA ============ -->
+<section class="slide s-agenda b0" data-who="Наданбаева">
+  <div class="chrome"><span>Педагогика высшей школы · Тема 14</span><span class="who"><i style="background:var(--emerald)"></i>Наданбаева Р.</span></div>
+  <h2 class="reveal">Как пройдут <em>50 минут</em></h2>
+  <div class="agenda">
+    <div class="bar reveal d1">
+      <div class="seg" style="flex:4;background:var(--sun)">0–4</div>
+      <div class="seg" style="flex:11;background:var(--coral)">4–15</div>
+      <div class="seg" style="flex:11;background:var(--cobalt)">15–26</div>
+      <div class="seg" style="flex:10;background:var(--emerald)">26–36</div>
+      <div class="seg" style="flex:9;background:var(--ink)">36–45</div>
+      <div class="seg" style="flex:5;background:var(--sun)">45–50</div>
+    </div>
+    <div class="labels reveal d2">
+      <div style="flex:4"><h3>Старт</h3><p>Опрос</p></div>
+      <div style="flex:11"><h3>Студент</h3><p>Студенчество как группа. Субъект воспитания</p></div>
+      <div style="flex:11"><h3>Эдвайзер</h3><p>Элективы, ИУП и траектория обучения</p></div>
+      <div style="flex:10"><h3>Группа и куратор</h3><p>Внеучебная жизнь и гражданская позиция</p></div>
+      <div style="flex:9"><h3>Кейсы</h3><p>5 команд, 5 ситуаций</p></div>
+      <div style="flex:5"><h3>Финал</h3><p>Тест</p></div>
+    </div>
+  </div>
+  <div class="rule card reveal d3">
+    <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="#fcf1d6"/><path d="M34 44h52a8 8 0 0 1 8 8v22a8 8 0 0 1-8 8H58l-16 12V82h-8a8 8 0 0 1-8-8V52a8 8 0 0 1 8-8z" fill="#e3a21a"/><text x="60" y="73" text-anchor="middle" font-family="Unbounded" font-size="30" font-weight="700" fill="#fff">?</text></svg>
+    <p>Сократическая лекция работает так: <b>мы спрашиваем, вы отвечаете.</b> Неправильных ответов нет, есть недодуманные. Их мы додумаем вместе.</p>
+  </div>
+  <div class="pageno">02 / 21</div>
+</section>
+
+<!-- ============ 3. LIVE POLL ============ -->
+<section class="slide s-poll b0" data-who="Даулетова">
+  <div class="chrome"><span>Старт</span><span class="who"><i style="background:var(--cobalt)"></i>Даулетова А.</span></div>
+  <h2 class="reveal">Кто в университете влияет на вас <em>сильнее всего?</em></h2>
+  <div class="poll reveal d1" id="poll">
+    <div class="row" data-i="0"><span class="lab">Одногруппники</span><div class="track"><div class="fill" style="background:var(--coral)"></div></div><div class="num"><span>0</span><span class="ctrl"><button data-d="1" aria-label="плюс">+</button><button data-d="-1" aria-label="минус">−</button></span></div></div>
+    <div class="row" data-i="1"><span class="lab">Преподаватели</span><div class="track"><div class="fill" style="background:var(--cobalt)"></div></div><div class="num"><span>0</span><span class="ctrl"><button data-d="1" aria-label="плюс">+</button><button data-d="-1" aria-label="минус">−</button></span></div></div>
+    <div class="row" data-i="2"><span class="lab">Куратор, эдвайзер</span><div class="track"><div class="fill" style="background:var(--emerald)"></div></div><div class="num"><span>0</span><span class="ctrl"><button data-d="1" aria-label="плюс">+</button><button data-d="-1" aria-label="минус">−</button></span></div></div>
+    <div class="row" data-i="3"><span class="lab">Никто, я сам</span><div class="track"><div class="fill" style="background:var(--sun)"></div></div><div class="num"><span>0</span><span class="ctrl"><button data-d="1" aria-label="плюс">+</button><button data-d="-1" aria-label="минус">−</button></span></div></div>
+  </div>
+  <div class="poll-side card reveal d2">
+    <p>Поднимите руку один раз, за один вариант. Мы считаем вслух.</p>
+    <div class="big" id="pollTotal">0</div>
+    <p class="ink2">голосов. В конце лекции вернёмся к этой диаграмме.</p>
+  </div>
+  <div class="pageno">03 / 21</div>
+</section>
+
+<!-- ============ 4. STATS ============ -->
+<section class="slide s-stats b1" data-who="Абдуллаева">
+  <div class="chrome"><span>Блок 1 · Студент</span><span class="who"><i></i>Абдуллаева А.</span></div>
+  <h2 class="reveal">Студентов в Казахстане <em>624,5 тысячи</em></h2>
+  <div class="chart card reveal d1">
+    <h3>Студенты вузов на начало учебного года, тыс. человек</h3>
+    <svg width="664" height="520" viewBox="0 0 664 520" aria-label="2023/2024: 592,7 тыс.; 2024/2025: 624,5 тыс.">
+      <g stroke="#e7dccb" stroke-width="1"><line x1="0" y1="460" x2="664" y2="460" stroke="#4a4866"/><line x1="0" y1="340" x2="664" y2="340"/><line x1="0" y1="220" x2="664" y2="220"/><line x1="0" y1="100" x2="664" y2="100"/></g>
+      <g font-family="Golos Text" font-size="18" fill="#4a4866"><text x="0" y="334">200</text><text x="0" y="214">400</text><text x="0" y="94">600</text></g>
+      <!-- scale: 0.6 px per thousand -->
+      <path d="M120 460 V 108.4 a4 4 0 0 1 4 -4 H 276 a4 4 0 0 1 4 4 V 460 Z" fill="#f4b6a7"><title>2023/2024: 592,7 тыс.</title></path>
+      <path d="M384 460 V 89.3 a4 4 0 0 1 4 -4 H 540 a4 4 0 0 1 4 4 V 460 Z" fill="#e8573a"><title>2024/2025: 624,5 тыс.</title></path>
+      <g font-family="Unbounded" font-weight="600" text-anchor="middle" fill="#1c1b33"><text x="200" y="84" font-size="30">592,7</text><text x="464" y="65" font-size="30">624,5</text></g>
+      <g font-family="Golos Text" font-size="22" text-anchor="middle" fill="#1c1b33"><text x="200" y="496">2023/2024</text><text x="464" y="496">2024/2025</text></g>
+      <g transform="translate(560 140)"><rect width="104" height="44" rx="22" fill="#e1f5ee"/><text x="52" y="29" text-anchor="middle" font-family="Golos Text" font-weight="700" font-size="20" fill="#0b7a55">+31,8</text></g>
+    </svg>
+  </div>
+  <div class="donut card reveal d2">
+    <h3 style="font-size:24px">Доля женщин</h3>
+    <svg width="360" height="360" viewBox="-180 -180 360 360" style="margin-top:30px" aria-label="Женщины 53%, мужчины 47%">
+      <circle r="140" fill="none" stroke="#f3ece0" stroke-width="44"/>
+      <circle r="140" fill="none" stroke="#e8573a" stroke-width="44" stroke-dasharray="463.6 879.6" transform="rotate(-90)" stroke-linecap="butt"><title>Женщины: 53%</title></circle>
+      <circle r="140" fill="none" stroke="#3554e0" stroke-width="44" stroke-dasharray="404.6 879.6" stroke-dashoffset="-467.6" transform="rotate(-90)"><title>Мужчины: 47%</title></circle>
+      <text y="14" text-anchor="middle" font-family="Unbounded" font-size="64" font-weight="700" fill="#1c1b33">53%</text>
+    </svg>
+    <p class="small" style="margin-top:30px"><b style="color:var(--coral)">●</b> женщины 53% &nbsp; <b style="color:var(--cobalt)">●</b> мужчины 47%</p>
+  </div>
+  <div class="tiles">
+    <div class="tile card reveal d3"><b>112</b><p>вузов работало в стране на начало 2023/2024 учебного года</p></div>
+    <div class="tile card reveal d4"><b style="color:var(--coral)">≈16</b><p>студентов на одного преподавателя: 592,7 тыс. и 37&nbsp;391 преподаватель (2023/2024)</p></div>
+  </div>
+  <p class="src">Источник: Бюро национальной статистики АСПиР РК, stat.gov.kz. Отношение студентов к преподавателям посчитали мы.</p>
+  <div class="pageno">04 / 21</div>
+</section>
+
+<!-- ============ 5. SOCIAL GROUP ============ -->
+<section class="slide s-group b1" data-who="Абдуллаева">
+  <div class="chrome"><span>Блок 1 · Студент</span><span class="who"><i></i>Абдуллаева А.</span></div>
+  <h2 class="reveal">Студенчество: <em>особая социальная группа</em></h2>
+  <div class="orbit">
+    <svg class="reveal d1" width="800" height="760" viewBox="0 0 800 760" style="position:absolute;left:0;top:0" aria-hidden="true"><circle cx="400" cy="380" r="250" fill="none" stroke="#f4b6a7" stroke-width="2" stroke-dasharray="4 10"/></svg>
+    <div class="core reveal d1">Студен-<br>чество</div>
+  </div>
+  <div class="sat card reveal d2" style="left:96px;top:280px"><h3>Возраст</h3><p>В основном молодые люди, которые только входят во взрослую жизнь</p></div>
+  <div class="sat card reveal d2" style="left:1420px;top:280px"><h3>Главное дело: учёба</h3><p>Вся группа занята одной деятельностью и живёт по одному расписанию</p></div>
+  <div class="sat card reveal d3" style="left:1420px;top:510px"><h3>Временный статус</h3><p>Студентом становятся на несколько лет, потом группа распадается</p></div>
+  <div class="sat card reveal d4" style="left:1420px;top:740px"><h3>Мобильность</h3><p>Переезды, обмены, смена планов: здесь это норма</p></div>
+  <div class="sat card reveal d4" style="left:760px;top:880px"><h3>Своя культура</h3><p>Свой язык, юмор, чаты и традиции</p></div>
+  <div class="sat card reveal d3" style="left:96px;top:480px"><h3>Переход</h3><p>Между зависимостью от семьи и самостоятельностью</p></div>
+  <div class="socq reveal d5"><small>Вопрос к аудитории</small><p>Что общего у вас с первокурсником из другого города, кроме студенческого билета?</p></div>
+  <div class="pageno">05 / 21</div>
+</section>
+
+<!-- ============ 6. 18-25 ============ -->
+<section class="slide s-adult b1" data-who="Абдуллаева">
+  <div class="chrome"><span>Блок 1 · Студент</span><span class="who"><i></i>Абдуллаева А.</span></div>
+  <h2 class="reveal">От 18 до 25: <em>«становящаяся взрослость»</em></h2>
+  <div class="arnett">
+    <div class="it card reveal d1"><div class="ic"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="17" cy="17" r="11" fill="none" stroke="#e8573a" stroke-width="4"/><path d="M25 25l10 10" stroke="#e8573a" stroke-width="4" stroke-linecap="round"/></svg></div><div><h3>Поиск себя</h3><p>Кто я в профессии, в любви, в мировоззрении</p></div></div>
+    <div class="it card reveal d2"><div class="ic"><svg width="40" height="40" viewBox="0 0 40 40"><path d="M4 28c6-14 10 6 16-8s10 6 16-8" fill="none" stroke="#e8573a" stroke-width="4" stroke-linecap="round"/></svg></div><div><h3>Нестабильность</h3><p>Работа, жильё и планы меняются чаще, чем в любом другом возрасте</p></div></div>
+    <div class="it card reveal d3"><div class="ic"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="13" r="7" fill="#e8573a"/><path d="M7 36c1-9 6-13 13-13s12 4 13 13" fill="#e8573a"/></svg></div><div><h3>Фокус на себе</h3><p>Меньше обязательств перед другими, больше решений за себя</p></div></div>
+    <div class="it card reveal d4"><div class="ic"><svg width="40" height="40" viewBox="0 0 40 40"><rect x="4" y="16" width="14" height="8" rx="4" fill="#e8573a"/><rect x="22" y="16" width="14" height="8" rx="4" fill="none" stroke="#e8573a" stroke-width="3"/></svg></div><div><h3>Ни там, ни здесь</h3><p>Уже не подросток, но ещё не до конца взрослый</p></div></div>
+    <div class="it card reveal d5"><div class="ic"><svg width="40" height="40" viewBox="0 0 40 40"><path d="M20 4l4.5 10.5L36 16l-8.5 7.5L30 35l-10-6-10 6 2.5-11.5L4 16l11.5-1.5z" fill="#e8573a"/></svg></div><div><h3>Возможности</h3><p>Ощущение, что всё ещё можно изменить</p></div></div>
+  </div>
+  <div class="erik reveal d3">
+    <small>Эрик Эриксон, 6-я стадия из 8</small>
+    <h3>Близость против изоляции</h3>
+    <p>Главная задача молодой взрослости: научиться настоящей близости с людьми и не закрыться от них. Академическая группа даёт для этого ежедневную практику.</p>
+    <div class="stair" aria-hidden="true"><i style="height:20%"></i><i style="height:30%"></i><i style="height:40%"></i><i style="height:50%"></i><i style="height:60%"></i><i class="on" style="height:72%"></i><i style="height:84%"></i><i style="height:100%"></i></div>
+  </div>
+  <p class="src">Слева: пять черт периода по Дж. Арнетту («Emerging adulthood», American Psychologist, 2000). Справа: периодизация Э. Эриксона.</p>
+  <div class="pageno">06 / 21</div>
+</section>
+
+<!-- ============ 7. SOCRATIC CHAIN ============ -->
+<section class="slide s-chain b1" data-who="Абдуллаева">
+  <div class="chrome"><span>Блок 1 · Сократический диалог</span><span class="who"><i></i>Абдуллаева А.</span></div>
+  <h2 class="reveal">Можно ли <em>воспитать</em> двадцатипятилетнего?</h2>
+  <div class="chain">
+    <div class="q card step"><b>1</b><p>Кого мы обычно называем «воспитанным человеком»?</p></div>
+    <div class="q card step"><b>2</b><p>Кто решает, каким должен стать человек в 25 лет?</p></div>
+    <div class="q card step"><b>3</b><p>Если решает он сам, зачем тогда нужен педагог?</p></div>
+    <div class="q card step"><b>4</b><p>Что меняется, когда студент сам ставит себе цель?</p></div>
+  </div>
+  <div class="chain-out step">
+    <small>К чему мы пришли</small>
+    <p>Взрослый воспитывает себя сам. Вуз даёт ему для этого среду, людей и право выбора.</p>
+    <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#ffcf6e" stroke-width="4"/><path d="M38 62l15 15 30-34" fill="none" stroke="#ffcf6e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <p class="hint">Вопросы появляются по нажатию →</p>
+  <div class="pageno">07 / 21</div>
+</section>
+
+<!-- ============ 8. OBJECT vs SUBJECT ============ -->
+<section class="slide s-subj b1" data-who="Абдуллаева">
+  <div class="chrome"><span>Блок 1 · Студент</span><span class="who"><i></i>Абдуллаева А.</span></div>
+  <h2 class="reveal">Студент: <em>объект или субъект</em> воспитания</h2>
+  <div class="vs reveal d1">
+    <div class="hd"><h3>Объект</h3><h3>Субъект</h3></div>
+    <div class="tr"><p>На него воздействуют</p><p>Сам ставит цели</p></div>
+    <div class="tr"><p>Выполняет то, что сказали</p><p>Выбирает: курсы, проекты, роль в группе</p></div>
+    <div class="tr"><p>Оценку даёт педагог</p><p>Оценивает себя и просит обратную связь</p></div>
+    <div class="tr"><p>Учится ради оценки</p><p>Учится ради смысла и интереса</p></div>
+    <div class="tr"><p>Отвечает педагог</p><p>Отвечает сам, вместе с группой</p></div>
+  </div>
+  <svg class="sdt reveal d2" viewBox="0 0 640 520" aria-label="Три базовые потребности: автономия, компетентность, связанность">
+    <path d="M320 70 L560 430 L80 430 Z" fill="#fdebe5" stroke="#e8573a" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="320" cy="70" r="56" fill="#e8573a"/><circle cx="560" cy="430" r="56" fill="#3554e0"/><circle cx="80" cy="430" r="56" fill="#0e9f6e"/>
+    <g fill="#fff" font-family="Unbounded" font-size="30" font-weight="700" text-anchor="middle"><text x="320" y="81">А</text><text x="560" y="441">К</text><text x="80" y="441">С</text></g>
+    <g font-family="Golos Text" font-size="23" font-weight="600" fill="#1c1b33" text-anchor="middle">
+      <text x="320" y="160">Автономия</text><text x="320" y="186" font-weight="400" font-size="19" fill="#4a4866">я выбираю сам</text>
+      <text x="530" y="510">Компетентность</text>
+      <text x="110" y="510">Связанность</text>
+    </g>
+    <text x="320" y="330" text-anchor="middle" font-family="Golos Text" font-size="20" fill="#4a4866">Теория самодетерминации</text>
+    <text x="320" y="356" text-anchor="middle" font-family="Golos Text" font-size="20" fill="#4a4866">Э. Деси и Р. Райан</text>
+  </svg>
+  <div class="quote reveal d3"><p>«Как можно больше требования к человеку, но вместе с тем и как можно больше уважения к нему»</p><span>А. С. Макаренко</span></div>
+  <div class="pageno">08 / 21</div>
+</section>
+
+<!-- ============ 9. SECTION: ADVISOR ============ -->
+<section class="slide s-sec b2" data-who="Даулетова">
+  <div class="chrome"><span>Блок 2</span><span class="who"><i></i>Даулетова А.</span></div>
+  <div class="num reveal">02</div>
+  <h2 class="reveal d1">Эдвайзер: навигатор по учёбе</h2>
+  <p class="lead reveal d2">Как студенту не потеряться среди элективов, кредитов и собственного плана обучения</p>
+  <svg class="art reveal d3" width="420" height="420" viewBox="0 0 420 420" aria-hidden="true">
+    <circle cx="210" cy="210" r="190" fill="none" stroke="#fff" stroke-width="6" opacity=".5"/>
+    <circle cx="210" cy="210" r="150" fill="rgba(255,255,255,.14)"/>
+    <g class="pop"><path d="M210 80 L240 210 L210 340 L180 210 Z" fill="#fff"/><path d="M210 80 L240 210 L180 210 Z" fill="#e3a21a"/></g>
+    <circle cx="210" cy="210" r="14" fill="#1c1b33"/>
+    <g fill="#fff" font-family="Unbounded" font-size="26" font-weight="700" text-anchor="middle"><text x="210" y="44">С</text><text x="210" y="398">Ю</text><text x="388" y="219">В</text><text x="32" y="219">З</text></g>
+  </svg>
+  <div class="pageno">09 / 21</div>
+</section>
+
+<!-- ============ 10. CREDIT SYSTEM ============ -->
+<section class="slide s-credit b2" data-who="Даулетова">
+  <div class="chrome"><span>Блок 2 · Эдвайзер</span><span class="who"><i></i>Даулетова А.</span></div>
+  <h2 class="reveal">Откуда в наших вузах <em>взялся эдвайзер</em></h2>
+  <div class="facts">
+    <div class="f reveal d1"><b>2010</b><p>Казахстан вошёл в Болонский процесс, то есть в общее европейское пространство высшего образования</p></div>
+    <div class="f reveal d2"><b>2011</b><p>Приказ МОН РК № 152 утвердил Правила организации учебного процесса по кредитной технологии</p></div>
+    <div class="f reveal d3"><b>ИУП</b><p>По кредитной технологии часть дисциплин студент выбирает сам и записывает их в индивидуальный учебный план</p></div>
+    <div class="f reveal d4"><b>КЭД</b><p>Каталог элективных дисциплин: список, из которого выбирают элективы</p></div>
+  </div>
+  <div class="def reveal d2">
+    <small>Кто такой эдвайзер</small>
+    <p>Преподаватель-наставник, который помогает студенту выбрать траекторию обучения, составить ИУП и пройти образовательную программу до конца</p>
+    <p class="cite">По Правилам организации учебного процесса по кредитной технологии обучения</p>
+  </div>
+  <div class="pageno">10 / 21</div>
+</section>
+
+<!-- ============ 11. PATH FLOW ============ -->
+<section class="slide s-path b2" data-who="Даулетова">
+  <div class="chrome"><span>Блок 2 · Эдвайзер</span><span class="who"><i></i>Даулетова А.</span></div>
+  <h2 class="reveal">Путь студента <em>по кредитной системе</em></h2>
+  <svg class="flow reveal d1" viewBox="0 0 1800 700" aria-label="Путь: каталог элективов, разговор с эдвайзером, ИУП, регистрация, учёба, GPA, корректировка">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3554e0"/></marker></defs>
+    <path d="M300 200 H 420" stroke="#3554e0" stroke-width="4" marker-end="url(#ar)"/>
+    <path d="M720 200 H 840" stroke="#3554e0" stroke-width="4" marker-end="url(#ar)"/>
+    <path d="M1140 200 H 1260" stroke="#3554e0" stroke-width="4" marker-end="url(#ar)"/>
+    <path d="M1420 290 V 400" stroke="#3554e0" stroke-width="4" marker-end="url(#ar)"/>
+    <path d="M1260 500 H 1140" stroke="#3554e0" stroke-width="4" marker-end="url(#ar)"/>
+    <path d="M840 500 H 720" stroke="#3554e0" stroke-width="4" marker-end="url(#ar)"/>
+    <path d="M570 590 C 570 690, 260 690, 200 560 C 160 470, 470 400, 570 300" fill="none" stroke="#e3a21a" stroke-width="4" stroke-dasharray="10 10" marker-end="url(#ar)"/>
+    <g font-family="Golos Text" text-anchor="middle">
+      <g transform="translate(0 110)"><rect width="300" height="180" rx="28" fill="#fff"/><circle cx="46" cy="46" r="26" fill="#3554e0"/><text x="46" y="55" fill="#fff" font-family="Unbounded" font-size="22" font-weight="700">1</text><text x="150" y="112" font-size="28" font-weight="700" fill="#1c1b33">КЭД</text><text x="150" y="146" font-size="20" fill="#4a4866">смотрю, что можно выбрать</text></g>
+      <g transform="translate(420 110)"><rect width="300" height="180" rx="28" fill="#3554e0"/><circle cx="46" cy="46" r="26" fill="#fff"/><text x="46" y="55" fill="#3554e0" font-family="Unbounded" font-size="22" font-weight="700">2</text><text x="150" y="112" font-size="28" font-weight="700" fill="#fff">Эдвайзер</text><text x="150" y="146" font-size="20" fill="#e8ecfd">обсуждаем мою цель</text></g>
+      <g transform="translate(840 110)"><rect width="300" height="180" rx="28" fill="#fff"/><circle cx="46" cy="46" r="26" fill="#3554e0"/><text x="46" y="55" fill="#fff" font-family="Unbounded" font-size="22" font-weight="700">3</text><text x="150" y="112" font-size="28" font-weight="700" fill="#1c1b33">ИУП</text><text x="150" y="146" font-size="20" fill="#4a4866">мой план на год</text></g>
+      <g transform="translate(1260 110)"><rect width="320" height="180" rx="28" fill="#fff"/><circle cx="46" cy="46" r="26" fill="#3554e0"/><text x="46" y="55" fill="#fff" font-family="Unbounded" font-size="22" font-weight="700">4</text><text x="160" y="112" font-size="28" font-weight="700" fill="#1c1b33">Регистрация</text><text x="160" y="146" font-size="20" fill="#4a4866">записываюсь на дисциплины</text></g>
+      <g transform="translate(1260 410)"><rect width="320" height="180" rx="28" fill="#fff"/><circle cx="46" cy="46" r="26" fill="#3554e0"/><text x="46" y="55" fill="#fff" font-family="Unbounded" font-size="22" font-weight="700">5</text><text x="160" y="112" font-size="28" font-weight="700" fill="#1c1b33">Учёба</text><text x="160" y="146" font-size="20" fill="#4a4866">набираю кредиты</text></g>
+      <g transform="translate(840 410)"><rect width="300" height="180" rx="28" fill="#fff"/><circle cx="46" cy="46" r="26" fill="#3554e0"/><text x="46" y="55" fill="#fff" font-family="Unbounded" font-size="22" font-weight="700">6</text><text x="150" y="112" font-size="28" font-weight="700" fill="#1c1b33">GPA</text><text x="150" y="146" font-size="20" fill="#4a4866">средний балл за период</text></g>
+      <g transform="translate(420 410)"><rect width="300" height="180" rx="28" fill="#fcf1d6"/><circle cx="46" cy="46" r="26" fill="#e3a21a"/><text x="46" y="55" fill="#fff" font-family="Unbounded" font-size="22" font-weight="700">7</text><text x="150" y="112" font-size="28" font-weight="700" fill="#1c1b33">Корректировка</text><text x="150" y="146" font-size="20" fill="#4a4866">меняю траекторию</text></g>
+      <text x="170" y="430" font-size="21" font-weight="600" fill="#a06d00">и снова к эдвайзеру</text>
+    </g>
+  </svg>
+  <div class="pageno">11 / 21</div>
+</section>
+
+<!-- ============ 12. ADVISOR FUNCTIONS ============ -->
+<section class="slide s-fn b2" data-who="Даулетова">
+  <div class="chrome"><span>Блок 2 · Эдвайзер</span><span class="who"><i></i>Даулетова А.</span></div>
+  <h2 class="reveal">Что делает эдвайзер в <em>высшей школе</em></h2>
+  <div class="fn">
+    <div class="c reveal d1"><div class="ic"><svg width="44" height="44" viewBox="0 0 44 44"><rect x="6" y="6" width="14" height="14" rx="4" fill="#3554e0"/><rect x="24" y="6" width="14" height="14" rx="4" fill="none" stroke="#3554e0" stroke-width="3"/><rect x="6" y="24" width="14" height="14" rx="4" fill="none" stroke="#3554e0" stroke-width="3"/><rect x="24" y="24" width="14" height="14" rx="4" fill="#3554e0"/></svg></div><h3>Помогает выбрать элективы</h3><p>Объясняет, какие курсы ведут к какой профессии</p></div>
+    <div class="c reveal d2"><div class="ic"><svg width="44" height="44" viewBox="0 0 44 44"><rect x="8" y="4" width="28" height="36" rx="5" fill="none" stroke="#3554e0" stroke-width="3"/><path d="M14 14h16M14 22h16M14 30h10" stroke="#3554e0" stroke-width="3" stroke-linecap="round"/></svg></div><h3>Согласует ИУП</h3><p>Проверяет, чтобы план набирал нужные кредиты и не ломал последовательность курсов</p></div>
+    <div class="c reveal d3"><div class="ic"><svg width="44" height="44" viewBox="0 0 44 44"><path d="M6 36V22M16 36V14M26 36V18M36 36V8" stroke="#3554e0" stroke-width="5" stroke-linecap="round"/></svg></div><h3>Следит за GPA</h3><p>Замечает, когда успеваемость падает, и разбирает причины вместе со студентом</p></div>
+    <div class="c reveal d4"><div class="ic"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="16" fill="none" stroke="#3554e0" stroke-width="3"/><path d="M22 14v10l6 4" stroke="#3554e0" stroke-width="3" stroke-linecap="round"/></svg></div><h3>Объясняет правила</h3><p>Кредиты, пререквизиты, сроки регистрации и пересдач</p></div>
+    <div class="c reveal d5"><div class="ic"><svg width="44" height="44" viewBox="0 0 44 44"><path d="M6 34 L18 20 L26 26 L38 10" fill="none" stroke="#3554e0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="38" cy="10" r="4" fill="#e3a21a"/></svg></div><h3>Строит траекторию</h3><p>Связывает выбор курсов с будущей работой, магистратурой, стажировками</p></div>
+    <div class="c reveal d6"><div class="ic"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="12" cy="22" r="6" fill="#3554e0"/><circle cx="32" cy="12" r="6" fill="none" stroke="#3554e0" stroke-width="3"/><circle cx="32" cy="32" r="6" fill="none" stroke="#3554e0" stroke-width="3"/><path d="M17 19l10-5M17 25l10 5" stroke="#3554e0" stroke-width="3"/></svg></div><h3>Связывает с вузом</h3><p>Кафедра, офис регистратора, деканат: эдвайзер знает, куда идти</p></div>
+  </div>
+  <div class="pageno">12 / 21</div>
+</section>
+
+<!-- ============ 13. SORT GAME ============ -->
+<section class="slide s-sort b2" data-who="Даулетова">
+  <div class="chrome"><span>Блок 2 · Интерактив</span><span class="who"><i></i>Даулетова А.</span></div>
+  <h2 class="reveal">Игра: <em>эдвайзер или куратор?</em></h2>
+  <div class="sort reveal d1" id="sort">
+    <div class="col adv" data-col="a"><h3><svg width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="#3554e0"/></svg>Эдвайзер</h3></div>
+    <div class="pool" data-col="p">
+      <button class="tile" data-k="a"><span class="mark"></span>Помогает выбрать элективы</button>
+      <button class="tile" data-k="c"><span class="mark"></span>Проводит кураторский час</button>
+      <button class="tile" data-k="a"><span class="mark"></span>Согласует индивидуальный учебный план</button>
+      <button class="tile" data-k="c"><span class="mark"></span>Помогает первокурсникам освоиться в вузе</button>
+      <button class="tile" data-k="a"><span class="mark"></span>Разбирает со студентом, почему упал GPA</button>
+      <button class="tile" data-k="c"><span class="mark"></span>Собирает группу на мероприятие</button>
+      <button class="tile" data-k="a"><span class="mark"></span>Объясняет, что такое пререквизиты</button>
+      <button class="tile" data-k="c"><span class="mark"></span>Поддерживает связь с родителями</button>
+    </div>
+    <div class="col cur" data-col="c"><h3><svg width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="#0e9f6e"/></svg>Куратор</h3></div>
+  </div>
+  <div class="score" id="score"></div>
+  <p class="hint">Клик по карточке: влево, вправо, обратно. Клавиша C показывает ответ. Во многих вузах обе роли совмещает один человек, «куратор-эдвайзер».</p>
+  <div class="pageno">13 / 21</div>
+</section>
+
+<!-- ============ 14. SECTION: GROUP ============ -->
+<section class="slide s-sec b3" data-who="Наданбаева">
+  <div class="chrome"><span>Блок 3</span><span class="who"><i></i>Наданбаева Р.</span></div>
+  <div class="num reveal">03</div>
+  <h2 class="reveal d1">Академическая группа и куратор</h2>
+  <p class="lead reveal d2">Как 25 незнакомых людей становятся командой и при чём здесь гражданская позиция</p>
+  <svg class="art reveal d3" width="460" height="420" viewBox="0 0 460 420" aria-hidden="true">
+    <g fill="#fff"><circle cx="230" cy="120" r="44"/><path d="M150 260c0-50 36-86 80-86s80 36 80 86z"/></g>
+    <g fill="rgba(255,255,255,.55)"><circle cx="90" cy="180" r="34"/><path d="M28 300c0-40 28-68 62-68s62 28 62 68z"/><circle cx="370" cy="180" r="34"/><path d="M308 300c0-40 28-68 62-68s62 28 62 68z"/></g>
+    <path d="M40 360 H 420" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".6"/>
+  </svg>
+  <div class="pageno">14 / 21</div>
+</section>
+
+<!-- ============ 15. TUCKMAN ============ -->
+<section class="slide s-tuck b3" data-who="Наданбаева">
+  <div class="chrome"><span>Блок 3 · Группа</span><span class="who"><i></i>Наданбаева Р.</span></div>
+  <h2 class="reveal">Как группа <em>становится командой</em></h2>
+  <svg class="tuck reveal d1" viewBox="0 0 1100 520" aria-label="Стадии развития группы по Такману: формирование, шторм, нормирование, работа, завершение">
+    <line x1="60" y1="440" x2="1080" y2="440" stroke="#4a4866" stroke-width="2"/>
+    <line x1="60" y1="40" x2="60" y2="440" stroke="#4a4866" stroke-width="2"/>
+    <text x="70" y="40" font-size="19" fill="#4a4866">эффективность группы</text>
+    <text x="1080" y="476" font-size="19" fill="#4a4866" text-anchor="end">время</text>
+    <g stroke="#e7dccb" stroke-dasharray="4 8"><line x1="264" y1="60" x2="264" y2="440"/><line x1="468" y1="60" x2="468" y2="440"/><line x1="672" y1="60" x2="672" y2="440"/><line x1="876" y1="60" x2="876" y2="440"/></g>
+    <path d="M60 330 C 140 300, 200 300, 264 320 S 380 400, 468 360 S 600 200, 672 160 S 820 90, 876 90 S 980 140, 1080 300" fill="none" stroke="#0e9f6e" stroke-width="6" stroke-linecap="round"/>
+    <g font-family="Unbounded" font-weight="600" font-size="20" text-anchor="middle" fill="#1c1b33">
+      <text x="162" y="410">Формирование</text><text x="366" y="410" fill="#e8573a">Шторм</text><text x="570" y="410">Нормирование</text><text x="774" y="410">Работа</text><text x="978" y="410">Завершение</text>
+    </g>
+    <g fill="#0e9f6e"><circle cx="162" cy="306" r="10"/><circle cx="366" cy="370" r="10" fill="#e8573a"/><circle cx="570" cy="255" r="10"/><circle cx="774" cy="108" r="10"/><circle cx="978" cy="150" r="10"/></g>
+  </svg>
+  <div class="legend-t reveal d2">
+    <div><b>Формирование</b>знакомимся, присматриваемся</div>
+    <div><b>Шторм</b>споры за роли и правила</div>
+    <div><b>Нормирование</b>договорились, как живём</div>
+    <div><b>Работа</b>группа решает задачи сама</div>
+    <div><b>Завершение</b>выпуск, прощание</div>
+  </div>
+  <div class="sit">
+    <div class="s card step"><p>Сентябрь. Все вежливые, никто не спорит, в чате только «спасибо».</p><p class="ans step">Формирование</p></div>
+    <div class="s card step"><p>Групповой проект: спор, кто что делает, двое вышли из чата.</p><p class="ans step" style="color:var(--coral)">Шторм</p></div>
+    <div class="s card step"><p>Старосте больше не нужно напоминать о дедлайнах: все знают, кто за что отвечает.</p><p class="ans step">Нормирование</p></div>
+    <div class="s card step"><p>Группа сама придумала проект и подала его на конкурс.</p><p class="ans step">Работа</p></div>
+  </div>
+  <p class="src">Б. Такман, 1965; пятая стадия добавлена Такманом и М. Дженсен в 1977. Кривая показывает идею модели, а не измеренные данные.</p>
+  <div class="pageno">15 / 21</div>
+</section>
+
+<!-- ============ 16. CURATOR ============ -->
+<section class="slide s-cur b3" data-who="Наданбаева">
+  <div class="chrome"><span>Блок 3 · Куратор</span><span class="who"><i></i>Наданбаева Р.</span></div>
+  <h2 class="reveal">Направления <em>кураторской работы</em></h2>
+  <svg class="radial reveal d1" viewBox="0 0 1120 760" aria-label="Шесть направлений кураторской работы">
+    <g stroke="#9fdcc5" stroke-width="3"><line x1="560" y1="380" x2="560" y2="90"/><line x1="560" y1="380" x2="900" y2="210"/><line x1="560" y1="380" x2="900" y2="560"/><line x1="560" y1="380" x2="560" y2="680"/><line x1="560" y1="380" x2="220" y2="560"/><line x1="560" y1="380" x2="220" y2="210"/></g>
+    <circle cx="560" cy="380" r="130" fill="#0e9f6e"/>
+    <text x="560" y="372" text-anchor="middle" font-family="Unbounded" font-size="28" font-weight="700" fill="#fff">Куратор</text>
+    <text x="560" y="404" text-anchor="middle" font-size="20" fill="#e1f5ee">академической группы</text>
+    <g font-size="22" text-anchor="middle">
+      <g transform="translate(560 90)"><rect x="-170" y="-50" width="340" height="100" rx="22" fill="#fff"/><text y="-6" font-weight="700" fill="#1c1b33">Адаптация</text><text y="24" fill="#4a4866" font-size="19">первокурсников к вузу</text></g>
+      <g transform="translate(900 210)"><rect x="-190" y="-50" width="380" height="100" rx="22" fill="#fff"/><text y="-6" font-weight="700" fill="#1c1b33">Учёба</text><text y="24" fill="#4a4866" font-size="19">посещаемость, мотивация, помощь</text></g>
+      <g transform="translate(900 560)"><rect x="-190" y="-50" width="380" height="100" rx="22" fill="#fff"/><text y="-6" font-weight="700" fill="#1c1b33">Воспитательные мероприятия</text><text y="24" fill="#4a4866" font-size="19">кураторские часы, традиции группы</text></g>
+      <g transform="translate(560 680)"><rect x="-190" y="-50" width="380" height="100" rx="22" fill="#fff"/><text y="-6" font-weight="700" fill="#1c1b33">Поддержка</text><text y="24" fill="#4a4866" font-size="19">социальная и психологическая</text></g>
+      <g transform="translate(220 560)"><rect x="-190" y="-50" width="380" height="100" rx="22" fill="#fff"/><text y="-6" font-weight="700" fill="#1c1b33">Связь</text><text y="24" fill="#4a4866" font-size="19">с родителями, кафедрой, деканатом</text></g>
+      <g transform="translate(220 210)"><rect x="-190" y="-50" width="380" height="100" rx="22" fill="#fff"/><text y="-6" font-weight="700" fill="#1c1b33">Самоуправление</text><text y="24" fill="#4a4866" font-size="19">староста, актив, инициативы</text></g>
+    </g>
+  </svg>
+  <p class="src">Обобщение типовых положений о кураторе казахстанских и российских вузов. Набор функций в каждом вузе свой.</p>
+  <div class="pageno">16 / 21</div>
+</section>
+
+<!-- ============ 17. EXTRACURRICULAR ============ -->
+<section class="slide s-mx b3" data-who="Наданбаева">
+  <div class="chrome"><span>Блок 3 · Внеучебная деятельность</span><span class="who"><i></i>Наданбаева Р.</span></div>
+  <h2 class="reveal">Виды и формы <em>внеучебной деятельности</em></h2>
+  <div class="mx">
+    <div class="h"></div><div class="h reveal">Индивидуальная</div><div class="h reveal">Групповая</div><div class="h reveal">Массовая</div>
+    <div class="r reveal d1" style="background:var(--cobalt)">Научная</div><div class="c reveal d1">Доклад на конференции</div><div class="c reveal d1">Научный кружок</div><div class="c reveal d1">Олимпиада, конкурс проектов</div>
+    <div class="r reveal d2" style="background:var(--coral)">Творческая</div><div class="c reveal d2">Свой блог, подкаст</div><div class="c reveal d2">Студенческий театр, КВН</div><div class="c reveal d2">Фестиваль, концерт</div>
+    <div class="r reveal d3" style="background:var(--emerald)">Спортивная</div><div class="c reveal d3">Личные тренировки, забег</div><div class="c reveal d3">Команда факультета</div><div class="c reveal d3">Спартакиада</div>
+    <div class="r reveal d4" style="background:var(--sun)">Волонтёрская</div><div class="c reveal d4">Наставник для первокурсника</div><div class="c reveal d4">Акция группы</div><div class="c reveal d4">Городской марафон добрых дел</div>
+    <div class="r reveal d5" style="background:var(--ink)">Общественная</div><div class="c reveal d5">Староста</div><div class="c reveal d5">Студенческий совет</div><div class="c reveal d5">Форум, выборы в совет</div>
+  </div>
+  <div class="socq reveal d6" style="left:96px;right:96px;width:auto;bottom:70px;display:flex;gap:24px;align-items:center;padding:24px 32px"><small style="margin:0">Вопрос к аудитории</small><p>В какой клетке вы были хотя бы раз за этот год? А в какой хотели бы оказаться?</p></div>
+  <div class="pageno">17 / 21</div>
+</section>
+
+<!-- ============ 18. HART LADDER ============ -->
+<section class="slide s-hart b3" data-who="Наданбаева">
+  <div class="chrome"><span>Блок 3 · Гражданская позиция</span><span class="who"><i></i>Наданбаева Р.</span></div>
+  <h2 class="reveal">Лестница участия: <em>где ваша группа?</em></h2>
+  <div class="ladder reveal d1" id="ladder">
+    <button style="background:#b9b3a8"><b>1</b><span>Манипуляция: решили за нас, нас просто используют</span><span class="tag">наша группа</span></button>
+    <button style="background:#a8a297"><b>2</b><span>Декорация: мы фон для чужого мероприятия</span><span class="tag">наша группа</span></button>
+    <button style="background:#979186"><b>3</b><span>Для галочки: нас спросили, но ничего не поменяли</span><span class="tag">наша группа</span></button>
+    <button style="background:#7fcfb3"><b>4</b><span>Нам поручили и объяснили зачем</span><span class="tag">наша группа</span></button>
+    <button style="background:#4fbb94"><b>5</b><span>С нами советуются и учитывают мнение</span><span class="tag">наша группа</span></button>
+    <button style="background:#22a97a"><b>6</b><span>Идея куратора, решаем вместе</span><span class="tag">наша группа</span></button>
+    <button style="background:#0e9f6e"><b>7</b><span>Идея наша, и ведём её сами</span><span class="tag">наша группа</span></button>
+    <button style="background:#0b7a55"><b>8</b><span>Идея наша, взрослых зовём как партнёров</span><span class="tag">наша группа</span></button>
+  </div>
+  <div class="hart-side">
+    <div class="card reveal d2"><p>Роджер Харт описал эту лестницу для ЮНИСЕФ в 1992 году. Нижние три ступени он вообще не считал участием.</p></div>
+    <div class="card dark reveal d3"><small>Голосуем</small><p>На какой ступени ваша группа? А студенческий совет вашего вуза?</p></div>
+    <div class="card reveal d4"><p class="ink2">Гражданская позиция начинается в группе: кто предлагает идею, кто решает и кто за неё отвечает.</p></div>
+  </div>
+  <p class="hint">Клик по ступени отмечает выбор аудитории</p>
+  <div class="pageno">18 / 21</div>
+</section>
+
+<!-- ============ 19. CASES ============ -->
+<section class="slide s-cases b0" data-who="Все трое">
+  <div class="chrome"><span>Работа в командах</span><span class="who"><i style="background:var(--ink)"></i>Все трое</span></div>
+  <h2 class="reveal">Пять кейсов, <em>пять команд</em></h2>
+  <div class="cases">
+    <div class="k card reveal d1"><b style="background:var(--coral)">1</b><p>В группе 25 человек, на кураторский час приходят пятеро. Что изменить куратору и что самой группе?</p></div>
+    <div class="k card reveal d1"><b style="background:var(--cobalt)">2</b><p>Студент взял элективы «полегче», а к третьему курсу понял, что для его профессии они бесполезны. Что делать ему и эдвайзеру?</p></div>
+    <div class="k card reveal d2"><b style="background:var(--emerald)">3</b><p>Половина группы работает, половина нет. Каждый раз спор, когда собираться на групповой проект. Как договориться?</p></div>
+    <div class="k card reveal d2"><b style="background:var(--sun)">4</b><p>Группа хочет запустить волонтёрский проект, но староста всё решает сам. Как подняться по лестнице Харта?</p></div>
+    <div class="k card reveal d3"><b style="background:var(--ink)">5</b><p>Студент приехал из другого региона и за месяц ни с кем не подружился. Пропускает занятия. Кто это заметит и что сделает?</p></div>
+  </div>
+  <button class="timer reveal d2" id="timer" aria-label="Таймер: старт и пауза">
+    <small>Обсуждение · клик или T</small>
+    <svg width="260" height="260" viewBox="-130 -130 260 260"><circle r="110" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="18"/><circle id="tArc" r="110" fill="none" stroke="#e3a21a" stroke-width="18" stroke-linecap="round" stroke-dasharray="691.15" stroke-dashoffset="0" transform="rotate(-90)"/><text class="t" id="tTxt" y="24" text-anchor="middle" fill="#fff" font-family="Unbounded" font-size="64" font-weight="600">4:00</text></svg>
+  </button>
+  <div class="plan card reveal d3"><p><b>4 минуты</b> на обсуждение.<br><b>1 минута</b> на ответ каждой команды.<br>Отвечает тот, кто сегодня ещё не говорил.</p></div>
+  <div class="pageno">19 / 21</div>
+</section>
+
+<!-- ============ 20. QUIZ ============ -->
+<section class="slide s-quiz b0" data-who="Даулетова">
+  <div class="chrome"><span>Проверим себя</span><span class="who"><i style="background:var(--cobalt)"></i>Даулетова А.</span></div>
+  <h2 class="reveal">Три вопроса <em>на одну минуту</em></h2>
+  <div class="quiz">
+    <div class="qq card reveal d1 qstep"><span class="n" style="background:var(--coral)">1</span><h3>Сколько студентов училось в вузах Казахстана на начало 2024/2025 учебного года?</h3>
+      <ol><li><b>А</b>около 300 тысяч</li><li class="ok"><b>Б</b>624,5 тысячи</li><li><b>В</b>больше миллиона</li></ol></div>
+    <div class="qq card reveal d2 qstep"><span class="n" style="background:var(--cobalt)">2</span><h3>Кто помогает студенту составить индивидуальный учебный план?</h3>
+      <ol><li><b>А</b>староста</li><li class="ok"><b>Б</b>эдвайзер</li><li><b>В</b>офис регистратора</li></ol></div>
+    <div class="qq card reveal d3 qstep"><span class="n" style="background:var(--emerald)">3</span><h3>Какая стадия по Такману идёт сразу после «формирования»?</h3>
+      <ol><li><b>А</b>нормирование</li><li class="ok"><b>Б</b>шторм</li><li><b>В</b>работа</li></ol></div>
+  </div>
+  <p class="hint">→ открывает ответы по одному</p>
+  <div class="pageno">20 / 21</div>
+</section>
+
+<!-- ============ 21. REFLECTION ============ -->
+<section class="slide s-end b3" data-who="Абдуллаева, Наданбаева">
+  <div class="chrome"><span>Финал</span><span class="who"><i style="background:var(--coral)"></i>Абдуллаева А. · Наданбаева Р.</span></div>
+  <h2 class="reveal">Одно слово <em>напоследок</em></h2>
+  <div class="refl reveal d1">
+    <small>Рефлексия по кругу</small>
+    <p>Какой должна быть академическая группа, чтобы вам хотелось в ней учиться?</p>
+    <div class="words"><span>доверие</span><span>свобода</span><span>поддержка</span><span>смысл</span><span>…ваше слово</span></div>
+  </div>
+  <div class="thanks reveal d2">
+    <h3>Спасибо!</h3>
+    <div class="p"><i style="background:var(--coral)"></i>Абдуллаева А.</div>
+    <div class="p"><i style="background:var(--cobalt)"></i>Даулетова А.</div>
+    <div class="p"><i style="background:var(--emerald)"></i>Наданбаева Р.</div>
+    <p class="ink2 small" style="margin-top:18px">Ваши вопросы</p>
+  </div>
+  <div class="srcs reveal d3">
+    Бюро национальной статистики АСПиР РК: «Высшее образование в Республике Казахстан», stat.gov.kz.<br>
+    Правила организации учебного процесса по кредитной технологии обучения, приказ МОН РК от 20.04.2011 № 152.<br>
+    Arnett J. J. Emerging adulthood // American Psychologist. 2000.<br>
+    Эриксон Э. Идентичность: юность и кризис.<br>
+    Deci E., Ryan R. Теория самодетерминации.<br>
+    Макаренко А. С. Педагогические сочинения.<br>
+    Tuckman B. Developmental sequence in small groups // Psychological Bulletin. 1965; Tuckman B., Jensen M. 1977.<br>
+    Hart R. Children's participation: from tokenism to citizenship. UNICEF, 1992.
+  </div>
+  <div class="pageno">21 / 21</div>
+</section>
+
+</div></div>
+<div class="progress"></div>
+<div class="edit-hot"></div><button class="edit-btn" type="button">Редактировать (E)</button>
+
+<script>
+/* ===========================================
+   DECK CONTROLLER
+   scaling · navigation · step reveals · poll · sort game · ladder · timer · edit mode
+   =========================================== */
+(() => {
+  const stage = document.querySelector('.deck-stage');
+  const slides = [...document.querySelectorAll('.slide')];
+  const bar = document.querySelector('.progress');
+  let i = Math.max(0, Math.min(slides.length - 1, (parseInt(location.hash.slice(1)) || 1) - 1));
+
+  /* crowd of 25 on the title slide, five colours in fixed order */
+  const crowd = document.getElementById('crowd');
+  const cols = ['#e8573a', '#3554e0', '#0e9f6e', '#e3a21a', '#1c1b33'];
+  let html = '';
+  for (let k = 0; k < 25; k++) {
+    const ring = k < 9 ? 0 : 1, n = ring ? 16 : 9, idx = ring ? k - 9 : k;
+    const r = ring ? 290 : 185, a = (idx / n) * Math.PI * 2 - Math.PI / 2 + (ring ? 0.2 : 0);
+    const x = 380 + r * Math.cos(a), y = 380 + r * Math.sin(a), c = cols[k % 5];
+    html += `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})"><g class="pop" style="animation-delay:${(k * 0.13).toFixed(2)}s"><circle cy="-16" r="15" fill="${c}"/><path d="M-24 26c0-18 10-28 24-28s24 10 24 28z" fill="${c}"/></g></g>`;
+  }
+  crowd.innerHTML = html;
+
+  function fit() {
+    const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`;
+  }
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, j) => { s.classList.toggle('active', j === i); if (j !== i) s.classList.remove('visible'); });
+    requestAnimationFrame(() => requestAnimationFrame(() => slides[i].classList.add('visible')));
+    bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    history.replaceState(null, '', '#' + (i + 1));
+  }
+  /* steps: → first reveals hidden .step / .qstep on the current slide, then moves on */
+  function next() {
+    const s = slides[i];
+    const hidden = [...s.querySelectorAll('.step:not(.shown), .qstep:not(.shown)')];
+    if (hidden.length) { hidden[0].classList.add('shown'); return; }
+    show(i + 1);
+  }
+  function prev() {
+    const s = slides[i];
+    const shown = [...s.querySelectorAll('.step.shown, .qstep.shown')];
+    if (shown.length) { shown[shown.length - 1].classList.remove('shown'); return; }
+    show(i - 1);
+  }
+
+  /* live poll */
+  const votes = [0, 0, 0, 0];
+  const poll = document.getElementById('poll');
+  function drawPoll() {
+    const max = Math.max(1, ...votes);
+    poll.querySelectorAll('.row').forEach((row, k) => {
+      row.querySelector('.fill').style.width = (votes[k] / max * 100) + '%';
+      row.querySelector('.num > span').textContent = votes[k];
+    });
+    document.getElementById('pollTotal').textContent = votes.reduce((a, b) => a + b, 0);
+  }
+  poll.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const k = +b.closest('.row').dataset.i;
+    votes[k] = Math.max(0, votes[k] + +b.dataset.d); drawPoll();
+  });
+
+  /* sort game: pool → эдвайзер → куратор → pool */
+  const sort = document.getElementById('sort');
+  const colA = sort.querySelector('[data-col=a]'), colC = sort.querySelector('[data-col=c]'), pool = sort.querySelector('[data-col=p]');
+  sort.addEventListener('click', e => {
+    const t = e.target.closest('.tile'); if (!t) return;
+    sort.classList.remove('checked'); document.getElementById('score').textContent = '';
+    const where = t.parentElement.dataset.col;
+    (where === 'p' ? colA : where === 'a' ? colC : pool).appendChild(t);
+  });
+  function checkSort() {
+    let ok = 0;
+    sort.querySelectorAll('.tile').forEach(t => {
+      const where = t.parentElement.dataset.col;
+      if (where === 'p') { (t.dataset.k === 'a' ? colA : colC).appendChild(t); }
+      const good = t.parentElement.dataset.col === t.dataset.k;
+      t.classList.toggle('ok', good); t.classList.toggle('bad', !good);
+      t.querySelector('.mark').textContent = good ? '✓' : '✕';
+      if (good) ok++;
+    });
+    sort.classList.add('checked');
+    document.getElementById('score').textContent = `Верно: ${ok} из 8`;
+  }
+
+  /* Hart ladder: click marks the group's rung */
+  document.getElementById('ladder').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const was = b.classList.contains('sel');
+    document.querySelectorAll('#ladder button').forEach(x => x.classList.remove('sel'));
+    if (!was) b.classList.add('sel');
+  });
+
+  /* 4-minute timer */
+  const T = 240; let left = T, tick = null;
+  const arc = document.getElementById('tArc'), txt = document.getElementById('tTxt');
+  function drawT() {
+    txt.textContent = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`;
+    arc.style.strokeDashoffset = (691.15 * (1 - left / T)).toFixed(1);
+    arc.style.stroke = left <= 30 ? '#e8573a' : '#e3a21a';
+  }
+  function toggleTimer() {
+    if (tick) { clearInterval(tick); tick = null; return; }
+    if (left === 0) left = T;
+    tick = setInterval(() => { left = Math.max(0, left - 1); drawT(); if (!left) { clearInterval(tick); tick = null; } }, 1000);
+  }
+  document.getElementById('timer').addEventListener('click', toggleTimer);
+
+  /* edit mode */
+  const editing = () => document.body.classList.contains('editing');
+  function toggleEdit() {
+    const on = !editing();
+    document.body.classList.toggle('editing', on);
+    document.querySelectorAll('.slide h1, .slide h2, .slide h3, .slide p, .slide li').forEach(el => el.contentEditable = on);
+  }
+  document.querySelector('.edit-btn').addEventListener('click', toggleEdit);
+
+  addEventListener('resize', fit);
+  addEventListener('keydown', e => {
+    if (e.key.toLowerCase() === 's' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob(['<!DOCTYPE html>\n' + document.documentElement.outerHTML], { type: 'text/html' }));
+      a.download = 'akademicheskaya-gruppa.html'; a.click(); return;
+    }
+    if (editing()) { if (e.key === 'Escape') toggleEdit(); return; }
+    if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); next(); }
+    if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); prev(); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(slides.length - 1);
+    const k = e.key.toLowerCase();
+    if (k === 'c' || k === 'с') checkSort();
+    if (k === 't' || k === 'е') toggleTimer();
+    if (k === 'e' || k === 'у') toggleEdit();
+  });
+  let x0 = null;
+  addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+  addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) (dx < 0 ? next : prev)(); x0 = null; });
+  fit(); drawPoll(); drawT(); show(i);
+})();
+</script>
+</body>
+</html>
