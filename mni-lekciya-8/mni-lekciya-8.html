@@ -505,7 +505,7 @@ button:focus-visible { outline: 3px solid var(--blue-2); outline-offset: 3px; }
 </section>
 
 <!-- ============ 10. SEARCH ORDER ============ -->
-<section class="slide s10" data-next="Проверим: где бы вы искали?">
+<section class="slide s10" data-next="">
   <div class="chrome"><span class="sec">06 · Алгоритм</span><span>Задание к лекции 8</span></div>
   <h2 class="reveal">Порядок поиска: <em>три шага</em></h2>
   <div class="route">
@@ -515,35 +515,7 @@ button:focus-visible { outline: 3px solid var(--blue-2); outline-offset: 3px; }
   </div>
   <svg class="glass float" style="left:760px;bottom:-260px" width="640" height="640" viewBox="-320 -320 640 640" aria-hidden="true"><g transform="rotate(-10) scale(1.3 .42)"><use href="#ring"/></g></svg>
   <p class="hint">→ открывает шаги по одному</p>
-</section>
-
-<!-- ============ 11. GAME ============ -->
-<section class="slide s11" data-next="Итог">
-  <div class="chrome"><span class="sec">Мини-игра</span><span>Задание к лекции 8</span></div>
-  <h2 class="reveal">Где бы вы <em>искали?</em></h2>
-  <div class="game">
-    <button class="card-q reveal d1"><small>Ситуация 1</small><p>Нужен стандарт ИКАО по подготовке на основе фактических данных</p><span class="ans"><b>ИКАО</b><span>Doc 9995 (EBT)</span></span></button>
-    <button class="card-q reveal d1"><small>Ситуация 2</small><p>Нужна статья на русском, бесплатно и прямо сейчас</p><span class="ans"><b>КиберЛенинка</b><span>открытый доступ</span></span></button>
-    <button class="card-q reveal d2"><small>Ситуация 3</small><p>Нужен текст приказа Республики Казахстан</p><span class="ans"><b>«Әділет»</b><span>adilet.zan.kz</span></span></button>
-    <button class="card-q reveal d2"><small>Ситуация 4</small><p>Хочу проверить, насколько авторитетен журнал</p><span class="ans"><b>Scopus или Web of Science</b><span>наукометрия и индексы цитирования</span></span></button>
-    <button class="card-q reveal d3"><small>Ситуация 5</small><p>Ищу диссертацию или монографию на казахском языке</p><span class="ans"><b>КазНЭБ</b><span>kazneb.kz</span></span></button>
-    <button class="card-q reveal d3"><small>Ситуация 6</small><p>Нужна коротко и понятно суть CBTA и EBT</p><span class="ans"><b>SKYbrary</b><span>открытая энциклопедия</span></span></button>
-  </div>
-  <p class="hint">Клик по карточке открывает ответ. Сначала пусть ответит зал.</p>
-</section>
-
-<!-- ============ 12. FINAL ============ -->
-<section class="slide s12" data-next="">
-  <svg class="glass float" style="right:-160px;top:40px" width="900" height="900" viewBox="-450 -450 900 900" aria-hidden="true"><g transform="rotate(30) scale(1.2 .5)"><use href="#ring"/></g><g transform="translate(-80 200) rotate(30) scale(.9 .4)"><use href="#ring"/></g><g transform="translate(180 -240)"><use href="#orb"/></g></svg>
-  <div class="chrome"><span class="sec">Итог</span><span>Задание к лекции 8</span></div>
-  <h1 class="reveal">Спасибо за внимание!</h1>
-  <div class="sum">
-    <div class="reveal d1"><b>1</b>Тема разобрана на объект, предмет и методы</div>
-    <div class="reveal d2"><b>2</b>10 ключевых слов на русском, казахском и английском</div>
-    <div class="reveal d3"><b>3</b>Ресурсы трёх групп: наука и нормативные документы</div>
-    <div class="reveal d4"><b>4</b>Порядок: ИКАО и EASA, затем базы статей, затем отечественные источники</div>
-  </div>
-  <p class="q-end reveal d5">Буду рада вашим вопросам</p>
+  <p class="z" style="left:96px;top:820px;font-size:34px;font-weight:800">Спасибо за внимание! <span style="color:var(--blue-2)">Буду рада вашим вопросам</span></p>
 </section>
 
 </div></div>
@@ -594,8 +566,6 @@ button:focus-visible { outline: 3px solid var(--blue-2); outline-offset: 3px; }
   function lang(l) { kw.dataset.lang = l; tabs.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.l === l)); }
   tabs.addEventListener('click', e => { const b = e.target.closest('button'); if (b) lang(b.dataset.l); });
 
-  /* game cards */
-  document.querySelector('.game').addEventListener('click', e => { const c = e.target.closest('.card-q'); if (c) c.classList.toggle('open'); });
 
   /* edit mode */
   const editing = () => document.body.classList.contains('editing');
