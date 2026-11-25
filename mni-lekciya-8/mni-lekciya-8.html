@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ключевые слова и ресурсы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===========================================
+   THEME TOKENS
+   Deep navy, electric blue, glass highlights
+   =========================================== */
+:root {
+  --stage-bg: #03051a;
+  --slide-bg: #070b26;
+  --ink: #f3f5ff;
+  --muted: #aab3e0;           /* 8.5:1 on slide-bg */
+  --blue: #3b52ff;
+  --blue-2: #6f80ff;
+  --ice: #c9d2ff;
+  --mint: #2fd3a6;
+  --panel: rgba(18, 26, 78, 0.78);
+  --line: rgba(150, 165, 255, 0.22);
+  --font: 'Onest', sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+::selection { background: var(--blue); color: #fff; }
+button { font: inherit; color: inherit; cursor: pointer; }
+
+/* ===========================================
+   FIXED STAGE BASE (viewport-base.css, verbatim)
+   =========================================== */
+/* ===========================================
+   FIXED 16:9 STAGE: MANDATORY BASE STYLES
+   Include this ENTIRE file in every presentation.
+   Slides are authored at 1920×1080 and scaled as a whole.
+   =========================================== */
+
+/* 1. Lock the browser viewport */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 2. Full-window deck viewport */
+.deck-viewport {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 3. Fixed 16:9 design canvas.
+   JavaScript sets transform: translate(...) scale(...). */
+.deck-stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    transform-origin: 0 0;
+    background: var(--slide-bg, #fff);
+}
+
+/* 4. Slides stack inside the fixed stage.
+   Content must be laid out at 1920×1080, not reflowed per device. */
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--slide-bg, #fff);
+}
+
+.slide.active,
+.slide.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+/* 5. Keep media inside authored slide bounds */
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 6. Presentation chrome stays outside the slide design system */
+.deck-controls {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+/* 7. Print one fixed-size slide per page */
+@media print {
+    html,
+    body {
+        width: 1920px;
+        height: auto;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-viewport {
+        position: static;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-stage {
+        position: static;
+        width: auto;
+        height: auto;
+        transform: none !important;
+        background: none;
+    }
+
+    .slide {
+        position: relative;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        width: 1920px;
+        height: 1080px;
+        break-after: page;
+        page-break-after: always;
+    }
+
+    .slide:last-child {
+        break-after: auto;
+        page-break-after: auto;
+    }
+
+    .deck-controls {
+        display: none !important;
+    }
+}
+
+/* 8. Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+}
+
+
+/* ===========================================
+   SLIDE SURFACE: navy with a cobalt glow in the lower corner
+   =========================================== */
+.slide { font-family: var(--font); color: var(--ink); font-variant-numeric: tabular-nums;
+  background: radial-gradient(1100px 700px at 100% 110%, #1c2fd0 0%, rgba(28,47,208,0) 60%), radial-gradient(800px 500px at -10% -20%, #141c5c 0%, rgba(20,28,92,0) 70%), var(--slide-bg); }
+.chrome { position: absolute; left: 96px; right: 96px; top: 50px; display: flex; justify-content: space-between; align-items: center; font-size: 18px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); z-index: 3; }
+.chrome .sec { color: var(--blue-2); }
+.foot { position: absolute; right: 96px; bottom: 44px; display: flex; gap: 20px; align-items: center; font-size: 18px; color: var(--muted); z-index: 3; }
+.foot .nx { padding: 8px 18px; border-radius: 99px; background: rgba(59,82,255,.18); border: 1px solid var(--line); color: var(--ink); }
+.foot .nx b { color: var(--blue-2); margin-right: 8px; }
+h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; text-wrap: balance; }
+h2 { position: absolute; left: 96px; top: 108px; width: 1500px; font-size: 60px; line-height: 1.08; z-index: 3; }
+h2 em { font-style: normal; color: var(--blue-2); }
+h3 { font-size: 27px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; }
+p, li { font-size: 25px; line-height: 1.45; }
+.muted { color: var(--muted); }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.7); }
+.bar { background: linear-gradient(90deg, #2c43f0, #5b6fff); border-radius: 14px 14px 0 0; padding: 14px 24px; font-size: 20px; font-weight: 700; }
+.z { position: absolute; z-index: 3; }
+.hint { position: absolute; left: 96px; bottom: 50px; font-size: 18px; color: var(--muted); z-index: 3; }
+
+/* glass torus decoration */
+.glass { position: absolute; z-index: 1; pointer-events: none; filter: drop-shadow(0 30px 60px rgba(40,60,255,.45)); }
+.float { animation: float 7s ease-in-out infinite alternate; }
+@keyframes float { to { transform: translateY(-24px) rotate(4deg); } }
+
+/* ===========================================
+   MOTION
+   =========================================== */
+.reveal { opacity: 0; transform: translateY(26px); filter: blur(6px); transition: opacity .8s var(--ease), transform .8s var(--ease), filter .8s var(--ease); }
+.slide.visible .reveal { opacity: 1; transform: none; filter: none; }
+.d1 { transition-delay: .1s !important; } .d2 { transition-delay: .2s !important; } .d3 { transition-delay: .3s !important; } .d4 { transition-delay: .4s !important; } .d5 { transition-delay: .5s !important; }
+.step { opacity: 0; transform: translateY(14px); transition: opacity .55s var(--ease), transform .55s var(--ease); }
+.step.shown { opacity: 1; transform: none; }
+
+/* ===========================================
+   1. TITLE
+   =========================================== */
+.s1 .pill { position: absolute; left: 96px; top: 200px; padding: 12px 26px; border-radius: 99px; background: linear-gradient(90deg, #2c43f0, #7b5cff); font-size: 24px; font-weight: 700; z-index: 3; }
+.s1 h1 { position: absolute; left: 92px; top: 280px; width: 1150px; font-size: 104px; line-height: 0.98; z-index: 3; }
+.s1 .topic { position: absolute; left: 96px; top: 640px; width: 980px; font-size: 30px; line-height: 1.35; color: var(--ice); z-index: 3; }
+.s1 .meta { position: absolute; left: 96px; bottom: 90px; display: flex; gap: 80px; z-index: 3; }
+.s1 .meta small { display: block; font-size: 18px; color: var(--muted); margin-bottom: 6px; }
+.s1 .meta b { font-size: 24px; font-weight: 600; }
+
+/* ===========================================
+   2. TOPIC ANATOMY
+   =========================================== */
+.anat { position: absolute; left: 96px; right: 96px; top: 300px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; z-index: 3; }
+.anat .panel { overflow: hidden; }
+.anat .body { padding: 30px 30px 34px; }
+.anat .big { font-size: 34px; font-weight: 800; line-height: 1.15; margin-bottom: 14px; }
+.anat .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.chip { padding: 8px 16px; border-radius: 99px; border: 1px solid var(--line); background: rgba(111,128,255,.14); font-size: 19px; font-weight: 500; }
+.topicline { position: absolute; left: 96px; right: 96px; top: 210px; font-size: 26px; color: var(--ice); z-index: 3; }
+
+/* ===========================================
+   3. KEYWORDS (language toggle)
+   =========================================== */
+.tabs { position: absolute; right: 96px; top: 122px; display: flex; gap: 8px; padding: 6px; border-radius: 99px; background: rgba(255,255,255,.06); border: 1px solid var(--line); z-index: 4; }
+.tabs button { border: 0; background: none; padding: 10px 24px; border-radius: 99px; font-size: 20px; font-weight: 700; color: var(--muted); transition: background .3s, color .3s; }
+.tabs button.on { background: var(--blue); color: #fff; }
+.kw { position: absolute; left: 96px; right: 96px; top: 240px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 26px; z-index: 3; }
+.kw .k { display: grid; grid-template-columns: 64px 1fr; gap: 20px; align-items: center; padding: 16px 22px; min-height: 118px; }
+.kw .k b { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; background: linear-gradient(135deg, #2c43f0, #6f80ff); font-size: 24px; }
+.kw .k .t span { display: none; font-size: 25px; font-weight: 600; line-height: 1.25; }
+.kw .k .t span + span { margin-top: 4px; }
+.kw[data-lang="ru"] .t .ru, .kw[data-lang="kz"] .t .kz, .kw[data-lang="en"] .t .en { display: block; }
+.kw[data-lang="all"] .t span { display: block; font-size: 19px; font-weight: 500; color: var(--muted); }
+.kw[data-lang="all"] .t .ru { font-size: 22px; font-weight: 700; color: var(--ink); }
+
+/* ===========================================
+   4. QUERY BUILDER
+   =========================================== */
+.q { position: absolute; left: 96px; right: 96px; z-index: 3; }
+.q .lab { font-size: 19px; font-weight: 700; color: var(--blue-2); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 14px; }
+.q .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.tok { padding: 14px 22px; border-radius: 14px; font-size: 24px; font-weight: 600; background: var(--panel); border: 1px solid var(--line); }
+.op { padding: 10px 16px; border-radius: 10px; font-size: 20px; font-weight: 800; letter-spacing: .04em; }
+.op.and { background: var(--blue); } .op.or { background: rgba(47,211,166,.2); color: var(--mint); border: 1px solid rgba(47,211,166,.5); }
+.paren { font-size: 48px; font-weight: 300; color: var(--blue-2); line-height: 1; }
+.legend { position: absolute; left: 96px; bottom: 110px; display: flex; gap: 36px; z-index: 3; font-size: 21px; color: var(--muted); align-items: center; }
+.legend span { display: inline-flex; gap: 12px; align-items: center; }
+
+/* ===========================================
+   5. THREE GROUPS OVERVIEW
+   =========================================== */
+.groups { position: absolute; left: 96px; top: 280px; width: 1100px; display: grid; gap: 26px; z-index: 3; }
+.groups .g { display: grid; grid-template-columns: 110px 1fr auto; gap: 26px; align-items: center; padding: 44px 34px; }
+.groups .g .n { font-size: 64px; font-weight: 800; color: var(--blue-2); line-height: 1; }
+.groups .g p { font-size: 22px; color: var(--muted); margin-top: 4px; }
+.groups .g .cnt { font-size: 20px; font-weight: 700; padding: 8px 16px; border-radius: 99px; background: rgba(59,82,255,.25); white-space: nowrap; }
+.both { position: absolute; left: 1250px; right: 96px; top: 280px; height: 614px; padding: 44px; display: flex; flex-direction: column; z-index: 3; background: linear-gradient(160deg, #2c43f0, #1a227a); border-radius: 24px; }
+.both small { font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ice); }
+.both p { font-size: 38px; font-weight: 800; line-height: 1.2; margin-top: 18px; }
+.both .two { display: grid; gap: 14px; margin-top: auto; }
+.both .two div { padding: 16px 20px; border-radius: 14px; background: rgba(255,255,255,.12); font-size: 21px; }
+
+/* ===========================================
+   6–8. RESOURCE TABLES
+   =========================================== */
+.rt { position: absolute; left: 96px; right: 96px; top: 250px; z-index: 3; }
+.rt .hd, .rt .tr { display: grid; grid-template-columns: 330px 1fr 1.1fr 210px; gap: 0; }
+.rt .hd { background: linear-gradient(90deg, #2c43f0, #5b6fff); border-radius: 16px 16px 0 0; }
+.rt .hd div { padding: 14px 22px; font-size: 19px; font-weight: 700; }
+.rt .tr { background: var(--panel); border-left: 1px solid var(--line); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.rt .tr:last-child { border-radius: 0 0 16px 16px; }
+.rt .tr div { padding: 14px 22px; font-size: 20px; line-height: 1.32; color: var(--muted); }
+.rt .tr div:first-child { color: var(--ink); font-weight: 700; font-size: 21px; }
+.rt .tr div:first-child small { display: block; font-weight: 400; font-size: 16px; color: var(--blue-2); margin-top: 2px; }
+.acc { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 99px; font-size: 17px; font-weight: 700; color: var(--ink); }
+.acc i { width: 10px; height: 10px; border-radius: 50%; }
+.acc.o { background: rgba(47,211,166,.16); } .acc.o i { background: var(--mint); }
+.acc.p { background: rgba(143,160,255,.18); } .acc.p i { background: #8fa0ff; }
+.acc.s { background: rgba(59,82,255,.3); } .acc.s i { background: var(--blue); box-shadow: 0 0 0 2px #fff; }
+.docs { position: absolute; left: 96px; right: 96px; bottom: 100px; display: flex; gap: 16px; align-items: center; z-index: 3; }
+.docs .doc { padding: 16px 22px; border-radius: 16px; background: linear-gradient(135deg, #2c43f0, #5b6fff); }
+.docs .doc b { display: block; font-size: 24px; } .docs .doc span { font-size: 18px; color: var(--ice); }
+.docs p { font-size: 21px; color: var(--muted); margin-left: 10px; }
+
+/* ===========================================
+   9. ACCESS DONUT
+   =========================================== */
+.donut { position: absolute; left: 96px; top: 250px; z-index: 3; }
+.acc-list { position: absolute; left: 820px; right: 96px; top: 270px; display: grid; gap: 20px; z-index: 3; }
+.acc-list .a { display: grid; grid-template-columns: 110px 1fr; gap: 24px; align-items: center; padding: 22px 28px; }
+.acc-list .a b { font-size: 60px; font-weight: 800; line-height: 1; }
+.acc-list .a h3 { margin-bottom: 6px; }
+.acc-list .a p { font-size: 19px; color: var(--muted); line-height: 1.38; }
+.nat { position: absolute; left: 96px; right: 96px; bottom: 96px; padding: 24px 32px; border-radius: 20px; background: linear-gradient(90deg, #2c43f0, #3b52ff 60%, #6f80ff); display: grid; grid-template-columns: 70px 1fr; gap: 20px; align-items: center; z-index: 3; }
+.nat p { font-size: 23px; }
+
+/* ===========================================
+   10. SEARCH ORDER
+   =========================================== */
+.route { position: absolute; left: 96px; right: 96px; top: 300px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; z-index: 3; }
+.route .st { position: relative; padding: 0 30px 0 0; }
+.route .num { width: 96px; height: 96px; border-radius: 28px; display: grid; place-items: center; font-size: 42px; font-weight: 800; background: linear-gradient(135deg, #2c43f0, #6f80ff); box-shadow: 0 20px 40px -16px #3b52ff; margin-bottom: 30px; position: relative; z-index: 2; }
+.route .st::after { content: ""; position: absolute; left: 96px; right: 0; top: 47px; height: 3px; background: linear-gradient(90deg, #6f80ff, rgba(111,128,255,.15)); }
+.route .st:last-child::after { display: none; }
+.route h3 { font-size: 32px; margin-bottom: 14px; }
+.route p { font-size: 23px; color: var(--muted); }
+.route .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+
+/* ===========================================
+   11. GAME: WHERE TO SEARCH
+   =========================================== */
+.game { position: absolute; left: 96px; right: 96px; top: 250px; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 300px; gap: 22px; z-index: 3; }
+.card-q { border: 0; text-align: left; padding: 28px; border-radius: 22px; background: var(--panel); box-shadow: inset 0 0 0 1px var(--line); display: flex; flex-direction: column; transition: transform .35s var(--ease), background .35s; }
+.card-q:hover { transform: translateY(-3px); }
+.card-q small { font-size: 17px; font-weight: 700; color: var(--blue-2); text-transform: uppercase; letter-spacing: .06em; }
+.card-q p { font-size: 25px; font-weight: 600; line-height: 1.3; margin-top: 12px; }
+.card-q .ans { margin-top: auto; opacity: 0; transform: translateY(10px); transition: opacity .45s var(--ease), transform .45s var(--ease); }
+.card-q .ans b { display: block; font-size: 30px; font-weight: 800; }
+.card-q .ans span { font-size: 18px; color: var(--ice); }
+.card-q.open { background: linear-gradient(150deg, #2c43f0, #18208a); }
+.card-q.open .ans { opacity: 1; transform: none; }
+
+/* ===========================================
+   12. FINAL
+   =========================================== */
+.s12 h1 { position: absolute; left: 92px; top: 250px; width: 1100px; font-size: 96px; line-height: 1; z-index: 3; }
+.s12 .sum { position: absolute; left: 96px; top: 520px; width: 1000px; display: grid; gap: 16px; z-index: 3; }
+.s12 .sum div { display: grid; grid-template-columns: 56px 1fr; gap: 18px; align-items: center; font-size: 25px; }
+.s12 .sum b { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; background: rgba(59,82,255,.3); border: 1px solid var(--line); font-size: 22px; }
+.s12 .q-end { position: absolute; left: 96px; bottom: 100px; font-size: 26px; color: var(--ice); z-index: 3; }
+
+/* ===========================================
+   PRESENTER UI
+   =========================================== */
+.progress { position: fixed; left: 0; bottom: 0; height: 4px; background: var(--blue); z-index: 1001; transition: width .5s var(--ease); }
+.edit-hot { position: fixed; top: 0; left: 0; width: 60px; height: 60px; z-index: 1002; }
+.edit-btn { position: fixed; top: 14px; left: 14px; z-index: 1003; opacity: 0; transition: opacity .3s; font: 600 13px var(--font); color: #fff; background: var(--blue); border: 0; border-radius: 8px; padding: 8px 12px; }
+.edit-hot:hover + .edit-btn, .edit-btn:hover, body.editing .edit-btn { opacity: 1; }
+body.editing [contenteditable="true"]:focus { outline: 2px dashed var(--blue-2); outline-offset: 4px; }
+button:focus-visible { outline: 3px solid var(--blue-2); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<!-- reusable glass ring -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="gl1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset=".18" stop-color="#9fb0ff"/><stop offset=".45" stop-color="#2236e8"/><stop offset=".7" stop-color="#0a1060"/><stop offset=".88" stop-color="#6a3cff"/><stop offset="1" stop-color="#c9d2ff"/></linearGradient>
+    <radialGradient id="gl2" cx=".35" cy=".3" r=".7"><stop offset="0" stop-color="#ffffff" stop-opacity=".9"/><stop offset=".25" stop-color="#8fa0ff" stop-opacity=".9"/><stop offset=".6" stop-color="#2236e8" stop-opacity=".85"/><stop offset="1" stop-color="#070b26" stop-opacity=".2"/></radialGradient>
+    <g id="ring"><ellipse cx="0" cy="0" rx="200" ry="200" fill="none" stroke="url(#gl1)" stroke-width="70"/><ellipse cx="-40" cy="-60" rx="120" ry="40" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="6" transform="rotate(-30)"/></g>
+    <g id="orb"><circle r="120" fill="url(#gl2)"/><ellipse cx="-38" cy="-50" rx="46" ry="24" fill="#fff" fill-opacity=".55" transform="rotate(-30 -38 -50)"/></g>
+  </defs>
+</svg>
+
+<div class="deck-viewport"><div class="deck-stage">
+
+<!-- ============ 1. TITLE ============ -->
+<section class="slide s1" data-next="О чём моя диссертация">
+  <svg class="glass float" style="right:-120px;top:60px" width="900" height="900" viewBox="-450 -450 900 900" aria-hidden="true"><g transform="rotate(-35) scale(1.25 .55)"><use href="#ring"/></g><g transform="translate(110 150) rotate(-35) scale(1 .45)"><use href="#ring"/></g><g transform="translate(-160 -240)"><use href="#orb"/></g></svg>
+  <div class="chrome"><span class="sec">Методология научных исследований</span><span>Задание к лекции 8</span></div>
+  <div class="pill reveal">Поиск научной информации</div>
+  <h1 class="reveal d1">Ключевые слова и информационные ресурсы</h1>
+  <p class="topic reveal d2">Тема диссертации: «Развитие профессиональных компетенций обучающихся в процессе профессиональной (первоначальной) лётной подготовки»</p>
+  <div class="meta reveal d3"><div><small>Ключевых слов</small><b>10 на трёх языках</b></div><div><small>Информационных ресурсов</small><b>17 в трёх таблицах</b></div><div><small>Языки</small><b>русский · қазақ · English</b></div></div>
+</section>
+
+<!-- ============ 2. TOPIC ANATOMY ============ -->
+<section class="slide s2" data-next="Десять ключевых слов">
+  <div class="chrome"><span class="sec">01 · Тема</span><span>Задание к лекции 8</span></div>
+  <h2 class="reveal">С чего начинается поиск: <em>разобрать тему</em></h2>
+  <p class="topicline reveal d1">Ключевые слова я подбирала под три части исследования</p>
+  <div class="anat">
+    <div class="panel reveal d1"><div class="bar">Объект</div><div class="body"><div class="big">Первоначальная лётная подготовка</div><p class="muted">Где идёт обучение будущих пилотов</p><div class="chips"><span class="chip">ab initio pilot training</span><span class="chip">компетенции пилота</span></div></div></div>
+    <div class="panel reveal d2"><div class="bar">Предмет</div><div class="body"><div class="big">Оценивание компетенций и обратная связь</div><p class="muted">Что именно я изучаю</p><div class="chips"><span class="chip">CBTA</span><span class="chip">наблюдаемые поведения</span><span class="chip">обратная связь</span></div></div></div>
+    <div class="panel reveal d3"><div class="bar">Методы</div><div class="body"><div class="big">Согласованность оценок</div><p class="muted">Как я проверяю, что оценки инструкторов надёжны</p><div class="chips"><span class="chip">inter-rater reliability</span></div></div></div>
+  </div>
+  <svg class="glass float" style="right:40px;bottom:-140px" width="420" height="420" viewBox="-210 -210 420 420" aria-hidden="true"><use href="#orb" transform="scale(1.5)"/></svg>
+</section>
+
+<!-- ============ 3. KEYWORDS ============ -->
+<section class="slide s3" data-next="Как из слов собрать запрос">
+  <div class="chrome"><span class="sec">02 · Ключевые слова</span><span>Задание к лекции 8</span></div>
+  <h2 class="reveal" style="width:1100px">10 ключевых слов <em>на трёх языках</em></h2>
+  <div class="tabs reveal d1" id="tabs"><button data-l="ru" class="on">RU</button><button data-l="kz">ҚАЗ</button><button data-l="en">EN</button><button data-l="all">Все</button></div>
+  <div class="kw" id="kw" data-lang="ru">
+    <div class="k panel reveal d1"><b>1</b><div class="t"><span class="ru">компетенции пилота</span><span class="kz">пилот құзыреттіліктері</span><span class="en">pilot competencies</span></div></div>
+    <div class="k panel reveal d1"><b>2</b><div class="t"><span class="ru">профессиональные компетенции обучающихся</span><span class="kz">білім алушылардың кәсіби құзыреттіліктері</span><span class="en">professional competencies of students</span></div></div>
+    <div class="k panel reveal d2"><b>3</b><div class="t"><span class="ru">первоначальная лётная подготовка</span><span class="kz">бастапқы ұшу даярлығы</span><span class="en">initial flight training; ab initio pilot training</span></div></div>
+    <div class="k panel reveal d2"><b>4</b><div class="t"><span class="ru">подготовка и оценка на основе компетенций (CBTA)</span><span class="kz">құзыреттілікке негізделген даярлау және бағалау (CBTA)</span><span class="en">competency-based training and assessment (CBTA)</span></div></div>
+    <div class="k panel reveal d3"><b>5</b><div class="t"><span class="ru">наблюдаемые поведения</span><span class="kz">бақыланатын мінез-құлық</span><span class="en">observable behaviours</span></div></div>
+    <div class="k panel reveal d3"><b>6</b><div class="t"><span class="ru">оценивание лётных навыков</span><span class="kz">ұшу дағдыларын бағалау</span><span class="en">assessment of pilot performance</span></div></div>
+    <div class="k panel reveal d4"><b>7</b><div class="t"><span class="ru">обратная связь в лётном обучении</span><span class="kz">ұшу оқуындағы кері байланыс</span><span class="en">feedback in flight training</span></div></div>
+    <div class="k panel reveal d4"><b>8</b><div class="t"><span class="ru">согласованность оценок инструкторов</span><span class="kz">нұсқаушылар бағалауының келісімділігі</span><span class="en">inter-rater reliability of flight instructors</span></div></div>
+    <div class="k panel reveal d5"><b>9</b><div class="t"><span class="ru">нетехнические навыки пилота</span><span class="kz">пилоттың техникалық емес дағдылары</span><span class="en">non-technical skills of pilots</span></div></div>
+    <div class="k panel reveal d5"><b>10</b><div class="t"><span class="ru">подготовка на основе фактических данных (EBT)</span><span class="kz">дәлелдемеге негізделген даярлау (EBT)</span><span class="en">evidence-based training (EBT)</span></div></div>
+  </div>
+  <p class="hint">Клавиши 1–4 или клик по вкладкам переключают язык. Казахские термины стоит уточнить у научного руководителя.</p>
+</section>
+
+<!-- ============ 4. QUERY BUILDER ============ -->
+<section class="slide s4" data-next="Где искать: три группы ресурсов">
+  <div class="chrome"><span class="sec">03 · Поисковые запросы</span><span>Задание к лекции 8</span></div>
+  <h2 class="reveal">Из слов в <em>поисковый запрос</em></h2>
+  <div class="q step" style="top:250px">
+    <div class="lab">Запрос 1 · международные базы</div>
+    <div class="row"><span class="paren">(</span><span class="tok">«competency-based training and assessment»</span><span class="op or">OR</span><span class="tok">CBTA</span><span class="paren">)</span><span class="op and">AND</span><span class="paren">(</span><span class="tok">pilot</span><span class="op or">OR</span><span class="tok">«flight training»</span><span class="paren">)</span><span class="op and">AND</span><span class="paren">(</span><span class="tok">«observable behaviours»</span><span class="op or">OR</span><span class="tok">«observable behaviors»</span><span class="paren">)</span></div>
+  </div>
+  <div class="q step" style="top:540px">
+    <div class="lab">Запрос 2 · согласованность оценок</div>
+    <div class="row"><span class="tok">«inter-rater reliability»</span><span class="op and">AND</span><span class="tok">«flight instructor»</span></div>
+  </div>
+  <div class="q step" style="top:710px">
+    <div class="lab">Запрос 3 · русскоязычные базы</div>
+    <div class="row"><span class="tok">«оценка компетенций»</span><span class="op and">AND</span><span class="tok">«лётная подготовка»</span></div>
+  </div>
+  <div class="legend reveal d2"><span><span class="op and">AND</span>сужает: нужны оба слова</span><span><span class="op or">OR</span>расширяет: подходит любое</span><span><span class="tok" style="padding:6px 12px;font-size:19px">«…»</span>точная фраза</span></div>
+</section>
+
+<!-- ============ 5. THREE GROUPS ============ -->
+<section class="slide s5" data-next="Международные базы данных">
+  <div class="chrome"><span class="sec">04 · Ресурсы</span><span>Задание к лекции 8</span></div>
+  <h2 class="reveal">Три группы <em>информационных ресурсов</em></h2>
+  <div class="groups">
+    <div class="g panel reveal d1"><span class="n">01</span><div><h3>Международные научные базы и платформы</h3><p>Google Scholar, Scopus, Web of Science, ScienceDirect и другие</p></div><span class="cnt">7 ресурсов</span></div>
+    <div class="g panel reveal d2"><span class="n">02</span><div><h3>Профильные авиационные ресурсы</h3><p>ИКАО, EASA, SKYbrary, IATA</p></div><span class="cnt">4 ресурса</span></div>
+    <div class="g panel reveal d3"><span class="n">03</span><div><h3>Русскоязычные и казахстанские ресурсы</h3><p>eLIBRARY, КиберЛенинка, РМЭБ, КазНЭБ, КГА, «Әділет»</p></div><span class="cnt">6 ресурсов</span></div>
+  </div>
+  <div class="both reveal d2">
+    <small>Для моей темы нужны обе стороны</small>
+    <p>Статьи и нормативные документы читаю вместе</p>
+    <div class="two"><div>Научные статьи по оцениванию и обучению</div><div>Нормативные документы ИКАО, EASA и Республики Казахстан</div></div>
+  </div>
+</section>
+
+<!-- ============ 6. INTERNATIONAL ============ -->
+<section class="slide s6" data-next="Профильные авиационные ресурсы">
+  <div class="chrome"><span class="sec">04 · Ресурсы · группа 1</span><span>Задание к лекции 8</span></div>
+  <h2 class="reveal">Международные <em>научные базы</em></h2>
+  <div class="rt reveal d1">
+    <div class="hd"><div>Ресурс</div><div>Что это</div><div>Польза для моей темы</div><div>Доступ</div></div>
+    <div class="tr"><div>Google Scholar<small>scholar.google.com</small></div><div>Поисковик по научным публикациям, показывает цитирование</div><div>Быстрый первичный поиск по ключевым словам</div><div><span class="acc o"><i></i>Открытый</span></div></div>
+    <div class="tr"><div>Scopus<small>Elsevier</small></div><div>Реферативная и наукометрическая база рецензируемых изданий</div><div>Статьи по CBTA, EBT, оцениванию пилотов; оценка качества журналов</div><div><span class="acc s"><i></i>Подписка</span></div></div>
+    <div class="tr"><div>Web of Science<small>Clarivate</small></div><div>Наукометрическая платформа с индексами цитирования</div><div>Отбор авторитетных публикаций</div><div><span class="acc s"><i></i>Подписка</span></div></div>
+    <div class="tr"><div>ScienceDirect<small>Elsevier</small></div><div>Полнотекстовые журналы и книги</div><div>Полные тексты по безопасности полётов и обучению</div><div><span class="acc s"><i></i>Подписка</span></div></div>
+    <div class="tr"><div>SpringerLink</div><div>Полнотекстовые журналы и книги</div><div>Монографии и статьи по человеческому фактору, образованию</div><div><span class="acc s"><i></i>Подписка</span></div></div>
+    <div class="tr"><div>Taylor &amp; Francis Online</div><div>Журналы, в том числе по авиационной психологии</div><div>Статьи по подготовке и оценке пилотов</div><div><span class="acc s"><i></i>Подписка</span></div></div>
+    <div class="tr"><div>Embry-Riddle Scholarly Commons<small>commons.erau.edu</small></div><div>Открытый архив, в нём Journal of Aviation/Aerospace Education &amp; Research</div><div>Исследования по лётному обучению и оценкам инструкторов</div><div><span class="acc o"><i></i>Открытый</span></div></div>
+  </div>
+</section>
+
+<!-- ============ 7. AVIATION ============ -->
+<section class="slide s7" data-next="Русскоязычные и казахстанские ресурсы">
+  <div class="chrome"><span class="sec">04 · Ресурсы · группа 2</span><span>Задание к лекции 8</span></div>
+  <h2 class="reveal">Профильные <em>авиационные ресурсы</em></h2>
+  <div class="rt reveal d1">
+    <div class="hd"><div>Ресурс</div><div>Что это</div><div>Польза для моей темы</div><div>Доступ</div></div>
+    <div class="tr"><div>ИКАО<small>icao.int, store.icao.int</small></div><div>Стандарты и рекомендуемая практика, руководства, рабочие документы Ассамблеи</div><div>Doc 9995 (EBT), Doc 9868 (PANS-TRG), A42-WP/179</div><div><span class="acc p"><i></i>Часть открыта</span></div></div>
+    <div class="tr"><div>EASA<small>easa.europa.eu</small></div><div>Регламенты и руководства Европейского агентства по безопасности полётов</div><div>Требования к EBT и подготовке пилотов, шкалы оценивания</div><div><span class="acc o"><i></i>Открытый</span></div></div>
+    <div class="tr"><div>SKYbrary<small>skybrary.aero</small></div><div>Открытая энциклопедия по безопасности полётов</div><div>Краткие материалы по CBTA, EBT, человеческому фактору</div><div><span class="acc o"><i></i>Открытый</span></div></div>
+    <div class="tr"><div>IATA<small>iata.org</small></div><div>Материалы Международной ассоциации воздушного транспорта</div><div>Руководства по внедрению EBT</div><div><span class="acc p"><i></i>Часть открыта</span></div></div>
+  </div>
+  <div class="docs reveal d2"><div class="doc"><b>Doc 9995</b><span>EBT</span></div><div class="doc"><b>Doc 9868</b><span>PANS-TRG</span></div><div class="doc"><b>A42-WP/179</b><span>рабочий документ Ассамблеи</span></div><p>Опорные документы ИКАО для моей темы</p></div>
+  <svg class="glass float" style="right:-80px;bottom:-200px" width="560" height="560" viewBox="-280 -280 560 560" aria-hidden="true"><g transform="rotate(25) scale(1 .5)"><use href="#ring"/></g></svg>
+</section>
+
+<!-- ============ 8. KZ / RU ============ -->
+<section class="slide s8" data-next="Какой доступ к этим ресурсам">
+  <div class="chrome"><span class="sec">04 · Ресурсы · группа 3</span><span>Задание к лекции 8</span></div>
+  <h2 class="reveal">Русскоязычные и <em>казахстанские ресурсы</em></h2>
+  <div class="rt reveal d1">
+    <div class="hd"><div>Ресурс</div><div>Что это</div><div>Польза для моей темы</div><div>Доступ</div></div>
+    <div class="tr"><div>eLIBRARY.RU<small>elibrary.ru</small></div><div>Научная электронная библиотека, база РИНЦ</div><div>Работы по компетентностному подходу (Зимняя, Байденко и другие)</div><div><span class="acc p"><i></i>Регистрация</span></div></div>
+    <div class="tr"><div>КиберЛенинка<small>cyberleninka.ru</small></div><div>Научная библиотека открытого доступа</div><div>Статьи по компетенциям и оцениванию</div><div><span class="acc o"><i></i>Открытый</span></div></div>
+    <div class="tr"><div>РМЭБ<small>rmebrk.kz</small></div><div>Республиканская межвузовская электронная библиотека</div><div>Учебные и научные издания по педагогике и авиации</div><div><span class="acc s"><i></i>Доступ вуза</span></div></div>
+    <div class="tr"><div>КазНЭБ<small>kazneb.kz</small></div><div>Национальная электронная библиотека</div><div>Диссертации, монографии, издания на казахском</div><div><span class="acc p"><i></i>Открытый и по регистрации</span></div></div>
+    <div class="tr"><div>Комитет гражданской авиации<small>caa.gov.kz</small></div><div>Официальный сайт регулятора</div><div>Приказы и требования к авиационным учебным центрам</div><div><span class="acc o"><i></i>Открытый</span></div></div>
+    <div class="tr"><div>ИПС «Әділет»<small>adilet.zan.kz</small></div><div>Нормативные правовые акты РК</div><div>Приказы № 158 и № 764, стандарты госуслуг</div><div><span class="acc o"><i></i>Открытый</span></div></div>
+  </div>
+</section>
+
+<!-- ============ 9. ACCESS ============ -->
+<section class="slide s9" data-next="В каком порядке искать">
+  <div class="chrome"><span class="sec">05 · Доступ</span><span>Задание к лекции 8</span></div>
+  <h2 class="reveal">17 ресурсов: <em>что открыто, а что нет</em></h2>
+  <svg class="donut reveal d1" width="640" height="640" viewBox="-320 -320 640 640" aria-label="Открытый доступ 7, частично или по регистрации 4, подписка или доступ вуза 6">
+    <circle r="230" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="80"/>
+    <!-- circumference 1445.1; 7/17=595.0, 4/17=340.0, 6/17=510.1; 4px gaps -->
+    <circle r="230" fill="none" stroke="#2fd3a6" stroke-width="80" stroke-dasharray="591 854.1" transform="rotate(-90)"><title>Открытый: 7</title></circle>
+    <circle r="230" fill="none" stroke="#8fa0ff" stroke-width="80" stroke-dasharray="336 1109.1" stroke-dashoffset="-595" transform="rotate(-90)"><title>Частично или по регистрации: 4</title></circle>
+    <circle r="230" fill="none" stroke="#3b52ff" stroke-width="80" stroke-dasharray="506.1 939" stroke-dashoffset="-935" transform="rotate(-90)"><title>Подписка или доступ вуза: 6</title></circle>
+    <text y="-6" text-anchor="middle" font-family="Onest" font-size="96" font-weight="800" fill="#f3f5ff">17</text>
+    <text y="40" text-anchor="middle" font-family="Onest" font-size="24" fill="#aab3e0">ресурсов в таблицах</text>
+  </svg>
+  <div class="acc-list">
+    <div class="a panel reveal d1"><b style="color:#2fd3a6">7</b><div><h3>Открытый доступ</h3><p>Google Scholar, Embry-Riddle, EASA, SKYbrary, КиберЛенинка, Комитет гражданской авиации, «Әділет»</p></div></div>
+    <div class="a panel reveal d2"><b style="color:#8fa0ff">4</b><div><h3>Частично или по регистрации</h3><p>ИКАО, IATA, eLIBRARY.RU, КазНЭБ</p></div></div>
+    <div class="a panel reveal d3"><b style="color:#6f80ff">6</b><div><h3>Подписка или доступ вуза</h3><p>Scopus, Web of Science, ScienceDirect, SpringerLink, Taylor &amp; Francis, РМЭБ</p></div></div>
+  </div>
+  <div class="nat reveal d4"><svg width="70" height="70" viewBox="0 0 70 70" aria-hidden="true"><circle cx="35" cy="35" r="33" fill="rgba(255,255,255,.16)"/><rect x="22" y="31" width="26" height="20" rx="4" fill="#fff"/><path d="M27 31v-6a8 8 0 0 1 16 0" fill="none" stroke="#fff" stroke-width="4"/></svg><p>Scopus, Web of Science, ScienceDirect и Springer вузам Казахстана открывает национальная подписка Министерства науки и высшего образования. Статьи можно получить через библиотеку вуза.</p></div>
+</section>
+
+<!-- ============ 10. SEARCH ORDER ============ -->
+<section class="slide s10" data-next="Проверим: где бы вы искали?">
+  <div class="chrome"><span class="sec">06 · Алгоритм</span><span>Задание к лекции 8</span></div>
+  <h2 class="reveal">Порядок поиска: <em>три шага</em></h2>
+  <div class="route">
+    <div class="st step"><div class="num">1</div><h3>Опорные документы</h3><p>Сначала стандарты: на них опирается вся лётная подготовка</p><div class="chips"><span class="chip">ИКАО</span><span class="chip">EASA</span></div></div>
+    <div class="st step"><div class="num">2</div><h3>Научные статьи</h3><p>Подбираю статьи по ключевым словам и запросам</p><div class="chips"><span class="chip">Scopus</span><span class="chip">Web of Science</span><span class="chip">Google Scholar</span></div></div>
+    <div class="st step"><div class="num">3</div><h3>Отечественные источники</h3><p>Дополняю казахстанскими и русскоязычными работами и нормативными актами</p><div class="chips"><span class="chip">eLIBRARY</span><span class="chip">КазНЭБ</span><span class="chip">«Әділет»</span></div></div>
+  </div>
+  <svg class="glass float" style="left:760px;bottom:-260px" width="640" height="640" viewBox="-320 -320 640 640" aria-hidden="true"><g transform="rotate(-10) scale(1.3 .42)"><use href="#ring"/></g></svg>
+  <p class="hint">→ открывает шаги по одному</p>
+</section>
+
+<!-- ============ 11. GAME ============ -->
+<section class="slide s11" data-next="Итог">
+  <div class="chrome"><span class="sec">Мини-игра</span><span>Задание к лекции 8</span></div>
+  <h2 class="reveal">Где бы вы <em>искали?</em></h2>
+  <div class="game">
+    <button class="card-q reveal d1"><small>Ситуация 1</small><p>Нужен стандарт ИКАО по подготовке на основе фактических данных</p><span class="ans"><b>ИКАО</b><span>Doc 9995 (EBT)</span></span></button>
+    <button class="card-q reveal d1"><small>Ситуация 2</small><p>Нужна статья на русском, бесплатно и прямо сейчас</p><span class="ans"><b>КиберЛенинка</b><span>открытый доступ</span></span></button>
+    <button class="card-q reveal d2"><small>Ситуация 3</small><p>Нужен текст приказа Республики Казахстан</p><span class="ans"><b>«Әділет»</b><span>adilet.zan.kz</span></span></button>
+    <button class="card-q reveal d2"><small>Ситуация 4</small><p>Хочу проверить, насколько авторитетен журнал</p><span class="ans"><b>Scopus или Web of Science</b><span>наукометрия и индексы цитирования</span></span></button>
+    <button class="card-q reveal d3"><small>Ситуация 5</small><p>Ищу диссертацию или монографию на казахском языке</p><span class="ans"><b>КазНЭБ</b><span>kazneb.kz</span></span></button>
+    <button class="card-q reveal d3"><small>Ситуация 6</small><p>Нужна коротко и понятно суть CBTA и EBT</p><span class="ans"><b>SKYbrary</b><span>открытая энциклопедия</span></span></button>
+  </div>
+  <p class="hint">Клик по карточке открывает ответ. Сначала пусть ответит зал.</p>
+</section>
+
+<!-- ============ 12. FINAL ============ -->
+<section class="slide s12" data-next="">
+  <svg class="glass float" style="right:-160px;top:40px" width="900" height="900" viewBox="-450 -450 900 900" aria-hidden="true"><g transform="rotate(30) scale(1.2 .5)"><use href="#ring"/></g><g transform="translate(-80 200) rotate(30) scale(.9 .4)"><use href="#ring"/></g><g transform="translate(180 -240)"><use href="#orb"/></g></svg>
+  <div class="chrome"><span class="sec">Итог</span><span>Задание к лекции 8</span></div>
+  <h1 class="reveal">Спасибо за внимание!</h1>
+  <div class="sum">
+    <div class="reveal d1"><b>1</b>Тема разобрана на объект, предмет и методы</div>
+    <div class="reveal d2"><b>2</b>10 ключевых слов на русском, казахском и английском</div>
+    <div class="reveal d3"><b>3</b>Ресурсы трёх групп: наука и нормативные документы</div>
+    <div class="reveal d4"><b>4</b>Порядок: ИКАО и EASA, затем базы статей, затем отечественные источники</div>
+  </div>
+  <p class="q-end reveal d5">Буду рада вашим вопросам</p>
+</section>
+
+</div></div>
+<div class="progress"></div>
+<div class="edit-hot"></div><button class="edit-btn" type="button">Редактировать (E)</button>
+
+<script>
+/* ===========================================
+   DECK CONTROLLER: scaling, navigation, steps, language tabs, game, edit
+   =========================================== */
+(() => {
+  const stage = document.querySelector('.deck-stage');
+  const slides = [...document.querySelectorAll('.slide')];
+  const bar = document.querySelector('.progress');
+  let i = Math.max(0, Math.min(slides.length - 1, (parseInt(location.hash.slice(1)) || 1) - 1));
+
+  slides.forEach((sl, k) => {
+    const f = document.createElement('div'); f.className = 'foot';
+    const nx = sl.dataset.next;
+    f.innerHTML = (nx ? `<span class="nx"><b>Дальше</b>${nx}</span>` : '') + (k ? `<span>${String(k + 1).padStart(2, '0')} / ${slides.length}</span>` : '');
+    sl.appendChild(f);
+  });
+
+  function fit() {
+    const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`;
+  }
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, j) => { s.classList.toggle('active', j === i); if (j !== i) s.classList.remove('visible'); });
+    requestAnimationFrame(() => requestAnimationFrame(() => slides[i].classList.add('visible')));
+    bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    history.replaceState(null, '', '#' + (i + 1));
+  }
+  function next() {
+    const h = slides[i].querySelector('.step:not(.shown)');
+    if (h) { h.classList.add('shown'); return; }
+    show(i + 1);
+  }
+  function prev() {
+    const s = [...slides[i].querySelectorAll('.step.shown')];
+    if (s.length) { s[s.length - 1].classList.remove('shown'); return; }
+    show(i - 1);
+  }
+
+  /* language tabs on the keywords slide */
+  const kw = document.getElementById('kw'), tabs = document.getElementById('tabs');
+  function lang(l) { kw.dataset.lang = l; tabs.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.l === l)); }
+  tabs.addEventListener('click', e => { const b = e.target.closest('button'); if (b) lang(b.dataset.l); });
+
+  /* game cards */
+  document.querySelector('.game').addEventListener('click', e => { const c = e.target.closest('.card-q'); if (c) c.classList.toggle('open'); });
+
+  /* edit mode */
+  const editing = () => document.body.classList.contains('editing');
+  function toggleEdit() {
+    const on = !editing();
+    document.body.classList.toggle('editing', on);
+    document.querySelectorAll('.slide h1, .slide h2, .slide h3, .slide p').forEach(el => el.contentEditable = on);
+  }
+  document.querySelector('.edit-btn').addEventListener('click', toggleEdit);
+
+  addEventListener('resize', fit);
+  addEventListener('keydown', e => {
+    if (e.key.toLowerCase() === 's' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob(['<!DOCTYPE html>\n' + document.documentElement.outerHTML], { type: 'text/html' }));
+      a.download = 'mni-lekciya-8.html'; a.click(); return;
+    }
+    if (editing()) { if (e.key === 'Escape') toggleEdit(); return; }
+    if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); next(); }
+    if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); prev(); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(slides.length - 1);
+    if (slides[i].classList.contains('s3') && '1234'.includes(e.key)) lang(['ru', 'kz', 'en', 'all'][+e.key - 1]);
+    const k = e.key.toLowerCase();
+    if (k === 'e' || k === 'у') toggleEdit();
+  });
+  let x0 = null;
+  addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+  addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) (dx < 0 ? next : prev)(); x0 = null; });
+  fit(); show(i);
+})();
+</script>
+</body>
+</html>
