@@ -482,7 +482,149 @@ function overviewSlide(ph, t, runs, nav) {
   return slideFrame(ph.title, 'Обзор: порядок этапов по кабине', runs[0].plates[0].who, nav, 0, inner, t);
 }
 
+
+/* ================================================================
+   FLIGHT PHASES: profile with points, PF | PM (or CAPT | FO) columns at each point
+   ================================================================ */
+function isProfile(ph) { return ph.rows.some(function (r) { return /^\[/.test(r.panel); }); }
+var PROFPOS = { 'When cleared for takeoff': .03, 'Handover': .0, 'Initial thrust': .08, 'Takeoff thrust': .13, 'Takeoff configuration warning': .13,
+  'Takeoff roll': .19, '80 knots': .25, 'V1': .31, 'VR': .36, 'Positive rate': .43, 'Gear up': .47, '50 feet': .50, '400 feet': .55, 'Bank angle': .58,
+  'Thrust reduction height': .63, 'Acceleration height': .67, 'Flap retraction': .71, 'Flaps and slats retraction complete': .75, 'Autopilot engagement': .78,
+  'After flap retraction is complete': .82, 'If No Engine Bleed Takeoff was performed': .86, 'After Takeoff checklist': .89, 'Transition altitude': .94,
+  'Flight level 100 or flight altitude 10000ft MSL': 1 };
+var VCOLS = { 'CAPT is PF': [['C', 'CAPT (PF)'], ['FO', 'FO (PM)']], 'FO is PF': [['C', 'CAPT (PM)'], ['FO', 'FO (PF)']], 'PF/PM': [['PF', 'PILOT FLYING'], ['PM', 'PILOT MONITORING']] };
+function stagesOf(ph, t) {
+  var rows = rowsFor(ph, t), st = [];
+  rows.forEach(function (r) {
+    var m = r.panel.match(/^\[(.+?)\]\s*(.*)$/), v = m ? m[1] : '', name = m ? m[2] : r.panel;
+    var g = st.filter(function (x) { return x.v === v && x.name === name; })[0];
+    if (!g) st.push(g = { v: v, name: name, cols: {}, page: r.page, pos: PROFPOS[name] });
+    (g.cols[r.who] = g.cols[r.who] || []).push({ tag: r.tag, lines: r.lines });
+  });
+  st.forEach(function (g, i) { g.n = i + 1; });
+  return st;
+}
+function profPt(f, box) { // box: [x0, yGround, x1, yTop]
+  var x0 = box[0], yg = box[1], x1 = box[2], yt = box[3], xm = x0 + (x1 - x0) * .42;
+  if (f <= .4) return [x0 + f / .4 * (xm - x0), yg];
+  return [xm + (f - .4) / .6 * (x1 - xm), yg - (f - .4) / .6 * (yg - yt)];
+}
+function profileDraw(stages, box, cur, big) {
+  var o = '', x0 = box[0], yg = box[1], x1 = box[2], yt = box[3], xm = x0 + (x1 - x0) * .42;
+  o += '<rect x="' + (x0 - 20) + '" y="' + (yg + 4) + '" width="' + (xm - x0 + 60) + '" height="' + (big ? 26 : 14) + '" fill="#5b5b5b"/>';
+  o += '<line x1="' + x0 + '" y1="' + (yg + (big ? 17 : 11)) + '" x2="' + (xm + 30) + '" y2="' + (yg + (big ? 17 : 11)) + '" stroke="#fff" stroke-width="2" stroke-dasharray="14 10"/>';
+  o += '<path d="M' + x0 + ' ' + yg + ' L' + xm + ' ' + yg + ' L' + x1 + ' ' + yt + '" fill="none" stroke="#1d3f8f" stroke-width="' + (big ? 6 : 4) + '"/>';
+  var pts = stages.filter(function (g) { return g.pos !== undefined && (g.v === 'PF/PM' || (cur && cur.indexOf(g) >= 0)); });
+  var labs = [], lastClimbY = 1e9, rwK = 0, l2first = 0;
+  pts.forEach(function (g) {
+    var p = profPt(g.pos, box), on = cur && cur.indexOf(g) >= 0, r = big ? 15 : (on ? 13 : 8);
+    o += '<g data-stage="' + g.n + '"><circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + r + '" fill="' + (on ? '#d62828' : (cur ? '#9aa6bd' : '#d62828')) + '" stroke="#fff" stroke-width="3"/>';
+    if (big || on) o += '<text x="' + p[0] + '" y="' + (p[1] + 5) + '" font-size="' + (big ? 13 : 12) + '" font-weight="800" fill="#fff" text-anchor="middle">' + g.n + '</text>';
+    o += '</g>';
+    if (big || on) labs.push({ g: g, p: p });
+  });
+  labs.forEach(function (l) {
+    var p = l.p, nm = l.g.name.length > 40 ? l.g.name.slice(0, 39) + '…' : l.g.name, fs = big ? 15 : 13;
+    if (p[1] >= yg - 2) { // runway: alternate above / below, staggered
+      var k = rwK++, ly = k % 2 ? yg + (big ? 52 : 38) + (k % 4 === 3 ? 20 : 0) : yg - (big ? 26 : 20) - (k % 4 === 2 ? 20 : 0);
+      o += '<text x="' + p[0] + '" y="' + ly + '" font-size="' + fs + '" font-weight="600" fill="#d62828" text-anchor="middle">' + esc(nm) + '</text>';
+    } else if (!l2first++) { // first climb point: label right-below, clear of the runway labels
+      o += '<text x="' + (p[0] + 18) + '" y="' + (p[1] + 22) + '" font-size="' + fs + '" font-weight="600" fill="#d62828">' + esc(nm) + '</text>';
+    } else { // climb: labels to the left, pushed apart vertically, leader line to the point
+      var ly2 = Math.min(p[1] + 5, lastClimbY - (fs + 5)); lastClimbY = ly2;
+      var lx = p[0] - 24;
+      o += '<line x1="' + (lx + 3) + '" y1="' + (ly2 - 5) + '" x2="' + (p[0] - 12) + '" y2="' + p[1] + '" stroke="#d62828" stroke-width="1" opacity=".6"/>';
+      o += '<text x="' + lx + '" y="' + ly2 + '" font-size="' + fs + '" font-weight="600" fill="#d62828" text-anchor="end">' + esc(nm) + '</text>';
+    }
+  });
+  return o;
+}
+function colLines(items, w) {
+  var L = [];
+  items.forEach(function (it) {
+    if (it.tag) L.push({ c: 'tag', s: shortTag(it.tag) });
+    it.lines.forEach(function (l) {
+      var tg = l.tag ? '[' + shortTag(l.tag) + '] ' : '';
+      if (l.k === 'K') wrap('“' + l.text + '”', w - 4).forEach(function (s2) { L.push({ c: 'K', s: s2 }); });
+      else if (l.k === 'A') wrap(tg + l.item + ' …… ' + l.val, w).forEach(function (s2) { L.push({ c: 'A', s: s2 }); });
+      else if (l.k === 'V') wrap('✓ ' + tg + l.text, w).forEach(function (s2) { L.push({ c: 'V', s: s2 }); });
+      else if (l.k === 'X' || l.k === 'H') wrap(tg + l.text, w).forEach(function (s2) { L.push({ c: 'X', s: s2 }); });
+      else wrap(({ N: 'NOTE: ', C: 'CAUTION: ', W: 'WARNING: ', Q: '⚠ проверить: ' })[l.k] + tg + l.text, w).forEach(function (s2, i) { L.push({ c: l.k, s: s2, first: i === 0 }); });
+    });
+  });
+  return L;
+}
+var BOXC = { N: '#1d5fd6', C: '#b7791f', W: '#c0262d', Q: '#b83280' };
+function drawCol(L, x, y, w) {
+  var o = '';
+  L.forEach(function (l, i) {
+    var yy = y + i * 19;
+    if (BOXC[l.c]) { o += '<rect x="' + x + '" y="' + (yy - 14) + '" width="' + w + '" height="19" fill="' + ({ N: '#e8f0fe', C: '#fff4d6', W: '#fde8e8', Q: '#fff0f6' })[l.c] + '"/><rect x="' + x + '" y="' + (yy - 14) + '" width="4" height="19" fill="' + BOXC[l.c] + '"/>'; }
+    var st = l.c === 'K' ? ' font-weight="800" fill="#1d3f8f" class="qv"' : l.c === 'A' ? ' font-weight="700" fill="#0b1630"' : l.c === 'X' ? ' font-style="italic" fill="#22324f"' : l.c === 'tag' ? ' font-size="12" font-weight="700" fill="#6b3fd1"' : ' fill="#22324f"';
+    o += '<text x="' + (x + (BOXC[l.c] ? 10 : 0)) + '" y="' + yy + '" font-size="15"' + st + '>' + esc(l.s) + '</text>';
+  });
+  return o;
+}
+function stageBlock(g, y, scale) {
+  var X0 = 250, W = 1340, cols = VCOLS[g.v], o = '', h;
+  var full = [], left = [], right = [];
+  Object.keys(g.cols).forEach(function (w) {
+    if (cols && w === cols[0][0]) left = left.concat(g.cols[w]);
+    else if (cols && w === cols[1][0]) right = right.concat(g.cols[w]);
+    else full = full.concat(g.cols[w].map(function (it) { return { tag: it.tag, lines: it.lines, who: w }; }));
+  });
+  var LL = colLines(left, 74), RL = colLines(right, 74), FL = colLines(full, 160);
+  var colH = Math.max(LL.length, RL.length) * 19, fullH = FL.length ? FL.length * 19 + 12 : 0;
+  h = 44 + (cols && (LL.length || RL.length) ? colH + 34 : 0) + fullH + 10;
+  o += '<g class="plate" transform="translate(0 ' + y + ') scale(1 1)">';
+  o += '<rect x="' + X0 + '" y="0" width="' + W + '" height="' + h + '" rx="10" fill="#fff" stroke="#c8d0de" stroke-width="2"/>';
+  o += '<circle cx="' + (X0 + 24) + '" cy="22" r="15" fill="#d62828"/><text x="' + (X0 + 24) + '" y="27" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">' + g.n + '</text>';
+  o += '<text x="' + (X0 + 48) + '" y="29" font-size="19" font-weight="800" fill="#0b1f3f">' + esc(g.name) + '</text><text x="' + (X0 + W - 12) + '" y="26" font-size="12" fill="#7a869e" text-anchor="end">' + esc(g.v === 'PF/PM' ? '' : g.v ? 'вариант: ' + g.v : '') + '  стр. ' + esc(g.page.ch) + '</text>';
+  var yy = 50;
+  if (cols && (LL.length || RL.length)) {
+    var cw = (W - 30) / 2;
+    [[cols[0], LL, X0 + 10], [cols[1], RL, X0 + 20 + cw]].forEach(function (c) {
+      var col = (ROLE[c[0][0]] || ROLE['-'])[1];
+      o += '<rect x="' + c[2] + '" y="' + yy + '" width="' + cw + '" height="' + (colH + 28) + '" rx="6" fill="' + col + '" fill-opacity=".06" stroke="' + col + '" stroke-width="1.5"/>';
+      o += '<rect x="' + c[2] + '" y="' + yy + '" width="' + cw + '" height="22" rx="6" fill="' + col + '"/><text x="' + (c[2] + 10) + '" y="' + (yy + 16) + '" font-size="13" font-weight="800" fill="#fff">' + esc(c[0][1]) + '</text>';
+      o += drawCol(c[1], c[2] + 12, yy + 42, cw - 24);
+    });
+    yy += colH + 34;
+  }
+  if (FL.length) o += drawCol(FL, X0 + 22, yy + 14, W - 44);
+  o += '</g>';
+  return { svg: o, h: h };
+}
+function profileSlides(ph, t) {
+  var st = stagesOf(ph, t), groups = [], cur = [], hh = 0, AV = 600;
+  st.forEach(function (g) {
+    var h = stageBlock(g, 0).h;
+    if (cur.length && (hh + h > AV || cur[0].v !== g.v)) { groups.push(cur); cur = []; hh = 0; }
+    cur.push(g); hh += h + 12;
+  });
+  if (cur.length) groups.push(cur);
+  var nav = [['Профиль фазы', 'все точки']].concat(groups.map(function (gr, i) {
+    return [(i + 1) + '. ' + (gr[0].v === 'PF/PM' ? gr.map(function (g) { return g.name; }).join(', ') : (gr[0].v || 'Общее') + ': ' + gr.map(function (g) { return g.name; }).join(', ')).slice(0, 26), 'точки ' + gr[0].n + (gr.length > 1 ? '–' + gr[gr.length - 1].n : '')];
+  }));
+  var role = 'PF/PM';
+  ROLE['PFPM'] = ['PF / PM', '#0b1f3f'];
+  // overview
+  var ov = profileDraw(st, [300, 860, 1520, 150], null, true);
+  var pre = st.filter(function (g) { return g.v !== 'PF/PM'; });
+  ov += '<rect x="260" y="80" width="520" height="' + (40 + pre.length * 22) + '" rx="10" fill="#fff8e6" stroke="#b7791f"/><text x="276" y="106" font-size="15" font-weight="800" fill="#8a5a00">До разбега (колонки CAPT / FO):</text>';
+  pre.forEach(function (g, i) { ov += '<text x="276" y="' + (130 + i * 22) + '" font-size="14" fill="#0b1630">' + g.n + ' · ' + esc((g.v ? g.v + ' — ' : '') + g.name) + '</text>'; });
+  var svgs = [slideFrame(ph.title, 'Профиль: точки по OM-B ' + ph.section, 'PFPM', nav, 0, ov, t)];
+  groups.forEach(function (gr, i) {
+    var inner = profileDraw(st, [300, 330, 1520, 96], gr, false), y = 372;
+    gr.forEach(function (g) { var b = stageBlock(g, y); inner += b.svg; y += b.h + 12; });
+    if (y > 990) inner = inner.replace(/(<g class="plate")/, '$1') ; // content is pre-split by height
+    svgs.push(slideFrame(ph.title, gr[0].v === 'PF/PM' ? 'PF | PM' : gr[0].v === 'General' ? 'Общие положения' : 'Вариант: ' + gr[0].v, gr[0].v === 'PF/PM' ? 'PFPM' : 'B', nav, i + 1, inner, t));
+  });
+  return { svgs: svgs };
+}
+
 function procSlides(ph, t) {
+  if (isProfile(ph)) return profileSlides(ph, t);
   var B = buildPlates(ph, t), runs = runsOf(B);
   var nav = [['Обзор кабины', 'порядок зон']].concat(runs.map(function (r, i) {
     if (r.zone === 'notes') return [(i + 1) + '. NOTE / WARNING', 'к шагам ' + r.plates[0].num.split('.')[0] + '–' + r.plates[r.plates.length - 1].num.split('.')[0]];
@@ -608,7 +750,7 @@ function openProc(id) {
   h += '<div class="pbar"><b>' + esc(meta.t) + ' · OM-B ' + esc(meta.sec) + ' · стр. ' + esc(meta.ch) + '</b>' +
        '<button data-a="prev"' + (k ? '' : ' disabled') + '>← Пред. процедура</button><button data-a="next"' + (k < ORDER.length - 1 ? '' : ' disabled') + '>След. процедура →</button>' +
        '<button data-a="open">Развернуть всё</button><button data-a="close">Свернуть всё</button><button class="dark" data-a="x">✕ Карта</button></div>';
-  if (!ph || !LOC_READY(id)) {
+  if (!ph || !(LOC_READY(id) || isProfile(ph))) {
     h += '<div class="txt" style="padding-top:20px"><div class="none">' + (ph ? 'Иллюстрации этой процедуры в новом стиле — на следующем этапе. Текст ниже.' : 'Процедура OM-B ' + esc(meta.sec) + ' будет заполнена на следующем этапе.') + '</div></div>';
     if (ph) h += '<div class="txt">' + textHTML(ph, type, false) + '</div>';
   } else {

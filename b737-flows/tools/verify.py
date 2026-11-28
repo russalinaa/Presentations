@@ -19,7 +19,7 @@ def norm(s):
     s = re.sub(r'\.{3,}', ' ', s)
     return re.findall(r"[a-z0-9а-я%/°]+", s.lower())
 skip = re.compile(r'OPERATION MANUAL PART B|2\. NORMAL PROCEDURES|Issue 06, Rev|^\s*$')
-src = [l.strip() for l in txt.splitlines() if not skip.search(l)]
+src = [seg.strip() for l in txt.splitlines() if not skip.search(l) for seg in re.split(r'\s{3,}', l.strip()) if seg.strip()]
 data = []
 panels = []
 for f in sorted(pathlib.Path(__file__).parent.parent.glob('data/batch*.txt')):
