@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>B737 Normal Procedures · flows</title>
+<style>
+/* ===== tokens (system fonts only: the file must work offline) ===== */
+:root {
+  --navy: #0b1f3f; --ink: #0b1630; --ink-2: #44526e; --line: #d5dce8; --bg: #f4f6fa;
+  --path: #1d3f8f; --hl: #ffe27a; --link: #3fb96a; --red: #d62828;
+  --fo: #1d5fd6; --capt: #d4570b; --both: #0b8a5a; --cl: #6b3fd1; --ng: #0f7b8a;
+  --font: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body { font-family: var(--font); color: var(--ink); background: var(--bg); font-size: 16px; line-height: 1.45; overflow: hidden; }
+button { font: inherit; cursor: pointer; color: inherit; }
+svg text { font-family: var(--font); }
+
+.top { position: fixed; inset: 0 0 auto 0; height: 56px; z-index: 40; background: var(--navy); color: #fff; display: flex; align-items: center; gap: 10px; padding: 0 12px; }
+.brand { font-weight: 700; font-size: 17px; white-space: nowrap; }
+.brand small { display: block; font-weight: 400; font-size: 11px; color: #a9bbdc; }
+.tabs { display: flex; gap: 3px; margin-left: auto; background: rgba(255,255,255,.1); padding: 3px; border-radius: 10px; }
+.tabs button { border: 0; background: none; color: #cfdaf0; padding: 7px 12px; border-radius: 8px; font-weight: 600; font-size: 14px; white-space: nowrap; }
+.tabs button.on { background: #fff; color: var(--navy); }
+.qbtn { border: 1px solid rgba(255,255,255,.35); background: none; color: #fff; border-radius: 8px; padding: 7px 10px; font-weight: 600; font-size: 14px; white-space: nowrap; }
+body.quizmode .qbtn { background: var(--hl); color: var(--navy); border-color: var(--hl); }
+
+#view { position: fixed; inset: 56px 0 0 0; }
+#mapWrap { position: absolute; inset: 0; touch-action: none; cursor: grab; background: #fbfbf7; }
+#map { width: 100%; height: 100%; display: block; }
+.zoom { position: absolute; left: 12px; bottom: 14px; display: flex; flex-direction: column; gap: 6px; }
+.zoom button { width: 44px; height: 44px; border: 0; border-radius: 12px; background: var(--navy); color: #fff; font-size: 22px; font-weight: 700; }
+.legend { position: absolute; right: 12px; bottom: 14px; background: rgba(255,255,255,.95); border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; font-size: 13px; display: grid; gap: 3px; }
+.legend span { display: flex; gap: 8px; align-items: center; } .legend i { display: inline-block; width: 22px; height: 10px; border-radius: 3px; }
+.node { cursor: pointer; } .node:hover .hlr { fill: #ffd23d; }
+
+.page { position: fixed; inset: 56px 0 0 0; overflow: auto; padding: 20px; display: none; }
+.page.on { display: block; }
+.page h1 { font-size: 26px; margin-bottom: 8px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin-top: 12px; }
+.cards div { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+table.diff { width: 100%; border-collapse: collapse; background: #fff; }
+.diff th { background: var(--navy); color: #fff; text-align: left; padding: 7px; }
+.diff td { border-top: 1px solid var(--line); padding: 6px 7px; vertical-align: top; font-size: 14px; }
+.diff td.c { background: #f5f1fd; } .diff td.n { background: #eef9fa; }
+
+/* ===== procedure viewer ===== */
+#proc { position: fixed; inset: 56px 0 0 0; z-index: 30; background: #e9edf4; overflow: auto; display: none; -webkit-overflow-scrolling: touch; }
+#proc.open { display: block; }
+.pbar { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 8px 12px; background: #fff; border-bottom: 1px solid var(--line); }
+.pbar b { font-size: 15px; margin-right: auto; }
+.pbar button { border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 6px 10px; font-size: 13px; font-weight: 600; }
+.pbar button.dark { background: var(--navy); color: #fff; border-color: var(--navy); }
+.slide { max-width: 1600px; margin: 12px auto; padding: 0 10px; }
+.slide svg { width: 100%; height: auto; display: block; background: #fff; border-radius: 10px; box-shadow: 0 10px 30px -18px rgba(0,0,0,.5); }
+.txt { max-width: 1200px; margin: 0 auto 40px; padding: 0 10px; }
+details.sec { background: #fff; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 10px; }
+details.sec > summary { cursor: pointer; padding: 12px 14px; font-weight: 700; font-size: 16px; list-style: none; }
+details.sec > summary::before { content: "▸ "; } details.sec[open] > summary::before { content: "▾ "; }
+.sb { padding: 0 14px 14px; }
+.st { border-top: 1px solid var(--line); padding: 8px 0; display: grid; grid-template-columns: 34px 1fr 120px; gap: 8px; }
+.st .n { width: 28px; height: 28px; border-radius: 50%; color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+.st .r { font-size: 12px; color: var(--ink-2); text-align: right; }
+.ln { padding: 2px 0; } .ln.a { font-weight: 600; } .ln .v { font-weight: 700; color: var(--path); }
+.ln.ver { padding-left: 16px; position: relative; } .ln.ver::before { content: "✓"; position: absolute; left: 0; color: var(--both); }
+.ln.x { font-style: italic; }
+.bx { margin: 5px 0; padding: 7px 10px; border-left: 5px solid; border-radius: 7px; font-size: 14px; }
+.bx.N { background: #e8f0fe; border-color: #1d5fd6; } .bx.C { background: #fff4d6; border-color: #b7791f; } .bx.W { background: #fde8e8; border-color: #c0262d; } .bx.Q { background: #fff0f6; border-color: #b83280; }
+.tg { display: inline-block; font-size: 11px; font-weight: 700; padding: 0 6px; border-radius: 5px; color: #fff; margin-right: 5px; background: #5b6b88; }
+.tg.CL { background: var(--cl); } .tg.NG { background: var(--ng); }
+.none { padding: 10px; background: #f6f8fc; border: 2px dashed var(--line); border-radius: 10px; color: var(--ink-2); font-size: 14px; }
+.plate { cursor: default; }
+body.quizmode .plate { cursor: pointer; }
+body.quizmode .plate:not(.shown) .qv { fill: transparent; }
+body.quizmode .plate:not(.shown) .qvbg { fill: #dfe6f3; }
+[data-slide] { cursor: pointer; }
+
+@media (max-width: 700px) { .brand small { display: none; } .tabs button { padding: 6px 7px; font-size: 13px; } .legend { display: none; } .st { grid-template-columns: 30px 1fr; } .st .r { grid-column: 2; text-align: left; } }
+@media (max-width: 480px) { .brand { display: none; } .tabs { margin-left: 0; } }
+
+/* ===== print ===== */
+body.print { overflow: visible; background: #fff; }
+body.print .top, body.print .pbar, body.print #view { display: none !important; }
+body.print #proc { position: static; display: block; background: #fff; overflow: visible; }
+body.print .slide { margin: 0; padding: 0; max-width: none; break-after: page; }
+body.print .slide svg { box-shadow: none; border-radius: 0; width: 100%; height: auto; max-height: 188mm; }
+body.print .txt { max-width: none; padding: 0; }
+body.print .st, body.print .bx { break-inside: avoid; }
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="brand">B737 Normal Procedures<small>OM-B SCAT B737 CL-NG, Issue 06 Rev 01 · только по документу</small></div>
+  <div class="tabs" id="tabs"><button data-t="CL">Classic</button><button data-t="NG">NG</button><button data-t="DIFF">Отличия</button><button data-t="APP">Заходы</button></div>
+  <button class="qbtn" id="quiz" type="button">Проверь себя</button>
+</div>
+<div id="view">
+  <div id="mapWrap"><svg id="map" xmlns="http://www.w3.org/2000/svg"></svg></div>
+  <div class="zoom"><button id="zin" type="button">+</button><button id="zout" type="button">−</button><button id="zfit" type="button" style="font-size:15px">⤢</button></div>
+  <div class="legend"><span><i style="background:var(--hl)"></i>Процедура (нажмите)</span><span><i style="background:var(--link);height:4px"></i>Связь с блоком</span><span><i style="background:var(--red);height:4px"></i>Точка профиля (2.3.2)</span><span><i style="background:var(--path);height:4px"></i>Траектория</span></div>
+</div>
+<div class="page" id="pDIFF"></div>
+<div class="page" id="pAPP"></div>
+<div id="proc"></div>
+<!--DATA-->
+<script>
+/* ================================================================
+   Everything comes from window.OMB (verbatim OM-B extract), window.MAP and window.IMG (base64 mockups).
+   ================================================================ */
+(function () {
+var D = window.OMB, M = window.MAP, IMG = window.IMG;
+var CLT = D.clTails, NGT = D.ngTails;
+var Q = {}; location.search.slice(1).split('&').forEach(function (kv) { var p = kv.split('='); if (p[0]) Q[p[0]] = decodeURIComponent(p[1] || ''); });
+var type = Q.print || 'CL';
+try { type = Q.print || localStorage.getItem('b737t') || 'CL'; } catch (e) {}
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function pdf(ch) { return String(ch).split(/[–-]/).map(function (x) { return +x + 68; }).join('–'); }
+var ROLE = { FO: ['F/O', '#1d5fd6'], C: ['CAPTAIN', '#d4570b'], B: ['CAPTAIN + F/O', '#0b8a5a'], CFO: ['CAPTAIN или F/O', '#0b8a5a'], '-': ['не указано', '#7a869e'] };
+var ZNAME = { ovh: 'Overhead panel', ip: 'Main panel + glareshield', aft: 'Control stand + pedestal', ngovh: 'Overhead panel (P5)', ngip: 'Main panel + glareshield (P7)', ngped: 'Control stand + pedestal (P8)' };
+var SIZE = { ovh: [1752, 2250], ip: [2014, 1054], aft: [1228, 1850], ngovh: [1546, 2576], ngip: [1546, 2576], ngped: [1546, 2576] };
+var SRC = { ovh: 'clovh', ip: 'clip', aft: 'claft', ngovh: 'ng', ngip: 'ng', ngped: 'ng' };
+var ZONE = { ovh: [0, 0, 1752, 2250], ip: [0, 0, 2014, 1054], aft: [0, 0, 1228, 1850], ngovh: [380, 20, 1180, 1100], ngip: [60, 1100, 1480, 1760], ngped: [520, 1700, 1020, 2560] };
+
+/* ---------- applicability ---------- */
+function tl(s) { return s.split(',').map(function (x) { return x.trim(); }); }
+function has(set, x) { return set.indexOf(x) >= 0; }
+function applies(tag, t) {
+  if (!tag) return true;
+  var set = t === 'CL' ? CLT : NGT;
+  if (tag === 'CL' || tag === 'NG') return tag === t;
+  if (tag.indexOf('T:') === 0) return tl(tag.slice(2)).some(function (x) { return has(set, x); });
+  if (tag.indexOf('X:') === 0) { var ex = tl(tag.slice(2)); return set.some(function (x) { return !has(ex, x); }); }
+  var m = tag.match(/^(CL|NG)\+T:(.*)$/);
+  return m ? (m[1] === t || tl(m[2]).some(function (x) { return has(set, x); })) : true;
+}
+function badge(tag) {
+  if (!tag) return '';
+  if (tag === 'CL') return '<span class="tg CL">Только Classic</span>';
+  if (tag === 'NG') return '<span class="tg NG">Только NG</span>';
+  if (tag.indexOf('T:') === 0) return '<span class="tg">Только ' + tl(tag.slice(2)).map(function (x) { return 'UP-B' + x; }).join(', ') + '</span>';
+  if (tag.indexOf('X:') === 0) return '<span class="tg">Кроме ' + tl(tag.slice(2)).map(function (x) { return 'UP-B' + x; }).join(', ') + '</span>';
+  var m = tag.match(/^(CL|NG)\+T:(.*)$/);
+  return m ? '<span class="tg ' + m[1] + '">' + (m[1] === 'CL' ? 'Classic' : 'NG') + ' + ' + tl(m[2]).map(function (x) { return 'UP-B' + x; }).join(', ') + '</span>' : '';
+}
+function shortTag(tag) {
+  if (!tag) return '';
+  if (tag === 'CL') return 'Только Classic';
+  if (tag === 'NG') return 'Только NG';
+  if (tag.indexOf('T:') === 0) return 'Только ' + tl(tag.slice(2)).map(function (x) { return 'UP-B' + x; }).join(', ');
+  if (tag.indexOf('X:') === 0) return 'Кроме ' + tl(tag.slice(2)).map(function (x) { return 'UP-B' + x; }).join(', ');
+  return tag.replace('+T:', ' + UP-B').replace(/,/g, ', UP-B');
+}
+function phase(id) { for (var i = 0; i < D.phases.length; i++) if (D.phases[i].id === id) return D.phases[i]; return null; }
+function rowsFor(ph, t) {
+  var out = [];
+  ph.rows.forEach(function (r) {
+    if (!applies(r.tag, t)) return;
+    var lines = r.lines.filter(function (l) { return applies(l.tag, t); });
+    if (lines.length) out.push({ who: r.who, panel: r.panel, page: r.page, tag: r.tag, lines: lines, n: out.length + 1 });
+  });
+  return out;
+}
+
+/* ---------- text wrapping for SVG ---------- */
+function wrap(text, maxCh) {
+  var words = String(text).split(/\s+/), lines = [], cur = '';
+  words.forEach(function (w) { if ((cur + ' ' + w).trim().length > maxCh && cur) { lines.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); });
+  if (cur) lines.push(cur);
+  return lines;
+}
+
+/* ================================================================
+   SLIDES (tutorial style): one slide per consecutive run of steps on the same panel zone
+   ================================================================ */
+function buildPlates(ph, t) {
+  var rows = rowsFor(ph, t), plates = [], notes = [], qs = [];
+  rows.forEach(function (r) {
+    var nA = r.lines.filter(function (l) { return l.k === 'A'; }).length, k = 0, cur = null, pre = [];
+    r.lines.forEach(function (l) {
+      if (l.k === 'A') {
+        k++;
+        cur = { num: nA > 1 ? r.n + '.' + k : String(r.n), who: r.who, item: l.item, val: l.val, tag: l.tag || r.tag, pre: pre, post: [], page: r.page, panel: r.panel,
+                loc: l.loc ? l.loc[t] : null };
+        pre = []; plates.push(cur);
+        if (cur.loc && cur.loc.check) qs.push({ num: cur.num, text: cur.loc.check });
+      } else if (l.k === 'N' || l.k === 'C' || l.k === 'W' || l.k === 'Q') {
+        notes.push({ k: l.k, text: l.text, tag: l.tag, after: cur ? cur.num : String(r.n), page: r.page });
+      } else if (!cur) pre.push(l);
+      else cur.post.push(l);
+    });
+  });
+  return { rows: rows, plates: plates, notes: notes, checks: qs };
+}
+function runsOf(B) {
+  var runs = [];
+  B.plates.forEach(function (p) {
+    var z = p.loc ? p.loc.img : 'none', last = runs[runs.length - 1];
+    if (!last || last.zone !== z) runs.push(last = { zone: z, plates: [] });
+    last.plates.push(p);
+  });
+  var out = [];
+  runs.forEach(function (r) {
+    var h = 0, part = { zone: r.zone, plates: [], notes: [] };
+    r.plates.forEach(function (p) { var ph = plateH(p); if (part.plates.length && h + ph > 1550) { out.push(part); part = { zone: r.zone, plates: [], notes: [] }; h = 0; } part.plates.push(p); h += ph + 12; });
+    out.push(part);
+  });
+  B.notes.forEach(function (n) {
+    var tgt = out.filter(function (r) { return r.plates.some(function (p) { return p.num === n.after || p.num.split('.')[0] === n.after; }); })[0] || out[out.length - 1];
+    tgt.notes.push(n);
+  });
+  return out;
+}
+var PW = 378, FS = 15, CH = 46;
+function plateLines(p) {
+  var L = [];
+  p.pre.forEach(function (l) { wrap(l.text, 42).forEach(function (s) { L.push({ c: 'pre', s: s }); }); });
+  var head = wrap(p.item + ' …… ' + p.val, 34), after = false;
+  head.forEach(function (s) {
+    var i = s.indexOf('……');
+    if (i >= 0) { L.push({ c: 'head', a: s.slice(0, i + 2), v: s.slice(i + 2).trim() }); after = true; }
+    else L.push({ c: 'head', a: after ? '' : s, v: after ? s : '' });
+  });
+  p.post.forEach(function (l) { wrap((l.k === 'V' ? '✓ ' : '') + l.text, CH).forEach(function (s, i) { L.push({ c: l.k === 'V' ? 'ver' : 'x', s: s, cont: i > 0 }); }); });
+  return L;
+}
+function plateH(p) { var L = plateLines(p); return 22 + L.length * 19 + (p.tag ? 14 : 0) + 18 + (p.loc && p.loc.check ? 18 : 0); }
+
+function slideFrame(title, zoneTitle, role, navItems, curNav, inner, t) {
+  var r = ROLE[role] || ROLE['-'];
+  var s = '<svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">';
+  s += '<defs><marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3" markerHeight="3" orient="auto"><path d="M0 0L10 5L0 10z" fill="' + r[1] + '"/></marker>' +
+       '<marker id="zarr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#d62828"/></marker></defs>';
+  s += '<rect width="1600" height="1000" fill="#fff"/><rect width="1600" height="64" fill="#0b1f3f"/>';
+  s += '<text x="24" y="42" font-size="27" font-weight="700" fill="#fff">' + esc(title) + '</text>';
+  s += '<text x="1180" y="40" font-size="17" fill="#a9bbdc" text-anchor="end">' + esc(zoneTitle) + '</text>';
+  // role badge
+  s += '<rect x="1200" y="8" width="388" height="48" rx="10" fill="' + r[1] + '"/><text x="1394" y="42" font-size="27" font-weight="800" fill="#fff" text-anchor="middle">' + esc(r[0]) + '</text>';
+  // navigator column
+  s += '<rect x="0" y="64" width="232" height="936" fill="#eef2f8"/><text x="18" y="100" font-size="14" font-weight="700" fill="#44526e">ЭТАПЫ FLOW</text>';
+  navItems.forEach(function (n, i) {
+    var y = 116 + i * 52, on = i === curNav;
+    s += '<g data-slide="' + i + '"><rect x="10" y="' + y + '" width="212" height="44" rx="8" fill="' + (on ? '#0b1f3f' : '#fff') + '" stroke="#c8d0de"/>' +
+         '<text x="22" y="' + (y + 19) + '" font-size="14" font-weight="700" fill="' + (on ? '#ffe27a' : '#0b1f3f') + '">' + esc(n[0]) + '</text>' +
+         '<text x="22" y="' + (y + 36) + '" font-size="12" fill="' + (on ? '#dbe5f7' : '#44526e') + '">' + esc(n[1]) + '</text></g>';
+    if (i < navItems.length - 1) s += '<path d="M116 ' + (y + 44) + 'v8" stroke="#9aa6bd" stroke-width="2"/>';
+  });
+  s += '<rect x="10" y="930" width="212" height="56" rx="8" fill="' + (t === 'CL' ? '#6b3fd1' : '#0f7b8a') + '"/><text x="116" y="965" font-size="18" font-weight="800" fill="#fff" text-anchor="middle">737 ' + (t === 'CL' ? 'CLASSIC' : 'NG') + '</text>';
+  return s + inner + '</svg>';
+}
+
+function zoneSlide(ph, t, run, ri, nav, navIndex) {
+  var IMGX = 628, IMGW = 566, TOP = 80, BOT = 985;
+  var role = run.plates[0].who;
+  var roleC = (ROLE[role] || ROLE['-'])[1];
+  var inner = '';
+  // notes block height (under image)
+  var nlines = [];
+  run.notes.forEach(function (n) { var w = wrap((n.k === 'N' ? 'NOTE: ' : n.k === 'C' ? 'CAUTION: ' : n.k === 'W' ? 'WARNING: ' : '⚠ ') + n.text, 64); nlines.push({ n: n, w: w }); });
+  var notesH = nlines.reduce(function (a, x) { return a + x.w.length * 18 + 16; }, 0) + (nlines.length ? 8 : 0);
+  var imgH = BOT - TOP - notesH - 30;
+  if (run.zone === 'none') {
+    inner += '<rect x="' + IMGX + '" y="' + TOP + '" width="' + IMGW + '" height="' + imgH + '" rx="10" fill="#f6f8fc" stroke="#c8d0de" stroke-dasharray="8 6"/><text x="' + (IMGX + IMGW / 2) + '" y="' + (TOP + imgH / 2) + '" text-anchor="middle" font-size="20" fill="#7a869e">макет отсутствует</text>';
+  }
+  var pts = run.plates.filter(function (p) { return p.loc; });
+  var map = null;
+  if (pts.length) {
+    var Z = ZONE[run.zone], W = SIZE[run.zone][0], H = SIZE[run.zone][1];
+    var xs = pts.map(function (p) { return p.loc.x; }), ys = pts.map(function (p) { return p.loc.y; });
+    var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs), y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
+    var pad = Math.max(120, (x1 - x0) * .15, (y1 - y0) * .15);
+    x0 -= pad; x1 += pad; y0 -= pad; y1 += pad;
+    // match box aspect
+    var asp = IMGW / imgH, cw = x1 - x0, chh = y1 - y0;
+    if (cw / chh < asp) { var nw = chh * asp; x0 -= (nw - cw) / 2; x1 = x0 + nw; } else { var nh = cw / asp; y0 -= (nh - chh) / 2; y1 = y0 + nh; }
+    cw = x1 - x0; chh = y1 - y0;
+    if (cw > Z[2] - Z[0]) { var k = (Z[2] - Z[0]) / cw; cw *= k; chh *= k; }
+    if (chh > Z[3] - Z[1]) { var k2 = (Z[3] - Z[1]) / chh; cw *= k2; chh *= k2; }
+    var cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+    x0 = Math.max(Z[0], Math.min(Z[2] - cw, cx - cw / 2)); y0 = Math.max(Z[1], Math.min(Z[3] - chh, cy - chh / 2));
+    var sc = Math.min(IMGW / cw, imgH / chh);
+    var dw = cw * sc, dh = chh * sc, ox = IMGX + (IMGW - dw) / 2, oy = TOP;
+    map = function (x, y) { return [ox + (x - x0) * sc, oy + (y - y0) * sc]; };
+    inner += '<svg x="' + ox + '" y="' + oy + '" width="' + dw + '" height="' + dh + '" viewBox="' + x0 + ' ' + y0 + ' ' + cw + ' ' + chh + '" preserveAspectRatio="xMidYMid slice"><image href="' + IMG[SRC[run.zone]] + '" xlink:href="' + IMG[SRC[run.zone]] + '" width="' + W + '" height="' + H + '"/></svg>';
+    inner += '<rect x="' + ox + '" y="' + oy + '" width="' + dw + '" height="' + dh + '" fill="none" stroke="#0b1f3f" stroke-width="2" rx="4"/>';
+    imgH = dh;
+  }
+  // scan route: thick translucent arrows through targets in order
+  var tg = [];
+  pts.forEach(function (p) { var q = map(p.loc.x, p.loc.y); var g = tg.filter(function (o) { return Math.hypot(o.x - q[0], o.y - q[1]) < 8; })[0]; if (!g) tg.push(g = { x: q[0], y: q[1], nums: [] }); g.nums.push(p.num); p._t = g; });
+  var route = [];
+  pts.forEach(function (p) { if (!route.length || route[route.length - 1] !== p._t) route.push(p._t); });
+  for (var i = 1; i < route.length; i++) {
+    var a = route[i - 1], b = route[i], d = Math.hypot(b.x - a.x, b.y - a.y) || 1, ux = (b.x - a.x) / d, uy = (b.y - a.y) / d;
+    inner += '<line x1="' + (a.x + ux * 20) + '" y1="' + (a.y + uy * 20) + '" x2="' + (b.x - ux * 26) + '" y2="' + (b.y - uy * 26) + '" stroke="' + roleC + '" stroke-opacity=".45" stroke-width="16" stroke-linecap="round" marker-end="url(#arr)"/>';
+  }
+  // plates in gutters
+  var midX = IMGX + IMGW / 2, left = [], right = [];
+  run.plates.forEach(function (p) {
+    p._h = plateH(p);
+    p._ty = p._t ? p._t.y : TOP + 40;
+    (p._t && p._t.x > midX ? right : left).push(p);
+  });
+  // balance gutters if one is overloaded
+  function sumH(a) { return a.reduce(function (s, p) { return s + p._h + 10; }, 0); }
+  while (sumH(left) > BOT - TOP + 20 && sumH(right) < sumH(left) - 200) right.push(left.pop());
+  while (sumH(right) > BOT - TOP + 20 && sumH(left) < sumH(right) - 200) left.push(right.pop());
+  function stack(arr) {
+    arr.sort(function (a, b) { return a._ty - b._ty; });
+    var y = TOP, tot = sumH(arr), avail = BOT - TOP;
+    var sc = tot > avail ? avail / tot : 1;
+    arr.forEach(function (p) { p._y = Math.max(y, Math.min(p._ty - 20, BOT - p._h * sc)); y = p._y + (p._h + 10) * sc; p._sc = sc; });
+    // push up if overflow
+    var over = y - BOT;
+    if (over > 0) for (var j = arr.length - 1; j >= 0; j--) { arr[j]._y -= over; if (j && arr[j]._y > arr[j - 1]._y + (arr[j - 1]._h + 10) * arr[j - 1]._sc) break; }
+  }
+  stack(left); stack(right);
+  function plate(p, side) {
+    var x = side === 'L' ? 246 : 1212, sc = p._sc || 1, w = PW, h = p._h;
+    var L = plateLines(p), s = '<g class="plate" data-num="' + esc(p.num) + '" transform="translate(' + x + ' ' + p._y + ') scale(' + sc + ')">';
+    s += '<rect width="' + w + '" height="' + h + '" rx="8" fill="#fff" stroke="' + roleC + '" stroke-width="2"/><rect width="8" height="' + h + '" rx="3" fill="' + roleC + '"/>';
+    s += '<circle cx="26" cy="22" r="15" fill="' + roleC + '"/><text x="26" y="27" font-size="' + (p.num.length > 3 ? 11 : 14) + '" font-weight="800" fill="#fff" text-anchor="middle">' + esc(p.num) + '</text>';
+    s += '<text x="' + (w - 8) + '" y="15" font-size="11" fill="#7a869e" text-anchor="end">стр. ' + esc(p.page.ch) + '</text>';
+    if (p.loc && p.loc.check) s += '<rect x="' + (w - 112) + '" y="' + (h - 22) + '" width="104" height="18" rx="4" fill="#b83280"/><text x="' + (w - 60) + '" y="' + (h - 9) + '" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">⚠ проверить место</text>';
+    var y = 22;
+    if (p.tag) { s += '<text x="48" y="' + (y - 6) + '" font-size="12" font-weight="700" fill="' + (p.tag === 'NG' ? '#0f7b8a' : p.tag === 'CL' ? '#6b3fd1' : '#5b6b88') + '">' + esc(shortTag(p.tag)) + '</text>'; y += 14; }
+    L.forEach(function (l) {
+      y += 19;
+      if (l.c === 'head') {
+        s += '<text x="48" y="' + y + '" font-size="' + FS + '" font-weight="700" fill="#0b1630">' + esc(l.a) + (l.v ? (l.a ? ' ' : '') + '<tspan class="qv" fill="#1d3f8f">' + esc(l.v) + '</tspan>' : '') + '</text>';
+      } else if (l.c === 'pre') s += '<text x="48" y="' + y + '" font-size="14" font-style="italic" fill="#b3122e">' + esc(l.s) + '</text>';
+      else if (l.c === 'ver') s += '<text x="' + (l.cont ? 66 : 52) + '" y="' + y + '" font-size="13.5" fill="#22324f">' + esc(l.s) + '</text>';
+      else s += '<text x="52" y="' + y + '" font-size="13.5" font-style="italic" fill="#22324f">' + esc(l.s) + '</text>';
+    });
+    s += '</g>';
+    // leader to the control
+    if (p._t) {
+      var ax = side === 'L' ? x + w * sc : x, ay = p._y + 22 * sc;
+      inner += '<path d="M' + ax + ' ' + ay + ' L' + (side === 'L' ? ax + 18 : ax - 18) + ' ' + ay + ' L' + p._t.x + ' ' + p._t.y + '" fill="none" stroke="' + roleC + '" stroke-width="2.5"/>';
+    }
+    return s;
+  }
+  var plates = left.map(function (p) { return plate(p, 'L'); }).join('') + right.map(function (p) { return plate(p, 'R'); }).join('');
+  // target markers on top
+  tg.forEach(function (g) {
+    var lab = g.nums.join('/'), w = Math.max(34, lab.length * 9 + 16);
+    inner += '<rect x="' + (g.x - w / 2) + '" y="' + (g.y - 17) + '" width="' + w + '" height="34" rx="17" fill="' + roleC + '" stroke="#fff" stroke-width="3"/><text x="' + g.x + '" y="' + (g.y + 6) + '" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">' + esc(lab) + '</text>';
+  });
+  inner += plates;
+  // notes under the image
+  var ny = TOP + imgH + 18;
+  nlines.forEach(function (x) {
+    var col = { N: ['#e8f0fe', '#1d5fd6'], C: ['#fff4d6', '#b7791f'], W: ['#fde8e8', '#c0262d'], Q: ['#fff0f6', '#b83280'] }[x.n.k];
+    var h = x.w.length * 18 + 10;
+    inner += '<rect x="' + IMGX + '" y="' + ny + '" width="' + IMGW + '" height="' + h + '" rx="6" fill="' + col[0] + '"/><rect x="' + IMGX + '" y="' + ny + '" width="6" height="' + h + '" fill="' + col[1] + '"/>';
+    x.w.forEach(function (s, i) { inner += '<text x="' + (IMGX + 14) + '" y="' + (ny + 19 + i * 18) + '" font-size="14" fill="#0b1630"' + (i === 0 ? ' font-weight="600"' : '') + '>' + esc(s) + '</text>'; });
+    inner += '<text x="' + (IMGX + IMGW - 8) + '" y="' + (ny + 14) + '" font-size="11" fill="#7a869e" text-anchor="end">к шагу ' + esc(x.n.after) + '</text>';
+    ny += h + 6;
+  });
+  var nums = run.plates.map(function (p) { return p.num; });
+  return slideFrame(ph.title, ZNAME[run.zone] || 'Без макета', role, nav, navIndex, inner, t);
+}
+
+function overviewSlide(ph, t, runs, nav) {
+  var inner = '';
+  // cockpit composite with zone frames
+  var zones = {};
+  if (t === 'CL') {
+    // overhead left, main panel top-right, pedestal bottom-right
+    zones.ovh = { x: 260, y: 84, w: 700, h: 899, src: 'clovh', W: 1752, H: 2250 };
+    zones.ip = { x: 980, y: 84, w: 600, h: 314, src: 'clip', W: 2014, H: 1054 };
+    zones.aft = { x: 1130, y: 410, w: 380, h: 573, src: 'claft', W: 1228, H: 1850 };
+    ['ovh', 'ip', 'aft'].forEach(function (k) { var z = zones[k]; inner += '<image href="' + IMG[z.src] + '" xlink:href="' + IMG[z.src] + '" x="' + z.x + '" y="' + z.y + '" width="' + z.w + '" height="' + z.h + '" preserveAspectRatio="none"/>'; });
+  } else {
+    var s = 900 / 2576, ox = 520;
+    inner += '<image href="' + IMG.ng + '" xlink:href="' + IMG.ng + '" x="' + ox + '" y="84" width="' + (1546 * s) + '" height="900"/>';
+    function z(k, a) { zones[k] = { x: ox + a[0] * s, y: 84 + a[1] * s, w: (a[2] - a[0]) * s, h: (a[3] - a[1]) * s }; }
+    z('ngovh', ZONE.ngovh); z('ngip', ZONE.ngip); z('ngped', ZONE.ngped);
+  }
+  var used = {};
+  runs.forEach(function (r) { used[r.zone] = 1; });
+  Object.keys(zones).forEach(function (k) {
+    var z = zones[k];
+    inner += '<rect x="' + z.x + '" y="' + z.y + '" width="' + z.w + '" height="' + z.h + '" fill="' + (used[k] ? 'rgba(255,226,122,.18)' : 'rgba(255,255,255,.55)') + '" stroke="' + (used[k] ? '#d62828' : '#9aa6bd') + '" stroke-width="' + (used[k] ? 5 : 2) + '" rx="8"/>';
+  });
+  // visit order: numbered circles + arrows between consecutive visits
+  var cnt = {};
+  var pos = runs.map(function (r, i) {
+    var z = zones[r.zone]; if (!z) return null;
+    cnt[r.zone] = (cnt[r.zone] || 0) + 1;
+    var k = cnt[r.zone];
+    return { x: z.x + 46 + (k - 1) * 76, y: z.y + 46, i: i };
+  });
+  for (var i = 1; i < pos.length; i++) if (pos[i] && pos[i - 1]) {
+    var a = pos[i - 1], b = pos[i];
+    var dx = b.x - a.x, dy = b.y - a.y, dd = Math.hypot(dx, dy) || 1, sx = a.x + dx / dd * 32, sy = a.y + dy / dd * 32, ex = b.x - dx / dd * 38, ey = b.y - dy / dd * 38;
+    inner += '<path d="M' + sx + ' ' + sy + ' Q ' + ((sx + ex) / 2 - dy / dd * 40) + ' ' + ((sy + ey) / 2 + dx / dd * 40) + ' ' + ex + ' ' + ey + '" fill="none" stroke="#d62828" stroke-width="5" stroke-opacity=".8" marker-end="url(#zarr)"/>';
+  }
+  var lgx = t === 'CL' ? 1300 : 1080, lgy = t === 'CL' ? 112 : 560;
+  if (t === 'CL') { lgx = 975; lgy = 112; }
+  pos.forEach(function (p) { if (!p) return; inner += '<g data-slide="' + (p.i + 1) + '"><circle cx="' + p.x + '" cy="' + p.y + '" r="30" fill="#d62828" stroke="#fff" stroke-width="5"/><text x="' + p.x + '" y="' + (p.y + 11) + '" font-size="30" font-weight="800" fill="#fff" text-anchor="middle">' + (p.i + 1) + '</text></g>'; });
+  // order list (bottom-left of image area)
+  var lx = t === 'CL' ? 980 : 1080, ly = t === 'CL' ? 430 : 120;
+  if (t === 'CL') { lx = 262; ly = 1000; }
+  var list = '<g>';
+  var bx = t === 'CL' ? 980 : 1090, by = t === 'CL' ? 420 : 110;
+  if (t === 'CL') { bx = 1520; by = 0; }
+  list += '</g>';
+  inner += list;
+  var trig = ph.trigger.concat(ph.intro).join(' ');
+  var tw = wrap(trig, t === 'CL' ? 30 : 46).slice(0, 18);
+  var tx = t === 'CL' ? 980 : 1080, ty = t === 'CL' ? 440 : 110, twd = t === 'CL' ? 140 : 500;
+  if (t === 'NG') {
+    inner += '<rect x="' + tx + '" y="' + ty + '" width="500" height="' + (tw.length * 21 + 50) + '" rx="10" fill="#f4f6fa" stroke="#c8d0de"/><text x="' + (tx + 16) + '" y="' + (ty + 30) + '" font-size="16" font-weight="700" fill="#0b1f3f">Когда выполняется (OM-B ' + esc(ph.section) + ')</text>';
+    tw.forEach(function (s, i) { inner += '<text x="' + (tx + 16) + '" y="' + (ty + 56 + i * 21) + '" font-size="15" fill="#22324f">' + esc(s) + '</text>'; });
+  }
+  return slideFrame(ph.title, 'Обзор: порядок зон кабины', runs[0].plates[0].who, nav, 0, inner, t);
+}
+
+function procSlides(ph, t) {
+  var B = buildPlates(ph, t), runs = runsOf(B);
+  var nav = [['Обзор кабины', 'порядок зон']].concat(runs.map(function (r, i) {
+    var a = r.plates[0].num, b = r.plates[r.plates.length - 1].num;
+    return [(i + 1) + '. ' + (ZNAME[r.zone] || 'Без макета').split(' (')[0].replace(' + glareshield', ' + glare.').replace('Control stand + pedestal', 'Pedestal'), 'шаги ' + a + (a !== b ? '–' + b : '')];
+  }));
+  var svgs = [overviewSlide(ph, t, runs, nav)].concat(runs.map(function (r, i) { return zoneSlide(ph, t, r, i, nav, i + 1); }));
+  return { svgs: svgs, B: B, runs: runs };
+}
+
+/* ---------- full text block (collapsed under the slides) ---------- */
+function lineHTML(l) {
+  var b = badge(l.tag);
+  if (l.k === 'A') return '<div class="ln a">' + b + esc(l.item) + ' …… <span class="v">' + esc(l.val) + '</span></div>';
+  if (l.k === 'V') return '<div class="ln ver">' + b + esc(l.text) + '</div>';
+  if (l.k === 'X' || l.k === 'H') return '<div class="ln x">' + b + esc(l.text) + '</div>';
+  var nm = { N: 'NOTE', C: 'CAUTION', W: 'WARNING', Q: '⚠ проверить' }[l.k];
+  return '<div class="bx ' + l.k + '">' + b + '<b>' + nm + '</b> ' + esc(l.text) + '</div>';
+}
+function textHTML(ph, t, open) {
+  var rows = rowsFor(ph, t);
+  var steps = rows.map(function (r) { var w = ROLE[r.who] || ROLE['-']; return '<div class="st"><span class="n" style="background:' + w[1] + '">' + r.n + '</span><div><b>' + badge(r.tag) + esc(r.panel) + '</b>' + r.lines.map(lineHTML).join('') + '</div><div class="r">' + w[0] + '<br>стр. ' + r.page.ch + ' · PDF ' + r.page.pdf + '</div></div>'; }).join('');
+  var calls = [];
+  rows.forEach(function (r) { r.lines.forEach(function (l) { if (l.k === 'K') calls.push(r.n + '. “' + esc(l.text) + '”'); }); });
+  ph.callouts.forEach(function (c) { calls.push(esc(c.who === 'C' ? 'Captain' : c.who) + ': “' + esc(c.text) + '”'); });
+  var ck = D.checklists[ph.id] && D.checklists[ph.id][t];
+  var o = open ? ' open' : '';
+  return '<details class="sec"' + o + '><summary>Текст процедуры (дословно OM-B ' + esc(ph.section) + ', стр. ' + esc(ph.pages.ch) + ')</summary><div class="sb"><p style="margin:6px 0 10px"><b>Когда:</b> ' + esc(ph.trigger.join(' ')) + '<br><b>Кто:</b> ' + esc(ph.who) + (ph.intro.length ? '<br>' + esc(ph.intro.join(' ')) : '') + '</p>' + steps + '</div></details>' +
+    '<details class="sec"' + o + '><summary>Callouts</summary><div class="sb">' + (calls.length ? calls.map(function (c) { return '<div class="ln">' + c + '</div>'; }).join('') : '<div class="none">В тексте OM-B ' + esc(ph.section) + ' callouts нет.</div>') + '</div></details>' +
+    '<details class="sec"' + o + '><summary>Checklist</summary><div class="sb">' + (ck ? '<p>' + esc(ck.src) + ' · PDF ' + esc(ck.pdf) + '</p>' + ck.items.map(function (x) { return '<div class="ln a">' + esc(x.item) + ' …… <span class="v">' + esc(x.val) + '</span> · ' + esc(x.who) + '</div>'; }).join('') : '<div class="none">OM-B не указывает checklist для этой процедуры.</div>') + '</div></details>' +
+    '<details class="sec"' + o + '><summary>Flow по памяти</summary><div class="sb"><ol style="margin-left:22px">' + rows.map(function (r) { var a = r.lines.filter(function (l) { return l.k === 'A'; })[0]; return '<li>' + esc(a ? a.item : r.panel) + '</li>'; }).join('') + '</ol></div></details>';
+}
+
+/* ================================================================
+   MAP
+   ================================================================ */
+function hlText(x, y, txt, fs) {
+  fs = fs || 28; var w = txt.length * fs * .53 + 24;
+  return '<rect class="hlr" x="' + x + '" y="' + (y - fs * .95) + '" width="' + w + '" height="' + (fs * 1.35) + '" rx="6" fill="#ffe27a"/><text x="' + (x + 12) + '" y="' + y + '" font-size="' + fs + '" font-weight="600" fill="#0b1f3f">' + esc(txt) + '</text>';
+}
+function mapSVG(t) {
+  var o = [];
+  o.push('<rect width="' + M.W + '" height="' + M.H + '" fill="#fbfbf7"/>');
+  o.push('<text x="60" y="110" font-size="62" font-weight="700" fill="#0b1f3f">737 ' + (t === 'CL' ? 'Classic' : 'NG') + ' · Normal Procedures</text><text x="62" y="158" font-size="27" fill="#44526e">OM-B SCAT, Issue 06 Rev 01 · процедуры 2.2 и точки 2.3.2 · нажмите на процедуру</text>');
+  o.push('<path d="M1600 2010 L1600 2250 L3350 2250 L4000 1500 L4000 300 L2900 300 L2050 1150 L1350 1150 L1350 420" fill="none" stroke="#1d3f8f" stroke-width="7" stroke-linejoin="round"/>');
+  o.push('<line x1="2450" y1="2250" x2="3350" y2="2250" stroke="#7a4a1e" stroke-width="22" stroke-linecap="round"/><text x="3360" y="2300" font-size="22" fill="#7a4a1e">RWY (takeoff)</text>');
+  o.push('<line x1="1350" y1="1150" x2="2050" y2="1150" stroke="#7a4a1e" stroke-width="22" stroke-linecap="round"/><text x="1360" y="1200" font-size="22" fill="#7a4a1e">RWY (landing)</text>');
+  o.push('<path d="M2060 1140 C 2200 1060, 2300 1020, 2380 1000" fill="none" stroke="#1d3f8f" stroke-width="5" stroke-dasharray="16 12"/>');
+  var plane = '<g transform="translate(1520 1300)"><path d="M0 40 Q 20 10 90 10 L300 10 Q 330 10 340 30 Q 330 52 300 54 L60 54 Q 10 54 0 40Z" fill="#53c6f0" stroke="#0b1f3f" stroke-width="4"/><path d="M40 12 L10 -40 L40 -40 L90 12Z" fill="#53c6f0" stroke="#0b1f3f" stroke-width="4"/><path d="M150 40 L120 90 L170 90 L210 40Z" fill="#3aa9d6" stroke="#0b1f3f" stroke-width="3"/><line x1="-20" y1="100" x2="420" y2="100" stroke="#7a4a1e" stroke-width="5"/><text x="360" y="88" font-size="30" font-style="italic" fill="#5a3ea8">Stand</text></g>';
+  o.push(plane);
+  var slots = [[40, 1240], [470, 1240], [900, 1240], [40, 1560], [470, 1560], [900, 1560], [40, 1880], [470, 1880], [900, 1880], [40, 2200], [470, 2200], [900, 2200]];
+  M.ground.forEach(function (g, i) {
+    var y = 1470 + i * 54, x = 1500, cx = slots[i][0], cy = slots[i][1];
+    o.push('<path d="M' + (x - 10) + ' ' + (y - 10) + ' C ' + (x - 220) + ' ' + (y - 10) + ', ' + (cx + 600) + ' ' + (cy + 20) + ', ' + (cx + 400) + ' ' + (cy + 30) + '" fill="none" stroke="#3fb96a" stroke-width="5"/>');
+    o.push('<g class="node" data-id="' + g.id + '">' + hlText(x, y, g.n + ') ' + g.t, 27) + (g.ck ? '<text x="' + (x + g.t.length * 27 * .53 + 76) + '" y="' + y + '" font-size="22" fill="#2e9e55" font-weight="600">→ ' + esc(g.ck) + '</text>' : '') + '</g>');
+    var ph = phase(g.id), inner = '';
+    if (ph) {
+      var B = buildPlates(ph, t), runs = runsOf(B), z = runs.filter(function (r) { return r.zone !== 'none'; })[0];
+      if (z && LOC_READY(g.id)) {
+        var Z = ZONE[z.zone], W = SIZE[z.zone][0], H = SIZE[z.zone][1];
+        var pts = z.plates.filter(function (p) { return p.loc; });
+        var xs = pts.map(function (p) { return p.loc.x; }), ys = pts.map(function (p) { return p.loc.y; });
+        var x0 = Math.max(Z[0], Math.min.apply(null, xs) - 150), y0 = Math.max(Z[1], Math.min.apply(null, ys) - 150), x1 = Math.min(Z[2], Math.max.apply(null, xs) + 150), y1 = Math.min(Z[3], Math.max.apply(null, ys) + 150);
+        var dots = pts.map(function (p) { return '<circle cx="' + p.loc.x + '" cy="' + p.loc.y + '" r="' + ((x1 - x0) * .035) + '" fill="#1d5fd6" stroke="#fff" stroke-width="' + ((x1 - x0) * .008) + '"/>'; }).join('');
+        var path = pts.map(function (p, j) { return (j ? 'L' : 'M') + p.loc.x + ' ' + p.loc.y; }).join(' ');
+        inner = '<svg x="' + (cx + 10) + '" y="' + (cy + 50) + '" width="380" height="210" viewBox="' + x0 + ' ' + y0 + ' ' + (x1 - x0) + ' ' + (y1 - y0) + '" preserveAspectRatio="xMidYMid slice"><image href="' + IMG[SRC[z.zone]] + '" xlink:href="' + IMG[SRC[z.zone]] + '" width="' + W + '" height="' + H + '"/><path d="' + path + '" fill="none" stroke="#1d5fd6" stroke-opacity=".5" stroke-width="' + ((x1 - x0) * .02) + '"/>' + dots + '</svg>';
+      }
+    }
+    if (!inner) inner = '<text x="' + (cx + 200) + '" y="' + (cy + 165) + '" text-anchor="middle" font-size="20" fill="#7a869e">flow — на следующем этапе</text>';
+    o.push('<g class="node" data-id="' + g.id + '"><rect x="' + cx + '" y="' + cy + '" width="400" height="290" rx="16" fill="#fff" stroke="#c8d0de" stroke-width="2"/><text x="' + (cx + 14) + '" y="' + (cy + 36) + '" font-size="25" font-weight="700" fill="#d62828">' + esc(g.t.replace(/ Procedure| – Captain and First Officer/g, '').slice(0, 30)) + '</text>' + inner + '<text x="' + (cx + 14) + '" y="' + (cy + 282) + '" font-size="16" fill="#44526e">OM-B ' + g.sec + ' · стр. ' + g.ch + ' (PDF ' + pdf(g.ch) + ')</text></g>');
+  });
+  M.flight.forEach(function (f) {
+    var bx = f.box[0], by = f.box[1], bw = 400, bh = f.bh || 150;
+    o.push('<path d="M' + f.x + ' ' + f.y + ' C ' + f.x + ' ' + ((f.y + by) / 2) + ', ' + (bx + bw / 2) + ' ' + ((f.y + by) / 2) + ', ' + (bx + bw / 2) + ' ' + (by + (by > f.y ? 0 : bh)) + '" fill="none" stroke="#3fb96a" stroke-width="5"/>');
+    o.push('<g class="node" data-id="' + f.id + '"><rect x="' + bx + '" y="' + by + '" width="' + bw + '" height="' + bh + '" rx="10" fill="#fff" stroke="#0b1f3f" stroke-width="3"/><text x="' + (bx + 16) + '" y="' + (by + 40) + '" font-size="24" font-weight="700" fill="#0b1f3f">' + esc(f.t) + '</text><text x="' + (bx + 16) + '" y="' + (by + 74) + '" font-size="18" fill="#44526e">OM-B ' + f.sec + ' · стр. ' + f.ch + ' (PDF ' + pdf(f.ch) + ')</text>' + (f.ck ? '<text x="' + (bx + 16) + '" y="' + (by + (bh < 150 ? 102 : 108)) + '" font-size="17" fill="#2e9e55" font-weight="600">checklist: ' + esc(f.ck) + '</text>' : '') + '</g>');
+    o.push('<g class="node" data-id="' + f.id + '"><circle cx="' + f.x + '" cy="' + f.y + '" r="11" fill="#0b1f3f"/>' + hlText(f.x + (f.lx || 22), f.y + (f.ly || -18), f.t.replace(' (7 видов захода)', ''), 24) + '</g>');
+  });
+  M.points.forEach(function (p) {
+    var L = p.L || 46, tx = p.x, ty = p.y, an = 'start', lx = p.x, ly = p.y;
+    if (p.side === 't') { ly = p.y - L; ty = ly - 10; an = 'middle'; }
+    if (p.side === 'b') { ly = p.y + L; ty = ly + 26; an = 'middle'; }
+    if (p.side === 'l') { lx = p.x - L; tx = lx - 8; an = 'end'; ty = p.y + 7; }
+    if (p.side === 'r') { lx = p.x + L; tx = lx + 8; ty = p.y + 7; }
+    var t2 = p.t.length > 60 ? p.t.slice(0, 58) + '…' : p.t;
+    o.push('<g><title>' + esc(p.t) + ' — OM-B 2.3.2, стр. ' + p.ch + '</title><circle cx="' + p.x + '" cy="' + p.y + '" r="8" fill="#d62828"/><line x1="' + p.x + '" y1="' + p.y + '" x2="' + lx + '" y2="' + ly + '" stroke="#d62828" stroke-width="3"/><text x="' + tx + '" y="' + ty + '" font-size="21" fill="#d62828" text-anchor="' + an + '">' + esc(t2) + '</text></g>');
+  });
+  return o.join('');
+}
+function LOC_READY(id) { var ph = phase(id); return ph && ph.rows.some(function (r) { return r.lines.some(function (l) { return l.loc; }); }); }
+
+/* ---------- pan / zoom (pointer events, wheel, pinch) ---------- */
+var svg = document.getElementById('map'), wrapEl = document.getElementById('mapWrap');
+var vb = { x: 0, y: 0, w: M.W, h: M.H };
+function setVB() { svg.setAttribute('viewBox', vb.x + ' ' + vb.y + ' ' + vb.w + ' ' + vb.h); }
+function fit() { var r = wrapEl.getBoundingClientRect(); var rw = r.width || innerWidth, rh = r.height || (innerHeight - 56); var k = Math.max(M.W / rw, M.H / rh); vb = { w: rw * k, h: rh * k, x: (M.W - rw * k) / 2, y: (M.H - rh * k) / 2 }; setVB(); }
+function zoomAt(f, cx, cy) { var r = wrapEl.getBoundingClientRect(); var px = vb.x + (cx - r.left) / r.width * vb.w, py = vb.y + (cy - r.top) / r.height * vb.h; var nw = Math.min(M.W * 1.6, Math.max(400, vb.w * f)), k = nw / vb.w; vb = { x: px - (px - vb.x) * k, y: py - (py - vb.y) * k, w: nw, h: vb.h * k }; setVB(); }
+var ptrs = {}, moved = 0, lastD = 0;
+function np() { return Object.keys(ptrs).length; }
+wrapEl.addEventListener('pointerdown', function (e) { try { wrapEl.setPointerCapture(e.pointerId); } catch (x) {} ptrs[e.pointerId] = [e.clientX, e.clientY]; moved = 0; });
+wrapEl.addEventListener('pointermove', function (e) {
+  if (!ptrs[e.pointerId]) return;
+  var prev = ptrs[e.pointerId]; ptrs[e.pointerId] = [e.clientX, e.clientY];
+  var r = wrapEl.getBoundingClientRect();
+  if (np() === 1) { var dx = e.clientX - prev[0], dy = e.clientY - prev[1]; moved += Math.abs(dx) + Math.abs(dy); vb.x -= dx / r.width * vb.w; vb.y -= dy / r.height * vb.h; setVB(); }
+  else if (np() === 2) { var v = Object.keys(ptrs).map(function (k) { return ptrs[k]; }); var d = Math.hypot(v[0][0] - v[1][0], v[0][1] - v[1][1]); if (lastD) zoomAt(lastD / d, (v[0][0] + v[1][0]) / 2, (v[0][1] + v[1][1]) / 2); lastD = d; moved = 99; }
+});
+function up(e) { delete ptrs[e.pointerId]; if (np() < 2) lastD = 0; }
+wrapEl.addEventListener('pointerup', function (e) { var was = moved; up(e); if (was < 8) { var el = document.elementFromPoint(e.clientX, e.clientY); var n = el && el.closest ? el.closest('.node') : null; if (n) openProc(n.getAttribute('data-id')); } });
+wrapEl.addEventListener('pointercancel', up);
+wrapEl.addEventListener('wheel', function (e) { e.preventDefault(); zoomAt(e.deltaY > 0 ? 1.15 : 1 / 1.15, e.clientX, e.clientY); }, { passive: false });
+document.getElementById('zin').onclick = function () { var r = wrapEl.getBoundingClientRect(); zoomAt(1 / 1.4, r.left + r.width / 2, r.top + r.height / 2); };
+document.getElementById('zout').onclick = function () { var r = wrapEl.getBoundingClientRect(); zoomAt(1.4, r.left + r.width / 2, r.top + r.height / 2); };
+document.getElementById('zfit').onclick = fit;
+window.addEventListener('resize', fit);
+
+/* ---------- procedure viewer ---------- */
+var ORDER = M.ground.map(function (g) { return g.id; }).concat(M.flight.map(function (f) { return f.id; }));
+function META(id) { return M.ground.concat(M.flight).filter(function (g) { return g.id === id; })[0]; }
+var cur = null;
+function openProc(id) {
+  cur = id;
+  var meta = META(id), ph = phase(id), el = document.getElementById('proc'), k = ORDER.indexOf(id), h = '';
+  h += '<div class="pbar"><b>' + esc(meta.t) + ' · OM-B ' + esc(meta.sec) + ' · стр. ' + esc(meta.ch) + '</b>' +
+       '<button data-a="prev"' + (k ? '' : ' disabled') + '>← Пред. процедура</button><button data-a="next"' + (k < ORDER.length - 1 ? '' : ' disabled') + '>След. процедура →</button>' +
+       '<button data-a="open">Развернуть всё</button><button data-a="close">Свернуть всё</button><button class="dark" data-a="x">✕ Карта</button></div>';
+  if (!ph || !LOC_READY(id)) {
+    h += '<div class="txt" style="padding-top:20px"><div class="none">' + (ph ? 'Иллюстрации этой процедуры в новом стиле — на следующем этапе. Текст ниже.' : 'Процедура OM-B ' + esc(meta.sec) + ' будет заполнена на следующем этапе.') + '</div></div>';
+    if (ph) h += '<div class="txt">' + textHTML(ph, type, false) + '</div>';
+  } else {
+    var S = procSlides(ph, type);
+    h += S.svgs.map(function (s, i) { return '<div class="slide" id="sl' + i + '">' + s + '</div>'; }).join('');
+    h += '<div class="txt">' + textHTML(ph, type, false) + '</div>';
+  }
+  el.innerHTML = h; el.classList.add('open'); el.scrollTop = 0;
+  try { history.replaceState(null, '', '#' + type + '/' + id); } catch (e) {}
+}
+document.getElementById('proc').addEventListener('click', function (e) {
+  var t = e.target, a = t.closest ? t.closest('[data-a]') : null;
+  if (a) {
+    var act = a.getAttribute('data-a'), k = ORDER.indexOf(cur);
+    if (act === 'prev' && k > 0) openProc(ORDER[k - 1]);
+    if (act === 'next' && k < ORDER.length - 1) openProc(ORDER[k + 1]);
+    if (act === 'open' || act === 'close') [].forEach.call(document.querySelectorAll('#proc details'), function (d) { d.open = act === 'open'; });
+    if (act === 'x') { document.getElementById('proc').classList.remove('open'); try { history.replaceState(null, '', '#' + type); } catch (e2) {} }
+    return;
+  }
+  var s = t.closest ? t.closest('[data-slide]') : null;
+  if (s) { var target = document.getElementById('sl' + s.getAttribute('data-slide')); if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+  var p = t.closest ? t.closest('.plate') : null;
+  if (p && document.body.classList.contains('quizmode')) p.classList.toggle('shown');
+});
+document.getElementById('quiz').onclick = function () { document.body.classList.toggle('quizmode'); [].forEach.call(document.querySelectorAll('.plate.shown'), function (x) { x.classList.remove('shown'); }); };
+
+/* ---------- other tabs ---------- */
+function diffHTML() {
+  var rows = [];
+  D.phases.forEach(function (ph) { ph.rows.forEach(function (r) {
+    var c = [], n = [];
+    r.lines.forEach(function (l) { var tag = l.tag || r.tag; if (!tag || l.k === 'Q') return; var s = badge(tag) + esc(l.k === 'A' ? l.item + ' …… ' + l.val : l.text); if (applies(tag, 'CL')) c.push(s); if (applies(tag, 'NG')) n.push(s); });
+    if (c.length || n.length) rows.push('<tr><td>' + esc(ph.section) + '</td><td>' + esc(r.panel) + '<br><small>стр. ' + r.page.ch + '</small></td><td class="c">' + (c.join('<br>') || '—') + '</td><td class="n">' + (n.join('<br>') || '—') + '</td></tr>');
+  }); });
+  return '<h1>Отличия Classic vs NG</h1><p>Только строки OM-B с пометками (CL), (NG) или бортами. Пока по заполненным процедурам.</p><table class="diff"><tr><th>Раздел</th><th>Панель</th><th>Classic</th><th>NG</th></tr>' + rows.join('') + '</table>';
+}
+function appHTML() { return '<h1>Заходы на посадку</h1><p>Профиль каждого захода (точки, плашки PF | PM) — на следующем этапе.</p><div class="cards">' + M.approaches.map(function (a) { return '<div><b>' + esc(a.t) + '</b><br><small>OM-B ' + a.sec + ' · стр. ' + a.ch + ' (PDF ' + pdf(a.ch) + ')</small></div>'; }).join('') + '</div>'; }
+function setTab(t) {
+  [].forEach.call(document.querySelectorAll('#tabs button'), function (b) { b.classList.toggle('on', b.getAttribute('data-t') === t); });
+  [].forEach.call(document.querySelectorAll('.page'), function (p) { p.classList.toggle('on', p.id === 'p' + t); });
+  var isMap = t === 'CL' || t === 'NG';
+  document.getElementById('view').style.display = isMap ? '' : 'none';
+  if (isMap) { type = t; try { localStorage.setItem('b737t', t); } catch (e) {} svg.innerHTML = mapSVG(t); fit(); if (cur && document.getElementById('proc').classList.contains('open')) openProc(cur); }
+  else document.getElementById('proc').classList.remove('open');
+  if (t === 'DIFF') document.getElementById('pDIFF').innerHTML = diffHTML();
+  if (t === 'APP') document.getElementById('pAPP').innerHTML = appHTML();
+}
+document.getElementById('tabs').addEventListener('click', function (e) { var b = e.target.closest ? e.target.closest('button') : null; if (b) setTab(b.getAttribute('data-t')); });
+
+/* ---------- print entry ---------- */
+if (Q.print) {
+  document.body.classList.add('print');
+  if (Q.part === 'map') {
+    document.body.innerHTML = '<svg viewBox="0 0 ' + M.W + ' ' + M.H + '" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="width:100%;height:auto;display:block">' + mapSVG(Q.print) + '</svg>';
+  } else {
+    var ph = phase(Q.only || 'epu'), S = procSlides(ph, Q.print), el = document.getElementById('proc');
+    el.innerHTML = S.svgs.map(function (s) { return '<div class="slide">' + s + '</div>'; }).join('') + '<div class="txt">' + textHTML(ph, Q.print, true) + '</div>';
+  }
+  window.__ready = true;
+  return;
+}
+window.B737 = { procSlides: procSlides, phase: phase, buildPlates: buildPlates, runsOf: runsOf };
+var hs = location.hash.slice(1).split('/');
+setTab(['CL', 'NG', 'DIFF', 'APP'].indexOf(hs[0]) >= 0 ? hs[0] : type);
+if (hs[1] && META(hs[1])) openProc(hs[1]);
+window.__ready = true;
+})();
+</script>
+</body>
+</html>

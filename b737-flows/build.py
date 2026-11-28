@@ -34,6 +34,36 @@ MOCK = {
 NGMAP = {'ovh:bat': (632, 625), 'ovh:stby': (665, 695), 'ovh:altflaps': (548, 522), 'ovh:wiper': (695, 925),
          'ovh:ehyd': (866, 715), 'ip:gear': (910, 1430), 'ip:wx': (760, 2215), 'ovh:grd': (665, 805),
          'aft:fire': (760, 2095), 'ovh:apu': (702, 1005), 'ovh:apugen': (662, 900), 'aft:firetest': (667, 2112)}
+# Per-action locations for slide illustrations (A-lines of a row, in document order).
+# Each entry: (CL image, x, y, NG x, y) in pixels of site/img/*.jpg; NG image is ng-all.jpg (zones by y).
+# None = control not on mockup.  '?' suffix in note = position to be verified.
+LOC = {
+  'epu': [
+    [('ovh', 395, 1157, 632, 625)],            # BATTERY switch
+    [('ovh', 470, 1297, 665, 695)],            # STANDBY POWER switch
+    [('ovh', 200, 1112, 548, 522)],            # ALTERNATE FLAPS master switch
+    [('ovh', 690, 1955, 695, 955)],            # Windshield WIPER selector
+    [('ovh', 912, 1430, 867, 715)],            # ELECTRIC HYDRAULIC PUMPS switches
+    [('ip', 1262, 450, 910, 1430)],            # LANDING GEAR lever
+    [('ip', 1000, 665, 760, 2215)],            # WEATHER RADAR
+    [('ovh', 460, 1635, 665, 805)],            # GRD POWER switch
+    [('aft', 557, 760, 760, 2095),             # Overheat and fire protection panel (fire switches)
+     ('aft', 327, 722, 669, 2070),             # OVERHEAT DETECTOR switches
+     ('aft', 340, 805, 667, 2112),             # TEST switch FAULT/INOP
+     ('aft', 340, 805, 667, 2112),             # TEST switch OVHT/FIRE
+     ('ip', 1452, 72, 1124, 1172),             # Master FIRE WARN light
+     ('aft', 795, 760, 866, 2087),             # EXTINGUISHER TEST switch
+     ('aft', 795, 760, 866, 2087),             # TEST Switch position 1
+     ('aft', 795, 760, 866, 2087)],            # TEST Switch release
+    [('ovh', 530, 2095, 702, 1005)],           # APU switch
+    [('ovh', 460, 1815, 662, 900)],            # APU GENERATOR bus switches
+    [('aft', 340, 805, 667, 2112),             # Wheel well fire warning system test
+     ('aft', 340, 805, 667, 2112),             # Test switch
+     ('aft', 570, 715, 760, 2062)],            # Fire warning BELL CUTOUT switch
+  ]
+}
+LOC_CHECK = {'epu': {(3, 0, 'NG'): 'На NG-макете два селектора: L WIPER и R WIPER. В OM-B для Electrical Power Up сказано «Windshield WIPER selector» (ед. ч.). Метка стоит на L WIPER. ⚠ проверить',
+                     (11, 2, 'NG'): 'Кнопка BELL CUTOUT на NG-макете частично закрыта рукоятками; метка поставлена у надписи BELL CUTOUT. ⚠ проверить'}}
 MOCK_NAMES = {'ngovh': 'NG: Forward / Aft overhead panel (P5)', 'ngip': 'NG: Glareshield (P7) и main panel', 'ngped': 'NG: Control stand и aft electronic panel (P8)', 'ovh': 'Overhead panel (forward + aft)', 'ip': 'Main instrument panel / MCP / Electronic panel',
               'aft': 'Aft control stand (pedestal)'}
 
@@ -122,11 +152,33 @@ def parse(path):
     return phases, checklists
 
 
+def attach_locs(phases):
+    for ph in phases:
+        L = LOC.get(ph['id'])
+        if not L:
+            continue
+        assert len(L) == len(ph['rows']), (ph['id'], len(L), len(ph['rows']))
+        for ri, (row, locs) in enumerate(zip(ph['rows'], L)):
+            acts = [l for l in row['lines'] if l['k'] == 'A']
+            assert len(acts) == len(locs), (ph['id'], ri, len(acts), len(locs))
+            for ai, (a, lc) in enumerate(zip(acts, locs)):
+                if lc is None:
+                    continue
+                img, x, y, nx, ny = lc
+                a['loc'] = {'CL': {'img': img, 'x': x, 'y': y},
+                            'NG': {'img': 'ngovh' if ny < 1120 else 'ngip' if ny < 1720 else 'ngped', 'x': nx, 'y': ny}}
+                for t in ('CL', 'NG'):
+                    q = LOC_CHECK.get(ph['id'], {}).get((ri, ai, t))
+                    if q:
+                        a['loc'][t]['check'] = q
+
+
 def main():
     phases, checklists = [], {}
     for p in sorted((ROOT / 'data').glob('batch*.txt')):
         a, b = parse(p)
         phases += a; checklists.update(b)
+    attach_locs(phases)
     data = {'phases': phases, 'checklists': checklists, 'clTails': sorted(CL_TAILS), 'ngTails': sorted(NG_TAILS),
             'mockNames': MOCK_NAMES, 'img': IMG}
     (ROOT / 'site' / 'data.js').write_text('window.OMB = ' + json.dumps(data, ensure_ascii=False, indent=1) + ';\n')

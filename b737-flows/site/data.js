@@ -41,7 +41,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "BATTERY switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 395,
+         "y": 1157
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 632,
+         "y": 625
+        }
+       }
       }
      ]
     },
@@ -68,7 +80,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "STANDBY POWER switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 470,
+         "y": 1297
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 665,
+         "y": 695
+        }
+       }
       }
      ]
     },
@@ -95,7 +119,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "ALTERNATE FLAPS master switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 200,
+         "y": 1112
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 548,
+         "y": 522
+        }
+       }
       }
      ]
     },
@@ -122,7 +158,20 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Windshield WIPER selector",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 690,
+         "y": 1955
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 695,
+         "y": 955,
+         "check": "На NG-макете два селектора: L WIPER и R WIPER. В OM-B для Electrical Power Up сказано «Windshield WIPER selector» (ед. ч.). Метка стоит на L WIPER. ⚠ проверить"
+        }
+       }
       }
      ]
     },
@@ -149,7 +198,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "ELECTRIC HYDRAULIC PUMPS switches",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 912,
+         "y": 1430
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 867,
+         "y": 715
+        }
+       }
       }
      ]
     },
@@ -176,7 +237,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "LANDING GEAR lever",
-       "val": "DN"
+       "val": "DN",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1262,
+         "y": 450
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 910,
+         "y": 1430
+        }
+       }
       },
       {
        "k": "V",
@@ -213,7 +286,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "WEATHER RADAR",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 2215
+        }
+       }
       }
      ]
     },
@@ -250,7 +335,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "GRD POWER switch",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 460,
+         "y": 1635
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 665,
+         "y": 805
+        }
+       }
       },
       {
        "k": "V",
@@ -292,7 +389,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Overheat and fire protection panel",
-       "val": "Check"
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 557,
+         "y": 760
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 2095
+        }
+       }
       },
       {
        "k": "V",
@@ -303,13 +412,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "OVERHEAT DETECTOR switches",
-       "val": "NORMAL"
+       "val": "NORMAL",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 327,
+         "y": 722
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 669,
+         "y": 2070
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "TEST switch",
-       "val": "Hold to FAULT/INOP"
+       "val": "Hold to FAULT/INOP",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 340,
+         "y": 805
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 667,
+         "y": 2112
+        }
+       }
       },
       {
        "k": "V",
@@ -350,7 +483,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "TEST switch",
-       "val": "Hold to OVHT/FIRE"
+       "val": "Hold to OVHT/FIRE",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 340,
+         "y": 805
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 667,
+         "y": 2112
+        }
+       }
       },
       {
        "k": "V",
@@ -376,7 +521,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Master FIRE WARN light",
-       "val": "Push"
+       "val": "Push",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1452,
+         "y": 72
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1124,
+         "y": 1172
+        }
+       }
       },
       {
        "k": "V",
@@ -402,13 +559,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "EXTINGUISHER TEST switch",
-       "val": "Check"
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 795,
+         "y": 760
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 866,
+         "y": 2087
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "TEST Switch",
-       "val": "Position to 1 and hold"
+       "val": "Position to 1 and hold",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 795,
+         "y": 760
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 866,
+         "y": 2087
+        }
+       }
       },
       {
        "k": "V",
@@ -419,7 +600,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "TEST Switch",
-       "val": "Release"
+       "val": "Release",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 795,
+         "y": 760
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 866,
+         "y": 2087
+        }
+       }
       },
       {
        "k": "V",
@@ -456,7 +649,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "APU switch (as needed)",
-       "val": "START"
+       "val": "START",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 530,
+         "y": 2095
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 702,
+         "y": 1005
+        }
+       }
       },
       {
        "k": "N",
@@ -508,7 +713,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "APU GENERATOR bus switches",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 460,
+         "y": 1815
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 662,
+         "y": 900
+        }
+       }
       },
       {
        "k": "V",
@@ -575,7 +792,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Wheel well fire warning system",
-       "val": "Test"
+       "val": "Test",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 340,
+         "y": 805
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 667,
+         "y": 2112
+        }
+       }
       },
       {
        "k": "N",
@@ -586,7 +815,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Test switch",
-       "val": "Hold to OVHT/FIRE"
+       "val": "Hold to OVHT/FIRE",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 340,
+         "y": 805
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 667,
+         "y": 2112
+        }
+       }
       },
       {
        "k": "V",
@@ -597,7 +838,20 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Fire warning BELL CUTOUT switch",
-       "val": "Push"
+       "val": "Push",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 570,
+         "y": 715
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 2062,
+         "check": "Кнопка BELL CUTOUT на NG-макете частично закрыта рукоятками; метка поставлена у надписи BELL CUTOUT. ⚠ проверить"
+        }
+       }
       },
       {
        "k": "V",
