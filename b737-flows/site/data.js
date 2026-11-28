@@ -7771,11 +7771,2363 @@ window.OMB = {
      ]
     }
    ]
+  },
+  {
+   "id": "pcap",
+   "title": "Preflight Procedure – Captain",
+   "section": "2.2.14",
+   "pages": {
+    "ch": "49–55",
+    "pdf": "117–123"
+   },
+   "trigger": [
+    "Captain Call “PREFLIGHT Procedure.”"
+   ],
+   "intro": [
+    "The captain normally does this procedure. The first officer may do this procedure if needed.",
+    "Captain will advise First Officer for light test and both pilots will observe the lights in a scan flow.",
+    "After light test completed or during Scan Flow of Preflight Procedure, F/O will perform GPWS test. SP.15, Transponder Test SP.11.1 and weather radar test SP.11.1",
+    "The light test is required before first leg of the flight duty. The fire warning lights shall not be checked during this test. Individual test switches or push to test features shall be used to check the lights which do not illuminate during the light test. Scan flow shall be used to verify that all other lights are flashing or illuminated. And also all system annunciator panel lights shall be verified to illuminate."
+   ],
+   "who": "Captain (First Officer if needed)",
+   "callouts": [
+    {
+     "who": "C",
+     "text": "PREFLIGHT Procedure."
+    }
+   ],
+   "rows": [
+    {
+     "who": "C",
+     "panel": "Lights",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "49",
+      "pdf": "117"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "The instrument crosscheck shall be performed before each sector following IRS alignment."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Lights",
+       "val": "TEST",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 795,
+         "y": 225
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 578,
+         "y": 1318
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Master LIGHTS TEST and DIM switch",
+       "val": "TEST",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 795,
+         "y": 225
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 578,
+         "y": 1318
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "The fire warning lights are not checked during this test. Use individual test switches or push to test features to check lights which do not illuminate during the light test. Use scan flow to verify that all other lights are flashing or illuminated. Verify that all system annunciator panel lights are illuminated."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Master LIGHTS TEST and DIM switch",
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 795,
+         "y": 225
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 578,
+         "y": 1318
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "EFIS control panel",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "49–50",
+      "pdf": "117–118"
+     },
+     "tag": "NG",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "(NG) EFIS control panel",
+       "val": "Set",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "MINIMUMS reference selector",
+       "val": "RADIO or BARO",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "MINIMUMS selector",
+       "val": "Set Engine Failure Flaps Retraction Altitude",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "FLIGHT PATH VECTOR switch",
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "METERS switch",
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "BAROMETRIC reference selector",
+       "val": "IN or HPA",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "BAROMETRIC selector",
+       "val": "Set local altimeter setting",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "VOR/ADF switches",
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Mode selector",
+       "val": "MAP",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "CENTRE switch",
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Range selector",
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "TRAFFIC switch",
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "WEATHER RADAR",
+       "val": "Off",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the weather radar indications are not shown on the MAP."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Map switches",
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "HSI Switch",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "50",
+      "pdf": "118"
+     },
+     "tag": "T:3721",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "(UP-B3721) HSI Switch",
+       "val": "NAV or as needed"
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "NAV MODE selector",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "50",
+      "pdf": "118"
+     },
+     "tag": "CL",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "(CL) NAV MODE selector",
+       "val": "AUTO",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 640,
+         "y": 75,
+         "check": "Метка на селекторе NAV (FMC / ANS-L / ANS-R) на glareshield стороны Captain. ⚠ проверить"
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Select FMC, ANS-L or ANS-R as needed for navigation system to be used for departure."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Mode control panel",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "50",
+      "pdf": "118"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Mode control panel",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "COURSE(S)",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "FLIGHT DIRECTOR switch(-es)",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Move the switch for the pilot flying to ON first."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "If F/O push move the switch F/D at Captain Side, it can count as good judgement."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Bank angle selector",
+       "val": "25 or as needed",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Autopilot DISENGAGE bar",
+       "val": "UP",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Oxygen (crew mask)",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "50–52",
+      "pdf": "118–120"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "H",
+       "tag": "CL",
+       "text": "CL"
+      },
+      {
+       "k": "A",
+       "tag": "CL",
+       "item": "Oxygen",
+       "val": "Test and set"
+      },
+      {
+       "k": "A",
+       "tag": "CL",
+       "item": "Oxygen mask",
+       "val": "Stowed and doors closed"
+      },
+      {
+       "k": "H",
+       "tag": "CL",
+       "text": "UP-B3721, UP-B3722, UP-B3723, UP-B3724, UP-B3729"
+      },
+      {
+       "k": "A",
+       "tag": "CL",
+       "item": "RESET/TEST switch",
+       "val": "Slide down and hold"
+      },
+      {
+       "k": "V",
+       "tag": "CL",
+       "text": "Verify that the yellow cross shows momentarily in the flow indicator."
+      },
+      {
+       "k": "A",
+       "tag": "CL",
+       "item": "RESET/TEST switch",
+       "val": "Release"
+      },
+      {
+       "k": "A",
+       "tag": "CL",
+       "item": "Normal/100% selector",
+       "val": "100%"
+      },
+      {
+       "k": "A",
+       "tag": "CL",
+       "item": "EMERGENCY/TEST selector",
+       "val": "Normal (non-emergency)"
+      },
+      {
+       "k": "H",
+       "tag": "NG",
+       "text": "NG"
+      },
+      {
+       "k": "H",
+       "tag": "T:3725",
+       "text": "UP-B3725"
+      },
+      {
+       "k": "A",
+       "tag": "T:3725",
+       "item": "Oxygen pressure drop",
+       "val": "Test"
+      },
+      {
+       "k": "X",
+       "tag": "T:3725",
+       "text": "Note the crew oxygen pressure."
+      },
+      {
+       "k": "A",
+       "tag": "T:3725",
+       "item": "Oxygen mask",
+       "val": "Stowed and doors closed"
+      },
+      {
+       "k": "A",
+       "tag": "T:3725",
+       "item": "RESET/TEST switch",
+       "val": "Push and hold"
+      },
+      {
+       "k": "V",
+       "tag": "T:3725",
+       "text": "Verify that the yellow cross shows momentarily in the flow indicator."
+      },
+      {
+       "k": "A",
+       "tag": "T:3725",
+       "item": "EMERGENCY/Test selector",
+       "val": "Push and hold"
+      },
+      {
+       "k": "X",
+       "tag": "T:3725",
+       "text": "Continue to hold the RESET/TEST switch down and push the EMERGENCY/Test selector for 5 seconds. Verify that the yellow cross shows continuously in the flow indicator."
+      },
+      {
+       "k": "V",
+       "tag": "T:3725",
+       "text": "Verify that the crew oxygen pressure does not decrease more than 100 psig."
+      },
+      {
+       "k": "V",
+       "tag": "T:3725",
+       "text": "If the oxygen cylinder valve is not in the full open position, pressure can: decrease rapidly, or decrease more than 100 psig, or increase slowly back to normal."
+      },
+      {
+       "k": "X",
+       "tag": "T:3725",
+       "text": "Release the RESET/TEST switch and the EMERGENCY/Test selector. Verify that the yellow cross does not show in the flow indicator."
+      },
+      {
+       "k": "A",
+       "tag": "T:3725",
+       "item": "Normal/100% switch",
+       "val": "100%"
+      },
+      {
+       "k": "A",
+       "tag": "T:3725",
+       "item": "Crew oxygen pressure",
+       "val": "Check"
+      },
+      {
+       "k": "V",
+       "tag": "T:3725",
+       "text": "Verify that the pressure is sufficient for dispatch."
+      },
+      {
+       "k": "H",
+       "tag": "T:3730,3731,3732,3741",
+       "text": "UP-B3730, UP-B3731, UP-B3732, UP-B3741"
+      },
+      {
+       "k": "A",
+       "tag": "T:3730,3731,3732,3741",
+       "item": "Oxygen pressure drop",
+       "val": "TEST"
+      },
+      {
+       "k": "X",
+       "tag": "T:3730,3731,3732,3741",
+       "text": "Note the crew oxygen pressure."
+      },
+      {
+       "k": "A",
+       "tag": "T:3730,3731,3732,3741",
+       "item": "Oxygen mask",
+       "val": "Stowed and doors closed"
+      },
+      {
+       "k": "A",
+       "tag": "T:3730,3731,3732,3741",
+       "item": "TEST/RESET switch",
+       "val": "Push and hold"
+      },
+      {
+       "k": "V",
+       "tag": "T:3730,3731,3732,3741",
+       "text": "Verify that the yellow cross shows momentarily in the flow indicator."
+      },
+      {
+       "k": "A",
+       "tag": "T:3730,3731,3732,3741",
+       "item": "EMERGENCY/Test selector",
+       "val": "Push and hold"
+      },
+      {
+       "k": "X",
+       "tag": "T:3730,3731,3732,3741",
+       "text": "Continue to hold the TEST/RESET switch down and push the EMERGENCY/Test selector for 5 seconds. Verify that the yellow cross shows continuously in the flow indicator."
+      },
+      {
+       "k": "V",
+       "tag": "T:3730,3731,3732,3741",
+       "text": "Verify that the crew oxygen pressure does not decrease more than 100 psig."
+      },
+      {
+       "k": "V",
+       "tag": "T:3730,3731,3732,3741",
+       "text": "If the oxygen cylinder valve is not in the full open position, pressure can: decrease rapidly, or decrease more than 100 psig, or increase slowly back to normal."
+      },
+      {
+       "k": "X",
+       "tag": "T:3730,3731,3732,3741",
+       "text": "Release the TEST/RESET switch and the EMERGENCY/Test selector. Verify that the yellow cross does not show in the flow indicator."
+      },
+      {
+       "k": "A",
+       "tag": "T:3730,3731,3732,3741",
+       "item": "Normal/100% switch",
+       "val": "100%"
+      },
+      {
+       "k": "A",
+       "tag": "T:3730,3731,3732,3741",
+       "item": "Crew oxygen pressure",
+       "val": "Check"
+      },
+      {
+       "k": "V",
+       "tag": "T:3730,3731,3732,3741",
+       "text": "Verify that the pressure is sufficient for dispatch."
+      },
+      {
+       "k": "H",
+       "tag": "T:3733,3734,3735,3736",
+       "text": "UP-B3733, UP-B3734, UP-B3735, UP-B3736"
+      },
+      {
+       "k": "A",
+       "tag": "T:3733,3734,3735,3736",
+       "item": "Oxygen pressure drop",
+       "val": "TEST"
+      },
+      {
+       "k": "X",
+       "tag": "T:3733,3734,3735,3736",
+       "text": "Note the crew oxygen pressure."
+      },
+      {
+       "k": "A",
+       "tag": "T:3733,3734,3735,3736",
+       "item": "Oxygen mask",
+       "val": "Stowed and doors closed"
+      },
+      {
+       "k": "A",
+       "tag": "T:3733,3734,3735,3736",
+       "item": "TEST/RESET switch",
+       "val": "Push and hold"
+      },
+      {
+       "k": "V",
+       "tag": "T:3733,3734,3735,3736",
+       "text": "Verify that the yellow cross shows momentarily in the flow indicator."
+      },
+      {
+       "k": "A",
+       "tag": "T:3733,3734,3735,3736",
+       "item": "Regulator selector",
+       "val": "Rotate to EMER"
+      },
+      {
+       "k": "X",
+       "tag": "T:3733,3734,3735,3736",
+       "text": "Continue to hold the TEST/RESET switch down with the regulator selector in the EMER position for 5 seconds. Verify that the yellow cross shows continuously in the flow indicator."
+      },
+      {
+       "k": "V",
+       "tag": "T:3733,3734,3735,3736",
+       "text": "Verify that the crew oxygen pressure does not decrease more than 100 psig."
+      },
+      {
+       "k": "V",
+       "tag": "T:3733,3734,3735,3736",
+       "text": "If the oxygen cylinder valve is not in the full open position, pressure can: decrease rapidly, or decrease more than 100 psig, or increase slowly back to normal."
+      },
+      {
+       "k": "X",
+       "tag": "T:3733,3734,3735,3736",
+       "text": "Release the TEST/RESET switch and rotate the regulator selector to 100%. Verify that the yellow cross does not show in the flow indicator."
+      },
+      {
+       "k": "A",
+       "tag": "T:3733,3734,3735,3736",
+       "item": "Crew oxygen pressure",
+       "val": "Check"
+      },
+      {
+       "k": "V",
+       "tag": "T:3733,3734,3735,3736",
+       "text": "Verify that the pressure is sufficient for dispatch."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Marker beacon",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "52",
+      "pdf": "120"
+     },
+     "tag": "CL",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "T:3721",
+       "item": "(UP-B3721) Marker beacon lights",
+       "val": "Test",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 75,
+         "y": 380
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "T:3722,3723,3724,3729",
+       "item": "(UP-B3722, UP-B3723, UP-B3724, UP-B3729) Marker beacon switch",
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 75,
+         "y": 380
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Clock",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "52",
+      "pdf": "120"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Clock",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 85,
+         "y": 500
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 165,
+         "y": 1420
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "NG",
+       "item": "(NG) TIME/DATE pushbutton",
+       "val": "UTC time",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 85,
+         "y": 500
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 165,
+         "y": 1420
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify the date and time are correct."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "NOSE WHEEL STEERING switch",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "52",
+      "pdf": "120"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "NOSE WHEEL STEERING switch",
+       "val": "GUARD closed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 155,
+         "y": 1475
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Display select panel",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "52",
+      "pdf": "120"
+     },
+     "tag": "NG",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "(NG) Display select panel",
+       "val": "Set",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 360,
+         "y": 1310
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "MAIN PANEL DISPLAY UNITS selector",
+       "val": "NORM",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 360,
+         "y": 1310
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "LOWER DISPLAY UNIT selector",
+       "val": "NORM",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 360,
+         "y": 1310
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "TAKEOFF CONFIG / CABIN ALTITUDE lights",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "52",
+      "pdf": "120"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "TAKEOFF CONFIG light (if installed and operative)",
+       "val": "Verify extinguished",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 437,
+         "y": 1355
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "CABIN ALTITUDE light (if installed and operative)",
+       "val": "Verify extinguished",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 437,
+         "y": 1355
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "CDU",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "52",
+      "pdf": "120"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Do the Initial Data and Navigation Data steps from the CDU Preflight Procedure and verify that the IRS alignment completed before checking the flight instruments."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Flight instruments",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "52–53",
+      "pdf": "120–121"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Flight instruments",
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 330,
+         "y": 330
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 300,
+         "y": 1420
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "CL",
+       "item": "(CL) Airspeed cursor control",
+       "val": "Push.",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 330,
+         "y": 330
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 300,
+         "y": 1420
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the flight instrument indications are correct."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that only these flags are shown: TCAS OFF (as installed)"
+      },
+      {
+       "k": "V",
+       "tag": "NG",
+       "text": "(NG) NO VSPD until V–speeds are selected"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "expected RDMI flags"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the flight mode annunciations are correct:"
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Autothrottle mode and AFDS status are blank until the MCP is set in the Before Start procedure."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "autothrottle mode is blank"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "pitch mode is blank"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "roll mode is blank"
+      },
+      {
+       "k": "V",
+       "tag": "NG+T:3722,3723,3724,3729",
+       "text": "(NG and UP-B3722, UP-B3723, UP-B3724, UP-B3729) AFDS status is FD"
+      },
+      {
+       "k": "V",
+       "tag": "T:3721",
+       "text": "(UP-B3721) A/P status is A/P OFF"
+      },
+      {
+       "k": "X",
+       "tag": "NG",
+       "text": "(NG) Select the map mode"
+      },
+      {
+       "k": "X",
+       "tag": "CL",
+       "text": "(CL) Set the altimeter."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Disengage light TEST switch",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "53",
+      "pdf": "121"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Disengage light TEST switch",
+       "val": "Hold to 1",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 608,
+         "y": 250
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 546,
+         "y": 1312
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the A/P light is illuminated steady amber."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the A/T light is illuminated steady amber."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the FMC light is illuminated steady amber."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Disengage light TEST switch",
+       "val": "Hold to 2",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 608,
+         "y": 250
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 546,
+         "y": 1312
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the A/P light is illuminated steady red."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the A/T light is illuminated steady red."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the FMC light is illuminated steady amber."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "STAB OUT OF TRIM light",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "53",
+      "pdf": "121"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "STAB OUT OF TRIM light",
+       "val": "Verify extinguished",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 818,
+         "y": 440
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 573,
+         "y": 1345
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Display select switches (Classic tails)",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "53",
+      "pdf": "121"
+     },
+     "tag": "T:3722,3723,3724,3729",
+     "lines": [
+      {
+       "k": "H",
+       "tag": "T:3722,3723",
+       "text": "UP-B3722, UP-B3723"
+      },
+      {
+       "k": "A",
+       "tag": "T:3722,3723",
+       "item": "Weather radar display select switch",
+       "val": "Off"
+      },
+      {
+       "k": "H",
+       "tag": "T:3722,3723,3724",
+       "text": "UP-B3722, UP-B3723, UP-B3724"
+      },
+      {
+       "k": "A",
+       "tag": "T:3722,3723,3724",
+       "item": "Terrain display select switch",
+       "val": "As needed"
+      },
+      {
+       "k": "H",
+       "tag": "T:3729",
+       "text": "UP-B3729"
+      },
+      {
+       "k": "A",
+       "tag": "T:3729",
+       "item": "Weather radar /Terrain display select switch",
+       "val": "Off/As needed"
+      },
+      {
+       "k": "H",
+       "tag": "T:3722,3723",
+       "text": "UP-B3722, UP-B3723"
+      },
+      {
+       "k": "A",
+       "tag": "T:3722,3723",
+       "item": "Terrain override display select switch",
+       "val": "Lights extinguished"
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Standby instruments",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "53",
+      "pdf": "121"
+     },
+     "tag": "CL+T:3725",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "(CL and UP-B3725) Standby instruments",
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 700,
+         "y": 360
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Standby altimeter",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 700,
+         "y": 360
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the flight instrument indications are correct."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that no flags are shown."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Standby horizon",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 700,
+         "y": 360
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Gyro caging control",
+       "val": "Pull, then release",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 700,
+         "y": 360
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Approach mode selector",
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 700,
+         "y": 360
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the flight instrument indications are correct."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that no flags are shown."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Integrated standby flight display",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "53",
+      "pdf": "121"
+     },
+     "tag": "X:3725",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "NG",
+       "item": "(NG except UP-B3725) Integrated standby flight display",
+       "val": "Set",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 668,
+         "y": 1340
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "NG",
+       "text": "Verify that the approach mode display is blank."
+      },
+      {
+       "k": "X",
+       "tag": "NG",
+       "text": "Set the altimeter."
+      },
+      {
+       "k": "V",
+       "tag": "NG",
+       "text": "Verify that the flight instrument indications are correct."
+      },
+      {
+       "k": "V",
+       "tag": "NG",
+       "text": "Verify that no flags or messages are shown."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Standby RMI",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "53",
+      "pdf": "121"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Standby RMI",
+       "val": "Set"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Select either VOR or ADF."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify only expected flags are shown."
+      },
+      {
+       "k": "Q",
+       "tag": "",
+       "text": "В документе пункт «Standby RMI» стоит сразу после блока «(NG except UP-B3725) Integrated standby flight display», без пометки CL/NG. Показан для обоих типов."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "STAB OUT OF TRIM light",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "54",
+      "pdf": "122"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "STAB OUT OF TRIM light",
+       "val": "Verify extinguished",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 818,
+         "y": 440
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 573,
+         "y": 1345
+        }
+       }
+      },
+      {
+       "k": "Q",
+       "tag": "",
+       "text": "«STAB OUT OF TRIM light …… Verify extinguished» в документе повторяется дважды: на стр. 53 и стр. 54. Перенесено как в документе."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "SPEEDBRAKE lever",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "54",
+      "pdf": "122"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "SPEEDBRAKE lever",
+       "val": "DOWN detent",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 330,
+         "y": 130
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 657,
+         "y": 1782
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the SPEED BRAKE DO NOT ARM light is extinguished."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the SPEED BRAKE ARMED light is extinguished."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Thrust levers",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "54",
+      "pdf": "122"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Reverse thrust levers",
+       "val": "Down",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 545,
+         "y": 370
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 1910
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Forward thrust levers",
+       "val": "Closed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 545,
+         "y": 370
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 1910
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "FLAP lever",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "54",
+      "pdf": "122"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "FLAP lever",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 765,
+         "y": 270
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 857,
+         "y": 1875
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Set the flap lever to agree with the flap position."
+      },
+      {
+       "k": "V",
+       "tag": "T:3729,3730,3731,3732,3741",
+       "text": "(UP-B3729, UP-B3730, UP-B3731, UP-B3732, UP-B3741) Verify that the FLAP LOAD RELIEF light is extinguished."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "STABILIZER TRIM cutout switches",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "54",
+      "pdf": "122"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "STABILIZER TRIM cutout switches",
+       "val": "NORMAL",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 1110,
+         "y": 640
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 1017,
+         "y": 2016
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Engine Fuel Spar Valve Actuator check",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "54",
+      "pdf": "122"
+     },
+     "tag": "NG",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "For NG only: Operational check of the Engine Fuel Spar Valve Actuator."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "1 ENGINE START LEVERS",
+       "val": "IDLE",
+       "loc": {
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 2056,
+         "check": "Метка у рычагов ENGINE START под РУД на NG-макете. ⚠ проверить"
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify the 1 SPAR VALVE CLOSED light indication illuminates bright and then extinguishes."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "1 ENGINE START LEVERS",
+       "val": "CUTOFF",
+       "loc": {
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 2056
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify the 1 SPAR VALVE CLOSED light indication illuminates bright and then dim."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "If the test fails (light is not coincide with instructions), notify maintenance."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "2 ENGINE START LEVERS",
+       "val": "IDLE",
+       "loc": {
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 2056
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify the 2 SPAR VALVE CLOSED light indication illuminates bright and then extinguishes."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "2 ENGINE START LEVERS",
+       "val": "CUTOFF",
+       "loc": {
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 2056
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify the 2 SPAR VALVE CLOSED light indication illuminates bright and then dim."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "If the test fails (light is not coincide with instructions), notify maintenance."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Engine start levers",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "54",
+      "pdf": "122"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Engine start levers",
+       "val": "CUTOFF",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 545,
+         "y": 520,
+         "check": "На Classic-макете рычаги ENGINE START не подписаны; метка у рычагов под РУД. ⚠ проверить"
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 2056
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Parking brake",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "54",
+      "pdf": "122"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Parking brake",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 385,
+         "y": 610
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 683,
+         "y": 2042
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the parking brake warning light is illuminated."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Do not assume that the parking brake will prevent airplane movement. Accumulator pressure can be insufficient."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "VHF communications radios",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "54",
+      "pdf": "122"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "VHF communications radios",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 230,
+         "y": 880
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 632,
+         "y": 2142
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Radio tuning panel",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "54",
+      "pdf": "122"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Radio tuning panel",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 230,
+         "y": 880
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 632,
+         "y": 2142
+        }
+       }
+      },
+      {
+       "k": "W",
+       "tag": "",
+       "text": "Do not key the HF radio while the airplane is being fueled. Injury to personnel or fire can occur."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the OFF light is extinguished."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "VHF NAVIGATION radios",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "54",
+      "pdf": "122"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "VHF NAVIGATION radios frequency set for departure",
+       "val": "Verify AUTO or as needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 210,
+         "y": 1015
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 632,
+         "y": 2202
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "EFIS control panel",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "54–55",
+      "pdf": "122–123"
+     },
+     "tag": "NG",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "(NG) EFIS control panel",
+       "val": "Set",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Decision height selector",
+       "val": "“-20” or as needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Mode selector",
+       "val": "MAP",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Range selector",
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "TRAFFIC switch (as installed)",
+       "val": "TFC",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "Q",
+       "tag": "",
+       "text": "В процедуре Captain «(NG) EFIS control panel …… Set» встречается дважды (стр. 49–50 и стр. 54–55) с разными значениями. Перенесено как в документе."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Audio control panel",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "55",
+      "pdf": "123"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Audio control panel",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 165,
+         "y": 1440
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 630,
+         "y": 2270
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Rudder and Aileron trim",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "55",
+      "pdf": "123"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "W",
+       "tag": "",
+       "text": "Both pilots awareness must be involved in the following check. Once started, never interrupt the check, failure to return trims to zero can result in airplane loss of control."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Rudder and Aileron trim",
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 510,
+         "y": 1680
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2465
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Set system B electric HYDRAULIC PUMP switch",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 510,
+         "y": 1680,
+         "check": "Пункт «system B electric HYDRAULIC PUMP switch» на overhead; метка оставлена на панели триммеров, на overhead не продублирована."
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2465,
+         "check": "Пункт «system B electric HYDRAULIC PUMP switch» на overhead; метка оставлена на панели триммеров, на overhead не продублирована."
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Check each trim for freedom of movement then set rudder and aileron trim at zero."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Set system B electric HYDRAULIC PUMP switch",
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 510,
+         "y": 1680
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2465
+        }
+       }
+      },
+      {
+       "k": "Q",
+       "tag": "",
+       "text": "Пункт «Rudder and Aileron trim» показан как совместный, т.к. в WARNING сказано «Both pilots awareness must be involved»; исполнителя действия OM-B прямо не называет."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Seat",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "55",
+      "pdf": "123"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "W",
+       "tag": "",
+       "text": "Do not put objects between the seat and the aisle stand. Injury can occur when the seat is adjusted."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Seat",
+       "val": "Adjust"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Use the handhold above the forward window for assistance when pulling the seat forward. Do not use the glareshield as damage can occur."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Adjust the seat for optimum eye reference."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify a positive horizontal (fore and aft) seat lock."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Rudder pedals",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "55",
+      "pdf": "123"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Rudder pedals",
+       "val": "Adjust"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Adjust the rudder pedals to allow full rudder pedal and brake pedal movement."
+      },
+      {
+       "k": "C",
+       "tag": "",
+       "text": "Turn the rudder pedal adjust crank no faster than approximately one turn per second to avoid damage. Do not apply force to the pedals during adjustment."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Seat belt and shoulder harness",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "55",
+      "pdf": "123"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Seat belt and shoulder harness",
+       "val": "Adjust"
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "PREFLIGHT checklist",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "55",
+      "pdf": "123"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "After F/O Call “PREFLIGHT PROCEDURE COMPLETED”"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Captain Call “PREFLIGHT CHECKLIST”"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "PREFLIGHT PROCEDURE COMPLETED"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "PREFLIGHT CHECKLIST"
+      }
+     ]
+    }
+   ]
   }
  ],
  "checklists": {
   "pfo": {
    "phase": "pfo",
+   "name": "PREFLIGHT",
+   "CL": {
+    "src": "Appendix 1 Normal Checklist B737-300/500 (Classic)",
+    "pdf": "417",
+    "page": "Page 1",
+    "items": [
+     {
+      "item": "OXYGEN",
+      "val": "TESTED, 100%",
+      "who": "L R"
+     },
+     {
+      "item": "INSTR. TRANSFER SWITCHES",
+      "val": "NORMAL",
+      "who": "R"
+     },
+     {
+      "item": "WINDOW HEAT",
+      "val": "ON",
+      "who": "R"
+     },
+     {
+      "item": "PRESSURIZATION MODE SEL",
+      "val": "AUTO",
+      "who": "R"
+     },
+     {
+      "item": "FLT INSTR",
+      "val": "HEADING__, ALT__",
+      "who": "L R"
+     },
+     {
+      "item": "PARKING BRAKE",
+      "val": "SET",
+      "who": "L"
+     },
+     {
+      "item": "ENGINE START LEVERS",
+      "val": "CUTOFF",
+      "who": "L"
+     },
+     {
+      "item": "PITOT COVERS",
+      "val": "REMOWED ON BOARD",
+      "who": "L"
+     },
+     {
+      "item": "GEAR PINS",
+      "val": "3 CHECKED",
+      "who": "L"
+     }
+    ]
+   },
+   "NG": {
+    "src": "Appendix 3 Normal Checklist B737-700/800 (NG)",
+    "pdf": "422",
+    "page": "Page 6",
+    "items": [
+     {
+      "item": "OXYGEN",
+      "val": "TESTED, 100%",
+      "who": "L R"
+     },
+     {
+      "item": "NAVIGATION TRANSFER & DISPLAY SWITCHES",
+      "val": "NORMAL, AUTO",
+      "who": "R"
+     },
+     {
+      "item": "WINDOW HEAT",
+      "val": "ON",
+      "who": "R"
+     },
+     {
+      "item": "PRES-TION MODE SELECTOR",
+      "val": "AUTO",
+      "who": "R"
+     },
+     {
+      "item": "FLT INSTR",
+      "val": "HEADING_, ALTIMETER_",
+      "who": "L R"
+     },
+     {
+      "item": "PARKING BRAKE",
+      "val": "SET",
+      "who": "L"
+     },
+     {
+      "item": "FUEL SPAR VALVES",
+      "val": "CHECKED",
+      "who": "L"
+     },
+     {
+      "item": "ENGINE START LEVERS",
+      "val": "CUTOFF",
+      "who": "L"
+     },
+     {
+      "item": "PITOT COVERS",
+      "val": "REMOWED ON BOARD",
+      "who": "L"
+     },
+     {
+      "item": "GEAR PINS",
+      "val": "3 CHECKED",
+      "who": "L"
+     }
+    ]
+   }
+  },
+  "pcap": {
+   "phase": "pcap",
    "name": "PREFLIGHT",
    "CL": {
     "src": "Appendix 1 Normal Checklist B737-300/500 (Classic)",

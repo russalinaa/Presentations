@@ -38,6 +38,42 @@ NGMAP = {'ovh:bat': (632, 625), 'ovh:stby': (665, 695), 'ovh:altflaps': (548, 52
 # Each entry: (CL image, x, y, NG x, y) in pixels of site/img/*.jpg; NG image is ng-all.jpg (zones by y).
 # None = control not on mockup.  '?' suffix in note = position to be verified.
 LOC = {
+  'pcap': [
+    ('ip', 795, 225, 578, 1318),       # 0 Lights TEST
+    ('ip', None, None, 530, 1175),     # 1 (NG) EFIS control panel (Captain side)
+    None,                              # 2 (UP-B3721) HSI Switch
+    ('ip', 640, 75, None, None),       # 3 (CL) NAV MODE selector (NAV source on glareshield, Captain side)
+    ('ip', 1000, 60, 780, 1175),       # 4 Mode control panel
+    None,                              # 5 Oxygen
+    ('ip', 75, 380, None, None),       # 6 Marker beacon (Captain side)
+    ('ip', 85, 500, 165, 1420),        # 7 Clock (Captain side)
+    ('ip', None, None, 155, 1475),     # 8 NOSE WHEEL STEERING switch (not on CL mockup)
+    ('ip', None, None, 360, 1310),     # 9 (NG) Display select panel (Captain side)
+    ('ip', None, None, 437, 1355),     # 10 TAKEOFF CONFIG / CABIN ALTITUDE lights
+    [],                                # 11 CDU
+    ('ip', 330, 330, 300, 1420),       # 12 Flight instruments (Captain)
+    ('ip', 608, 250, 546, 1312),       # 13 Disengage light TEST switch (Captain side)
+    ('ip', 818, 440, 573, 1345),       # 14 STAB OUT OF TRIM light
+    None,                              # 15 display select switches (Classic tails)
+    ('ip', 700, 360, None, None),      # 16 Standby instruments (CL and UP-B3725)
+    ('ip', None, None, 668, 1340),     # 17 Integrated standby flight display
+    None,                              # 18 Standby RMI
+    ('ip', 818, 440, 573, 1345),       # 19 STAB OUT OF TRIM light (repeat)
+    ('aft', 330, 130, 657, 1782),      # 20 SPEEDBRAKE lever
+    ('aft', 545, 370, 760, 1910),      # 21 Thrust levers
+    ('aft', 765, 270, 857, 1875),      # 22 FLAP lever
+    ('aft', 1110, 640, 1017, 2016),    # 23 STABILIZER TRIM cutout switches
+    ('aft', None, None, 760, 2056),    # 24 (NG) spar valve check: start levers
+    ('aft', 545, 520, 760, 2056),      # 25 Engine start levers
+    ('aft', 385, 610, 683, 2042),      # 26 Parking brake
+    ('aft', 230, 880, 632, 2142),      # 27 VHF communications radios (Captain side)
+    ('aft', 230, 880, 632, 2142),      # 28 Radio tuning panel
+    ('aft', 210, 1015, 632, 2202),     # 29 VHF NAVIGATION radios
+    ('aft', None, None, 530, 1175),    # 30 (NG) EFIS control panel (repeat) – glareshield
+    ('aft', 165, 1440, 630, 2270),     # 31 Audio control panel
+    ('aft', 510, 1680, 765, 2465),     # 32 Rudder and Aileron trim (+ hyd pump on overhead, same mark)
+    None, None, None, [],              # 33-36 seat, pedals, harness, checklist
+  ],
   'pfo': [  # one tuple = whole row on one panel; (img, CLx, CLy, NGx, NGy); None coords = not on that mockup
     ('ovh', 100, 1022, 520, 520),      # 0 Flight control panel
     ('ovh', 160, 1428, None, None),    # 1 (CL) Instrument and NAV transfer switches
@@ -245,6 +281,13 @@ def parse(path):
     return phases, checklists
 
 
+LOC_CHECK['pcap'] = {
+  (24, 0, 'NG'): 'Метка у рычагов ENGINE START под РУД на NG-макете. ⚠ проверить',
+  (25, 0, 'CL'): 'На Classic-макете рычаги ENGINE START не подписаны; метка у рычагов под РУД. ⚠ проверить',
+  (3, 0, 'CL'): 'Метка на селекторе NAV (FMC / ANS-L / ANS-R) на glareshield стороны Captain. ⚠ проверить',
+  (32, 1, 'CL'): 'Пункт «system B electric HYDRAULIC PUMP switch» на overhead; метка оставлена на панели триммеров, на overhead не продублирована.',
+  (32, 1, 'NG'): 'Пункт «system B electric HYDRAULIC PUMP switch» на overhead; метка оставлена на панели триммеров, на overhead не продублирована.',
+}
 LOC_CHECK['pfo'] = {
   (36, 0, 'CL'): 'Метка стоит на индикаторах с надписью QTY на правой части приборной панели; что это именно HYDRAULIC QUANTITY, по макету не видно. ⚠ проверить',
   (39, 0, 'NG'): 'На NG-макете виден только сигнал ANTISKID INOP, самого выключателя ANTISKID нет. Метка у табло. ⚠ проверить',
