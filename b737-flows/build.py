@@ -38,6 +38,75 @@ NGMAP = {'ovh:bat': (632, 625), 'ovh:stby': (665, 695), 'ovh:altflaps': (548, 52
 # Each entry: (CL image, x, y, NG x, y) in pixels of site/img/*.jpg; NG image is ng-all.jpg (zones by y).
 # None = control not on mockup.  '?' suffix in note = position to be verified.
 LOC = {
+  'pfo': [  # one tuple = whole row on one panel; (img, CLx, CLy, NGx, NGy); None coords = not on that mockup
+    ('ovh', 100, 1022, 520, 520),      # 0 Flight control panel
+    ('ovh', 160, 1428, None, None),    # 1 (CL) Instrument and NAV transfer switches
+    ('ovh', None, None, 535, 672),     # 2 (NG) NAVIGATION panel
+    ('ovh', None, None, 535, 750),     # 3 (NG) DISPLAYS panel
+    ('ovh', 165, 1760, 540, 870),      # 4 Fuel panel
+    ('ovh', 430, 1170, 660, 640),      # 5 Electrical panel
+    ('aft', 557, 760, 760, 2095),      # 6 Overheat and fire protection panel
+    ('ovh', 530, 2095, 702, 1005),     # 7 APU switch
+    ('ovh', None, None, 766, 645),     # 8 Lavatory SMOKE light (not on CL mockup)
+    ('ovh', 655, 1372, 765, 692),      # 9 EQUIPMENT COOLING
+    ('ovh', 697, 1535, 770, 755),      # 10 EMERGENCY EXIT LIGHTS
+    ('ovh', 687, 1645, 771, 785),      # 11 Passenger signs
+    ('ovh', 690, 1955, 732, 952),      # 12 Windshield wiper
+    ('ovh', 900, 942, 865, 492),       # 13 WINDOW HEAT
+    ('ovh', 880, 1012, 855, 535),      # 14 PITOT STATIC / PROBE HEAT
+    ('ovh', 850, 1242, 850, 635),      # 15 WING ANTI-ICE
+    ('ovh', 976, 1252, 892, 635),      # 16 ENGINE ANTI-ICE
+    ('ovh', 912, 1440, 857, 715),      # 17 Hydraulic panel
+    ('ovh', 1206, 1007, 1000, 640),    # 18 Air Conditioning Pneumatics panel
+    ('ovh', 1210, 1845, 1000, 875),    # 19 Cabin pressurization panel
+    ('ovh', 250, 2065, 600, 1002),     # 20 Lighting panel (landing, turnoff, taxi)
+    ('ovh', 735, 2065, 797, 1005),     # 21 Ignition select switch
+    ('ovh', 635, 2080, 780, 985),      # 22 ENGINE START switches
+    ('ovh', 1120, 2065, 955, 1002),    # 23 Lighting panel (logo ... wheel well)
+    None,                              # 24 (UP-B3721) HSI Switch
+    None,                              # 25 NAV MODE selector
+    ('ip', 1000, 60, 780, 1175),       # 26 Mode control panel
+    ('ip', None, None, 995, 1175),     # 27 (NG) EFIS control panel (F/O side)
+    None,                              # 28 Oxygen (crew mask)
+    ('ip', 1972, 385, None, None),     # 29 (CL) Marker beacon lights
+    ('ip', 1907, 490, 1372, 1415),     # 30 Clock
+    ('ip', None, None, 1135, 1330),    # 31 (NG) Display select panel
+    ('ip', None, None, 992, 1351),     # 32 TAKEOFF CONFIG / CABIN ALTITUDE lights
+    [],                                # 33 CDU (no action line)
+    ('ip', 1460, 380, 1222, 1460),     # 34 Flight instruments
+    ('ip', 1457, 255, 1060, 1322),     # 35 Disengage light TEST switch
+    ('ip', 1057, 470, None, None),     # 36 (CL) HYDRAULIC QUANTITY indicators
+    ('ip', 1400, 730, 1080, 1595),     # 37 GROUND PROXIMITY panel
+    ('ip', 1262, 450, 910, 1430),      # 38 Landing gear panel
+    ('ip', 1182, 410, 805, 1346),      # 39 ANTISKID switch
+    ('ip', 1182, 525, 805, 1320),      # 40 AUTO BRAKE selector
+    ('ip', 935, 580, 720, 1337),       # 41 FUEL FLOW switch
+    ('ip', 1000, 270, None, None),     # 42 (CL) engine indication lights
+    ('ip', 935, 450, None, None),      # 43 (CL) Engine instrument primary panel
+    ('ip', 935, 450, 760, 1440),       # 44 Engine instruments
+    ('ip', None, None, 766, 1351),     # 45 (UP-B3741) MFD Cancel/Recall switch
+    ('aft', 545, 880, 747, 2155),      # 46 CARGO FIRE panel (NG and UP-B3724)
+    None,                              # 47 CDSCP (UP-B3722/23/29)
+    [],                                # 48 Hollingsead (no action line)
+    ('aft', 870, 1195, None, None),    # 49 EFIS control panel (UP-B3722/23/24/29)
+    ('aft', None, None, 900, 2155),    # 50 (NG) Radio tuning panel
+    ('aft', 850, 880, None, None),     # 51 (CL) VHF communications radios
+    ('aft', 850, 1015, 900, 2212),     # 52 VHF NAVIGATION radios
+    ('aft', 870, 1195, None, None),    # 53 (CL) EFIS control panel
+    ('aft', 850, 1405, 895, 2295),     # 54 Audio control panel
+    ('aft', 260, 1575, 765, 2375),     # 55 ADF radios
+    ('aft', 550, 1385, 632, 2440),     # 56 HF radios
+    ('ip', 1000, 665, 765, 2212),      # 57 WEATHER RADAR panel
+    ('aft', 550, 1250, 765, 2310),     # 58 Transponder panel
+    ('aft', 795, 1725, 855, 2510),     # 59 STABILIZER TRIM override switch
+    None, None, None,                  # 60-62 seat, rudder pedals, harness
+    [],                                # 63 PREFLIGHT checklist
+    ('aft', 550, 1250, 765, 2310),     # 64 Transponder Test
+    [('aft', 870, 1195, None, None), ('ip', 1000, 665, None, None), ('ip', 1000, 665, None, None),
+     ('ip', 1000, 665, 765, 2212), ('ip', 1000, 665, 765, 2212)],   # 65 Weather Radar Test
+    ('ip', 1000, 665, 765, 2212),      # 66 Weather Radar Test (2)
+    ('ip', 1400, 730, 1080, 1595),     # 67 GPWS Test
+  ],
   'refuel': [[], [], [], [], [('ovh', 395, 1157, 632, 625), ('ovh', 470, 1297, 665, 695)], None],
   'prelim': [
     [('ovh', 462, 585, 663, 290)],             # IRS mode selectors
@@ -176,6 +245,16 @@ def parse(path):
     return phases, checklists
 
 
+LOC_CHECK['pfo'] = {
+  (36, 0, 'CL'): 'Метка стоит на индикаторах с надписью QTY на правой части приборной панели; что это именно HYDRAULIC QUANTITY, по макету не видно. ⚠ проверить',
+  (39, 0, 'NG'): 'На NG-макете виден только сигнал ANTISKID INOP, самого выключателя ANTISKID нет. Метка у табло. ⚠ проверить',
+  (44, 1, 'NG'): 'Hydraulic quantity на NG показывается на нижнем дисплее (SYS); метка общая с Engine instruments. ⚠ проверить',
+  (27, 0, 'NG'): 'Метка на EFIS control panel стороны F/O (процедуру выполняет F/O; сторону OM-B не указывает).',
+  (34, 0, 'CL'): 'Метка на приборах стороны F/O (сторону OM-B не указывает).',
+  (34, 0, 'NG'): 'Метка на PFD стороны F/O (сторону OM-B не указывает).',
+}
+
+
 def attach_locs(phases):
     for ph in phases:
         L = LOC.get(ph['id'])
@@ -186,6 +265,8 @@ def attach_locs(phases):
             acts = [l for l in row['lines'] if l['k'] == 'A']
             if locs is None:
                 locs = [None] * len(acts)
+            elif isinstance(locs, tuple):   # one location for the whole row (all its actions are on one panel)
+                locs = [locs] * len(acts)
             assert len(acts) == len(locs), (ph['id'], ri, len(acts), len(locs))
             for ai, (a, lc) in enumerate(zip(acts, locs)):
                 if lc is None:

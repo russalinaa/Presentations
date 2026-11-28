@@ -2482,13 +2482,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Flight control panel",
-       "val": "Check"
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 100,
+         "y": 1022
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 520,
+         "y": 520
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "FLIGHT CONTROL switches",
-       "val": "Guards closed"
+       "val": "Guards closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 100,
+         "y": 1022
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 520,
+         "y": 520
+        }
+       }
       },
       {
        "k": "V",
@@ -2499,13 +2523,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Flight SPOILER switches",
-       "val": "Guards closed"
+       "val": "Guards closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 100,
+         "y": 1022
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 520,
+         "y": 520
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "YAW DAMPER switch",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 100,
+         "y": 1022
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 520,
+         "y": 520
+        }
+       }
       },
       {
        "k": "V",
@@ -2531,13 +2579,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "ALTERNATE FLAPS master switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 100,
+         "y": 1022
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 520,
+         "y": 520
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "ALTERNATE FLAPS position switch",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 100,
+         "y": 1022
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 520,
+         "y": 520
+        }
+       }
       },
       {
        "k": "V",
@@ -2580,7 +2652,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(CL) Instrument and NAV transfer switches",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 160,
+         "y": 1428
+        }
+       }
       },
       {
        "k": "H",
@@ -2591,7 +2670,14 @@ window.OMB = {
        "k": "A",
        "tag": "T:3721,3724,3729",
        "item": "VHF NAV transfer switch",
-       "val": "NORMAL"
+       "val": "NORMAL",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 160,
+         "y": 1428
+        }
+       }
       },
       {
        "k": "H",
@@ -2602,19 +2688,40 @@ window.OMB = {
        "k": "A",
        "tag": "T:3721",
        "item": "Compass transfer switch",
-       "val": "NORMAL"
+       "val": "NORMAL",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 160,
+         "y": 1428
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "IRS transfer switch",
-       "val": "NORMAL"
+       "val": "NORMAL",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 160,
+         "y": 1428
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "EFI transfer switch",
-       "val": "NORMAL"
+       "val": "NORMAL",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 160,
+         "y": 1428
+        }
+       }
       },
       {
        "k": "H",
@@ -2625,7 +2732,14 @@ window.OMB = {
        "k": "A",
        "tag": "T:3721",
        "item": "FMC source selector switch",
-       "val": "NORMAL"
+       "val": "NORMAL",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 160,
+         "y": 1428
+        }
+       }
       },
       {
        "k": "Q",
@@ -2649,25 +2763,53 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(NG) NAVIGATION panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 535,
+         "y": 672
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "VHF NAV transfer switch",
-       "val": "NORMAL"
+       "val": "NORMAL",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 535,
+         "y": 672
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "IRS transfer switch",
-       "val": "NORMAL"
+       "val": "NORMAL",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 535,
+         "y": 672
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "FMC transfer switch",
-       "val": "NORMAL"
+       "val": "NORMAL",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 535,
+         "y": 672
+        }
+       }
       }
      ]
     },
@@ -2686,19 +2828,40 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(NG) DISPLAYS panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 535,
+         "y": 750
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "SOURCE selector",
-       "val": "AUTO"
+       "val": "AUTO",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 535,
+         "y": 750
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "CONTROL PANEL select switch",
-       "val": "NORMAL"
+       "val": "NORMAL",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 535,
+         "y": 750
+        }
+       }
       }
      ]
     },
@@ -2721,7 +2884,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Fuel panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 165,
+         "y": 1760
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 540,
+         "y": 870
+        }
+       }
       },
       {
        "k": "V",
@@ -2742,7 +2917,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "CROSSFEED selector",
-       "val": "Closed"
+       "val": "Closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 165,
+         "y": 1760
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 540,
+         "y": 870
+        }
+       }
       },
       {
        "k": "V",
@@ -2753,7 +2940,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "FUEL PUMP witches",
-       "val": "OFF (or as needed for APU operation)"
+       "val": "OFF (or as needed for APU operation)",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 165,
+         "y": 1760
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 540,
+         "y": 870
+        }
+       }
       },
       {
        "k": "V",
@@ -2786,37 +2985,109 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Electrical panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 430,
+         "y": 1170
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 660,
+         "y": 640
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "BATTERY switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 430,
+         "y": 1170
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 660,
+         "y": 640
+        }
+       }
       },
       {
        "k": "A",
        "tag": "CL",
        "item": "(CL) GALLEY power switch",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 430,
+         "y": 1170
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 660,
+         "y": 640
+        }
+       }
       },
       {
        "k": "A",
        "tag": "NG",
        "item": "(NG) CAB/UTIL power switch",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 430,
+         "y": 1170
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 660,
+         "y": 640
+        }
+       }
       },
       {
        "k": "A",
        "tag": "NG",
        "item": "(NG) IFE/PASS SEAT power switch",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 430,
+         "y": 1170
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 660,
+         "y": 640
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "STANDBY POWER switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 430,
+         "y": 1170
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 660,
+         "y": 640
+        }
+       }
       },
       {
        "k": "V",
@@ -2842,7 +3113,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Generator drive DISCONNECT switches",
-       "val": "Guards closed"
+       "val": "Guards closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 430,
+         "y": 1170
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 660,
+         "y": 640
+        }
+       }
       },
       {
        "k": "V",
@@ -2863,7 +3146,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "BUS TRANSFER switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 430,
+         "y": 1170
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 660,
+         "y": 640
+        }
+       }
       },
       {
        "k": "V",
@@ -2910,7 +3205,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Overheat and fire protection panel",
-       "val": "Check"
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 557,
+         "y": 760
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 2095
+        }
+       }
       },
       {
        "k": "X",
@@ -2942,7 +3249,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "APU switch (as needed)",
-       "val": "START"
+       "val": "START",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 530,
+         "y": 2095
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 702,
+         "y": 1005
+        }
+       }
       },
       {
        "k": "X",
@@ -3006,7 +3325,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Lavatory SMOKE light",
-       "val": "Verify extinguished"
+       "val": "Verify extinguished",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 766,
+         "y": 645
+        }
+       }
       },
       {
        "k": "Q",
@@ -3034,7 +3360,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "EQUIPMENT COOLING switches",
-       "val": "NORM"
+       "val": "NORM",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 655,
+         "y": 1372
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 765,
+         "y": 692
+        }
+       }
       },
       {
        "k": "V",
@@ -3062,7 +3400,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "EMERGENCY EXIT LIGHTS switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 697,
+         "y": 1535
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 770,
+         "y": 755
+        }
+       }
       },
       {
        "k": "V",
@@ -3090,13 +3440,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Passenger signs",
-       "val": "NO SMOKING switch - ON"
+       "val": "NO SMOKING switch - ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 687,
+         "y": 1645
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 771,
+         "y": 785
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Passenger signs",
-       "val": "FASTEN BELTS switch – ON (during refuelling OFF)"
+       "val": "FASTEN BELTS switch – ON (during refuelling OFF)",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 687,
+         "y": 1645
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 771,
+         "y": 785
+        }
+       }
       }
      ]
     },
@@ -3123,13 +3497,37 @@ window.OMB = {
        "k": "A",
        "tag": "CL",
        "item": "(CL) Windshield WIPER selector",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 690,
+         "y": 1955
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 732,
+         "y": 952
+        }
+       }
       },
       {
        "k": "A",
        "tag": "NG",
        "item": "(NG) Windshield WIPER selectors",
-       "val": "PARK"
+       "val": "PARK",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 690,
+         "y": 1955
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 732,
+         "y": 952
+        }
+       }
       },
       {
        "k": "V",
@@ -3157,7 +3555,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "WINDOW HEAT switches",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 900,
+         "y": 942
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 865,
+         "y": 492
+        }
+       }
       },
       {
        "k": "X",
@@ -3195,13 +3605,37 @@ window.OMB = {
        "k": "A",
        "tag": "CL",
        "item": "(CL) PITOT STATIC switches",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 880,
+         "y": 1012
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 855,
+         "y": 535
+        }
+       }
       },
       {
        "k": "A",
        "tag": "NG",
        "item": "(NG) PROBE HEAT switches",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 880,
+         "y": 1012
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 855,
+         "y": 535
+        }
+       }
       },
       {
        "k": "V",
@@ -3229,7 +3663,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "WING ANTI-ICE switch",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 850,
+         "y": 1242
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 850,
+         "y": 635
+        }
+       }
       },
       {
        "k": "V",
@@ -3257,7 +3703,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "ENGINE ANTI-ICE switches",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 976,
+         "y": 1252
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 892,
+         "y": 635
+        }
+       }
       },
       {
        "k": "V",
@@ -3290,13 +3748,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Hydraulic panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 912,
+         "y": 1440
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 857,
+         "y": 715
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "ENGINE HYDRAULIC PUMPS switches",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 912,
+         "y": 1440
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 857,
+         "y": 715
+        }
+       }
       },
       {
        "k": "V",
@@ -3307,7 +3789,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "ELECTRIC HYDRAULIC PUMPS switches",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 912,
+         "y": 1440
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 857,
+         "y": 715
+        }
+       }
       },
       {
        "k": "V",
@@ -3340,7 +3834,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Air Conditioning Pneumatics panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1206,
+         "y": 1007
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 640
+        }
+       }
       },
       {
        "k": "H",
@@ -3351,13 +3857,37 @@ window.OMB = {
        "k": "A",
        "tag": "T:3730,3731,3732,3733,3734,3735,3736,3741",
        "item": "TRIM AIR switch",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1206,
+         "y": 1007
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 640
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "AIR TEMPERATURE source selector",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1206,
+         "y": 1007
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 640
+        }
+       }
       },
       {
        "k": "H",
@@ -3383,7 +3913,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Temperature selector",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1206,
+         "y": 1007
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 640
+        }
+       }
       },
       {
        "k": "V",
@@ -3399,7 +3941,19 @@ window.OMB = {
        "k": "A",
        "tag": "CL+T:3725",
        "item": "RECIRCULATION FAN switch",
-       "val": "AUTO"
+       "val": "AUTO",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1206,
+         "y": 1007
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 640
+        }
+       }
       },
       {
        "k": "H",
@@ -3410,43 +3964,127 @@ window.OMB = {
        "k": "A",
        "tag": "T:3730,3731,3732,3733,3734,3735,3736,3741",
        "item": "RECIRCULATION FAN switches",
-       "val": "AUTO"
+       "val": "AUTO",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1206,
+         "y": 1007
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 640
+        }
+       }
       },
       {
        "k": "A",
        "tag": "CL",
        "item": "(CL) Air conditioning PACK switches",
-       "val": "One switch AUTO or HIGH, one switch OFF"
+       "val": "One switch AUTO or HIGH, one switch OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1206,
+         "y": 1007
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 640
+        }
+       }
       },
       {
        "k": "A",
        "tag": "NG",
        "item": "(NG) Air conditioning PACK switches",
-       "val": "AUTO or HIGH"
+       "val": "AUTO or HIGH",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1206,
+         "y": 1007
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 640
+        }
+       }
       },
       {
        "k": "A",
        "tag": "CL",
        "item": "(CL) ISOLATION VALVE switch",
-       "val": "AUTO"
+       "val": "AUTO",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1206,
+         "y": 1007
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 640
+        }
+       }
       },
       {
        "k": "A",
        "tag": "NG",
        "item": "(NG) ISOLATION VALVE switch",
-       "val": "OPEN"
+       "val": "OPEN",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1206,
+         "y": 1007
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 640
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Engine BLEED air switches",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1206,
+         "y": 1007
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 640
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "APU BLEED air switch",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1206,
+         "y": 1007
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 640
+        }
+       }
       },
       {
        "k": "V",
@@ -3504,7 +4142,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Cabin pressurization panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 1845
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 875
+        }
+       }
       },
       {
        "k": "V",
@@ -3520,37 +4170,109 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "FLIGHT ALTITUDE indicator",
-       "val": "Cruise altitude"
+       "val": "Cruise altitude",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 1845
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 875
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "LANDING ALTITUDE indicator",
-       "val": "Destination field elevation"
+       "val": "Destination field elevation",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 1845
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 875
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "CABIN Rate selector (as installed)",
-       "val": "Index"
+       "val": "Index",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 1845
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 875
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "CABIN ALTITUDE (as installed) indicator",
-       "val": "200 feet below destination field elevation"
+       "val": "200 feet below destination field elevation",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 1845
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 875
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "FLT/GRD switch (as installed)",
-       "val": "GRD"
+       "val": "GRD",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 1845
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 875
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Pressurization mode selector",
-       "val": "AUTO"
+       "val": "AUTO",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 1845
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 875
+        }
+       }
       },
       {
        "k": "V",
@@ -3588,25 +4310,73 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Lighting panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 250,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 600,
+         "y": 1002
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "LANDING light switches",
-       "val": "RETRACT and OFF"
+       "val": "RETRACT and OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 250,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 600,
+         "y": 1002
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "RUNWAY TURNOFF light switches",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 250,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 600,
+         "y": 1002
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "TAXI light switch",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 250,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 600,
+         "y": 1002
+        }
+       }
       }
      ]
     },
@@ -3629,7 +4399,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Ignition select switch",
-       "val": "IGN L or R"
+       "val": "IGN L or R",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 735,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 797,
+         "y": 1005
+        }
+       }
       },
       {
        "k": "X",
@@ -3662,7 +4444,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "ENGINE START switches",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 635,
+         "y": 2080
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 780,
+         "y": 985
+        }
+       }
       }
      ]
     },
@@ -3685,43 +4479,127 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Lighting panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1120,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 955,
+         "y": 1002
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "LOGO light switch",
-       "val": "As needed (as installed)"
+       "val": "As needed (as installed)",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1120,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 955,
+         "y": 1002
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "STROBE light switch (as installed)",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1120,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 955,
+         "y": 1002
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "POSITION light switch (as installed)",
-       "val": "ON or STEADY"
+       "val": "ON or STEADY",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1120,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 955,
+         "y": 1002
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "ANTI-COLLISION light switch",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1120,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 955,
+         "y": 1002
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "WING illumination switch",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1120,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 955,
+         "y": 1002
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "WHEEL WELL light switch",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1120,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 955,
+         "y": 1002
+        }
+       }
       },
       {
        "k": "N",
@@ -3787,19 +4665,55 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Mode control panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "COURSE(S)",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "FLIGHT DIRECTOR switch(-es)",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "X",
@@ -3815,7 +4729,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "BANK ANGLE",
-       "val": "CHECK"
+       "val": "CHECK",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
       }
      ]
     },
@@ -3834,79 +4760,171 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(NG) EFIS control panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175,
+         "check": "Метка на EFIS control panel стороны F/O (процедуру выполняет F/O; сторону OM-B не указывает)."
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "MINIMUMS reference selector",
-       "val": "RADIO or BARO"
+       "val": "RADIO or BARO",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "MINIMUMS selector",
-       "val": "Set Engine Failure Flaps Retraction Altitude"
+       "val": "Set Engine Failure Flaps Retraction Altitude",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "FLIGHT PATH VECTOR switch",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "METERS switch",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "BAROMETRIC reference selector",
-       "val": "IN or HPA"
+       "val": "IN or HPA",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "BAROMETRIC selector",
-       "val": "Set local altimeter setting"
+       "val": "Set local altimeter setting",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "VOR/ADF switches",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Mode selector",
-       "val": "MAP"
+       "val": "MAP",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "CENTRE switch",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Range selector",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "TRAFFIC switch",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "WEATHER RADAR",
-       "val": "Off"
+       "val": "Off",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       },
       {
        "k": "V",
@@ -3917,7 +4935,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Map switches",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
       }
      ]
     },
@@ -4247,7 +5272,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(CL) Marker beacon lights",
-       "val": "Test"
+       "val": "Test",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1972,
+         "y": 385
+        }
+       }
       }
      ]
     },
@@ -4270,13 +5302,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Clock",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1907,
+         "y": 490
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1372,
+         "y": 1415
+        }
+       }
       },
       {
        "k": "A",
        "tag": "NG",
        "item": "(NG) TIME/DATE pushbutton",
-       "val": "UTC time"
+       "val": "UTC time",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1907,
+         "y": 490
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1372,
+         "y": 1415
+        }
+       }
       },
       {
        "k": "V",
@@ -4300,19 +5356,40 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(NG) Display select panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 1135,
+         "y": 1330
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "MAIN PANEL DISPLAY UNITS selector",
-       "val": "NORM"
+       "val": "NORM",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 1135,
+         "y": 1330
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "LOWER DISPLAY UNIT selector",
-       "val": "NORM"
+       "val": "NORM",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 1135,
+         "y": 1330
+        }
+       }
       }
      ]
     },
@@ -4331,13 +5408,27 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "TAKEOFF CONFIG light (if installed and operative)",
-       "val": "Verify extinguished"
+       "val": "Verify extinguished",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 992,
+         "y": 1351
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "CABIN ALTITUDE light (if installed and operative)",
-       "val": "Verify extinguished"
+       "val": "Verify extinguished",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 992,
+         "y": 1351
+        }
+       }
       }
      ]
     },
@@ -4382,7 +5473,21 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Flight instruments",
-       "val": "Check"
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1460,
+         "y": 380,
+         "check": "Метка на приборах стороны F/O (сторону OM-B не указывает)."
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1222,
+         "y": 1460,
+         "check": "Метка на PFD стороны F/O (сторону OM-B не указывает)."
+        }
+       }
       },
       {
        "k": "X",
@@ -4458,7 +5563,19 @@ window.OMB = {
        "k": "A",
        "tag": "CL",
        "item": "(CL) Airspeed cursor control",
-       "val": "Push"
+       "val": "Push",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1460,
+         "y": 380
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1222,
+         "y": 1460
+        }
+       }
       }
      ]
     },
@@ -4481,7 +5598,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Disengage light TEST switch",
-       "val": "Hold to 1"
+       "val": "Hold to 1",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1457,
+         "y": 255
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1060,
+         "y": 1322
+        }
+       }
       },
       {
        "k": "V",
@@ -4502,7 +5631,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Disengage light TEST switch",
-       "val": "Hold to 2"
+       "val": "Hold to 2",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1457,
+         "y": 255
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1060,
+         "y": 1322
+        }
+       }
       },
       {
        "k": "V",
@@ -4540,7 +5681,15 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(CL) HYDRAULIC QUANTITY indicators (as installed)",
-       "val": "Above RFL"
+       "val": "Above RFL",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1057,
+         "y": 470,
+         "check": "Метка стоит на индикаторах с надписью QTY на правой части приборной панели; что это именно HYDRAULIC QUANTITY, по макету не видно. ⚠ проверить"
+        }
+       }
       }
      ]
     },
@@ -4563,7 +5712,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "GROUND PROXIMITY panel GPWS SYS TEST (verify IRS alignment)",
-       "val": "Check"
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1400,
+         "y": 730
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1080,
+         "y": 1595
+        }
+       }
       },
       {
        "k": "X",
@@ -4574,19 +5735,55 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "FLAP INHIBIT switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1400,
+         "y": 730
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1080,
+         "y": 1595
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "GEAR INHIBIT switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1400,
+         "y": 730
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1080,
+         "y": 1595
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "TERRAIN INHIBIT switch (as installed)",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1400,
+         "y": 730
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1080,
+         "y": 1595
+        }
+       }
       },
       {
        "k": "H",
@@ -4617,7 +5814,19 @@ window.OMB = {
        "k": "A",
        "tag": "T:3733",
        "item": "RUNWAY INHIBIT switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1400,
+         "y": 730
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1080,
+         "y": 1595
+        }
+       }
       },
       {
        "k": "V",
@@ -4674,13 +5883,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Landing gear panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1262,
+         "y": 450
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 910,
+         "y": 1430
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "LANDING GEAR lever",
-       "val": "DN"
+       "val": "DN",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1262,
+         "y": 450
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 910,
+         "y": 1430
+        }
+       }
       },
       {
        "k": "V",
@@ -4713,7 +5946,20 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "ANTISKID switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1182,
+         "y": 410
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 805,
+         "y": 1346,
+         "check": "На NG-макете виден только сигнал ANTISKID INOP, самого выключателя ANTISKID нет. Метка у табло. ⚠ проверить"
+        }
+       }
       },
       {
        "k": "V",
@@ -4741,7 +5987,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "AUTO BRAKE selector",
-       "val": "RTO"
+       "val": "RTO",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1182,
+         "y": 525
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 805,
+         "y": 1320
+        }
+       }
       },
       {
        "k": "V",
@@ -4769,13 +6027,37 @@ window.OMB = {
        "k": "A",
        "tag": "T:3721",
        "item": "(UP-B3721) FUEL FLOW switch (as installed)",
-       "val": "Reset"
+       "val": "Reset",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 935,
+         "y": 580
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 720,
+         "y": 1337
+        }
+       }
       },
       {
        "k": "A",
        "tag": "NG",
        "item": "(NG) FUEL FLOW switch",
-       "val": "RATE"
+       "val": "RATE",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 935,
+         "y": 580
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 720,
+         "y": 1337
+        }
+       }
       },
       {
        "k": "X",
@@ -4803,31 +6085,66 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(CL) REVERSER UNLOCKED lights",
-       "val": "Verify extinguished"
+       "val": "Verify extinguished",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 270
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "(CL) A/T LIM light (as installed)",
-       "val": "Verify extinguished"
+       "val": "Verify extinguished",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 270
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "(CL) START VALVE OPEN lights",
-       "val": "Verify extinguished"
+       "val": "Verify extinguished",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 270
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "(CL) LOW OIL PRESSURE lights",
-       "val": "Verify illuminated"
+       "val": "Verify illuminated",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 270
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "(CL) OIL FILTER BYPASS lights",
-       "val": "Verify extinguished"
+       "val": "Verify extinguished",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 270
+        }
+       }
       }
      ]
     },
@@ -4850,19 +6167,40 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(CL) Engine instrument primary panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 935,
+         "y": 450
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "N1 manual set knob",
-       "val": "Push"
+       "val": "Push",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 935,
+         "y": 450
+        }
+       }
       },
       {
        "k": "A",
        "tag": "T:3722,3723,3724,3729",
        "item": "UP-B3722, UP-B3723, UP-B3724, UP-B3729 FUEL USED RESET switch",
-       "val": "Push"
+       "val": "Push",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 935,
+         "y": 450
+        }
+       }
       }
      ]
     },
@@ -4885,7 +6223,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Engine instruments",
-       "val": "Check"
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 935,
+         "y": 450
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 760,
+         "y": 1440
+        }
+       }
       },
       {
        "k": "V",
@@ -4901,7 +6251,20 @@ window.OMB = {
        "k": "A",
        "tag": "NG",
        "item": "(NG) Hydraulic quantity indications",
-       "val": "Verify RF not shown"
+       "val": "Verify RF not shown",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 935,
+         "y": 450
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 760,
+         "y": 1440,
+         "check": "Hydraulic quantity на NG показывается на нижнем дисплее (SYS); метка общая с Engine instruments. ⚠ проверить"
+        }
+       }
       }
      ]
     },
@@ -4920,7 +6283,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(UP-B3741) MFD Cancel/Recall switch",
-       "val": "Push"
+       "val": "Push",
+       "loc": {
+        "NG": {
+         "img": "ngip",
+         "x": 766,
+         "y": 1351
+        }
+       }
       },
       {
        "k": "V",
@@ -4948,7 +6318,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "CARGO FIRE panel(NG and UP-B3724)",
-       "val": "Check"
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 545,
+         "y": 880
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 747,
+         "y": 2155
+        }
+       }
       },
       {
        "k": "X",
@@ -4959,13 +6341,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "DETECTOR SELECT switches",
-       "val": "NORM"
+       "val": "NORM",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 545,
+         "y": 880
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 747,
+         "y": 2155
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "TEST switch",
-       "val": "Push"
+       "val": "Push",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 545,
+         "y": 880
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 747,
+         "y": 2155
+        }
+       }
       },
       {
        "k": "V",
@@ -4981,7 +6387,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Master FIRE WARN light",
-       "val": "Push"
+       "val": "Push",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 545,
+         "y": 880
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 747,
+         "y": 2155
+        }
+       }
       },
       {
        "k": "V",
@@ -5163,37 +6581,79 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "EFIS control panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Decision height selector",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Mode selector",
-       "val": "MAP"
+       "val": "MAP",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Range selector",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "TRAFFIC switch",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "WEATHER RADAR",
-       "val": "Off"
+       "val": "Off",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "V",
@@ -5204,7 +6664,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Map switches",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       }
      ]
     },
@@ -5223,7 +6690,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(NG) Radio tuning panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "NG": {
+         "img": "ngped",
+         "x": 900,
+         "y": 2155
+        }
+       }
       },
       {
        "k": "W",
@@ -5256,7 +6730,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(CL) VHF communications radios",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 850,
+         "y": 880
+        }
+       }
       }
      ]
     },
@@ -5279,7 +6760,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "VHF NAVIGATION radios frequency set for departure",
-       "val": "Verify AUTO as install"
+       "val": "Verify AUTO as install",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 850,
+         "y": 1015
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 900,
+         "y": 2212
+        }
+       }
       }
      ]
     },
@@ -5302,37 +6795,79 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(CL) EFIS control panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Decision height selector",
-       "val": "“-20” or as needed"
+       "val": "“-20” or as needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Mode selector",
-       "val": "MAP"
+       "val": "MAP",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Range selector",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "TRAFFIC (TFC) switch (as installed)",
-       "val": "TFC"
+       "val": "TFC",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "WEATHER RADAR",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "N",
@@ -5348,7 +6883,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Map switches",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "Q",
@@ -5376,7 +6918,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Audio control panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 850,
+         "y": 1405
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 895,
+         "y": 2295
+        }
+       }
       }
      ]
     },
@@ -5399,7 +6953,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "ADF radios",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 260,
+         "y": 1575
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2375
+        }
+       }
       }
      ]
     },
@@ -5422,7 +6988,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "HF radios (as installed)",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 550,
+         "y": 1385
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 632,
+         "y": 2440
+        }
+       }
       },
       {
        "k": "W",
@@ -5464,7 +7042,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "WEATHER RADAR panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2212
+        }
+       }
       },
       {
        "k": "V",
@@ -5492,13 +7082,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Transponder panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 550,
+         "y": 1250
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2310
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Code Indicator",
-       "val": "2000, or ID (if installed)"
+       "val": "2000, or ID (if installed)",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 550,
+         "y": 1250
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2310
+        }
+       }
       },
       {
        "k": "X",
@@ -5509,13 +7123,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Above/ Below switch (as installed)",
-       "val": "Above"
+       "val": "Above",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 550,
+         "y": 1250
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2310
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Transponder selector",
-       "val": "No.1 or No.2 depending who is PF."
+       "val": "No.1 or No.2 depending who is PF.",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 550,
+         "y": 1250
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2310
+        }
+       }
       }
      ]
     },
@@ -5538,7 +7176,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "STABILIZER TRIM override switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 795,
+         "y": 1725
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 855,
+         "y": 2510
+        }
+       }
       }
      ]
     },
@@ -5676,7 +7326,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Transponder switch",
-       "val": "TEST"
+       "val": "TEST",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 550,
+         "y": 1250
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2310
+        }
+       }
       },
       {
        "k": "H",
@@ -5743,7 +7405,14 @@ window.OMB = {
        "k": "A",
        "tag": "T:3722,3723,3724",
        "item": "EHSI mode selector",
-       "val": "Expanded scale mode except PLAN"
+       "val": "Expanded scale mode except PLAN",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195
+        }
+       }
       },
       {
        "k": "H",
@@ -5754,13 +7423,27 @@ window.OMB = {
        "k": "A",
        "tag": "T:3724",
        "item": "STAB switch",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        }
+       }
       },
       {
        "k": "A",
        "tag": "T:3724",
        "item": "TEST",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        }
+       }
       },
       {
        "k": "H",
@@ -5771,13 +7454,37 @@ window.OMB = {
        "k": "A",
        "tag": "NG+T:3722,3723",
        "item": "WX radar mode selector",
-       "val": "TEST"
+       "val": "TEST",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2212
+        }
+       }
       },
       {
        "k": "A",
        "tag": "NG+T:3722,3723",
        "item": "WXR",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2212
+        }
+       }
       },
       {
        "k": "N",
@@ -5834,31 +7541,91 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Mode selector",
-       "val": "TEST"
+       "val": "TEST",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2212
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "GAIN control",
-       "val": "AUTO"
+       "val": "AUTO",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2212
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Range selector",
-       "val": "10"
+       "val": "10",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2212
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "BRT control",
-       "val": "Desired brightness"
+       "val": "Desired brightness",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2212
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Test pattern",
-       "val": "Check"
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2212
+        }
+       }
       },
       {
        "k": "V",
@@ -5879,7 +7646,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Range selector",
-       "val": "Select each range"
+       "val": "Select each range",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2212
+        }
+       }
       },
       {
        "k": "V",
@@ -5890,7 +7669,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Mode selector",
-       "val": "As desired"
+       "val": "As desired",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2212
+        }
+       }
       },
       {
        "k": "Q",
@@ -5933,7 +7724,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Ground proximity SYS TEST switch",
-       "val": "Push momentarily"
+       "val": "Push momentarily",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1400,
+         "y": 730
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 1080,
+         "y": 1595
+        }
+       }
       },
       {
        "k": "V",

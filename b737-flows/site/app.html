@@ -218,6 +218,12 @@ function runsOf(B) {
   });
   return out;
 }
+function numLabel(ns) {
+  if (ns.length < 3) return ns.join('/');
+  var rows = ns.map(function (n) { return n.split('.')[0]; });
+  if (rows.every(function (r) { return r === rows[0]; })) return ns[0] + '–' + ns[ns.length - 1].split('.')[1];
+  return ns[0] + '…' + ns[ns.length - 1];
+}
 var PW = 378, FS = 15, CH = 46;
 function plateLines(p) {
   var L = [];
@@ -245,12 +251,12 @@ function slideFrame(title, zoneTitle, role, navItems, curNav, inner, t) {
   s += '<rect x="1200" y="8" width="388" height="48" rx="10" fill="' + r[1] + '"/><text x="1394" y="42" font-size="27" font-weight="800" fill="#fff" text-anchor="middle">' + esc(r[0]) + '</text>';
   // navigator column
   s += '<rect x="0" y="64" width="232" height="936" fill="#eef2f8"/><text x="18" y="100" font-size="14" font-weight="700" fill="#44526e">ЭТАПЫ FLOW</text>';
+  var NH = Math.min(52, 800 / navItems.length), BH = NH - 6, compact = NH < 40;
   navItems.forEach(function (n, i) {
-    var y = 116 + i * 52, on = i === curNav;
-    s += '<g data-slide="' + i + '"><rect x="10" y="' + y + '" width="212" height="44" rx="8" fill="' + (on ? '#0b1f3f' : '#fff') + '" stroke="#c8d0de"/>' +
-         '<text x="22" y="' + (y + 19) + '" font-size="14" font-weight="700" fill="' + (on ? '#ffe27a' : '#0b1f3f') + '">' + esc(n[0]) + '</text>' +
-         '<text x="22" y="' + (y + 36) + '" font-size="12" fill="' + (on ? '#dbe5f7' : '#44526e') + '">' + esc(n[1]) + '</text></g>';
-    if (i < navItems.length - 1) s += '<path d="M116 ' + (y + 44) + 'v8" stroke="#9aa6bd" stroke-width="2"/>';
+    var y = 112 + i * NH, on = i === curNav;
+    s += '<g data-slide="' + i + '"><rect x="10" y="' + y + '" width="212" height="' + BH + '" rx="6" fill="' + (on ? '#0b1f3f' : '#fff') + '" stroke="#c8d0de"/>';
+    if (compact) s += '<text x="18" y="' + (y + BH / 2 + 5) + '" font-size="' + Math.min(13, BH * .55) + '" font-weight="700" fill="' + (on ? '#ffe27a' : '#0b1f3f') + '">' + esc(n[0]) + ' <tspan font-weight="400" fill="' + (on ? '#dbe5f7' : '#44526e') + '">' + esc(n[1].replace('шаги ', '')) + '</tspan></text></g>';
+    else s += '<text x="22" y="' + (y + 19) + '" font-size="14" font-weight="700" fill="' + (on ? '#ffe27a' : '#0b1f3f') + '">' + esc(n[0]) + '</text><text x="22" y="' + (y + 36) + '" font-size="12" fill="' + (on ? '#dbe5f7' : '#44526e') + '">' + esc(n[1]) + '</text></g>';
   });
   s += '<rect x="10" y="930" width="212" height="56" rx="8" fill="' + (t === 'CL' ? '#6b3fd1' : '#0f7b8a') + '"/><text x="116" y="965" font-size="18" font-weight="800" fill="#fff" text-anchor="middle">737 ' + (t === 'CL' ? 'CLASSIC' : 'NG') + '</text>';
   return s + inner + '</svg>';
@@ -308,7 +314,7 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
   var midX = IMGX + IMGW / 2, left = [], right = [];
   run.plates.forEach(function (p) {
     p._h = plateH(p);
-    p._ty = p._t ? p._t.y : TOP + 40;
+    p._ty = p._t ? p._t.y : TOP + 40; p._ord = run.plates.indexOf(p);
     (p._t && p._t.x > midX ? right : left).push(p);
   });
   // balance gutters if one is overloaded
@@ -316,7 +322,7 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
   while (sumH(left) > BOT - TOP + 20 && sumH(right) < sumH(left) - 200) right.push(left.pop());
   while (sumH(right) > BOT - TOP + 20 && sumH(left) < sumH(right) - 200) left.push(right.pop());
   function stack(arr) {
-    arr.sort(function (a, b) { return a._ty - b._ty; });
+    arr.sort(function (a, b) { return a._ty - b._ty || a._ord - b._ord; });
     var avail = BOT - TOP, tot = sumH(arr), sc = tot > avail ? avail / tot : 1, y = TOP;
     arr.forEach(function (p) { p._sc = sc; p._y = Math.max(y, p._ty - 22 * sc); y = p._y + (p._h + 10) * sc; });
     // pull back up from the bottom so nothing leaves the slide and nothing overlaps
@@ -352,7 +358,7 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
   var plates = left.map(function (p) { return plate(p, 'L'); }).join('') + right.map(function (p) { return plate(p, 'R'); }).join('');
   // target markers on top
   tg.forEach(function (g) {
-    var lab = g.nums.join('/'), w = Math.max(34, lab.length * 9 + 16);
+    var lab = numLabel(g.nums), w = Math.max(34, lab.length * 9 + 16);
     inner += '<rect x="' + (g.x - w / 2) + '" y="' + (g.y - 17) + '" width="' + w + '" height="34" rx="17" fill="' + roleC + '" stroke="#fff" stroke-width="3"/><text x="' + g.x + '" y="' + (g.y + 6) + '" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">' + esc(lab) + '</text>';
   });
   inner += plates;
@@ -449,7 +455,7 @@ function procSlides(ph, t) {
   var B = buildPlates(ph, t), runs = runsOf(B);
   var nav = [['Обзор кабины', 'порядок зон']].concat(runs.map(function (r, i) {
     var a = r.plates[0].num, b = r.plates[r.plates.length - 1].num;
-    return [(i + 1) + '. ' + (ZNAME[r.zone] || 'Без макета').split(' (')[0].replace(' + glareshield', ' + glare.').replace('Control stand + pedestal', 'Pedestal'), 'шаги ' + a + (a !== b ? '–' + b : '')];
+    return [(i + 1) + '. ' + (ZNAME[r.zone] || 'Без макета').split(' (')[0].replace(' + glareshield', ' + glare.').replace('Control stand + pedestal', 'Pedestal').replace('Main panel + glare.', 'Main panel').replace('Без макета', 'Без макета'), 'шаги ' + a + (a !== b ? '–' + b : '')];
   }));
   var svgs = [overviewSlide(ph, t, runs, nav)].concat(runs.map(function (r, i) { return zoneSlide(ph, t, r, i, nav, i + 1); }));
   return { svgs: svgs, B: B, runs: runs };
