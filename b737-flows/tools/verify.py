@@ -11,6 +11,9 @@ for i in range(0, len(a), 4):
     txt += t[t.index(start):t.index(end)] + '\n'
 
 def norm(s):
+    s = re.sub(r'(\.\.\.)?(\s+(C|F/O|PF|PM|or))+\s*$', '', s.rstrip())   # role column of the table
+    s = re.sub(r'^\s*Call:?\s*', '', s)
+    s = re.sub(r'\s(C|F/O)\s{2,}', ' ', s)
     s = re.sub(r'^\s*(NOTE|CAUTION|WARNING|Note)\s*[:.]\s*', '', s)
     s = s.replace('’', "'").replace('“', '"').replace('”', '"').replace('–', '-').replace('…', '')
     s = re.sub(r'\.{3,}', ' ', s)

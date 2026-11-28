@@ -10010,6 +10010,2116 @@ window.OMB = {
      ]
     }
    ]
+  },
+  {
+   "id": "bstart",
+   "title": "Before Start Procedure",
+   "section": "2.2.21",
+   "pages": {
+    "ch": "62–65",
+    "pdf": "130–133"
+   },
+   "trigger": [
+    "Start the Before Start Procedure after all papers are on board",
+    "Initiate BEFORE START PROCEDURE only after CDU Pre-flight Procedure – Performance Data steps have done."
+   ],
+   "intro": [
+    "If the oil temperature is below -20 degrees Celsius, pilot must call maintenance personnel to heat up oil. Engine start with cold oil can lead to damage of starter mechanism.",
+    "It is necessary to move ENGINE START SWICH to CONT mode for oil temperature check on the ground."
+   ],
+   "who": "Captain / F/O по колонкам документа (C, F/O, PF)",
+   "callouts": [
+    {
+     "who": "C",
+     "text": "BEFORE START PROCEDURE"
+    }
+   ],
+   "rows": [
+    {
+     "who": "-",
+     "panel": "Refuelling",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "62",
+      "pdf": "130"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Refuelling must be completed before Actual ZFW and MAC are entered into FMC."
+      }
+     ]
+    },
+    {
+     "who": "CFO",
+     "panel": "Flight Without Cabin Crew",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "62",
+      "pdf": "130"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Flight Without Cabin Crew"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Captain or on the request of Captain, F/O will complete a Safety Check and operate the doors. The Safety Check must be completed prior to push back or taxi."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Check that Engineering has completed the Maintenance Checklist."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "This is to ensure the Safety Check of cabin, lavatories, galleys prior to push back or taxi:"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Check that required meals and beverages are on board. Dry ice will be required for chilling meals."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "All galley power and cabin systems have been switched off, except when required by the crew."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "All galley equipment is stowed, the trolleys are in storage place with brakes activated, containers are stowed, secured."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "All hand baggage is stowed in secure manner or closed in overhead lockers. All overhead bins are closed and all stowage compartments are latched."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Seat backs are upright."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Arm-rests are turned down."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Window blinds are opened."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Curtains of the cabin and galleys are secured open."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Lavatories are empty, closed and latched; the toilet lid is down."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Aisle between rows of seats and access to the emergency exits is free of obstructions."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "All doors must be closed/latched and armed before engine start or push-back."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Passengers (supernumeraries) are advised to be seated and fastened."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "AFT LEFT and RIGHT DOORS",
+       "val": "CLOSE"
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "RED FLAGS on windows of AFT L/R DOORS",
+       "val": "Position ACROSS"
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "ESCAPE SLIDES AFT L/R DOORS",
+       "val": "ARM"
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "FWD LEFT and RIGHT DOORS",
+       "val": "CLOSE"
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "RED FLAGS on windows of FWD L/R DOORS",
+       "val": "Position ACROSS"
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "ESCAPE SLIDES FWD L/R DOORS",
+       "val": "ARM"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Captain or F/O will advise that doors are closed and armed."
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Takeoff Data calculation (EFB OPT)",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "63",
+      "pdf": "131"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Two independent calculations are required when using EFB. This means that each pilot shall perform the whole calculation instead of a single calculation crosschecked by the other crew member, both pilot shall be crosscheck using compare calculation (OPT Performance Take-off page)."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Both Pilots will:"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Follow EFB OPT Operational Procedure for Takeoff Data calculation."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "When make OPT calculation use next modes:"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "THRUST RATING OPTIMUM (if applicable) choose when normal environment conditions or select TO RTG/WINDSHEAR RTG to mitigate weather influence"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "FLAP CONFIG choose OPTIMUM when normal environment conditions or FLAP CONFIG 1/5//10/15/25 when TORA is a factor or rough RW or Windshear is expected"
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "For takeoffs, when conditions permit, consider using larger flap settings to provide shorter takeoff distance. Larger flap settings also provide greater tail clearance."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Flaps 1 and 5 takeoffs have the least clearance. Consider using a larger flap setting for takeoffs and landing at light gross weights."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "IMCLB CONFIG choose NONE OR FIXED when normal environment conditions or OPTIMUM when during takeoff TOW In doubt, (there is high temperature, high aerodrome elevation, specific climb gradient during SID is required or combination of this factors)"
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "If used IMCLB CONFIG OPTIMUM, note to flight log as remark “Takeoff is performed at ImCLB OPTIMUM and airport name”."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Remember that use of IMCLB CONFIG OPTIMUM mode leads to higher V1/Vr/V2 speeds and increase wheels workload!"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Use FMC PERF INIT page 1/2, ZFW entry from OPT W/B calculation or Loadsheet"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Ensure that N1 Thrust target, flap position, V1, VR, V2 on TAKEOFF REF page 1/2 correspond to EFB OPT calculations or applicable RW analysis"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Ensure when using reduced takeoff thrust (ATM) and Fixed Derate Thrust with ATM do not enter on N1 Limit page SEL Temperature more than 55 °C (NG), 50 °C (CL)."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify ZFW from the EFB or loadsheet, enter ZFW line on CDU Performance page and push EXEC key."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Select TAKEOFF REF 1/2 page: enter TO flaps into FLAPS line and MACTOW into CG line, crosscheck FMC and OPT calculation stabilizer takeoff trim setting ."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Enter Derate or/and SEL TEMP for takeoff and takeoff speeds in FMC which was calculated in OPT. Do not enter on N1 Limit page SEL Temperature more than 55 °C (NG), 50 °C (CL)."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Check CLB thrust on CLB page CDU and verify value should be lees than R-TO thrust. If more than R-TO choose CLB-1 or CLB-2."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Takeoff Stabilizer Trim Setting depends on TOW, TO Flaps, CG % and TO Thrust. In the LOADSHEET TO STAB TRIM Setting calculation is based on TOW, TO Flaps (1&5), CG % and maximum certified TO Thrust. In the FMC TO STAB TRIM Setting calculation is based on TOW, TO Flaps, CG % and actual TO Thrust (Full Rated or Derated). If Full TO Thrust is used for Takeoff, then Loadsheet and FMC calculated TO STAB TRIM Settings should be the same. When the actual TO Thrust is reduced by Fixed Derate then the Loadsheet and FMC TO STAB TRIM Settings will be different. In this case OPT calculation data shall be used."
+      }
+     ]
+    },
+    {
+     "who": "-",
+     "panel": "Cabin Crew coordination",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "64",
+      "pdf": "132"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Cabin Crew will receive permission from Captain prior to closing doors."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "If delay is expected coordinate with Cabin Crew and inform passengers."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "If time allows make general PA with greetings and information."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Advise Cabin Crew if short taxi time is expected to ensure sufficient time for pre takeoff announcement and safety demonstration."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Call",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "64",
+      "pdf": "132"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "K",
+       "tag": "",
+       "text": "BEFORE START PROCEDURE"
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "CDU display",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "64",
+      "pdf": "132"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "CDU display",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1207,
+         "y": 780
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 600,
+         "y": 1660
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Normally the PF selects the TAKEOFF REF page."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Normally the PM selects the LEGS page."
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "N1 bugs",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "64",
+      "pdf": "132"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "N1 bugs",
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 935,
+         "y": 450
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 760,
+         "y": 1440
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "IAS bugs",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "64",
+      "pdf": "132"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "IAS bugs",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 188,
+         "y": 377
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 300,
+         "y": 1420
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "CL",
+       "text": "(CL) Verify that the reference bugs are at V1, VR, V2+15, and flaps up maneuvering speed"
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "MCP",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "64",
+      "pdf": "132"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "MCP",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "IAS/MACH selector",
+       "val": "Set V2",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "RWY heading",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Initial altitude",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Set AUTOTHROTTLE ARM switch",
+       "val": "ARM",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "NG",
+       "text": "(NG) Arm LNAV/VNAV as needed"
+      }
+     ]
+    },
+    {
+     "who": "PF",
+     "panel": "Taxi and Takeoff briefings",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "64",
+      "pdf": "132"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Taxi and Takeoff briefings",
+       "val": "Complete"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "The pilot who will do the takeoff does the taxi and takeoff briefings, if not completed before."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Exterior doors",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "64",
+      "pdf": "132"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Exterior doors",
+       "val": "Verify closed"
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Flight deck windows",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "64",
+      "pdf": "132"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Flight deck windows",
+       "val": "Closed and locked"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Flight deck door",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "64",
+      "pdf": "132"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Flight deck door",
+       "val": "Closed and locked",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 830,
+         "y": 1765
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 930,
+         "y": 2510
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the CAB DOOR UNLOCKED/LOCK FAIL light is extinguished."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Fuel panel",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "64",
+      "pdf": "132"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Fuel panel",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 165,
+         "y": 1760
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 540,
+         "y": 870
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "If the center tank fuel quantity exceeds 1000 pounds/453 kilograms:"
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "LEFT and RIGHT CENTER FUEL PUMPS switches",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 165,
+         "y": 1760
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 540,
+         "y": 870
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the LOW PRESSURE lights illuminate momentarily and then extinguish."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "If the LOW PRESSURE light stays illuminated turn off the CENTER FUEL PUMPS switch."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "AFT and FORWARD FUEL PUMPS switches",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 165,
+         "y": 1760
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 540,
+         "y": 870
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the LOW PRESSURE lights are extinguished."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Hydraulic panel",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "65",
+      "pdf": "133"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Hydraulic panel",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 912,
+         "y": 1440
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 857,
+         "y": 715
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "If push back is needed and nose gear steering lock out pin is not insert:"
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "System A HYDRAULIC PUMP switches",
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 912,
+         "y": 1440
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 857,
+         "y": 715
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the system A pump LOW PRESSURE lights are illuminated."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "System B electric HYDRAULIC PUMP switch",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 912,
+         "y": 1440
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 857,
+         "y": 715
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the system B electric pump LOW PRESSURE light is extinguished."
+      },
+      {
+       "k": "W",
+       "tag": "",
+       "text": "Do not pressurize hydraulic system A. Unwanted tow bar movement can occur."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the brake pressure is 2,800 psi minimum."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the system B pressure is 2,800 psi minimum."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "If pushback is not needed or nose gear lock out pin is insert:"
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Electric HYDRAULIC PUMP switches",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 912,
+         "y": 1440
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 857,
+         "y": 715
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the electric pump LOW PRESSURE lights are extinguished."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the brake pressure is 2,800 psi minimum."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the system A and B pressures are 2,800 psi minimum."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Trim",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "65",
+      "pdf": "133"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Trim",
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 510,
+         "y": 1680
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2465
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Check each trim for freedom of movement."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Stabilizer trim",
+       "val": "___UNITS",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 380,
+         "y": 420
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 685,
+         "y": 1935,
+         "check": "Метка на шкале STAB TRIM у рукоятки триммера. ⚠ проверить"
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Set the trim for takeoff."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the trim is in the green band."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Aileron trim",
+       "val": "0 units",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 370,
+         "y": 1730
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2465
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Rudder trim",
+       "val": "0 units",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 510,
+         "y": 1680
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2465
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "ANTI COLLISION light switch",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "65",
+      "pdf": "133"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "ANTI COLLISION light switch",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1120,
+         "y": 2065
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 955,
+         "y": 1002
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Call",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "65",
+      "pdf": "133"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "K",
+       "tag": "",
+       "text": "BEFORE START PROCEDURE COMPLETED"
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Call",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "65",
+      "pdf": "133"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "K",
+       "tag": "",
+       "text": "BEFORE START CHECKLIST"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "BEFORE START CHECKLIST",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "65",
+      "pdf": "133"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Do the BEFORE START CHECKLIST."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Start, Push Back (Towing) clearance",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "65",
+      "pdf": "133"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Flight crew shall only request engine start and/or pushback clearance after confirmation that Ground staff is ready for pushback"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Obtain Start, Push Back (Towing) clearance from ATC"
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Call ground",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "65",
+      "pdf": "133"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Call ground for Push Back (Towing) and/or engines start"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Transponder",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "65",
+      "pdf": "133"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Transponder",
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 550,
+         "y": 1250
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2310
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Transponder mode selector",
+       "val": "ALT ON",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 550,
+         "y": 1250
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2310
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Transponder mode selector",
+       "val": "XPNDR",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 550,
+         "y": 1250
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2310
+        }
+       }
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "At airports where ground tracking is not available, select STANDBY."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "At airports where ATC regulations require start of pushback immediately after receiving the clearance, Before Start Procedure and Before Start Checklist shall be accomplished prior to requesting ATC clearance for push and start."
+      },
+      {
+       "k": "Q",
+       "tag": "",
+       "text": "Две строки «Transponder mode selector …… ALT ON» и «…… XPNDR» стоят подряд без условия выбора. Перенесено как в документе."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "push",
+   "title": "Pushback or Towing Procedure",
+   "section": "2.2.22",
+   "pages": {
+    "ch": "65–67",
+    "pdf": "133–135"
+   },
+   "trigger": [
+    "Before the first movement of the aircraft (pushback or towing), the flight crew shall verify that the cabin is secure. SCCM report the information “CABIN READY FOR MOVEMENT” via Interphone and after receiving confirmation from C or F/O “CABIN READY FOR MOVEMENT CONFIRM” first movement can be done."
+   ],
+   "intro": [
+    "If jumpseat is occupied, both pilots must check and be sure that jumpseat occupant use seatbelts and all personal belongings are taken away before commencement of the aircraft movement.",
+    "Flight crew shall only request engine start and/or pushback clearance after confirmation that Ground staff is ready for pushback",
+    "The Engine Start procedure may be done during pushback or towing.",
+    "Do not accomplish a crossbleed start during pushback."
+   ],
+   "who": "Captain / F/O по колонкам документа",
+   "callouts": [
+    {
+     "who": "CFO",
+     "text": "CABIN READY FOR MOVEMENT CONFIRM"
+    }
+   ],
+   "rows": [
+    {
+     "who": "-",
+     "panel": "Cautions",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "66",
+      "pdf": "134"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "C",
+       "tag": "",
+       "text": "Do not hold or turn the nose wheel steering wheel during pushback or towing. This can damage the nose gear or the tow bar."
+      },
+      {
+       "k": "C",
+       "tag": "",
+       "text": "Do not use airplane brakes to stop the airplane during pushback or towing. This can damage the nose gear or the tow bar."
+      },
+      {
+       "k": "C",
+       "tag": "",
+       "text": "When operating on slippery surface, engine start during push back is not recommended due to risk of undesirable aircraft/tow tractor drift. Delay engine start until the end of the push back, setting the Parking Brake and tow bar disconnection."
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Confirm with Ground staff",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "66",
+      "pdf": "134"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "The following actions, if applicable, must be confirmed between Ground staff and Flight crew before pushback:"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Chocks are removed"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Nose wheel steering is depressurized"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Setting of parking brake"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Pressurization of hydraulic systems is configured"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Lifting of the aircraft"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Flight crew shall confirm that Ground staff is ready for pushback and/or engine start before requesting the clearance"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "If pushback/towing has to be stopped, the following callout must be made directly to the Ground staff: “STOP PUSHBACK/TOWING”."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "During darkness or reduced visibility a torch light/illuminated bat must be used by the Ground staff to improve visibility of the all clear signal. Flight crew shall use the flight deck dome light."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "After disconnecting, Ground staff shall show steering lockout pin."
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "STOP PUSHBACK/TOWING"
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Communications with ground handling",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "66–67",
+      "pdf": "134–135"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Communications with ground handling (Captain — GROUND CREWMAN):"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "Captain: CONFIRM BYPASS PIN INSERT, MAY WE RELEASE PARKING BRAKE?"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "GROUND CREWMAN: RELEASE PARKING BRAKE"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "Captain: CLEARED TO PUSH, PARKING BRAKE RELEASED."
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "GROUND CREWMAN: COMMENCING PUSHBACK."
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "Captain: MAY WE START ENGINE NUMBER TWO?"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "GROUND CREWMAN: CLEAR TWO"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "Captain: MAY WE START ENGINE NUMBER ONE?"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "GROUND CREWMAN: CLEAR ONE"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "GROUND CREWMAN: PUSHBACK COMPLETE, SET PARKING BRAKE"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "Captain: PARKING BRAKE SET, [CLEARED TO] DISCONNECT TOWBAR AND BYPASS PIN, ADVISE WHEN CLEAR"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "GROUND CREWMAN: TOWBAR IS DISCONNECTED, BYPASS PIN IS REMOVED, HAND SIGNALS ON THE LEFT (RIGHT)"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "Captain: HAND SIGNALS ON THE LEFT (RIGHT) WITH THE PIN REMOVED"
+      },
+      {
+       "k": "Q",
+       "tag": "",
+       "text": "Порядок строк таблицы «Communications with ground handling» восстановлен по двум колонкам (Captain / GROUND CREWMAN) при переходе таблицы со стр. 66 на 67. Проверьте очерёдность реплик по оригиналу."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Ground handling personnel",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "67",
+      "pdf": "135"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Establish communications with ground handling personnel"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Block Time",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "67",
+      "pdf": "135"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Block Time",
+       "val": "Start"
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Parking brake",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "67",
+      "pdf": "135"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Set or release the parking brake as directed by ground handling personnel."
+      }
+     ],
+     "loc": {
+      "CL": {
+       "img": "aft",
+       "x": 385,
+       "y": 610
+      },
+      "NG": {
+       "img": "ngped",
+       "x": 683,
+       "y": 2042
+      }
+     }
+    },
+    {
+     "who": "B",
+     "panel": "When pushback or towing is completed",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "67",
+      "pdf": "135"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "When pushback or towing is completed:"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the tow bar is disconnected."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Nose gear steering lockout pin",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "67",
+      "pdf": "135"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the nose gear steering lockout pin is removed."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "System A HYDRAULIC PUMPS",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "67",
+      "pdf": "135"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "System A HYDRAULIC PUMPS switches",
+       "val": "ON.",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 912,
+         "y": 1440
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 857,
+         "y": 715
+        }
+       }
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the system A pump LOW PRESSURE lights are extinguished"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the system A pressure is 2800 psi minimum."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Start engine number two when clear of potential FOD and ground obstacles."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Taxi clearance must only be requested after the all clear signal is received"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "estart",
+   "title": "Engine Start Procedure",
+   "section": "2.2.23",
+   "pages": {
+    "ch": "67–69",
+    "pdf": "135–137"
+   },
+   "trigger": [
+    "Call Engine Start Procedure (C)"
+   ],
+   "intro": [],
+   "who": "Captain / F/O по колонкам документа",
+   "callouts": [
+    {
+     "who": "C",
+     "text": "Engine Start Procedure"
+    }
+   ],
+   "rows": [
+    {
+     "who": "-",
+     "panel": "Notes",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "67",
+      "pdf": "135"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "N",
+       "tag": "CL",
+       "text": "(CL) Use Hot Weather operation Engine start procedure when outside temperature ≥ 28° C"
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "At first start of the day, both engines are to be started on R IGN. (In order to check the AC standby bus.) Alternate L and R, for subsequent starts. Continue the flight using the ignition position used for engine start."
+      },
+      {
+       "k": "N",
+       "tag": "NG",
+       "text": "(for NG only): For the first flight of the day, at airport elevation at or above 2000 feet MSL, if the temperature below 5° C, consider placing the Ignitor select switch to BOTH before starting the engines. This may increase the likelihood of a successful engine start on the first attempt."
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Confirm with Ground staff",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "67",
+      "pdf": "135"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "The following actions, if applicable, must be confirmed between Ground staff and Flight crew before Engine Start:"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Chocks are removed"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Setting of parking brake"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Pressurization of hydraulic systems is configured"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Flight crew shall confirm that Ground staff is ready for engine start before requesting the clearance"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "During darkness or reduced visibility a torch light/illuminated bat must be used by the Ground staff to improve visibility of the all clear signal. Flight crew shall use the flight deck dome light."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Ground handling",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "67",
+      "pdf": "135"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Establish communications with ground handling personnel"
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "example of a radio communication between cockpit and ground crewman chapter 2.3.4"
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Call",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "67",
+      "pdf": "135"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "K",
+       "tag": "",
+       "text": "Engine Start Procedure"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Secondary engine indications",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "67",
+      "pdf": "135"
+     },
+     "tag": "NG",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "(NG) Select the secondary engine indications."
+      }
+     ],
+     "loc": {
+      "NG": {
+       "img": "ngip",
+       "x": 773,
+       "y": 1662
+      }
+     }
+    },
+    {
+     "who": "FO",
+     "panel": "Air conditioning PACK switches",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "68",
+      "pdf": "136"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Check Air conditioning PACK switches are",
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 1445
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 722
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Start pressure",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "68",
+      "pdf": "136"
+     },
+     "tag": "CL",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "(CL) Check start pressure",
+       "val": "___psi",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 1390,
+         "check": "Start pressure показан на манометре DUCT PRESS (PSI) на overhead; в OM-B прибор не назван. ⚠ проверить"
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 675
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "The minimum start pressure at sea level is 30 psi decrease the minimum start pressure 0,5 psi for each 1,000 feet above sea level."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Start sequence",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "68",
+      "pdf": "136"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Start sequence",
+       "val": "Announce"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "START ENGINE NO __"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "ENGINE START switch",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "68",
+      "pdf": "136"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "ENGINE START switch to",
+       "val": "GRD, start clock",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 635,
+         "y": 2080
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 780,
+         "y": 985
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "N2 RPM",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "68",
+      "pdf": "136"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the N2 RPM increases"
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Engine start lever",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "68",
+      "pdf": "136"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "When N1 rotation is seen and N2 is at 25%, or (if 25% N2 is not possible), at maximum motoring and a minimum of 20% N2):"
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Maximum motoring occurs when N2 acceleration is less than 1% in approximately 5 seconds."
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Engine start lever",
+       "val": "IDLE",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 545,
+         "y": 520,
+         "check": "На Classic-макете рычаги ENGINE START не подписаны. ⚠ проверить"
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 2056,
+         "check": "Метка у рычагов ENGINE START под РУД. ⚠ проверить"
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Start timing for EGT indications"
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Fuel flow and EGT",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "68",
+      "pdf": "136"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Monitor fuel flow and EGT indications."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "ENGINE START switch to OFF",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "68",
+      "pdf": "136"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "V",
+       "tag": "CL",
+       "text": "(CL) At 46% N2, verify that the ENGINE START switch moves to OFF. If not, move the ENGINE START switch to OFF manually"
+      },
+      {
+       "k": "V",
+       "tag": "NG",
+       "text": "(NG) At 56% N2, verify that the ENGINE START switch moves to OFF. If not, move the ENGINE START switch to OFF manually."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the START VALVE OPEN light extinguishes when the ENGINE START switch moves to OFF."
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "STARTER CUTOUT"
+      }
+     ],
+     "loc": {
+      "CL": {
+       "img": "ovh",
+       "x": 635,
+       "y": 2080
+      },
+      "NG": {
+       "img": "ngovh",
+       "x": 780,
+       "y": 985
+      }
+     }
+    },
+    {
+     "who": "B",
+     "panel": "Stable idle",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "68",
+      "pdf": "136"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Monitor N1, N2, EGT, fuel flow and oil pressure for normal indications while the engine accelerates to a stable idle."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "After engine is stable at idle, start the other engine."
+      }
+     ]
+    },
+    {
+     "who": "-",
+     "panel": "Starter duty cycle",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "68",
+      "pdf": "136"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Starter duty cycle:"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Do not exceed 2 minutes during each start attempt"
+      },
+      {
+       "k": "V",
+       "tag": "NG",
+       "text": "(NG) A minimum of 10 seconds is needed between start attempts"
+      },
+      {
+       "k": "V",
+       "tag": "CL",
+       "text": "(CL) A minimum of 20 seconds is needed between the first and second start attempts"
+      },
+      {
+       "k": "V",
+       "tag": "CL",
+       "text": "(CL) A minimum of three minutes is needed between the second and subsequent start attempts."
+      }
+     ]
+    },
+    {
+     "who": "-",
+     "panel": "Normal engine start considerations",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "68–69",
+      "pdf": "136–137"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Normal engine start considerations:"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "do not move an engine start lever to idle early, a hot start can occur"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "keep a hand on the engine start lever while monitoring RPM, EGT and fuel flow until stable"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "if fuel is shutoff accidentally (by closing the engine start lever) do not reopen the engine start lever in an attempt to restart the engine"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "failure of the ENGINE START switch to stay in GRD until the starter cutout RPM can cause a hot start. Do not re-engage the ENGINE START switch until engine RPM is below 20% N2."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "During cold weather starts, oil pressure may temporary exceed the green band or may not show any increase until oil temperature rises. No indication of oil pressure by the time idle RPM is achieved requires an immediate engine shutdown. At low ambient temperatures, a temporary high oil pressure above the green band may be tolerated."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "When starting the engines in tailwind conditions, Boeing recommends making a normal start. Expect a longer cranking time to ensure N1 is rotating in the correct direction before moving the start lever. A higher than normal EGT should be expected, yet the same limits and procedures apply."
+      }
+     ]
+    },
+    {
+     "who": "-",
+     "panel": "ABORTED ENGINE START",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "69",
+      "pdf": "137"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Do the ABORTED ENGINE START checklist for one or more of the following abort start conditions:"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "the N1 or N2 does not increase or increases very slowly after the EGT increases"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "there is no oil pressure indication by the time that the engine is stable at idle"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "the EGT does not increase by 10 seconds (CL), 15 seconds (NG) after the engine start lever is moved to IDLE"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "the EGT quickly nears or exceeds the start limit (725ºC)"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Advise Ground staff to disconnect for a visual signal after both engines are stable at idle and push back is completed."
+      }
+     ]
+    }
+   ]
   }
  ],
  "checklists": {
@@ -10235,6 +12345,134 @@ window.OMB = {
       "item": "GEAR PINS",
       "val": "3 CHECKED",
       "who": "L"
+     }
+    ]
+   }
+  },
+  "bstart": {
+   "phase": "bstart",
+   "name": "BEFORE START",
+   "CL": {
+    "src": "Appendix 1 Normal Checklist B737-300/500 (Classic)",
+    "pdf": "417",
+    "page": "Page 1",
+    "items": [
+     {
+      "item": "DOORS",
+      "val": "CLOSED",
+      "who": "R"
+     },
+     {
+      "item": "FLT DECK DOOR",
+      "val": "CLOSED & LOCKED",
+      "who": "R"
+     },
+     {
+      "item": "FUEL",
+      "val": "__KGS, PUMP(S) ON",
+      "who": "L R"
+     },
+     {
+      "item": "PASSENGER SIGNS",
+      "val": "ON",
+      "who": "R"
+     },
+     {
+      "item": "WINDOWS",
+      "val": "LOCKED",
+      "who": "L R"
+     },
+     {
+      "item": "MCP",
+      "val": "V2__, HEADING__, ALTITUDE__",
+      "who": "L"
+     },
+     {
+      "item": "TAKEOFF SPEEDS",
+      "val": "V1__, VR__, V2__",
+      "who": "L R"
+     },
+     {
+      "item": "CDU PREFLIGHT",
+      "val": "COMPLETED",
+      "who": "L R"
+     },
+     {
+      "item": "RUDDER&AILERON TRIM",
+      "val": "FREE&ZERO",
+      "who": "L"
+     },
+     {
+      "item": "TAXI AND T/O BRIEFING",
+      "val": "COMPLETED",
+      "who": "PF"
+     },
+     {
+      "item": "ANTI COLLISION LIGHT",
+      "val": "ON",
+      "who": "R"
+     }
+    ]
+   },
+   "NG": {
+    "src": "Appendix 3 Normal Checklist B737-700/800 (NG)",
+    "pdf": "422",
+    "page": "Page 6",
+    "items": [
+     {
+      "item": "DOORS",
+      "val": "CLOSED",
+      "who": "R"
+     },
+     {
+      "item": "FLT DECK DOOR",
+      "val": "CLOSED & LOCKED",
+      "who": "R"
+     },
+     {
+      "item": "FUEL",
+      "val": "__KGS, PUMP(S) ON",
+      "who": "L R"
+     },
+     {
+      "item": "PASSENGER SIGNS",
+      "val": "ON",
+      "who": "R"
+     },
+     {
+      "item": "WINDOWS",
+      "val": "LOCKED",
+      "who": "L R"
+     },
+     {
+      "item": "MCP",
+      "val": "V2__, HEADING__, ALTITUDE__",
+      "who": "L"
+     },
+     {
+      "item": "TAKEOFF SPEEDS",
+      "val": "V1__, VR__, V2__",
+      "who": "L R"
+     },
+     {
+      "item": "CDU PREFLIGHT",
+      "val": "COMPLETED",
+      "who": "L R"
+     },
+     {
+      "item": "RUDDER&AILERON TRIM",
+      "val": "FREE&ZERO",
+      "who": "L"
+     },
+     {
+      "item": "TAXI AND T/O BRIEFING",
+      "val": "COMPLETED",
+      "who": "PF"
+     },
+     {
+      "item": "ANTI COLLISION LIGHT",
+      "val": "ON",
+      "who": "R"
      }
     ]
    }

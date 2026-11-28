@@ -117,7 +117,7 @@ var type = Q.print || 'CL';
 try { type = Q.print || localStorage.getItem('b737t') || 'CL'; } catch (e) {}
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 function pdf(ch) { return String(ch).split(/[–-]/).map(function (x) { return +x + 68; }).join('–'); }
-var ROLE = { FO: ['F/O', '#1d5fd6'], C: ['CAPTAIN', '#d4570b'], B: ['CAPTAIN + F/O', '#0b8a5a'], CFO: ['CAPTAIN или F/O', '#0b8a5a'], '-': ['не указано', '#7a869e'] };
+var ROLE = { FO: ['F/O', '#1d5fd6'], C: ['CAPTAIN', '#d4570b'], PF: ['PF', '#7b2cbf'], PM: ['PM', '#0f8b8d'], B: ['CAPTAIN + F/O', '#0b8a5a'], CFO: ['CAPTAIN или F/O', '#0b8a5a'], '-': ['не указано', '#7a869e'] };
 var ZNAME = { ovh: 'Overhead panel', ip: 'Main panel + glareshield', aft: 'Control stand + pedestal', ngovh: 'Overhead panel (P5)', ngip: 'Main panel + glareshield (P7)', ngped: 'Control stand + pedestal (P8)' };
 var SIZE = { ovh: [1752, 2250], ip: [2014, 1054], aft: [1228, 1850], ngovh: [1546, 2576], ngip: [1546, 2576], ngped: [1546, 2576] };
 var SRC = { ovh: 'clovh', ip: 'clip', aft: 'claft', ngovh: 'ng', ngip: 'ng', ngped: 'ng' };
@@ -158,7 +158,7 @@ function rowsFor(ph, t) {
   ph.rows.forEach(function (r) {
     if (!applies(r.tag, t)) return;
     var lines = r.lines.filter(function (l) { return applies(l.tag, t); });
-    if (lines.length) out.push({ who: r.who, panel: r.panel, page: r.page, tag: r.tag, lines: lines, n: out.length + 1 });
+    if (lines.length) out.push({ who: r.who, panel: r.panel, page: r.page, tag: r.tag, lines: lines, n: out.length + 1, loc: r.loc });
   });
   return out;
 }
@@ -179,7 +179,7 @@ function buildPlates(ph, t) {
   rows.forEach(function (r) {
     var nA = r.lines.filter(function (l) { return l.k === 'A'; }).length, k = 0, cur = null, pre = [];
     if (!nA) { // row without a switch action: keep its text on the slide as a heading plate
-      cur = { num: String(r.n), who: r.who, item: r.panel, val: '', tag: r.tag, pre: [], post: [], page: r.page, panel: r.panel, loc: null, textOnly: true };
+      cur = { num: String(r.n), who: r.who, item: r.panel, val: '', tag: r.tag, pre: [], post: [], page: r.page, panel: r.panel, loc: r.loc ? r.loc[t] || null : null, textOnly: true };
       var hasText = r.lines.some(function (l) { return l.k === 'X' || l.k === 'V' || l.k === 'H'; });
       if (hasText) plates.push(cur);
     }
@@ -265,7 +265,10 @@ function slideFrame(title, zoneTitle, role, navItems, curNav, inner, t) {
 function zoneSlide(ph, t, run, ri, nav, navIndex) {
   var IMGX = 628, IMGW = 566, TOP = 80, BOT = 985;
   var role = run.plates[0].who;
-  var roleC = (ROLE[role] || ROLE['-'])[1];
+  var whos = []; run.plates.forEach(function (p) { if (whos.indexOf(p.who) < 0) whos.push(p.who); });
+  if (whos.length > 1) { ROLE.__mix = [whos.map(function (w) { return (ROLE[w] || ROLE['-'])[0]; }).join(' / '), '#0b1f3f']; role = '__mix'; }
+  var roleC = whos.length > 1 ? '#44526e' : (ROLE[role] || ROLE['-'])[1];
+  function pc(p) { return (ROLE[p.who] || ROLE['-'])[1]; }
   var inner = '';
   // notes block height (under image)
   var nlines = [];
@@ -290,8 +293,12 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
     var asp = IMGW / imgH, cw = x1 - x0, chh = y1 - y0;
     if (cw / chh < asp) { var nw = chh * asp; x0 -= (nw - cw) / 2; x1 = x0 + nw; } else { var nh = cw / asp; y0 -= (nh - chh) / 2; y1 = y0 + nh; }
     cw = x1 - x0; chh = y1 - y0;
-    if (cw > Z[2] - Z[0]) { var k = (Z[2] - Z[0]) / cw; cw *= k; chh *= k; }
-    if (chh > Z[3] - Z[1]) { var k2 = (Z[3] - Z[1]) / chh; cw *= k2; chh *= k2; }
+    // never shrink below the points' own extent: cut the padding only (letterbox instead)
+    var needW = Math.max.apply(null, xs) - Math.min.apply(null, xs) + 160, needH = Math.max.apply(null, ys) - Math.min.apply(null, ys) + 160;
+    if (cw > Z[2] - Z[0]) cw = Math.max(Z[2] - Z[0], Math.min(cw, needW));
+    if (chh > Z[3] - Z[1]) chh = Math.max(Z[3] - Z[1], Math.min(chh, needH));
+    cw = Math.min(cw, Z[2] - Z[0] + 0); chh = Math.min(chh, Z[3] - Z[1]);
+    cw = Math.max(cw, Math.min(needW, Z[2] - Z[0])); chh = Math.max(chh, Math.min(needH, Z[3] - Z[1]));
     var cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
     x0 = Math.max(Z[0], Math.min(Z[2] - cw, cx - cw / 2)); y0 = Math.max(Z[1], Math.min(Z[3] - chh, cy - chh / 2));
     var sc = Math.min(IMGW / cw, imgH / chh);
@@ -303,7 +310,7 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
   }
   // scan route: thick translucent arrows through targets in order
   var tg = [];
-  pts.forEach(function (p) { var q = map(p.loc.x, p.loc.y); var g = tg.filter(function (o) { return Math.hypot(o.x - q[0], o.y - q[1]) < 8; })[0]; if (!g) tg.push(g = { x: q[0], y: q[1], nums: [] }); g.nums.push(p.num); p._t = g; });
+  pts.forEach(function (p) { var q = map(p.loc.x, p.loc.y); var g = tg.filter(function (o) { return Math.hypot(o.x - q[0], o.y - q[1]) < 8; })[0]; if (!g) tg.push(g = { x: q[0], y: q[1], nums: [], who: p.who }); g.nums.push(p.num); p._t = g; });
   var route = [];
   pts.forEach(function (p) { if (!route.length || route[route.length - 1] !== p._t) route.push(p._t); });
   for (var i = 1; i < route.length; i++) {
@@ -333,8 +340,8 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
   function plate(p, side) {
     var x = side === 'L' ? 246 : 1212, sc = p._sc || 1, w = PW, h = p._h;
     var L = plateLines(p), s = '<g class="plate" data-num="' + esc(p.num) + '" transform="translate(' + x + ' ' + p._y + ') scale(' + sc + ')">';
-    s += '<rect width="' + w + '" height="' + h + '" rx="8" fill="#fff" stroke="' + roleC + '" stroke-width="2"/><rect width="8" height="' + h + '" rx="3" fill="' + roleC + '"/>';
-    s += '<circle cx="26" cy="22" r="15" fill="' + roleC + '"/><text x="26" y="27" font-size="' + (p.num.length > 3 ? 11 : 14) + '" font-weight="800" fill="#fff" text-anchor="middle">' + esc(p.num) + '</text>';
+    s += '<rect width="' + w + '" height="' + h + '" rx="8" fill="#fff" stroke="' + pc(p) + '" stroke-width="2"/><rect width="8" height="' + h + '" rx="3" fill="' + pc(p) + '"/>';
+    s += '<circle cx="26" cy="22" r="15" fill="' + pc(p) + '"/><text x="26" y="27" font-size="' + (p.num.length > 3 ? 11 : 14) + '" font-weight="800" fill="#fff" text-anchor="middle">' + esc(p.num) + '</text>';
     s += '<text x="' + (w - 8) + '" y="15" font-size="11" fill="#7a869e" text-anchor="end">стр. ' + esc(p.page.ch) + '</text>';
     if (p.loc && p.loc.check) s += '<rect x="48" y="' + (h - 24) + '" width="150" height="18" rx="4" fill="#b83280"/><text x="123" y="' + (h - 11) + '" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">⚠ проверить место метки</text>';
     var y = 22;
@@ -351,7 +358,7 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
     // leader to the control
     if (p._t) {
       var ax = side === 'L' ? x + w * sc : x, ay = p._y + 22 * sc;
-      inner += '<path d="M' + ax + ' ' + ay + ' L' + (side === 'L' ? ax + 18 : ax - 18) + ' ' + ay + ' L' + p._t.x + ' ' + p._t.y + '" fill="none" stroke="' + roleC + '" stroke-width="2.5"/>';
+      inner += '<path d="M' + ax + ' ' + ay + ' L' + (side === 'L' ? ax + 18 : ax - 18) + ' ' + ay + ' L' + p._t.x + ' ' + p._t.y + '" fill="none" stroke="' + pc(p) + '" stroke-width="2.5"/>';
     }
     return s;
   }
@@ -359,7 +366,7 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
   // target markers on top
   tg.forEach(function (g) {
     var lab = numLabel(g.nums), w = Math.max(34, lab.length * 9 + 16);
-    inner += '<rect x="' + (g.x - w / 2) + '" y="' + (g.y - 17) + '" width="' + w + '" height="34" rx="17" fill="' + roleC + '" stroke="#fff" stroke-width="3"/><text x="' + g.x + '" y="' + (g.y + 6) + '" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">' + esc(lab) + '</text>';
+    inner += '<rect x="' + (g.x - w / 2) + '" y="' + (g.y - 17) + '" width="' + w + '" height="34" rx="17" fill="' + (ROLE[g.who] || ROLE['-'])[1] + '" stroke="#fff" stroke-width="3"/><text x="' + g.x + '" y="' + (g.y + 6) + '" font-size="15" font-weight="800" fill="#fff" text-anchor="middle">' + esc(lab) + '</text>';
   });
   inner += plates;
   // notes under the image

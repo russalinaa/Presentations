@@ -38,6 +38,37 @@ NGMAP = {'ovh:bat': (632, 625), 'ovh:stby': (665, 695), 'ovh:altflaps': (548, 52
 # Each entry: (CL image, x, y, NG x, y) in pixels of site/img/*.jpg; NG image is ng-all.jpg (zones by y).
 # None = control not on mockup.  '?' suffix in note = position to be verified.
 LOC = {
+  'bstart': [[], [None]*6, [], [], [],
+    ('ip', 1207, 780, 600, 1660),      # 5 CDU display
+    ('ip', 935, 450, 760, 1440),       # 6 N1 bugs
+    ('ip', 188, 377, 300, 1420),       # 7 IAS bugs
+    ('ip', 1000, 60, 780, 1175),       # 8 MCP
+    None, None, None,                  # 9 briefings, 10 exterior doors, 11 windows
+    ('aft', 830, 1765, 930, 2510),     # 12 Flight deck door (CAB DOOR / FLT DK DOOR light)
+    ('ovh', 165, 1760, 540, 870),      # 13 Fuel panel
+    ('ovh', 912, 1440, 857, 715),      # 14 Hydraulic panel
+    [('aft', 510, 1680, 765, 2465), ('aft', 380, 420, 685, 1935), ('aft', 370, 1730, 765, 2465), ('aft', 510, 1680, 765, 2465)],  # 15 Trim
+    ('ovh', 1120, 2065, 955, 1002),    # 16 ANTI COLLISION light switch
+    [], [], [], [], [],
+    ('aft', 550, 1250, 765, 2310),     # 22 Transponder
+  ],
+  'push': [[], [], [], [], None,
+    ('aft', 385, 610, 683, 2042),      # 5 parking brake (row without action line)
+    [], [],
+    ('ovh', 912, 1440, 857, 715),      # 8 System A HYDRAULIC PUMPS
+  ],
+  'estart': [[], [], [], [],
+    ('ip', None, None, 773, 1662),     # 4 (NG) secondary engine indications (lower DU)
+    ('ovh', 1210, 1445, 1000, 722),    # 5 PACK switches
+    ('ovh', 1210, 1390, 1000, 675),    # 6 (CL) start pressure (duct pressure gauge)
+    None,                              # 7 Start sequence (announce)
+    ('ovh', 635, 2080, 780, 985),      # 8 ENGINE START switch
+    [],
+    ('aft', 545, 520, 760, 2056),      # 10 Engine start lever
+    [],
+    ('ovh', 635, 2080, 780, 985),      # 12 ENGINE START switch to OFF (row without action line)
+    [], [], [], [],
+  ],
   'pcap': [
     ('ip', 795, 225, 578, 1318),       # 0 Lights TEST
     ('ip', None, None, 530, 1175),     # 1 (NG) EFIS control panel (Captain side)
@@ -288,6 +319,9 @@ LOC_CHECK['pcap'] = {
   (32, 1, 'CL'): 'Пункт «system B electric HYDRAULIC PUMP switch» на overhead; метка оставлена на панели триммеров, на overhead не продублирована.',
   (32, 1, 'NG'): 'Пункт «system B electric HYDRAULIC PUMP switch» на overhead; метка оставлена на панели триммеров, на overhead не продублирована.',
 }
+LOC_CHECK['estart'] = {(6, 0, 'CL'): 'Start pressure показан на манометре DUCT PRESS (PSI) на overhead; в OM-B прибор не назван. ⚠ проверить',
+  (10, 0, 'CL'): 'На Classic-макете рычаги ENGINE START не подписаны. ⚠ проверить', (10, 0, 'NG'): 'Метка у рычагов ENGINE START под РУД. ⚠ проверить'}
+LOC_CHECK['bstart'] = {(15, 1, 'NG'): 'Метка на шкале STAB TRIM у рукоятки триммера. ⚠ проверить'}
 LOC_CHECK['pfo'] = {
   (36, 0, 'CL'): 'Метка стоит на индикаторах с надписью QTY на правой части приборной панели; что это именно HYDRAULIC QUANTITY, по макету не видно. ⚠ проверить',
   (39, 0, 'NG'): 'На NG-макете виден только сигнал ANTISKID INOP, самого выключателя ANTISKID нет. Метка у табло. ⚠ проверить',
@@ -306,6 +340,12 @@ def attach_locs(phases):
         assert len(L) == len(ph['rows']), (ph['id'], len(L), len(ph['rows']))
         for ri, (row, locs) in enumerate(zip(ph['rows'], L)):
             acts = [l for l in row['lines'] if l['k'] == 'A']
+            if not acts and isinstance(locs, tuple):   # row without a switch action, but its control is on the mockup
+                img, x, y, nx, ny = locs
+                row['loc'] = {}
+                if x is not None: row['loc']['CL'] = {'img': img, 'x': x, 'y': y}
+                if nx is not None: row['loc']['NG'] = {'img': 'ngovh' if ny < 1120 else 'ngip' if ny < 1720 else 'ngped', 'x': nx, 'y': ny}
+                continue
             if locs is None:
                 locs = [None] * len(acts)
             elif isinstance(locs, tuple):   # one location for the whole row (all its actions are on one panel)

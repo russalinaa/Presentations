@@ -1,0 +1,294 @@
+# OM-B 2.2.21 Before Start (ch 62–65), 2.2.22 Pushback or Towing (ch 65–67), 2.2.23 Engine Start (ch 67–69).
+# Role column of the document: C -> C, F/O -> FO, "C F/O" -> B, "C or F/O" -> CFO, PF -> PF.
+
+#PHASE bstart | Before Start Procedure | 2.2.21 | 62–65
+@trigger Start the Before Start Procedure after all papers are on board
+@trigger Initiate BEFORE START PROCEDURE only after CDU Pre-flight Procedure – Performance Data steps have done.
+@intro If the oil temperature is below -20 degrees Celsius, pilot must call maintenance personnel to heat up oil. Engine start with cold oil can lead to damage of starter mechanism.
+@intro It is necessary to move ENGINE START SWICH to CONT mode for oil temperature check on the ground.
+@who Captain / F/O по колонкам документа (C, F/O, PF)
+@callout C | BEFORE START PROCEDURE
+== - | Refuelling | - | 62
+N Refuelling must be completed before Actual ZFW and MAC are entered into FMC.
+== CFO | Flight Without Cabin Crew | - | 62
+X Flight Without Cabin Crew
+X Captain or on the request of Captain, F/O will complete a Safety Check and operate the doors. The Safety Check must be completed prior to push back or taxi.
+X Check that Engineering has completed the Maintenance Checklist.
+X This is to ensure the Safety Check of cabin, lavatories, galleys prior to push back or taxi:
+V Check that required meals and beverages are on board. Dry ice will be required for chilling meals.
+V All galley power and cabin systems have been switched off, except when required by the crew.
+V All galley equipment is stowed, the trolleys are in storage place with brakes activated, containers are stowed, secured.
+V All hand baggage is stowed in secure manner or closed in overhead lockers. All overhead bins are closed and all stowage compartments are latched.
+V Seat backs are upright.
+V Arm-rests are turned down.
+V Window blinds are opened.
+V Curtains of the cabin and galleys are secured open.
+V Lavatories are empty, closed and latched; the toilet lid is down.
+V Aisle between rows of seats and access to the emergency exits is free of obstructions.
+V All doors must be closed/latched and armed before engine start or push-back.
+V Passengers (supernumeraries) are advised to be seated and fastened.
+A AFT LEFT and RIGHT DOORS || CLOSE
+A RED FLAGS on windows of AFT L/R DOORS || Position ACROSS
+A ESCAPE SLIDES AFT L/R DOORS || ARM
+A FWD LEFT and RIGHT DOORS || CLOSE
+A RED FLAGS on windows of FWD L/R DOORS || Position ACROSS
+A ESCAPE SLIDES FWD L/R DOORS || ARM
+X Captain or F/O will advise that doors are closed and armed.
+== B | Takeoff Data calculation (EFB OPT) | - | 63
+N Two independent calculations are required when using EFB. This means that each pilot shall perform the whole calculation instead of a single calculation crosschecked by the other crew member, both pilot shall be crosscheck using compare calculation (OPT Performance Take-off page).
+X Both Pilots will:
+V Follow EFB OPT Operational Procedure for Takeoff Data calculation.
+X When make OPT calculation use next modes:
+V THRUST RATING OPTIMUM (if applicable) choose when normal environment conditions or select TO RTG/WINDSHEAR RTG to mitigate weather influence
+V FLAP CONFIG choose OPTIMUM when normal environment conditions or FLAP CONFIG 1/5//10/15/25 when TORA is a factor or rough RW or Windshear is expected
+N For takeoffs, when conditions permit, consider using larger flap settings to provide shorter takeoff distance. Larger flap settings also provide greater tail clearance.
+N Flaps 1 and 5 takeoffs have the least clearance. Consider using a larger flap setting for takeoffs and landing at light gross weights.
+V IMCLB CONFIG choose NONE OR FIXED when normal environment conditions or OPTIMUM when during takeoff TOW In doubt, (there is high temperature, high aerodrome elevation, specific climb gradient during SID is required or combination of this factors)
+N If used IMCLB CONFIG OPTIMUM, note to flight log as remark “Takeoff is performed at ImCLB OPTIMUM and airport name”.
+X Remember that use of IMCLB CONFIG OPTIMUM mode leads to higher V1/Vr/V2 speeds and increase wheels workload!
+V Use FMC PERF INIT page 1/2, ZFW entry from OPT W/B calculation or Loadsheet
+V Ensure that N1 Thrust target, flap position, V1, VR, V2 on TAKEOFF REF page 1/2 correspond to EFB OPT calculations or applicable RW analysis
+V Ensure when using reduced takeoff thrust (ATM) and Fixed Derate Thrust with ATM do not enter on N1 Limit page SEL Temperature more than 55 °C (NG), 50 °C (CL).
+V Verify ZFW from the EFB or loadsheet, enter ZFW line on CDU Performance page and push EXEC key.
+V Select TAKEOFF REF 1/2 page: enter TO flaps into FLAPS line and MACTOW into CG line, crosscheck FMC and OPT calculation stabilizer takeoff trim setting .
+V Enter Derate or/and SEL TEMP for takeoff and takeoff speeds in FMC which was calculated in OPT. Do not enter on N1 Limit page SEL Temperature more than 55 °C (NG), 50 °C (CL).
+V Check CLB thrust on CLB page CDU and verify value should be lees than R-TO thrust. If more than R-TO choose CLB-1 or CLB-2.
+N Takeoff Stabilizer Trim Setting depends on TOW, TO Flaps, CG % and TO Thrust. In the LOADSHEET TO STAB TRIM Setting calculation is based on TOW, TO Flaps (1&5), CG % and maximum certified TO Thrust. In the FMC TO STAB TRIM Setting calculation is based on TOW, TO Flaps, CG % and actual TO Thrust (Full Rated or Derated). If Full TO Thrust is used for Takeoff, then Loadsheet and FMC calculated TO STAB TRIM Settings should be the same. When the actual TO Thrust is reduced by Fixed Derate then the Loadsheet and FMC TO STAB TRIM Settings will be different. In this case OPT calculation data shall be used.
+== - | Cabin Crew coordination | - | 64
+V Cabin Crew will receive permission from Captain prior to closing doors.
+V If delay is expected coordinate with Cabin Crew and inform passengers.
+V If time allows make general PA with greetings and information.
+V Advise Cabin Crew if short taxi time is expected to ensure sufficient time for pre takeoff announcement and safety demonstration.
+== C | Call | - | 64
+K BEFORE START PROCEDURE
+== B | CDU display | - | 64
+A CDU display || Set
+X Normally the PF selects the TAKEOFF REF page.
+X Normally the PM selects the LEGS page.
+== B | N1 bugs | - | 64
+A N1 bugs || Check
+== B | IAS bugs | - | 64
+A IAS bugs || Set
+[CL] V (CL) Verify that the reference bugs are at V1, VR, V2+15, and flaps up maneuvering speed
+== C | MCP | - | 64
+A MCP || Set
+A IAS/MACH selector || Set V2
+A RWY heading || Set
+A Initial altitude || Set
+A Set AUTOTHROTTLE ARM switch || ARM
+[NG] X (NG) Arm LNAV/VNAV as needed
+== PF | Taxi and Takeoff briefings | - | 64
+A Taxi and Takeoff briefings || Complete
+X The pilot who will do the takeoff does the taxi and takeoff briefings, if not completed before.
+== FO | Exterior doors | - | 64
+A Exterior doors || Verify closed
+== B | Flight deck windows | - | 64
+A Flight deck windows || Closed and locked
+== FO | Flight deck door | - | 64
+A Flight deck door || Closed and locked
+V Verify that the CAB DOOR UNLOCKED/LOCK FAIL light is extinguished.
+== FO | Fuel panel | - | 64
+A Fuel panel || Set
+X If the center tank fuel quantity exceeds 1000 pounds/453 kilograms:
+A LEFT and RIGHT CENTER FUEL PUMPS switches || ON
+V Verify that the LOW PRESSURE lights illuminate momentarily and then extinguish.
+V If the LOW PRESSURE light stays illuminated turn off the CENTER FUEL PUMPS switch.
+A AFT and FORWARD FUEL PUMPS switches || ON
+V Verify that the LOW PRESSURE lights are extinguished.
+== FO | Hydraulic panel | - | 65
+A Hydraulic panel || Set
+X If push back is needed and nose gear steering lock out pin is not insert:
+A System A HYDRAULIC PUMP switches || OFF
+V Verify that the system A pump LOW PRESSURE lights are illuminated.
+A System B electric HYDRAULIC PUMP switch || ON
+V Verify that the system B electric pump LOW PRESSURE light is extinguished.
+W Do not pressurize hydraulic system A. Unwanted tow bar movement can occur.
+V Verify that the brake pressure is 2,800 psi minimum.
+V Verify that the system B pressure is 2,800 psi minimum.
+X If pushback is not needed or nose gear lock out pin is insert:
+A Electric HYDRAULIC PUMP switches || ON
+V Verify that the electric pump LOW PRESSURE lights are extinguished.
+V Verify that the brake pressure is 2,800 psi minimum.
+V Verify that the system A and B pressures are 2,800 psi minimum.
+== C | Trim | - | 65
+A Trim || Set
+X Check each trim for freedom of movement.
+A Stabilizer trim || ___UNITS
+X Set the trim for takeoff.
+V Verify that the trim is in the green band.
+A Aileron trim || 0 units
+A Rudder trim || 0 units
+== FO | ANTI COLLISION light switch | - | 65
+A ANTI COLLISION light switch || ON
+== FO | Call | - | 65
+K BEFORE START PROCEDURE COMPLETED
+== C | Call | - | 65
+K BEFORE START CHECKLIST
+== FO | BEFORE START CHECKLIST | - | 65
+X Do the BEFORE START CHECKLIST.
+== FO | Start, Push Back (Towing) clearance | - | 65
+X Flight crew shall only request engine start and/or pushback clearance after confirmation that Ground staff is ready for pushback
+X Obtain Start, Push Back (Towing) clearance from ATC
+== B | Call ground | - | 65
+X Call ground for Push Back (Towing) and/or engines start
+== FO | Transponder | - | 65
+A Transponder || As needed
+A Transponder mode selector || ALT ON
+A Transponder mode selector || XPNDR
+N At airports where ground tracking is not available, select STANDBY.
+N At airports where ATC regulations require start of pushback immediately after receiving the clearance, Before Start Procedure and Before Start Checklist shall be accomplished prior to requesting ATC clearance for push and start.
+Q Две строки «Transponder mode selector …… ALT ON» и «…… XPNDR» стоят подряд без условия выбора. Перенесено как в документе.
+
+#CHECKLIST bstart | BEFORE START
+@CL Appendix 1 Normal Checklist B737-300/500 (Classic) | 417 | Page 1
+DOORS | CLOSED | R
+FLT DECK DOOR | CLOSED & LOCKED | R
+FUEL | __KGS, PUMP(S) ON | L R
+PASSENGER SIGNS | ON | R
+WINDOWS | LOCKED | L R
+MCP | V2__, HEADING__, ALTITUDE__ | L
+TAKEOFF SPEEDS | V1__, VR__, V2__ | L R
+CDU PREFLIGHT | COMPLETED | L R
+RUDDER&AILERON TRIM | FREE&ZERO | L
+TAXI AND T/O BRIEFING | COMPLETED | PF
+ANTI COLLISION LIGHT | ON | R
+@NG Appendix 3 Normal Checklist B737-700/800 (NG) | 422 | Page 6
+DOORS | CLOSED | R
+FLT DECK DOOR | CLOSED & LOCKED | R
+FUEL | __KGS, PUMP(S) ON | L R
+PASSENGER SIGNS | ON | R
+WINDOWS | LOCKED | L R
+MCP | V2__, HEADING__, ALTITUDE__ | L
+TAKEOFF SPEEDS | V1__, VR__, V2__ | L R
+CDU PREFLIGHT | COMPLETED | L R
+RUDDER&AILERON TRIM | FREE&ZERO | L
+TAXI AND T/O BRIEFING | COMPLETED | PF
+ANTI COLLISION LIGHT | ON | R
+
+#PHASE push | Pushback or Towing Procedure | 2.2.22 | 65–67
+@trigger Before the first movement of the aircraft (pushback or towing), the flight crew shall verify that the cabin is secure. SCCM report the information “CABIN READY FOR MOVEMENT” via Interphone and after receiving confirmation from C or F/O “CABIN READY FOR MOVEMENT CONFIRM” first movement can be done.
+@intro If jumpseat is occupied, both pilots must check and be sure that jumpseat occupant use seatbelts and all personal belongings are taken away before commencement of the aircraft movement.
+@intro Flight crew shall only request engine start and/or pushback clearance after confirmation that Ground staff is ready for pushback
+@intro The Engine Start procedure may be done during pushback or towing.
+@intro Do not accomplish a crossbleed start during pushback.
+@who Captain / F/O по колонкам документа
+@callout CFO | CABIN READY FOR MOVEMENT CONFIRM
+== - | Cautions | - | 66
+C Do not hold or turn the nose wheel steering wheel during pushback or towing. This can damage the nose gear or the tow bar.
+C Do not use airplane brakes to stop the airplane during pushback or towing. This can damage the nose gear or the tow bar.
+C When operating on slippery surface, engine start during push back is not recommended due to risk of undesirable aircraft/tow tractor drift. Delay engine start until the end of the push back, setting the Parking Brake and tow bar disconnection.
+== B | Confirm with Ground staff | - | 66
+X The following actions, if applicable, must be confirmed between Ground staff and Flight crew before pushback:
+V Chocks are removed
+V Nose wheel steering is depressurized
+V Setting of parking brake
+V Pressurization of hydraulic systems is configured
+V Lifting of the aircraft
+V Flight crew shall confirm that Ground staff is ready for pushback and/or engine start before requesting the clearance
+V If pushback/towing has to be stopped, the following callout must be made directly to the Ground staff: “STOP PUSHBACK/TOWING”.
+V During darkness or reduced visibility a torch light/illuminated bat must be used by the Ground staff to improve visibility of the all clear signal. Flight crew shall use the flight deck dome light.
+V After disconnecting, Ground staff shall show steering lockout pin.
+K STOP PUSHBACK/TOWING
+== C | Communications with ground handling | - | 66–67
+X Communications with ground handling (Captain — GROUND CREWMAN):
+K Captain: CONFIRM BYPASS PIN INSERT, MAY WE RELEASE PARKING BRAKE?
+K GROUND CREWMAN: RELEASE PARKING BRAKE
+K Captain: CLEARED TO PUSH, PARKING BRAKE RELEASED.
+K GROUND CREWMAN: COMMENCING PUSHBACK.
+K Captain: MAY WE START ENGINE NUMBER TWO?
+K GROUND CREWMAN: CLEAR TWO
+K Captain: MAY WE START ENGINE NUMBER ONE?
+K GROUND CREWMAN: CLEAR ONE
+K GROUND CREWMAN: PUSHBACK COMPLETE, SET PARKING BRAKE
+K Captain: PARKING BRAKE SET, [CLEARED TO] DISCONNECT TOWBAR AND BYPASS PIN, ADVISE WHEN CLEAR
+K GROUND CREWMAN: TOWBAR IS DISCONNECTED, BYPASS PIN IS REMOVED, HAND SIGNALS ON THE LEFT (RIGHT)
+K Captain: HAND SIGNALS ON THE LEFT (RIGHT) WITH THE PIN REMOVED
+Q Порядок строк таблицы «Communications with ground handling» восстановлен по двум колонкам (Captain / GROUND CREWMAN) при переходе таблицы со стр. 66 на 67. Проверьте очерёдность реплик по оригиналу.
+== C | Ground handling personnel | - | 67
+X Establish communications with ground handling personnel
+== FO | Block Time | - | 67
+A Block Time || Start
+== C | Parking brake | - | 67
+X Set or release the parking brake as directed by ground handling personnel.
+== B | When pushback or towing is completed | - | 67
+X When pushback or towing is completed:
+V Verify that the tow bar is disconnected.
+== C | Nose gear steering lockout pin | - | 67
+V Verify that the nose gear steering lockout pin is removed.
+== FO | System A HYDRAULIC PUMPS | - | 67
+A System A HYDRAULIC PUMPS switches || ON.
+V Verify that the system A pump LOW PRESSURE lights are extinguished
+V Verify that the system A pressure is 2800 psi minimum.
+N Start engine number two when clear of potential FOD and ground obstacles.
+X Taxi clearance must only be requested after the all clear signal is received
+
+#PHASE estart | Engine Start Procedure | 2.2.23 | 67–69
+@trigger Call Engine Start Procedure (C)
+@who Captain / F/O по колонкам документа
+@callout C | Engine Start Procedure
+== - | Notes | - | 67
+[CL] N (CL) Use Hot Weather operation Engine start procedure when outside temperature ≥ 28° C
+N At first start of the day, both engines are to be started on R IGN. (In order to check the AC standby bus.) Alternate L and R, for subsequent starts. Continue the flight using the ignition position used for engine start.
+[NG] N (for NG only): For the first flight of the day, at airport elevation at or above 2000 feet MSL, if the temperature below 5° C, consider placing the Ignitor select switch to BOTH before starting the engines. This may increase the likelihood of a successful engine start on the first attempt.
+== B | Confirm with Ground staff | - | 67
+X The following actions, if applicable, must be confirmed between Ground staff and Flight crew before Engine Start:
+V Chocks are removed
+V Setting of parking brake
+V Pressurization of hydraulic systems is configured
+V Flight crew shall confirm that Ground staff is ready for engine start before requesting the clearance
+V During darkness or reduced visibility a torch light/illuminated bat must be used by the Ground staff to improve visibility of the all clear signal. Flight crew shall use the flight deck dome light.
+== C | Ground handling | - | 67
+X Establish communications with ground handling personnel
+N example of a radio communication between cockpit and ground crewman chapter 2.3.4
+== C | Call | - | 67
+K Engine Start Procedure
+== FO | Secondary engine indications | - | 67 | NG
+X (NG) Select the secondary engine indications.
+== FO | Air conditioning PACK switches | - | 68
+A Check Air conditioning PACK switches are || OFF
+== FO | Start pressure | - | 68 | CL
+A (CL) Check start pressure || ___psi
+X The minimum start pressure at sea level is 30 psi decrease the minimum start pressure 0,5 psi for each 1,000 feet above sea level.
+== C | Start sequence | - | 68
+A Start sequence || Announce
+K START ENGINE NO __
+== FO | ENGINE START switch | - | 68
+A ENGINE START switch to || GRD, start clock
+== B | N2 RPM | - | 68
+V Verify that the N2 RPM increases
+== C | Engine start lever | - | 68
+X When N1 rotation is seen and N2 is at 25%, or (if 25% N2 is not possible), at maximum motoring and a minimum of 20% N2):
+N Maximum motoring occurs when N2 acceleration is less than 1% in approximately 5 seconds.
+A Engine start lever || IDLE
+X Start timing for EGT indications
+== B | Fuel flow and EGT | - | 68
+V Monitor fuel flow and EGT indications.
+== FO | ENGINE START switch to OFF | - | 68
+[CL] V (CL) At 46% N2, verify that the ENGINE START switch moves to OFF. If not, move the ENGINE START switch to OFF manually
+[NG] V (NG) At 56% N2, verify that the ENGINE START switch moves to OFF. If not, move the ENGINE START switch to OFF manually.
+V Verify that the START VALVE OPEN light extinguishes when the ENGINE START switch moves to OFF.
+K STARTER CUTOUT
+== B | Stable idle | - | 68
+V Monitor N1, N2, EGT, fuel flow and oil pressure for normal indications while the engine accelerates to a stable idle.
+X After engine is stable at idle, start the other engine.
+== - | Starter duty cycle | - | 68
+X Starter duty cycle:
+V Do not exceed 2 minutes during each start attempt
+[NG] V (NG) A minimum of 10 seconds is needed between start attempts
+[CL] V (CL) A minimum of 20 seconds is needed between the first and second start attempts
+[CL] V (CL) A minimum of three minutes is needed between the second and subsequent start attempts.
+== - | Normal engine start considerations | - | 68–69
+X Normal engine start considerations:
+V do not move an engine start lever to idle early, a hot start can occur
+V keep a hand on the engine start lever while monitoring RPM, EGT and fuel flow until stable
+V if fuel is shutoff accidentally (by closing the engine start lever) do not reopen the engine start lever in an attempt to restart the engine
+V failure of the ENGINE START switch to stay in GRD until the starter cutout RPM can cause a hot start. Do not re-engage the ENGINE START switch until engine RPM is below 20% N2.
+V During cold weather starts, oil pressure may temporary exceed the green band or may not show any increase until oil temperature rises. No indication of oil pressure by the time idle RPM is achieved requires an immediate engine shutdown. At low ambient temperatures, a temporary high oil pressure above the green band may be tolerated.
+V When starting the engines in tailwind conditions, Boeing recommends making a normal start. Expect a longer cranking time to ensure N1 is rotating in the correct direction before moving the start lever. A higher than normal EGT should be expected, yet the same limits and procedures apply.
+== - | ABORTED ENGINE START | - | 69
+X Do the ABORTED ENGINE START checklist for one or more of the following abort start conditions:
+V the N1 or N2 does not increase or increases very slowly after the EGT increases
+V there is no oil pressure indication by the time that the engine is stable at idle
+V the EGT does not increase by 10 seconds (CL), 15 seconds (NG) after the engine start lever is moved to IDLE
+V the EGT quickly nears or exceeds the start limit (725ºC)
+X Advise Ground staff to disconnect for a visual signal after both engines are stable at idle and push back is completed.
