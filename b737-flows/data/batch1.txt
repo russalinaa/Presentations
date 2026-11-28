@@ -1,0 +1,830 @@
+# OM-B SCAT B737 CL-NG, Issue 06 Rev 01. Chapter 2 page = PDF page - 68.
+# Row:  == WHO | Panel (RU+EN) | mockkey | chapter page | tag
+# Lines: A item || value | V verify/condition | X instruction text | H tail/type heading | N NOTE | C CAUTION | W WARNING | K callout | Q ⚠ question
+# Line/row tags in leading [..]: CL, NG, T:3721,3724 (tails), X:3722,3723 (except tails), CL+T:3725 (CL and tails), NG+T:3721,3729
+# WHO: FO, C, B (both), CFO (Captain or F/O)
+
+#PHASE epu | Electrical Power Up – F/O | 2.2.9 | 21–23
+@trigger 2.2.8 Amplified procedures: Before each flight the captain, first officer or maintenance crew must verify that airplane is satisfactory for flight. The F/O will complete the Electrical Power UP procedure and Preliminary Preflight Procedure if it was not otherwise stated by Captain.
+@intro Power up procedure is extracted from SP.6.1 and inserted for the logical sequence of the flight preparation.
+@intro The following procedure is accomplished to permit safe application of electrical power.
+@who F/O
+== FO | Electrical panel | ovh:bat | 21
+A BATTERY switch || Guard closed
+== FO | Electrical panel | ovh:stby | 21
+A STANDBY POWER switch || Guard closed
+== FO | Flight control panel | ovh:altflaps | 21
+A ALTERNATE FLAPS master switch || Guard closed
+== FO | Windshield wiper | ovh:wiper | 21
+A Windshield WIPER selector || OFF
+== FO | Hydraulic panel | ovh:ehyd | 21
+A ELECTRIC HYDRAULIC PUMPS switches || OFF
+== FO | Landing gear panel | ip:gear | 21
+A LANDING GEAR lever || DN
+V Verify that the green landing gear indicator lights are illuminated.
+V Verify that the red landing gear indicator lights are extinguished.
+== FO | Weather radar | ip:wx | 21
+A WEATHER RADAR || OFF
+== FO | Electrical panel | ovh:grd | 22
+X If external power is needed:
+V Verify that the GRD POWER AVAILABLE light is illuminated.
+A GRD POWER switch || ON
+V Verify that the BUS OFF lights are extinguished.
+V Verify that the TRANSFER BUS OFF lights are extinguished.
+V Verify that the STANDBY PWR OFF light is extinguished.
+== FO | Overheat and fire protection panel | aft:fire | 22
+A Overheat and fire protection panel || Check
+V Verify that the engine No. 1, APU and the engine No. 2 fire switches are in.
+A OVERHEAT DETECTOR switches || NORMAL
+A TEST switch || Hold to FAULT/INOP
+V Verify that the MASTER CAUTION lights are illuminated.
+V Verify that the OVHT/DET annunciator is illuminated.
+V Verify that the FAULT light is illuminated.
+V If the FAULT light fails to illuminate, the fault monitoring system is inoperative.
+V Verify that the APU DET INOP light is illuminated.
+V Do not operate the APU if the APU DET INOP light fails to illuminate.
+N The fire warning light flashes and the horn sounds on the APU ground control panel when this test is done with the APU running. This can be mistaken by the ground crew as an APU fire.
+A TEST switch || Hold to OVHT/FIRE
+V Verify that the fire warning bell sounds.
+V Verify that the master FIRE WARN lights are illuminated.
+V Verify that the MASTER CAUTION lights are illuminated.
+V Verify that the OVHT/DET annunciator is illuminated.
+A Master FIRE WARN light || Push
+V Verify that the master FIRE WARN lights are extinguished.
+V Verify that the fire warning bell cancels.
+V Verify that the engine No. 1, APU and the engine No. 2 fire switches stay illuminated.
+V Verify that the ENG 1 OVERHEAT and ENG 2 OVERHEAT lights stay illuminated
+A EXTINGUISHER TEST switch || Check
+A TEST Switch || Position to 1 and hold
+V Verify that the three green extinguisher test lights are illuminated.
+A TEST Switch || Release
+V Verify that the three green extinguisher test lights are extinguished.
+X Repeat for test position 2.
+== FO | APU | ovh:apu | 23
+A APU switch (as needed) || START
+N If extended APU operation is required on the ground and fuel is loaded in the centre tank, place the left centre tank fuel pump switch ON to prevent a fuel imbalance before takeoff.
+C Center tank fuel pump switches should be positioned ON only if the fuel quantity in the centre tank exceeds 453 kgs/1000 lbs.
+C Do not operate the center tank fuel pumps with the flight deck unattended.
+N Whenever the APU is operating and AC electrical power is on the airplane busses, extended service life of the APU fuel control unit can be realized by operating at least one fuel boost pump to supply fuel under pressure to the APU.
+== FO | Electrical panel (APU GEN) | ovh:apugen | 23
+X When the APU GEN OFF BUS light is illuminated:
+A APU GENERATOR bus switches || ON
+V Verify that the BUS OFF lights are extinguished.
+V Verify that the TRANSFER BUS OFF lights are extinguished.
+V Verify that the STANDBY PWR OFF light is extinguished.
+V Verify that the APU MAINT light is extinguished.
+V Verify that the APU LOW OIL PRESSURE light is extinguished.
+V Verify that the APU FAULT light is extinguished.
+V Verify that the APU OVERSPEED light is extinguished
+N Run the APU for two full minutes (NG) one full minute (CL) before using it as a bleed air source.
+== FO | Overheat and fire protection panel | aft:firetest | 23
+A Wheel well fire warning system || Test
+N If external power is available and ON, Wheel well fire warning system test may be performed as part of Overheat and fire protection panel test
+A Test switch || Hold to OVHT/FIRE
+V Verify fire warning bell sounds, master FIRE WARN lights, MASTER CAUTION lights and OVHT/DET annunciator illuminate.
+A Fire warning BELL CUTOUT switch || Push
+V Verify that the master FIRE WARN lights extinguish.
+V Verify that the fire warning bell cancels.
+V Verify that the WHEEL WELL fire warning light is illuminated.
+
+#PHASE prelim | Preliminary Preflight Procedure – F/O | 2.2.10 | 23–28
+@trigger The Preliminary Preflight Procedure assumes that the Electrical Power Up supplementary procedure is complete.
+@intro A full IRS alignment is recommended before each flight. If time does not allow a full alignment, do the Fast Realignment supplementary procedure.
+@who F/O (2.2.8: if it was not otherwise stated by Captain)
+== FO | IRS mode selectors (Aft overhead) | ovh:irs | 23
+A IRS mode selectors || OFF, then NAV
+V Verify that the ON DC lights illuminate then extinguish.
+V Verify that the ALIGN lights are illuminated.
+[X:3722,3723,3724] V (Except UP-B3722, UP-B3723, UP-B3724) The UNABLE REQD NAV PERF-RNP message can show until IRS alignment is complete.
+== FO | Voice recorder | - | 24 | NG
+A (NG only) VOICE RECORDER switch || As needed
+== FO | Systems quantities | - | 24
+X Verify that the following are sufficient for flight:
+V oxygen pressure
+V engine oil quantity
+N The most accurate information about the amount of oil is available not less than 5 minutes and no greater than 30 minutes after engine shutdown.
+V hydraulic quantity
+N Valid only when airplane is on ground with both engines shutdown or after landing with flaps up during taxi–in.
+V fuel quantity, if refuelling is completed
+V Check oil temperature. If the oil temperature is below -20 degrees Celsius, pilot must call maintenance personnel to heat up oil. Engine start with cold oil can lead to damage of starter mechanism.
+X It is necessary to move ENGINE START SWICH to CONT mode for oil temperature check on the ground.
+X Do the remaining actions after a crew change or maintenance action.
+== FO | Crew oxygen (mask panel) | - | 24
+N The following oxygen pressure drop test only needs to be performed at one crewmember station.
+A Oxygen pressure drop || Test
+X Note the crew oxygen pressure.
+A Oxygen mask || Stowed and doors closed
+[CL+T:3725] H UP-B3721, UP-B3722, UP-B3723, UP-B3724, UP-B3725, UP-B3729:
+[CL+T:3725] A RESET/TEST switch || Slide down and hold
+[CL+T:3725] V Verify that the yellow cross shows momentarily in the flow indicator.
+[CL+T:3725] A EMERGENCY/TEST selector || Push and hold
+[CL+T:3725] X Continue to hold the RESET/TEST switch down and push the EMERGENCY/TEST selector for 5 seconds. Verify that the yellow cross shows continuously in the flow indicator.
+[CL+T:3725] V Verify that the crew oxygen pressure does not decrease more than 100 psig.
+[CL+T:3725] A Normal/100% selector || 100%
+[CL+T:3725] A Crew oxygen pressure || Check
+[CL+T:3725] V Verify that the pressure is sufficient for dispatch.
+[T:3733,3734,3735,3736] H UP-B3733, UP-B3734, UP-B3735, UP-B3736:
+[T:3733,3734,3735,3736] A Oxygen pressure drop || Test
+[T:3733,3734,3735,3736] X Note the crew oxygen pressure.
+[T:3733,3734,3735,3736] A Oxygen mask || Stowed and doors closed
+[T:3733,3734,3735,3736] A TEST/RESET switch || Push and hold
+[T:3733,3734,3735,3736] V Verify that the yellow cross shows momentarily in the flow indicator.
+[T:3733,3734,3735,3736] A Regulator selector || Rotate to EMER
+[T:3733,3734,3735,3736] X Continue to hold the TEST/RESET switch down with the regulator selector in the EMER position for 5 seconds. Verify that the yellow cross shows continuously in the flow indicator.
+[T:3733,3734,3735,3736] V Verify that the crew oxygen pressure does not decrease more than 100 psig.
+[T:3733,3734,3735,3736] V If the oxygen cylinder valve is not in the full open position, pressure can: decrease rapidly, or decrease more than 100 psig, or increase slowly back to normal.
+[T:3733,3734,3735,3736] X Release the TEST/RESET switch and rotate the regulator selector to 100%. Verify that the yellow cross does not show in the flow indicator.
+[T:3733,3734,3735,3736] A Crew oxygen pressure || Check
+[T:3733,3734,3735,3736] V Verify that the pressure is sufficient for dispatch.
+[T:3730,3731,3732,3741] H UP-B3730, UP-B3731 ,UP-B3732, UP-B3741:
+[T:3730,3731,3732,3741] A Oxygen pressure drop || Test
+[T:3730,3731,3732,3741] X Note the crew oxygen pressure.
+[T:3730,3731,3732,3741] A Oxygen mask || Stowed and doors closed
+[T:3730,3731,3732,3741] A TEST/RESET switch || Push and hold
+[T:3730,3731,3732,3741] V Verify that the yellow cross shows momentarily in the flow indicator.
+[T:3730,3731,3732,3741] A EMERGENCY/Test selector || Push and hold
+[T:3730,3731,3732,3741] X Continue to hold the TEST/RESET switch down and push the EMERGENCY/Test selector for 5 seconds. Verify that the yellow cross shows continuously in the flow indicator.
+[T:3730,3731,3732,3741] V Verify that the crew oxygen pressure does not decrease more than 100 psig.
+[T:3730,3731,3732,3741] V If the oxygen cylinder valve is not in the full open position, pressure can: decrease rapidly, or decrease more than 100 psig, or increase slowly back to normal.
+[T:3730,3731,3732,3741] X Release the TEST/RESET switch and the EMERGENCY/Test selector. Verify that the yellow cross does not show in the flow indicator.
+[T:3730,3731,3732,3741] A Normal/100% switch || 100%
+[T:3730,3731,3732,3741] A Crew oxygen pressure || Check
+[T:3730,3731,3732,3741] V Verify that the pressure is sufficient for dispatch.
+== B | Maintenance documents | - | 25
+A Maintenance documents || Check
+V Verify that maintenance status is acceptable for flight and ensure MEL/CDL items are in agreement with authorized dispatch deviations, if required.
+X Both the Commander and the First Officer must check the aircraft serviceability through the Aircraft Technical Log Book (ATLB), in particular the Maintenance Service Check (MSC) expiration (CL 24hr, NG 48hrs).
+X Inform other crew member(s) about deferred maintenance items or other technical issues from maintenance records.
+== FO | Flight deck door | - | 26
+N Perform the entire cockpit security check together with the steps of Preliminary Preflight Procedure (for details OM-A Chapter 10, if needed)
+A Flight Deck Door Access procedure || Check
+A FLIGHT DECK ACCESS SYSTEM switch || Guard closed
+== FO | Observer’s Workplace | - | 26
+X At Observer’s Workplace:
+V Open and check seat for functionality
+V Check that microphone (and headphones, if installed) is connected
+V Check oxygen mask, smoke goggles and other emergency equipment
+A Gear Manual Release Door || Open and Check
+== FO | FIRST OFFICER’S side | - | 26
+X At FIRST OFFICER’S side:
+A QRH Storage || Check
+A Area behind the pedals || Check
+A Sunvisors Storage || Check
+A Emergency equipment (RHS) || Check
+A Fire extinguisher || Checked and stowed
+[CL] A (CL) Crew oxygen valve || Open
+A Circuit breakers (P6 panel) || Check
+A CCTV (if installed) || Check
+A Escape rope (RHS) || Stowed
+== FO | Aft Overhead Panel: Flight recorder | ovh:fltrec | 26
+X Aft Overhead Panel
+A Flight recorder switch || Guard closed
+V Verify that the OFF light is illuminated
+== FO | Aft Overhead Panel: MACH AIRSPEED WARNING TEST | ovh:mach | 26
+A MACH AIRSPEED WARNING TEST switches || Push, one at a time
+V Verify the clacker sounds.
+== FO | Aft Overhead Panel: STALL WARNING TEST | ovh:stall | 26
+A STALL WARNING TEST switches || Push and hold, one at a time
+V Verify that each control column vibrates when the respective switch is pushed.
+N The stall warning test requires that AC transfer busses are powered for up to 4 minutes.
+N With hydraulic power off, the leading edge flaps may droop enough to cause an asymmetry signal, resulting in a failure of the stall warning system test. Should this occur, obtain a clearance to pressurize the hydraulic system, place the “B” system electric pump ON and retract the flaps. When flaps are retracted repeat the test. At the completion of the test, turn the “B” system electric pump “OFF”.
+== FO | Emergency EVACUATION | - | 26 | T:3724
+A (UP-B3724) Emergency EVACUATION activation switch || Guard closed
+V Verify that the EVAC light is extinguished
+== FO | ENGINE panel (Aft overhead) | ovh:engpanel | 26–27
+A ENGINE panel || Set
+V Verify that the REVERSER lights are extinguished.
+[NG] V (NG) Verify that the ENGINE CONTROL lights are extinguished.
+[NG] A (NG) EEC switches || ON
+[CL] A (CL) PMC switches || ON
+V Verify that the INOP lights are extinguished.
+[CL] V (CL) Verify that the LOW IDLE light is extinguished.
+== FO | Oxygen panel (Aft overhead) | ovh:passoxy | 27
+A Oxygen panel || Set
+N PASSENGER OXYGEN switch activation causes deployment of the passenger oxygen masks.
+A PASSENGER OXYGEN switch || Guard closed
+V Verify that the PASS OXY ON light is extinguished.
+V Verify pressure meets dispatch requirements.
+== FO | Landing gear indicator lights | - | 27 | NG
+A (NG) Landing gear indicator lights || Verify illuminated
+== FO | Secondary Landing gear indicator lights | - | 27 | T:3724
+A (UP-B3724) Secondary Landing gear indicator lights || Verify illuminated
+== FO | SERVICE INTERPHONE (Aft overhead) | ovh:servint | 27
+A SERVICE INTERPHONE switch || OFF
+== FO | ELT | - | 27
+[CL] A (CL) ELT switch (as installed) || ARM / AUTO
+[NG] A (NG) ELT switch || Guard closed
+V Verify that the ELT light is extinguished.
+== FO | PSEU light | - | 27 | NG
+A (NG) PSEU light || Verify extinguished
+== FO | GPS light | - | 27 | NG+T:3721,3729
+A (NG and UP-B3721, UP-B3729) GPS light || Verify extinguished
+== FO | ILS / GLS lights | - | 27 | T:3741
+A (UP-B3741) ILS light || Verify extinguished
+A (UP-B3741) GLS light || Verify extinguished
+== FO | Captain’s side | - | 27
+X At Captain’s side:
+A Escape rope (LHS) || Stowed
+A Circuit breakers (control stand, P18 panel) || Check
+A Emergency equipment (LHS) || Check
+A Sunvisors Storage || Check
+A Area behind the pedals || Check
+A QRH Storage || Check
+A PBE || Check
+A Landing gear pins || 3 Check
+A Pitot covers || 4 Check
+[CL] A (CL) Nose wheel viewer || Check
+A Crash axe || Stowed
+A Coat Storage || Check
+A Documents (in accordance with SCAT E-library, PDF file “E-Lib LOG”) || Check
+A Other needed equipment || Checked and stowed
+== FO | Parking brake | aft:pbrake | 27
+A Parking brake || As needed
+X Set the parking brake if brake wear indicators will be checked during the exterior inspection
+== FO | Flight deck entry video panel/display | - | 28
+A Flight deck entry video panel/display || Check/ON
+X Switch on the system and verify correct operation and orientation of the three cameras.
+X Leave the system ON until before taxi.
+== CFO | PA and Interphone | - | 28
+A PA and Interphone || Check
+X Captain or F/O makes a call via PA system and verify proper operation.
+X Ask flight attendants to call flight deck from each single flight attendant station; verify chime sounds and the blue CALL light on the fwd overhead panel illuminates than establish two way communications via interphone from flight deck to any single flight attendant station.
+== B | EFB | - | 28
+N Each pilot complete EFB Pre-Flight Checklist.
+
+#PHASE refuel | Refueling (2.2.10.1) | 2.2.10.1 | 28–30
+@trigger Refueling procedure is extracted from SP.12.2 and inserted for the logical sequence of the flight preparation.
+@intro Fuel quantity calculation is performing using remain fuel in ATLB, corrected total fuel in OFP and fuel density.
+@intro If fuel is available upon arrival of crew, start the refueling process as soon as possible to decrease the possibility of delay.
+@who Не указано в документе
+== - | Refueling | - | 28
+N Remain fuel in ATLB should be equal with remain fuel on board
+== - | Fuel Load Distribution | - | 28
+X Main tanks No. 1 and No. 2 should normally be serviced equally until full. Additional fuel is loaded into the center tank until the desired fuel load is reached.
+[NG] N for NG only: If required amount of fuel for flight is less than 19500 kg, fuel filling to each wing tanks 3700 kg is a good practice (please take into account fuel density and ambient temperature).This note protect crew from fuel spilling.
+[T:3721,3722,3723] H UP-B3721, UP-B3722, UP-B3723
+[T:3721,3722,3723] N Main tanks No. 1 and No. 2 must be scheduled to be full if the center tank contains more than 1000 pounds of fuel. With less than 1000 pounds of center tank fuel, partial main tank fuel may be loaded provided the effects of balance have been considered.
+[T:3724,3729] H UP-B3724, UP-B3729
+[T:3724,3729] N Main tanks No. 1 and No. 2 must be scheduled to be full if the center tank contains more than 453 kilograms of fuel. With less than 453 kilograms of center tank fuel, partial main tank fuel may be loaded provided the effects of balance have been considered.
+== - | Fuel Pressure | - | 28
+[T:3721,3722,3723] H UP-B3721, UP-B3722, UP-B3723
+[T:3721,3722,3723] X Apply from a truck or fuel pit. A nozzle pressure of 50 psi provides approximately 300 U.S. gallons per minute.
+[T:3724,3729] H UP-B3724, UP-B3729
+[T:3724,3729] X Apply from a truck or fuel pit. A nozzle pressure of 50 psi provides approximately 1136 liters per minute.
+== - | Normal Refueling | - | 29
+[CL] H For CL only
+[CL] X When a full fuel load is required, the fuel shutoff system closes the fuelling valves automatically when the tanks are full. When a partial fuel load is required, the fuel quantity indicators are monitored and the fuelling valves are closed by manually positioning the fuelling valve switches to CLOSED when the desired fuel quantity is aboard the airplane.
+[NG] H For NG only
+[NG] X The RH tank fuels slightly faster than the left-hand (LH) tank.
+[NG] X Fuel the RH tank part way, approximately 80%, and then wait approximately 6 to 7 minutes to let the cold and warm fuel mix enough for the indication to be more representative of the actual fuel quantity in the tank. During this time, the LH tank may be fueled while waiting for the fuel to mix in the RH tank. The same procedure is needed for LH tank to let the cold and warm fuel mix enough.
+[NG] X To prevent fuel spilling follow next steps:
+[NG] X 1. Do not use the Manual Override button unless there is a known FQIS issue, and fuel quantity is detected using other means (fuel measuring sticks). a. There is a possibility of the button sticking.
+[NG] X 2. If a refuel gauge starts to flash, urgently ask to release the "deadman" switch immediately to prevent a fuel spill. a. The flashing gauge indicates a tank which is volumetrically full as calculated by the computer. b. The refuel valve can fail to close or the float switch can fail to open resulting in over filling the tank and eventually a fuel spill.
+[NG] X 3. Make sure that refuel pressure is between 35 psi and 55 psi.
+[NG] N If there is fuel temperature stratification (cold fuel at the compensator and warm fuel added on top) it is possible that the gauge will not flash before a fuel spill occurs.
+[NG] N If required amount of fuel for flight is less than 19500 kg, fuel filling to each wing tanks 3700 kg is a good practice (please take into account fuel density and ambient temperature).This note protect crew from fuel spilling.
+== - | Refuelling with Battery Only | - | 29
+X When the APU is inoperative and no external power source is available, refuelling can be accomplished as follows:
+A Battery switch || ON
+A Standby power switch || BAT
+X The battery operates the entire fuelling system normally, including the gages and fuel shutoff system. The only limitation during this type of operation is the battery life.
+== - | Refuelling with No AC or DC Power Source Available | - | 29–30
+X When it becomes necessary to refuel with the APU inoperative, the aircraft battery depleted, and no external power source available, refuelling can still be accomplished:
+A Fuelling hose nozzle || Attached to the refuelling receptacle
+A Fuelling valves || Open for the tanks to be refuelled
+N Main tanks No. 1 and No. 2, and the center tank refuelling valves each have a red override button that must be pressed and held while fuel is being pumped into the tank. Releasing the override button allows the spring in the valve to close the valve.
+X Caution must be observed not to overfill a tank, since there is no automatic fuel shutoff during manual operation. When the desired amount of fuel has been pumped into the tanks, the refuelling valves for the respective tanks can be released. Main tanks No. 1 and No. 2 may also be refueled through filler ports over the wing. It is not possible to refuel the center tank externally.
+N If Ground Transfer of Fuel need use FCOM SP.12.3
+
+#PHASE pfo | Preflight Procedure – First Officer | 2.2.13 | 36–49
+@trigger Initiate procedure after Captain Call “PREFLIGHT Procedure”
+@intro The first officer normally does this procedure. The captain shall do this procedure if required.
+@who First Officer (Captain if required)
+@callout C | PREFLIGHT Procedure
+== FO | Flight control panel | ovh:fltctl | 36
+A Flight control panel || Check
+A FLIGHT CONTROL switches || Guards closed
+V Verify that the flight control LOW PRESSURE lights are illuminated.
+A Flight SPOILER switches || Guards closed
+A YAW DAMPER switch || ON
+V Verify that the YAW DAMPER light is extinguished.
+V Verify that the standby hydraulic LOW QUANTITY light is extinguished.
+V Verify that the standby hydraulic LOW PRESSURE light is extinguished.
+V For those airplanes with Rudder System Enhancement Program (RSEP) modification, verify that the STBY RUD ON light is extinguished.
+A ALTERNATE FLAPS master switch || Guard closed
+A ALTERNATE FLAPS position switch || OFF
+V Verify that the FEEL DIFF PRESS light is extinguished.
+V Verify that the SPEED TRIM FAIL light is extinguished.
+V Verify that the MACH TRIM FAIL light is extinguished.
+V Verify that the AUTO SLAT FAIL light is extinguished.
+== FO | Instrument and NAV transfer switches | ovh:xfer | 36–37 | CL
+A (CL) Instrument and NAV transfer switches || Set
+[T:3721,3724,3729] H UP-B3721, UP-B3724, UP-B3729
+[T:3721,3724,3729] A VHF NAV transfer switch || NORMAL
+[T:3721] H UP-B3721
+[T:3721] A Compass transfer switch || NORMAL
+A IRS transfer switch || NORMAL
+A EFI transfer switch || NORMAL
+[T:3721] H UP-B3721
+[T:3721] A FMC source selector switch || NORMAL
+Q Заголовки бортов «UP-B3721, UP-B3724, UP-B3729» и «UP-B3721» стоят над отдельными строками; из документа неясно, относятся ли IRS transfer switch и EFI transfer switch ко всем бортам Classic или только к UP-B3721. Показано без ограничения по бортам.
+== FO | NAVIGATION panel | - | 37 | NG
+A (NG) NAVIGATION panel || Set
+A VHF NAV transfer switch || NORMAL
+A IRS transfer switch || NORMAL
+A FMC transfer switch || NORMAL
+== FO | DISPLAYS panel | - | 37 | NG
+A (NG) DISPLAYS panel || Set
+A SOURCE selector || AUTO
+A CONTROL PANEL select switch || NORMAL
+== FO | Fuel panel | ovh:fuel | 37
+A Fuel panel || Set
+V Verify that the FUEL VALVE CLOSED lights are illuminated dim.
+[NG] V (NG) Verify that the SPAR VALVE CLOSED lights are illuminated dim.
+V Verify that the FILTER BYPASS lights are extinguished.
+A CROSSFEED selector || Closed
+V Verify that the VALVE OPEN light is extinguished.
+A FUEL PUMP witches || OFF (or as needed for APU operation)
+V Verify that the centre tank fuel pump LOW PRESSURE lights are extinguished.
+V Verify that the main tank fuel pump LOW PRESSURE lights are illuminated.
+== FO | Electrical panel | ovh:elec | 37–38
+A Electrical panel || Set
+A BATTERY switch || Guard closed
+[CL] A (CL) GALLEY power switch || ON
+[NG] A (NG) CAB/UTIL power switch || ON
+[NG] A (NG) IFE/PASS SEAT power switch || ON
+A STANDBY POWER switch || Guard closed
+V Verify that the STANDBY PWR OFF light is extinguished.
+[NG] V (NG) Verify that the BAT DISCHARGE light is extinguished.
+[NG] V (NG) Verify that the TR UNIT light is extinguished.
+[NG] V (NG) Verify that the ELEC light is extinguished
+A Generator drive DISCONNECT switches || Guards closed
+[CL] V (CL) Verify that the LOW OIL PRESSURE lights are illuminated.
+[CL] V (CL) Verify that the HIGH OIL TEMP lights are extinguished.
+[NG] V (NG) Verify that the DRIVE lights are illuminated.
+A BUS TRANSFER switch || Guard closed
+V Verify that the TRANSFER BUS OFF lights are extinguished.
+[CL] V (CL) Verify that the BUS OFF lights are extinguished.
+[NG] V (NG) Verify that the SOURCE OFF lights are extinguished.
+V Verify that the GEN OFF BUS lights are illuminated.
+== FO | Overheat and fire protection panel | aft:fire | 38
+A Overheat and fire protection panel || Check
+X Do this check if the flight crew did not do the Electrical Power Up supplementary procedure. This check is needed once per a flight day.
+== FO | APU | ovh:apu | 38
+A APU switch (as needed) || START
+X Do APU start as provided in the Electrical Power Up procedure
+N If extended APU operation is needed on the ground and the airplane buses are powered by AC electrical power, position an AC powered fuel pump ON. This extends the service life of the APU fuel control unit.
+N If fuel is loaded in the center tank, position the left center tank fuel pump switch ON to prevent a fuel imbalance before takeoff.
+[T:3721,3722,3723] H UP-B3721, UP-B3722, UP-B3723
+[T:3721,3722,3723] C Position the center tank fuel pump switches ON only if the fuel quantity in the center tank exceeds 1000 lbs.
+C Position the center tank fuel pump switches ON only if the fuel quantity in the center tank exceeds 453 kgs.
+C Do not operate the center tank fuel pumps with the flight deck unattended.
+Q CAUTION «exceeds 453 kgs» стоит без заголовка бортов сразу после блока «UP-B3721, UP-B3722, UP-B3723 … 1000 lbs». Из документа неясно, к каким бортам он относится. Показано для всех.
+== FO | Lavatory SMOKE light | - | 38
+H UP-B3729
+A Lavatory SMOKE light || Verify extinguished
+Q Заголовок «UP-B3729» стоит отдельной строкой между CAUTION и «Lavatory SMOKE light». Неясно, относится ли он к Lavatory SMOKE light или к предыдущему CAUTION. Показано в обеих частях с заголовком как в документе.
+== FO | EQUIPMENT COOLING | ovh:equip | 38
+A EQUIPMENT COOLING switches || NORM
+V Verify that the OFF lights are extinguished.
+== FO | EMERGENCY EXIT LIGHTS | ovh:emer | 38
+A EMERGENCY EXIT LIGHTS switch || Guard closed
+V Verify that the NOT ARMED light is extinguished.
+== FO | Passenger signs | ovh:signs | 38
+A Passenger signs || NO SMOKING switch - ON
+A Passenger signs || FASTEN BELTS switch – ON (during refuelling OFF)
+== FO | Windshield wiper | ovh:wiper | 38
+[CL] A (CL) Windshield WIPER selector || OFF
+[NG] A (NG) Windshield WIPER selectors || PARK
+V Verify that the windshield wipers are stowed.
+== FO | WINDOW HEAT | ovh:winheat | 38
+A WINDOW HEAT switches || ON
+X Position switches ON at least 10 minutes before takeoff.
+V Verify that the OVERHEAT lights are extinguished.
+V Verify that the ON lights are illuminated (except at high ambient temperatures.)
+== FO | PITOT STATIC / PROBE HEAT | ovh:pitot | 38–39
+[CL] A (CL) PITOT STATIC switches || OFF
+[NG] A (NG) PROBE HEAT switches || OFF
+V Verify that all lights are illuminated.
+== FO | WING ANTI-ICE | ovh:wingai | 39
+A WING ANTI-ICE switch || OFF
+V Verify that the VALVE OPEN lights are extinguished.
+== FO | ENGINE ANTI-ICE | ovh:engai | 39
+A ENGINE ANTI-ICE switches || OFF
+V Verify that the COWL ANTI-ICE lights are extinguished.
+V Verify that the COWL VALVE OPEN lights are extinguished.
+== FO | Hydraulic panel | ovh:hyd | 39
+A Hydraulic panel || Set
+A ENGINE HYDRAULIC PUMPS switches || ON
+V Verify that the LOW PRESSURE lights are illuminated.
+A ELECTRIC HYDRAULIC PUMPS switches || OFF
+V Verify that the OVERHEAT lights are extinguished.
+V Verify that the LOW PRESSURE lights are illuminated.
+== FO | Air Conditioning Pneumatics panel | ovh:aircond | 39–40
+A Air Conditioning Pneumatics panel || Set
+[T:3730,3731,3732,3733,3734,3735,3736,3741] H UP-B3730, UP-B3731, UP-B3732, UP-B3733, UP-B3734, UP-B3735, UP-B3736, UP-B3741
+[T:3730,3731,3732,3733,3734,3735,3736,3741] A TRIM AIR switch || ON
+A AIR TEMPERATURE source selector || As needed
+[CL+T:3725] H CL and UP-B3725
+[CL+T:3725] V Verify that the DUCT OVERHEAT lights are extinguished
+[T:3730,3731,3732,3733,3734,3735,3736,3741] H UP-B3730, UP-B3731, UP-B3732, UP-B3733, UP-B3734, UP-B3735, UP-B3736, UP-B3741
+[T:3730,3731,3732,3733,3734,3735,3736,3741] V Verify that the ZONE TEMP lights are extinguished
+A Temperature selector || As needed
+V Verify that the RAM DOOR FULL OPEN lights are illuminated.
+[CL+T:3725] H CL and UP-B3725
+[CL+T:3725] A RECIRCULATION FAN switch || AUTO
+[T:3730,3731,3732,3733,3734,3735,3736,3741] H UP-B3730, UP-B3731, UP-B3732, UP-B3733, UP-B3734, UP-B3735, UP-B3736, UP-B3741
+[T:3730,3731,3732,3733,3734,3735,3736,3741] A RECIRCULATION FAN switches || AUTO
+[CL] A (CL) Air conditioning PACK switches || One switch AUTO or HIGH, one switch OFF
+[NG] A (NG) Air conditioning PACK switches || AUTO or HIGH
+[CL] A (CL) ISOLATION VALVE switch || AUTO
+[NG] A (NG) ISOLATION VALVE switch || OPEN
+A Engine BLEED air switches || ON
+A APU BLEED air switch || ON
+V Verify that the DUAL BLEED light is illuminated.
+[CL+T:3725] H CL and UP-B3725
+[CL+T:3725] V Verify that the PACK TRIP OFF lights are extinguished.
+[T:3730,3731,3732,3733,3734,3735,3736,3741] H UP-B3730, UP-B3731, UP-B3732, UP-B3733, UP-B3734, UP-B3735, UP-B3736, UP-B3741
+[T:3730,3731,3732,3733,3734,3735,3736,3741] V Verify that the PACK lights are extinguished.
+V Verify that the WING-BODY OVERHEAT lights are extinguished.
+V Verify that the BLEED TRIP OFF lights are extinguished.
+== FO | Cabin pressurization panel | ovh:press | 40
+A Cabin pressurization panel || Set
+V Verify that the AUTO FAIL light is extinguished.
+V Verify that the OFF SCHED DESCENT light is extinguished.
+A FLIGHT ALTITUDE indicator || Cruise altitude
+A LANDING ALTITUDE indicator || Destination field elevation
+A CABIN Rate selector (as installed) || Index
+A CABIN ALTITUDE (as installed) indicator || 200 feet below destination field elevation
+A FLT/GRD switch (as installed) || GRD
+A Pressurization mode selector || AUTO
+V Verify that the STANDBY light (as installed) is extinguished.
+V Verify that the ALTN light (as installed) is extinguished.
+V Verify that the MANUAL light is extinguished.
+== FO | Lighting panel | ovh:landlt | 40
+A Lighting panel || Set
+A LANDING light switches || RETRACT and OFF
+A RUNWAY TURNOFF light switches || OFF
+A TAXI light switch || OFF
+== FO | Ignition select switch | ovh:ign | 40
+A Ignition select switch || IGN L or R
+X Alternate the ignition select switch position on subsequent starts. At the base where maintenance support is available or the first leg select R
+[NG] N (for NG only): For the first flight of the day, at airport elevation at or above 2000 feet MSL, if the temperature below 5° C, consider placing the Ignitor select switch to BOTH before starting the engines. This may increase the likelihood of a successful engine start on the first attempt.
+== FO | ENGINE START switches | ovh:engstart | 40
+A ENGINE START switches || OFF
+== FO | Lighting panel | ovh:extlt | 40
+A Lighting panel || Set
+A LOGO light switch || As needed (as installed)
+A STROBE light switch (as installed) || OFF
+A POSITION light switch (as installed) || ON or STEADY
+A ANTI-COLLISION light switch || OFF
+A WING illumination switch || As needed
+A WHEEL WELL light switch || As needed
+N Switch OFF after exterior inspection is complete.
+== FO | HSI Switch | - | 40 | T:3721
+A (UP-B3721) HSI Switch || NAV or as needed
+== FO | NAV MODE selector | - | 40
+A NAV MODE selector || As needed
+== FO | Mode control panel | ip:mcp | 40–41
+A Mode control panel || Set
+A COURSE(S) || Set
+A FLIGHT DIRECTOR switch(-es) || ON
+X Move the switch for the pilot flying to ON first.
+N If F/O move the switch F/D at Captain Side, it can count as good judgement.
+A BANK ANGLE || CHECK
+== FO | EFIS control panel | - | 41 | NG
+A (NG) EFIS control panel || Set
+A MINIMUMS reference selector || RADIO or BARO
+A MINIMUMS selector || Set Engine Failure Flaps Retraction Altitude
+A FLIGHT PATH VECTOR switch || As needed
+A METERS switch || As needed
+A BAROMETRIC reference selector || IN or HPA
+A BAROMETRIC selector || Set local altimeter setting
+A VOR/ADF switches || As needed
+A Mode selector || MAP
+A CENTRE switch || As needed
+A Range selector || As needed
+A TRAFFIC switch || As needed
+A WEATHER RADAR || Off
+V Verify that the weather radar indications are not shown on the MAP.
+A Map switches || As needed
+== FO | Oxygen (crew mask) | - | 41–43
+A Oxygen || Test and set
+[CL] H CL
+[CL] A Oxygen || Test and set
+[CL] A Oxygen mask || Stowed and doors closed
+[CL] H UP-B3721, UP-B3722, UP-B3723, UP-B3724, UP-B3729
+[CL] A RESET/TEST switch || Slide down and hold
+[CL] V Verify that the yellow cross shows momentarily in the flow indicator.
+[CL] A RESET/TEST switch || Release
+[CL] A Normal/100% selector || 100%
+[CL] A EMERGENCY/TEST selector || Normal (non-emergency)
+[NG] H NG
+[T:3725] H UP-B3725
+[T:3725] A Oxygen pressure drop || Test
+[T:3725] X Note the crew oxygen pressure.
+[T:3725] A Oxygen mask || Stowed and doors closed
+[T:3725] A RESET/TEST switch || Push and hold
+[T:3725] V Verify that the yellow cross shows momentarily in the flow indicator.
+[T:3725] A EMERGENCY/Test selector || Push and hold
+[T:3725] X Continue to hold the RESET/TEST switch down and push the EMERGENCY/Test selector for 5 seconds. Verify that the yellow cross shows continuously in the flow indicator.
+[T:3725] V Verify that the crew oxygen pressure does not decrease more than 100 psig.
+[T:3725] V If the oxygen cylinder valve is not in the full open position, pressure can: decrease rapidly, or decrease more than 100 psig, or increase slowly back to normal.
+[T:3725] X Release the RESET/TEST switch and the EMERGENCY/Test selector.
+[T:3725] V Verify that the yellow cross does not show in the flow indicator.
+[T:3725] A Normal/100% switch || 100%
+[T:3725] A Crew oxygen pressure || Check
+[T:3725] V Verify that the pressure is sufficient for dispatch.
+[T:3730,3731,3732,3741] H UP-B3730, UP-B3731, UP-B3732, UP-B3741
+[T:3730,3731,3732,3741] A Oxygen pressure drop || Test
+[T:3730,3731,3732,3741] X Note the crew oxygen pressure.
+[T:3730,3731,3732,3741] A Oxygen mask || Stowed and doors closed
+[T:3730,3731,3732,3741] A TEST/RESET switch || Push and hold
+[T:3730,3731,3732,3741] V Verify that the yellow cross shows momentarily in the flow indicator.
+[T:3730,3731,3732,3741] A EMERGENCY/Test selector || Push and hold
+[T:3730,3731,3732,3741] X Continue to hold the TEST/RESET switch down and push the EMERGENCY/Test selector for 5 seconds. Verify that the yellow cross shows continuously in the flow indicator.
+[T:3730,3731,3732,3741] V Verify that the crew oxygen pressure does not decrease more than 100 psig.
+[T:3730,3731,3732,3741] V If the oxygen cylinder valve is not in the full open position, pressure can: decrease rapidly, or decrease more than 100 psig, or increase slowly back to normal.
+[T:3730,3731,3732,3741] X Release the TEST/RESET switch and the EMERGENCY/Test selector. Verify that the yellow cross does not show in the flow indicator.
+[T:3730,3731,3732,3741] A Normal/100% switch || 100%
+[T:3730,3731,3732,3741] A Crew oxygen pressure || Check
+[T:3730,3731,3732,3741] V Verify that the pressure is sufficient for dispatch.
+[T:3733,3734,3735,3736] H UP-B3733, UP-B3734, UP-B3735, UP-B3736
+[T:3733,3734,3735,3736] A Oxygen pressure drop || Test
+[T:3733,3734,3735,3736] X Note the crew oxygen pressure.
+[T:3733,3734,3735,3736] A Oxygen mask || Stowed and doors closed
+[T:3733,3734,3735,3736] A TEST/RESET switch || Push and hold
+[T:3733,3734,3735,3736] V Verify that the yellow cross shows momentarily in the flow indicator.
+[T:3733,3734,3735,3736] A Regulator selector || Rotate to EMER
+[T:3733,3734,3735,3736] X Continue to hold the TEST/RESET switch down with the regulator selector in the EMER position for 5 seconds. Verify that the yellow cross shows continuously in the flow indicator.
+[T:3733,3734,3735,3736] V Verify that the crew oxygen pressure does not decrease more than 100 psig.
+[T:3733,3734,3735,3736] V If the oxygen cylinder valve is not in the full open position, pressure can: decrease rapidly, or decrease more than 100 psig, or increase slowly back to normal.
+[T:3733,3734,3735,3736] X Release the TEST/RESET switch and rotate the regulator selector to 100%. Verify that the yellow cross does not show in the flow indicator.
+[T:3733,3734,3735,3736] A Crew oxygen pressure || Check
+[T:3733,3734,3735,3736] V Verify that the pressure is sufficient for dispatch.
+[CL] Q «Oxygen …… Test and set» в документе повторяется дважды подряд (до и после заголовка «CL»). Перенесено как в документе.
+== FO | Marker beacon lights | ip:marker | 43 | CL
+A (CL) Marker beacon lights || Test
+== FO | Clock | ip:clock | 43
+A Clock || Set
+[NG] A (NG) TIME/DATE pushbutton || UTC time
+V Verify the date and time are correct.
+== FO | Display select panel | - | 43 | NG
+A (NG) Display select panel || Set
+A MAIN PANEL DISPLAY UNITS selector || NORM
+A LOWER DISPLAY UNIT selector || NORM
+== FO | TAKEOFF CONFIG / CABIN ALTITUDE lights | - | 43
+A TAKEOFF CONFIG light (if installed and operative) || Verify extinguished
+A CABIN ALTITUDE light (if installed and operative) || Verify extinguished
+== FO | CDU | ip:cdu | 43
+X Do the Initial Data and Navigation Data steps from the CDU Preflight Procedure and verify that the IRS alignment is complete before checking the flight instruments.
+== FO | Flight instruments | ip:fltinst | 43–44
+A Flight instruments || Check
+[CL] X (CL) Set the altimeter.
+V Verify that the flight instrument indications are correct.
+V Verify speed tape indicates 45.
+X Airspeed Reference Bugs will be set as shown below: One White Bug at 80 knots. One White Bug at V1 speed. One White Bug at VR speed. One White Bug at V2+15 speed. One White Bug at Flaps UP maneuvering speed.
+X See Ch. 2.2.27.1 Airspeed Reference Bugs Settings and Altimeters Bug Setting
+V Verify that only these flags are shown: TCAS OFF (as installed)
+[NG] V (NG) NO VSPD until V–speeds are selected
+V expected RDMI flags
+V Verify that the flight mode annunciations are correct:
+N Autothrottle mode and AFDS status are blank until the MCP is set in the Before Start procedure.
+V autothrottle mode is blank
+V pitch mode is blank
+V roll mode is blank
+V AFDS status is FD
+[CL] A (CL) Airspeed cursor control || Push
+== FO | Disengage light TEST switch | ip:diseng | 44
+A Disengage light TEST switch || Hold to 1
+V Verify that the A/P light is illuminated steady amber.
+V Verify that the A/T light is illuminated steady amber.
+V Verify that the FMC light is illuminated steady amber.
+A Disengage light TEST switch || Hold to 2
+V Verify that the A/P light is illuminated steady red.
+V Verify that the A/T light is illuminated steady red.
+V Verify that the FMC light is illuminated steady amber
+== FO | HYDRAULIC QUANTITY indicators | ip:hydqty | 44 | CL
+A (CL) HYDRAULIC QUANTITY indicators (as installed) || Above RFL
+== FO | GROUND PROXIMITY panel | ip:gpws | 44
+A GROUND PROXIMITY panel GPWS SYS TEST (verify IRS alignment) || Check
+X See note below
+A FLAP INHIBIT switch || Guard closed
+A GEAR INHIBIT switch || Guard closed
+A TERRAIN INHIBIT switch (as installed) || Guard closed
+[T:3721,3722,3723,3724] H UP-B3721, UP-B3722, UP-B3723, UP-B3724
+[T:3721,3722,3723,3724] V Verify the INOP light is extinguished.
+[T:3729] H UP-B3729
+[T:3729] V Verify the GPWS and TERRAIN INOP lights are extinguished.
+[T:3733] H UP-B3733
+[T:3733] A RUNWAY INHIBIT switch || Guard closed
+V Verify that the GROUND PROXIMITY INOP light is extinguished.
+[T:3733] H UP-B3733
+[T:3733] V Verify that the RUNWAY INOP light is extinguished
+[T:3733] X The RUNWAY INOP light can be illuminated until the GPS accuracy is adequate for the Runway Awareness and Advisory System requirements.
+Q «See note below» в документе не указывает, какое именно NOTE имеется в виду. Вероятно, NOTE о GPWS test в конце процедуры (SP.15), но в документе это не сказано.
+Q Строка «Verify that the GROUND PROXIMITY INOP light is extinguished.» стоит без заголовка борта между двумя блоками UP-B3733. Показано для всех.
+== FO | Landing gear panel | ip:gear | 44
+A Landing gear panel || Set
+A LANDING GEAR lever || DN
+V Verify that the green landing gear indicator lights are illuminated.
+V Verify that the red landing gear indicator lights are extinguished.
+== FO | ANTISKID switch | ip:antiskid | 44
+A ANTISKID switch || Guard closed
+V Verify that the ANTISKID INOP light is extinguished
+== FO | AUTO BRAKE selector | ip:autobrake | 45
+A AUTO BRAKE selector || RTO
+V Verify that the AUTO BRAKE DISARM light is extinguished
+== FO | FUEL FLOW switch | ip:fuelflow | 45
+[T:3721] A (UP-B3721) FUEL FLOW switch (as installed) || Reset
+[NG] A (NG) FUEL FLOW switch || RATE
+[NG] X Move switch to RESET, then RATE
+== FO | Engine indication lights | ip:englt | 45 | CL
+A (CL) REVERSER UNLOCKED lights || Verify extinguished
+A (CL) A/T LIM light (as installed) || Verify extinguished
+A (CL) START VALVE OPEN lights || Verify extinguished
+A (CL) LOW OIL PRESSURE lights || Verify illuminated
+A (CL) OIL FILTER BYPASS lights || Verify extinguished
+== FO | Engine instrument primary panel | ip:engprim | 45 | CL
+A (CL) Engine instrument primary panel || Set
+A N1 manual set knob || Push
+[T:3722,3723,3724,3729] A UP-B3722, UP-B3723, UP-B3724, UP-B3729 FUEL USED RESET switch || Push
+== FO | Engine instruments | ip:engprim | 45
+A Engine instruments || Check
+V Verify that the primary and secondary engine indications show existing conditions.
+[NG] V (NG) Verify that no exceedance is shown.
+[NG] A (NG) Hydraulic quantity indications || Verify RF not shown
+== FO | MFD Cancel/Recall switch | - | 45 | T:3741
+A (UP-B3741) MFD Cancel/Recall switch || Push
+V Verify that the autoland status advisory messages are not shown.
+== FO | CARGO FIRE panel | aft:cargo | 45 | NG+T:3724
+A CARGO FIRE panel(NG and UP-B3724) || Check
+X This check is needed once per flight day or following a flight crew change.
+A DETECTOR SELECT switches || NORM
+A TEST switch || Push
+V Verify that the fire warning bell sounds.
+V Verify that the master FIRE WARN lights are illuminated.
+A Master FIRE WARN light || Push
+V Verify that the master FIRE WARN lights are extinguished.
+V Verify that the fire warning bell cancels.
+V Verify that the FWD and AFT lights stay illuminated.
+V Verify that the DETECTOR FAULT light stays extinguished.
+V Verify that the green EXTINGUISHER test lights stay illuminated.
+V Verify that the DISCH light stays illuminated.
+== FO | CARGO FIRE panel / CDSCP | - | 45–46 | T:3722,3723,3729
+A CARGO FIRE panel (UP-B3722, UP-B3723, UP-B3729) || Check
+A CARGO DETECTION SUPPRESSION PANEL || CHECKED
+V Verify the MASTER CAUTION and FIRE WARNING lights are off, and the OVHT/DET LOOP annunciator is off on the Annunciator Panel.
+V Verify the CDSCP’s ARM switch is set to AUTO, and that all CDSCP lights and LED’s are out. [If BTL 1’s DSCH light is on, BTL 1 is empty. If the AUTO/MAN DSCH light is on, BTL 2 is empty.].
+A PANEL TEST SWITCH || PRESS
+X and hold the TEST switch for a minimum of 5 seconds, then release when test sequence is complete. Observe the following:
+V The DSCH lights in the BTL 1 PUSH & AUTO/MAN switches are ON. All FAIL LED’s ON at first, then OFF as DET LED’s come ON.
+V All DET LED’s are ON.
+V DET LED “ON” means that loop is operational.
+V DET LED “OFF” means that loop is inoperative.
+V The FORWARD and AFT Squib LED’s for the Diverter Valve Illuminate.
+V BTL 1 Squib LED Illuminates.
+V BTL 2 Squib LED Illuminates.
+V OVHT/DET Annunciator ON, MASTER CAUTION and FIRE WARNING lights ON.
+V The FIRE LED on the CDSCP is ON and flashing indicating the timer is operating. AURAL WARNING BELL is ON.
+N The aural warning MUST be silenced during the test by pressing the BELL CUTOUT/HORN RESET button on the P7 glare shield. If the bell does not silence contact maintenance.
+X Release the test switch and verify all lights and LED's are out.
+N If a test is required in flight accomplish the above procedure.
+== FO | Hollingsead Lower Cargo Fire Suppression | - | 46 | T:3721
+X UP-B3721 For preflight procedures of the Hollingsead Lower Cargo Fire Suppression system see manufacture supplements.
+== FO | EFIS control panel | aft:efis | 46 | T:3722,3723,3724,3729
+H UP-B3722, UP-B3723, UP-B3724, UP-B3729
+A EFIS control panel || Set
+A Decision height selector || As needed
+A Mode selector || MAP
+A Range selector || As needed
+A TRAFFIC switch || As needed
+A WEATHER RADAR || Off
+V Verify that the weather radar indications are not shown on the MAP.
+A Map switches || As needed
+== FO | Radio tuning panel | - | 46 | NG
+A (NG) Radio tuning panel || Set
+W Do not key the HF radio while the airplane is being fueled. Injury to personnel or fire can occur.
+V Verify that the OFF light is extinguished.
+== FO | VHF communications radios | aft:vhf | 46 | CL
+A (CL) VHF communications radios || Set
+== FO | VHF NAVIGATION radios | aft:nav | 46
+A VHF NAVIGATION radios frequency set for departure || Verify AUTO as install
+== FO | EFIS control panel | aft:efis | 46–47 | CL
+A (CL) EFIS control panel || Set
+A Decision height selector || “-20” or as needed
+A Mode selector || MAP
+A Range selector || As needed
+A TRAFFIC (TFC) switch (as installed) || TFC
+A WEATHER RADAR || OFF
+N When this switch is OFF, the enhanced features of the EGPWS are still operational, but the display of terrain data on the EHSI will be inhibited.
+V Verify that the weather radar indications are not shown on the MAP.
+A Map switches || As needed
+Q Для UP-B3722, UP-B3723, UP-B3724, UP-B3729 в документе два пункта «EFIS control panel …… Set»: блок с заголовком этих бортов и блок «(CL) EFIS control panel» с другими значениями (Decision height «-20», TRAFFIC «TFC»). Какой из них выполнять на этих бортах, документ не уточняет. Показаны оба.
+== FO | Audio control panel | aft:acp | 47
+A Audio control panel || Set
+== FO | ADF radios | aft:adf | 47
+A ADF radios || Set
+== FO | HF radios | aft:hf | 47
+A HF radios (as installed) || Set
+W Do not key HF radio while airplane is being fuelled. Injury to personnel or fire may result.
+X Set basic frequency (Stockholm radio) 11.345 kHz or assigned frequency and verify mode selector is in OFF position.
+Q Частота «11.345 kHz» указана в документе именно так. Проверьте единицы измерения (kHz/MHz) по оригиналу.
+== FO | WEATHER RADAR panel | ip:wx | 47
+A WEATHER RADAR panel || Set
+V Verify that the weather radar indications are not shown.
+== FO | Transponder panel | aft:xpdr | 47
+A Transponder panel || Set
+A Code Indicator || 2000, or ID (if installed)
+X (The flight ID entry is to duplicate Item 7 of the ICAO Flight Plan for each flight, or the aircraft’s registration if no flight plan is available. A maximum of 8 alphanumeric characters are available for input, and the ID should not contain leading zeroes or hyphens. Normally, Flight ID will consist of the airline’s ICAO 3 letter identifier preceding the flight number, e.g. VSV703, or if unavailable the aircraft’s registration, e.g. UP-B3710).
+A Above/ Below switch (as installed) || Above
+A Transponder selector || No.1 or No.2 depending who is PF.
+== FO | STABILIZER TRIM override switch | aft:stabovr | 47
+A STABILIZER TRIM override switch || Guard closed
+== FO | Seat | - | 47
+W Do not put objects between the seat and the aisle stand. Injury can occur when the seat is adjusted.
+A Seat || Adjust
+X Use the handhold above the forward window for assistance when pulling the seat forward. Do not use the glareshield as damage can occur.
+X Adjust the seat for optimum eye reference.
+V Verify a positive horizontal (fore and aft) seat lock.
+== FO | Rudder pedals | - | 47
+A Rudder pedals || Adjust
+X Adjust the rudder pedals to allow full rudder pedal and brake pedal movement.
+C Turn the rudder pedal adjust crank no faster than approximately one turn per second to avoid damage. Do not apply force to the pedals during adjustment.
+== FO | Seat belt and shoulder harness | - | 48
+A Seat belt and shoulder harness || Adjust
+== B | PREFLIGHT checklist | - | 48
+X Do the PREFLIGHT checklist on the captain's command.
+N After light test completed or during Preflight Procedure flow perform GPWS test SP.15, Transponder Test SP.11.1 and weather radar test SP.11.1,.
+== FO | Transponder Test | aft:xpdr | 48
+X Transponder Test
+A Transponder switch || TEST
+[T:3722,3723,3724,3729] H UP-B3722, UP-B3723, UP-B3724, UP-B3729
+[T:3722,3723,3724,3729] V Check that the XPNDR FAIL light illuminates.
+V Check that all code segments illuminate. Verify that no error codes exist.
+V Verify “TCAS SYSTEM TEST - OK” aural sounds.
+[CL] Q После заголовка «UP-B3722, UP-B3723, UP-B3724, UP-B3729» неясно, где заканчивается его действие (только XPNDR FAIL light или и следующие строки). Остальные строки показаны для всех.
+== FO | Weather Radar Test | ip:wx | 48
+X Weather Radar Test
+N Use chapter Limitation: 1 WEATHER RADAR
+[T:3722,3723,3724] H UP-B3722, UP-B3723, UP-B3724
+[T:3722,3723,3724] A EHSI mode selector || Expanded scale mode except PLAN
+[T:3724] H UP-B3724
+[T:3724] A STAB switch || ON
+[T:3724] A TEST || ON
+[NG+T:3722,3723] H UP-B3722, UP-B3723, NG
+[NG+T:3722,3723] A WX radar mode selector || TEST
+[NG+T:3722,3723] A WXR || ON
+N F/O (RHS) can switch on WXR of the left pilot if situation is required.
+V Verify no fault messages are present.
+V Verify test pattern consists of the following colours: Green, Amber, Red, Magenta.
+== FO | Weather Radar Test (2) | ip:wx | 48–49
+X Weather Radar Test
+C Tests involving radiation of RF energy by the radar antenna must not be made while radar antenna is directed toward nearby large metal objects, during refueling operations or in the vicinity of trucks or containers holding flammable or explosive liquids.
+[NG] N when F/O push WHR button on EFIS panel (NG) it can count as good judgement.
+A Mode selector || TEST
+A GAIN control || AUTO
+A Range selector || 10
+A BRT control || Desired brightness
+A Test pattern || Check
+V Check presence of test bands.
+V Check alphanumeric legends appear.
+V Check fault annunciations are absent.
+A Range selector || Select each range
+V Check test pattern is similar for each range.
+A Mode selector || As desired
+Q В документе два подряд блока «Weather Radar Test» с разными шагами; к каким бортам относится второй блок, не указано. Показаны оба для всех.
+== FO | Ground Proximity Warning System (GPWS) Test | ip:gpws | 49
+X Ground Proximity Warning System (GPWS) Test
+V Verify IRS alignment is complete.
+V Verify that the guards are closed for all GROUND PROXIMITY INHIBIT switches.
+A Ground proximity SYS TEST switch || Push momentarily
+V Verify the following:
+V BELOW G/S, PULL UP and GPWS INOP lights illuminate
+V EADI (CL) PED (NG) WINDSHEAR message (as installed) shows
+V “GLIDESLOPE”, “WHOOP, WHOOP, PULL UP” and “WINDSHEAR” (as installed) aurals sound
+N If the test switch is held until the aurals begin, additional GPWS aural warnings are tested.
+Q В документе «EADI (CL) PED (NG) WINDSHEAR message». «PED» — вероятно опечатка (PFD), но в документе написано «PED». Проверьте по оригиналу.
+
+#CHECKLIST pfo | PREFLIGHT
+@CL Appendix 1 Normal Checklist B737-300/500 (Classic) | 417 | Page 1
+OXYGEN | TESTED, 100% | L R
+INSTR. TRANSFER SWITCHES | NORMAL | R
+WINDOW HEAT | ON | R
+PRESSURIZATION MODE SEL | AUTO | R
+FLT INSTR | HEADING__, ALT__ | L R
+PARKING BRAKE | SET | L
+ENGINE START LEVERS | CUTOFF | L
+PITOT COVERS | REMOWED ON BOARD | L
+GEAR PINS | 3 CHECKED | L
+@NG Appendix 3 Normal Checklist B737-700/800 (NG) | 422 | Page 6
+OXYGEN | TESTED, 100% | L R
+NAVIGATION TRANSFER & DISPLAY SWITCHES | NORMAL, AUTO | R
+WINDOW HEAT | ON | R
+PRES-TION MODE SELECTOR | AUTO | R
+FLT INSTR | HEADING_, ALTIMETER_ | L R
+PARKING BRAKE | SET | L
+FUEL SPAR VALVES | CHECKED | L
+ENGINE START LEVERS | CUTOFF | L
+PITOT COVERS | REMOWED ON BOARD | L
+GEAR PINS | 3 CHECKED | L

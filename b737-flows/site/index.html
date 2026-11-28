@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>B737 Normal Procedures · OM-B SCAT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root {
+  --navy: #0b1f3f; --navy-2: #13305e; --navy-3: #1d427f; --paper: #ffffff; --bg: #eef2f8;
+  --ink: #0b1630; --ink-2: #44526e; --line: #d5dce8;
+  --fo: #1d5fd6; --capt: #d4570b; --both: #0b8a5a;   /* role colours */
+  --cl: #6b3fd1; --ng: #0f7b8a;
+  --note: #e8f0fe; --note-b: #1d5fd6; --caut: #fff4d6; --caut-b: #b7791f; --warn: #fde8e8; --warn-b: #c0262d;
+  --q: #fff0f6; --q-b: #b83280;
+  --font: 'IBM Plex Sans', system-ui, sans-serif; --cond: 'IBM Plex Sans Condensed', 'IBM Plex Sans', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body { font-family: var(--font); color: var(--ink); background: var(--bg); font-size: 17px; line-height: 1.45; }
+button { font: inherit; cursor: pointer; }
+::selection { background: var(--fo); color: #fff; }
+
+/* ============ TOP BAR ============ */
+.top { position: sticky; top: 0; z-index: 50; background: var(--navy); color: #fff; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding: 10px 20px; box-shadow: 0 4px 16px rgba(0,0,0,.25); }
+.top .brand { font-family: var(--cond); font-weight: 700; font-size: 19px; letter-spacing: .02em; margin-right: auto; }
+.top .brand small { display: block; font-family: var(--font); font-weight: 400; font-size: 12px; color: #a9bbdc; letter-spacing: 0; }
+.seg { display: inline-flex; background: rgba(255,255,255,.1); border-radius: 10px; padding: 3px; }
+.seg button { border: 0; background: none; color: #cfdaf0; padding: 7px 14px; border-radius: 8px; font-weight: 600; font-size: 15px; }
+.seg button.on { background: #fff; color: var(--navy); }
+.navbtn { border: 1px solid rgba(255,255,255,.3); background: none; color: #fff; border-radius: 8px; padding: 7px 12px; font-weight: 600; font-size: 15px; }
+
+/* ============ LAYOUT ============ */
+.wrap { display: grid; grid-template-columns: 290px 1fr; min-height: calc(100vh - 60px); }
+.toc { background: var(--navy-2); color: #dbe5f7; padding: 18px 14px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow: auto; }
+.toc h4 { font-family: var(--cond); text-transform: uppercase; letter-spacing: .08em; font-size: 12px; color: #8fa6cf; margin: 14px 8px 6px; }
+.toc a { display: block; color: inherit; text-decoration: none; padding: 7px 10px; border-radius: 8px; font-size: 15px; line-height: 1.3; }
+.toc a small { display: block; color: #8fa6cf; font-size: 12px; }
+.toc a:hover { background: rgba(255,255,255,.08); }
+.toc a.on { background: #fff; color: var(--navy); }
+.toc a.on small { color: var(--ink-2); }
+main { padding: 26px 32px 80px; max-width: 1500px; }
+
+/* ============ PHASE HEADER ============ */
+.ph-head { background: var(--navy); color: #fff; border-radius: 16px; padding: 22px 26px; margin-bottom: 18px; }
+.ph-head .sec { font-family: var(--cond); font-size: 15px; color: #a9bbdc; letter-spacing: .04em; }
+.ph-head h1 { font-family: var(--cond); font-weight: 700; font-size: 34px; line-height: 1.1; margin: 4px 0 12px; }
+.ph-head .meta { display: grid; grid-template-columns: 170px 1fr; gap: 6px 16px; font-size: 16px; }
+.ph-head .meta dt { color: #a9bbdc; }
+.ph-head .meta dd { color: #fff; }
+.typechip { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 13px; font-weight: 700; margin-left: 8px; vertical-align: middle; }
+.typechip.CL { background: var(--cl); } .typechip.NG { background: var(--ng); }
+.call { display: inline-block; font-family: var(--cond); font-weight: 700; background: #fff; color: var(--navy); padding: 2px 10px; border-radius: 6px; }
+
+/* ============ LEGEND / FIGURES ============ */
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; color: var(--ink-2); margin: 6px 0 12px; align-items: center; }
+.legend span { display: inline-flex; gap: 7px; align-items: center; }
+.legend i { width: 16px; height: 16px; border-radius: 50%; display: inline-block; }
+.figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 16px; margin-bottom: 22px; }
+.fig { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+.fig h3 { font-family: var(--cond); font-size: 17px; margin-bottom: 8px; }
+.fig svg { width: 100%; height: auto; display: block; border-radius: 8px; }
+.fig .none { padding: 22px; background: #f6f8fc; border: 2px dashed var(--line); border-radius: 10px; color: var(--ink-2); font-size: 15px; }
+
+/* ============ STEP TABLE ============ */
+.steps { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-bottom: 22px; }
+.g { display: grid; grid-template-columns: 52px 64px 210px 1fr 112px; }
+.gb { display: grid; grid-template-columns: 1.15fr 1fr 150px; }
+.thead { background: var(--navy); color: #fff; font-family: var(--cond); font-weight: 600; font-size: 14px; letter-spacing: .03em; position: sticky; top: 60px; z-index: 5; }
+.thead > div, .thead .gb > div { padding: 9px 10px; }
+.row { border-top: 1px solid var(--line); }
+.row.alt { background: #fafbfe; }
+.row > .c { padding: 12px 10px; }
+.num { font-family: var(--cond); font-weight: 700; font-size: 22px; text-align: center; }
+.num b { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: #fff; font-size: 18px; }
+.who { font-family: var(--cond); font-weight: 700; font-size: 15px; }
+.panel { font-weight: 600; font-size: 16px; line-height: 1.3; }
+.panel .nomock { display: block; margin-top: 4px; font-weight: 500; font-size: 12px; color: #8a5a00; background: #fff6df; border-radius: 6px; padding: 2px 6px; width: fit-content; }
+.ref { font-size: 13px; color: var(--ink-2); line-height: 1.35; }
+.ref b { color: var(--ink); font-weight: 600; }
+.body { padding: 6px 0; }
+.ln { padding: 5px 10px; }
+.ln.act { font-weight: 500; }
+.ln .item { }
+.ln .dots { color: #9aa6bd; }
+.ln .val { font-family: var(--cond); font-weight: 700; color: var(--navy-3); white-space: nowrap; }
+.ln.ver { color: #22324f; }
+.span { grid-column: 1 / -1; }
+.instr { color: #22324f; font-style: italic; }
+.box { margin: 6px 10px; padding: 9px 12px; border-left: 5px solid; border-radius: 8px; font-size: 16px; }
+.box b.k { font-family: var(--cond); letter-spacing: .04em; margin-right: 6px; }
+.box.N { background: var(--note); border-color: var(--note-b); }
+.box.C { background: var(--caut); border-color: var(--caut-b); }
+.box.W { background: var(--warn); border-color: var(--warn-b); }
+.box.Q { background: var(--q); border-color: var(--q-b); }
+.hd { margin: 6px 10px 0; font-family: var(--cond); font-weight: 700; font-size: 14px; color: #fff; background: #5b6b88; padding: 2px 10px; border-radius: 6px; width: fit-content; }
+.tg { display: inline-block; font-family: var(--cond); font-weight: 700; font-size: 12px; padding: 1px 7px; border-radius: 6px; margin-right: 6px; vertical-align: 1px; color: #fff; white-space: nowrap; }
+.tg.CL { background: var(--cl); } .tg.NG { background: var(--ng); } .tg.T { background: #5b6b88; }
+.callcell { font-family: var(--cond); font-weight: 700; color: var(--capt); }
+
+/* quiz mode */
+body.quiz .hideable { background: #dfe6f3; color: transparent !important; border-radius: 6px; cursor: pointer; user-select: none; }
+body.quiz .hideable.shown { background: #fff3b0; color: var(--navy-3) !important; }
+
+/* ============ MEMORY / CHECKLIST ============ */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+.card h2 { font-family: var(--cond); font-size: 22px; margin-bottom: 10px; }
+.mem { counter-reset: m; list-style: none; columns: 2; column-gap: 26px; }
+.mem li { break-inside: avoid; padding: 3px 0 3px 38px; position: relative; font-size: 16px; }
+.mem li::before { counter-increment: m; content: counter(m); position: absolute; left: 0; top: 3px; width: 28px; height: 24px; border-radius: 6px; background: var(--navy); color: #fff; font-family: var(--cond); font-weight: 700; font-size: 14px; display: grid; place-items: center; }
+.ck { width: 100%; border-collapse: collapse; font-family: var(--cond); font-size: 17px; }
+.ck caption { text-align: left; font-family: var(--font); font-size: 13px; color: var(--ink-2); padding-bottom: 6px; }
+.ck th { text-align: left; background: #b3122e; color: #fff; padding: 6px 10px; letter-spacing: .05em; }
+.ck td { border-bottom: 1px solid var(--line); padding: 6px 10px; font-weight: 700; }
+.ck td.v { text-align: right; } .ck td.w { width: 54px; text-align: center; color: var(--ink-2); }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 26px; }
+.pager button { border: 0; background: var(--navy); color: #fff; padding: 12px 18px; border-radius: 10px; font-weight: 600; max-width: 48%; }
+.pager button:disabled { opacity: .3; }
+.intro-list p { margin: 4px 0; }
+
+/* diff page */
+.diff { width: 100%; border-collapse: collapse; background: #fff; border-radius: 14px; overflow: hidden; }
+.diff th { background: var(--navy); color: #fff; text-align: left; padding: 9px 10px; font-family: var(--cond); }
+.diff td { border-top: 1px solid var(--line); padding: 8px 10px; vertical-align: top; font-size: 15px; }
+.diff td.cl { background: #f5f1fd; } .diff td.ng { background: #eef9fa; }
+
+/* ============ RESPONSIVE ============ */
+@media screen and (max-width: 1100px) {
+  .wrap { grid-template-columns: 1fr; }
+  .toc { position: static; height: auto; display: none; }
+  body.tocopen .toc { display: block; }
+  main { padding: 16px 12px 60px; }
+  .thead { display: none; }
+  .g { grid-template-columns: 52px 1fr; }
+  .g > .who { grid-column: 2; padding-top: 0; }
+  .g > .num { grid-row: span 2; }
+  .g > .panel { grid-column: 2; }
+  .g > .body, .g > .ref { grid-column: 1 / -1; }
+  .gb { grid-template-columns: 1fr; }
+  .gb .ln.ver { padding-left: 26px; }
+  .gb .ln.ver::before { content: "↳ "; color: #9aa6bd; }
+  .two { grid-template-columns: 1fr; }
+  .mem { columns: 1; }
+  .ph-head .meta { grid-template-columns: 1fr; }
+  .figs { grid-template-columns: 1fr; }
+}
+@media (min-width: 1101px) { #tocBtn { display: none; } }
+@media screen and (max-width: 700px) { .top { position: static; } .thead { top: 0; } .top .brand { font-size: 17px; } }
+
+/* ============ PRINT ============ */
+@page { size: A4 landscape; margin: 10mm; }
+body.print { background: #fff; font-size: 12.5px; }
+body.print .top, body.print .toc, body.print .pager { display: none; }
+body.print .wrap { display: block; }
+body.print main { padding: 0; max-width: none; }
+body.print .phase { break-before: page; }
+body.print .phase:first-child { break-before: auto; }
+body.print .thead { position: static; break-after: avoid; }
+body.print .row { break-inside: auto; }
+body.print .ln, body.print .box { break-inside: avoid; }
+body.print .g { grid-template-columns: 44px 54px 170px 1fr 92px; }
+body.print .gb { grid-template-columns: 1.1fr 1fr 110px; }
+body.print .ln { padding: 3px 8px; }
+body.print .row > .c { padding: 8px 8px; }
+body.print .figs { grid-template-columns: repeat(3, 1fr); }
+body.print .fig { break-inside: avoid; }
+body.print .fig svg { height: 78mm; }
+
+body.print .ph-head { padding: 14px 18px; margin-bottom: 8px; }
+body.print .legend { margin: 4px 0 8px; }
+body.print .ph-head h1 { font-size: 26px; }
+body.print .card { break-inside: avoid; }
+body.print .box { font-size: 12.5px; }
+body.print .num b { width: 30px; height: 30px; font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="top">
+  <button class="navbtn" id="tocBtn" type="button">☰ Оглавление</button>
+  <div class="brand">B737 Normal Procedures — flows<small>OM-B SCAT B737 CL-NG, Issue 06, Rev 01 · только по тексту документа</small></div>
+  <div class="seg" id="typeSeg"><button data-t="CL">737 Classic</button><button data-t="NG">737 NG</button></div>
+  <div class="seg" id="modeSeg"><button data-m="learn">Учить</button><button data-m="quiz">Проверь себя</button></div>
+</div>
+<div class="wrap">
+  <nav class="toc" id="toc"></nav>
+  <main id="main"></main>
+</div>
+<script src="data.js"></script>
+<script>
+/* =================================================================
+   Rendering: every row/line comes from data.js (verbatim OM-B extract).
+   Type filter decides which lines show in Classic / NG.
+   ================================================================= */
+(() => {
+const D = window.OMB;
+const CL = new Set(D.clTails), NG = new Set(D.ngTails);
+const params = new URLSearchParams(location.search);
+const PRINT = params.get('print');
+let type = PRINT || localStorage.getItem('b737type') || 'CL';
+let mode = 'learn';
+const WHO = { FO: ['F/O', 'var(--fo)'], C: ['Captain', 'var(--capt)'], B: ['Captain + F/O', 'var(--both)'], CFO: ['Captain или F/O', 'var(--both)'], '-': ['Не указано', '#7a869e'] };
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+/* ---- applicability ---- */
+function tails(list) { return list.split(',').map(s => s.trim()); }
+function applies(tag, t) {
+  if (!tag) return true;
+  const set = t === 'CL' ? CL : NG;
+  if (tag === 'CL' || tag === 'NG') return tag === t;
+  if (tag.startsWith('T:')) return tails(tag.slice(2)).some(x => set.has(x));
+  if (tag.startsWith('X:')) { const ex = new Set(tails(tag.slice(2))); return [...set].some(x => !ex.has(x)); }
+  const m = tag.match(/^(CL|NG)\+T:(.*)$/);
+  if (m) return m[1] === t || tails(m[2]).some(x => set.has(x));
+  return true;
+}
+function badge(tag) {
+  if (!tag) return '';
+  if (tag === 'CL') return '<span class="tg CL">Только Classic</span>';
+  if (tag === 'NG') return '<span class="tg NG">Только NG</span>';
+  if (tag.startsWith('T:')) return `<span class="tg T">Только ${tails(tag.slice(2)).map(x => 'UP-B' + x).join(', ')}</span>`;
+  if (tag.startsWith('X:')) return `<span class="tg T">Кроме ${tails(tag.slice(2)).map(x => 'UP-B' + x).join(', ')}</span>`;
+  const m = tag.match(/^(CL|NG)\+T:(.*)$/);
+  if (m) return `<span class="tg ${m[1]}">${m[1] === 'CL' ? 'Classic' : 'NG'} + ${tails(m[2]).map(x => 'UP-B' + x).join(', ')}</span>`;
+  return '';
+}
+/* rows visible for a type, with numbering */
+function rowsFor(ph, t) {
+  const out = [];
+  ph.rows.forEach(r => {
+    if (!applies(r.tag, t)) return;
+    const lines = r.lines.filter(l => applies(l.tag, t));
+    if (!lines.length) return;
+    out.push({ ...r, lines, n: out.length + 1 });
+  });
+  return out;
+}
+
+/* ---- mockup figure ---- */
+function figure(img, rows, t) {
+  const [W, H] = D.img[img];
+  const pts = rows.filter(r => r.mock && r.mock.img === img);
+  if (!pts.length) return '';
+  /* crop the mockup to the area that holds this phase's markers */
+  const xs = pts.map(r => r.mock.x * W), ys = pts.map(r => r.mock.y * H);
+  let x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const padX = Math.max(W * 0.08, (x1 - x0) * 0.1), padY = Math.max(H * 0.07, (y1 - y0) * 0.1);
+  x0 = Math.max(0, x0 - padX); x1 = Math.min(W, x1 + padX); y0 = Math.max(0, y0 - padY); y1 = Math.min(H, y1 + padY);
+  const minW = W * 0.45, minH = H * 0.3;
+  if (x1 - x0 < minW) { const c = (x0 + x1) / 2; x0 = Math.max(0, c - minW / 2); x1 = Math.min(W, x0 + minW); x0 = Math.max(0, x1 - minW); }
+  if (y1 - y0 < minH) { const c = (y0 + y1) / 2; y0 = Math.max(0, c - minH / 2); y1 = Math.min(H, y0 + minH); y0 = Math.max(0, y1 - minH); }
+  const R = Math.round(Math.max(x1 - x0, (y1 - y0) * 0.8) * 0.026);
+  /* steps on the same control share one marker: "34/62" */
+  const groups = [];
+  pts.forEach(r => { const x = r.mock.x * W, y = r.mock.y * H;
+    const g = groups.find(g => Math.hypot(g.x - x, g.y - y) < R * 0.5);
+    if (g) { g.ns.push(r.n); r._g = g; } else { const ng = { x, y, ns: [r.n], who: r.who }; groups.push(ng); r._g = ng; } });
+  pts.forEach(r => { r._x = r._g.x / W; r._y = r._g.y / H; });
+  let path = '';
+  for (let i = 1; i < pts.length; i++) {
+    const a = pts[i - 1], b = pts[i];
+    path += `<line x1="${a._x * W}" y1="${a._y * H}" x2="${b._x * W}" y2="${b._y * H}" stroke="#ffe066" stroke-width="${R * 0.28}" stroke-dasharray="${R * .9} ${R * .5}" marker-end="url(#ar-${img})" opacity=".95"/>`;
+  }
+  const col = w => (WHO[w] || WHO['-'])[1].replace('var(--fo)', '#1d5fd6').replace('var(--capt)', '#d4570b').replace('var(--both)', '#0b8a5a');
+  const dots = groups.map(g => {
+    const label = g.ns.join('/'), wpx = Math.max(R * 2, R * 0.62 * label.length + R * 0.9);
+    return `<g><rect x="${g.x - wpx / 2}" y="${g.y - R}" width="${wpx}" height="${R * 2}" rx="${R}" fill="${col(g.who)}" stroke="#fff" stroke-width="${R * 0.18}"/><text x="${g.x}" y="${g.y + R * 0.38}" text-anchor="middle" font-family="IBM Plex Sans Condensed, sans-serif" font-weight="700" font-size="${R * 1.05}" fill="#fff">${label}</text></g>`;
+  }).join('');
+  return `<div class="fig"><h3>${esc(D.mockNames[img])} · макет Classic</h3>
+  <svg viewBox="${x0} ${y0} ${x1 - x0} ${y1 - y0}" role="img" aria-label="${esc(D.mockNames[img])}"><defs><marker id="ar-${img}" viewBox="0 0 10 10" refX="${10 + R / (R * .28) * 1.6}" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ffe066"/></marker></defs>
+  <image href="img/cl-${img}.jpg" width="${W}" height="${H}"/>${path}${dots}</svg></div>`;
+}
+
+/* ---- one line ---- */
+function line(l) {
+  const b = badge(l.tag);
+  switch (l.k) {
+    case 'A': return `<div class="gb"><div class="ln act">${b}<span class="item">${esc(l.item)}</span> <span class="dots">……</span> <span class="val hideable">${esc(l.val)}</span></div><div></div><div></div></div>`;
+    case 'V': return `<div class="gb"><div></div><div class="ln ver">${b}${esc(l.text)}</div><div></div></div>`;
+    case 'X': return `<div class="gb"><div class="ln instr span">${b}${esc(l.text)}</div></div>`;
+    case 'K': return `<div class="gb"><div></div><div></div><div class="ln callcell hideable">${b}“${esc(l.text)}”</div></div>`;
+    case 'H': return `<div class="hd">${b ? b.replace('class="tg', 'class="tg" style="background:none;padding:0"') : ''}${esc(l.text)}</div>`;
+    case 'N': return `<div class="box N">${b}<b class="k">NOTE</b>${esc(l.text)}</div>`;
+    case 'C': return `<div class="box C">${b}<b class="k">CAUTION</b>${esc(l.text)}</div>`;
+    case 'W': return `<div class="box W">${b}<b class="k">WARNING</b>${esc(l.text)}</div>`;
+    case 'Q': return `<div class="box Q">${b}<b class="k">⚠ проверить</b>${esc(l.text)}</div>`;
+  }
+  return '';
+}
+
+/* ---- phase page ---- */
+function phaseHTML(ph, t) {
+  const rows = rowsFor(ph, t);
+  const imgs = ['ovh', 'ip', 'aft'];
+  let figs = '';
+  if (t === 'CL') {
+    figs = imgs.map(i => figure(i, rows, t)).join('');
+    const miss = rows.filter(r => !r.mock).map(r => `${r.n}. ${esc(r.panel)}`);
+    if (!figs) figs = `<div class="fig"><div class="none">Для этой фазы нет органов на имеющихся макетах.</div></div>`;
+    if (miss.length) figs += `<div class="fig"><h3>Макет отсутствует</h3><div class="none">Этих мест нет на макетах Classic: ${miss.join('; ')}</div></div>`;
+  } else {
+    figs = `<div class="fig"><h3>Макеты NG</h3><div class="none">Макеты NG ещё не получены. Метки на overhead, panel и pedestal NG будут нанесены после загрузки файлов.</div></div>`;
+  }
+  const head = `<div class="ph-head"><div class="sec">OM-B ${esc(ph.section)} · стр. ${esc(ph.pages.ch)} главы 2 (PDF ${esc(ph.pages.pdf)})</div>
+    <h1>${esc(ph.title)}<span class="typechip ${t}">${t === 'CL' ? '737 Classic' : '737 NG'}</span></h1>
+    <dl class="meta"><dt>Когда выполняется</dt><dd>${ph.trigger.map(esc).join('<br>')}${ph.callouts.map(c => `<br>Callout ${c.who === 'C' ? 'Captain' : esc(c.who)}: <span class="call">“${esc(c.text)}”</span>`).join('')}</dd>
+    <dt>Кто выполняет</dt><dd>${esc(ph.who)}</dd>
+    ${ph.intro.length ? `<dt>Из документа</dt><dd class="intro-list">${ph.intro.map(x => `<p>${esc(x)}</p>`).join('')}</dd>` : ''}</dl></div>`;
+  const legend = `<div class="legend"><span><i style="background:var(--fo)"></i>First Officer</span><span><i style="background:var(--capt)"></i>Captain</span><span><i style="background:var(--both)"></i>Совместно / любой пилот</span><span><i style="background:#ffe066;border-radius:2px;height:6px"></i>Маршрут flow (порядок шагов)</span><span><span class="tg CL">Только Classic</span><span class="tg NG">Только NG</span><span class="tg T">Только борт</span></span></div>`;
+  const table = `<div class="steps"><div class="g thead"><div>№</div><div>Кто</div><div>Панель / органы</div><div class="gb"><div>Действие / положение</div><div>Проверка / индикация</div><div>Callout</div></div><div>OM-B</div></div>
+    ${rows.map((r, i) => {
+      const w = WHO[r.who] || WHO['-'];
+      return `<div class="row g${i % 2 ? ' alt' : ''}" id="${ph.id}-${r.n}"><div class="c num"><b style="background:${w[1]}">${r.n}</b></div><div class="c who" style="color:${w[1]}">${w[0]}</div><div class="c panel">${badge(r.tag)}${esc(r.panel)}${t === 'CL' && !r.mock ? '<span class="nomock">макет отсутствует</span>' : ''}</div><div class="body">${r.lines.map(line).join('')}</div><div class="c ref"><b>${esc(ph.section)}</b><br>стр. ${esc(r.page.ch)}<br>PDF ${esc(r.page.pdf)}</div></div>`;
+    }).join('')}</div>`;
+  const mem = `<div class="card"><h2>Flow по памяти</h2><ol class="mem">${rows.map(r => {
+    const a = r.lines.find(l => l.k === 'A');
+    return `<li>${esc(a ? a.item : r.panel)}</li>`;
+  }).join('')}</ol></div>`;
+  const ck = D.checklists[ph.id];
+  let ckh = '';
+  if (ck && ck[t]) {
+    const c = ck[t];
+    ckh = `<div class="card"><h2>Связанный checklist</h2><table class="ck"><caption>${esc(c.src)} · PDF ${esc(c.pdf)} (${esc(c.page)})</caption><tr><th colspan="3">${esc(ck.name)}</th></tr>${c.items.map(x => `<tr><td>${esc(x.item)}</td><td class="v"><span class="hideable">${esc(x.val)}</span></td><td class="w">${esc(x.who)}</td></tr>`).join('')}</table></div>`;
+  }
+  return `<section class="phase" id="ph-${ph.id}">${head}${legend}<div class="figs">${figs}</div>${table}<div class="two">${mem}${ckh || '<div></div>'}</div></section>`;
+}
+
+/* ---- differences page ---- */
+function diffHTML() {
+  const rowsOut = [];
+  D.phases.forEach(ph => ph.rows.forEach(r => {
+    const clOnly = [], ngOnly = [];
+    const txt = l => l.k === 'A' ? `${l.item} …… ${l.val}` : l.text;
+    const kind = tag => tag && (tag === 'CL' || tag === 'NG' || /^(CL|NG)\+/.test(tag) || tag.startsWith('T:')) ;
+    if (r.tag && kind(r.tag)) {
+      const all = r.lines.map(txt).join('<br>');
+      (applies(r.tag, 'CL') && !applies(r.tag, 'NG') ? clOnly : !applies(r.tag, 'CL') && applies(r.tag, 'NG') ? ngOnly : clOnly).push(`${badge(r.tag)}${esc(r.panel)}: ${esc(all).replace(/&lt;br&gt;/g, '<br>')}`);
+      if (applies(r.tag, 'CL') && applies(r.tag, 'NG')) ngOnly.push(clOnly[clOnly.length - 1]);
+    } else {
+      r.lines.forEach(l => {
+        if (!kind(l.tag)) return;
+        const s = `${badge(l.tag)}${esc(txt(l))}`;
+        const c = applies(l.tag, 'CL'), n = applies(l.tag, 'NG');
+        if (c && !n) clOnly.push(s); else if (n && !c) ngOnly.push(s); else { clOnly.push(s); ngOnly.push(s); }
+      });
+    }
+    if (clOnly.length || ngOnly.length) rowsOut.push(`<tr><td>${esc(ph.section)}<br><small>${esc(ph.title)}</small></td><td>${esc(r.panel)}<br><small>стр. ${esc(r.page.ch)}</small></td><td class="cl">${clOnly.join('<br>') || '—'}</td><td class="ng">${ngOnly.join('<br>') || '—'}</td></tr>`);
+  }));
+  return `<section class="phase"><div class="ph-head"><div class="sec">Сводка по всем фазам этой части</div><h1>Отличия Classic vs NG</h1><dl class="meta"><dt>Что здесь</dt><dd>Только строки, которые в OM-B помечены (CL), (NG), «NG only», «CL only» или относятся к отдельным бортам. Общие пункты не показаны.</dd></dl></div>
+  <table class="diff"><tr><th style="width:150px">Раздел</th><th style="width:220px">Панель</th><th>Classic</th><th>NG</th></tr>${rowsOut.join('')}</table></section>`;
+}
+
+/* ---- navigation ---- */
+const ids = D.phases.map(p => p.id).concat(['diff']);
+function toc(cur) {
+  document.getElementById('toc').innerHTML = `<h4>${type === 'CL' ? '737 Classic' : '737 NG'} · фазы</h4>` +
+    D.phases.map(p => `<a href="#${type}/${p.id}" class="${cur === p.id ? 'on' : ''}">${esc(p.title)}<small>${esc(p.section)} · стр. ${esc(p.pages.ch)}</small></a>`).join('') +
+    `<h4>Сводка</h4><a href="#${type}/diff" class="${cur === 'diff' ? 'on' : ''}">Отличия Classic vs NG</a>`;
+}
+function render() {
+  const [t, id] = (location.hash.slice(1) || `${type}/${ids[0]}`).split('/');
+  if (t === 'CL' || t === 'NG') type = t;
+  try { localStorage.setItem('b737type', type); } catch (e) {}
+  const cur = ids.includes(id) ? id : ids[0];
+  document.querySelectorAll('#typeSeg button').forEach(b => b.classList.toggle('on', b.dataset.t === type));
+  toc(cur);
+  const k = ids.indexOf(cur);
+  const body = cur === 'diff' ? diffHTML() : phaseHTML(D.phases.find(p => p.id === cur), type);
+  const name = j => ids[j] === 'diff' ? 'Отличия Classic vs NG' : D.phases[j].title;
+  document.getElementById('main').innerHTML = body + `<div class="pager"><button ${k ? '' : 'disabled'} data-go="${ids[k - 1] || ''}">← ${k ? esc(name(k - 1)) : ''}</button><button ${k < ids.length - 1 ? '' : 'disabled'} data-go="${ids[k + 1] || ''}">${k < ids.length - 1 ? esc(name(k + 1)) : ''} →</button></div>`;
+  document.body.classList.remove('tocopen');
+  window.scrollTo(0, 0);
+}
+if (PRINT) {
+  document.body.classList.add('print');
+  document.getElementById('main').innerHTML = D.phases.map(p => phaseHTML(p, PRINT)).join('') + diffHTML();
+  return;
+}
+document.getElementById('typeSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const id = (location.hash.split('/')[1]) || ids[0]; location.hash = `${b.dataset.t}/${id}`; });
+document.getElementById('modeSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; mode = b.dataset.m; document.body.classList.toggle('quiz', mode === 'quiz'); document.querySelectorAll('#modeSeg button').forEach(x => x.classList.toggle('on', x === b)); document.querySelectorAll('.hideable.shown').forEach(x => x.classList.remove('shown')); });
+document.getElementById('main').addEventListener('click', e => {
+  const h = e.target.closest('.hideable'); if (h && document.body.classList.contains('quiz')) h.classList.toggle('shown');
+  const g = e.target.closest('[data-go]'); if (g && g.dataset.go) location.hash = `${type}/${g.dataset.go}`;
+});
+document.getElementById('tocBtn').addEventListener('click', () => document.body.classList.toggle('tocopen'));
+document.querySelector('#modeSeg button').classList.add('on');
+addEventListener('hashchange', render);
+render();
+})();
+</script>
+</body>
+</html>
