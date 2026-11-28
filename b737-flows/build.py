@@ -38,6 +38,51 @@ NGMAP = {'ovh:bat': (632, 625), 'ovh:stby': (665, 695), 'ovh:altflaps': (548, 52
 # Each entry: (CL image, x, y, NG x, y) in pixels of site/img/*.jpg; NG image is ng-all.jpg (zones by y).
 # None = control not on mockup.  '?' suffix in note = position to be verified.
 LOC = {
+  'btaxi': [[], [], [],
+    ('aft', 765, 270, 857, 1875),      # 3 Flap lever
+    ('ovh', 460, 1815, 662, 900),      # 4 GENERATOR 1 and 2 switches
+    ('ovh', 880, 1012, 855, 535),      # 5 PROBE / PITOT HEAT
+    ('ovh', 850, 1242, 850, 635),      # 6 WING ANTI-ICE
+    ('ovh', 976, 1252, 892, 635),      # 7 ENGINE ANTI-ICE
+    ('ovh', 912, 1440, 857, 715),      # 8 HYDRAULIC PUMPS
+    ('ovh', 1100, 1462, 957, 717),     # 9 PACK switches (L PACK)
+    ('ovh', 1210, 1445, 1000, 738),    # 10 ISOLATION VALVE
+    ('ovh', 1210, 1530, 1000, 790),    # 11 APU BLEED
+    ('ovh', 1210, 1845, None, None),   # 12 FLT/GRD (Classic tails)
+    ('ovh', 530, 2095, 702, 1005),     # 13 APU switch
+    ('ovh', 635, 2080, 780, 985),      # 14 ENGINE START switches
+    ('aft', 545, 520, 760, 2056),      # 15 Engine start levers
+    [],
+    None,                              # 17 Ground personnel
+    None,                              # 18 Flight controls (control column / pedals)
+    ('ip', None, None, 773, 1662),     # 19 (NG) lower display unit
+    ('ip', 1000, 665, 765, 2212),      # 20 WEATHER RADAR
+    ('aft', 550, 1250, 765, 2310),     # 21 TRANSPONDER
+    ('ip', 631, 108, 460, 1175),       # 22 RECALL (system annunciator, Captain side)
+    None, [], [], [], [], [],
+  ],
+  'taxi': [[], [], [], [],
+    ('ovh', 430, 2075, 660, 998),      # 4 TAXI / RUNWAY TURNOFF lights
+    ('aft', 385, 610, 683, 2042),      # 5 parking brake
+    None,                              # 6 Off-Block Time
+    ('aft', 545, 370, 760, 1910),      # 7 thrust levers
+    [], [], [],
+  ],
+  'bto': [[], [],
+    [None, ('ip', 1207, 780, 600, 1660), ('ip', 1000, 60, 780, 1175), ('aft', 765, 270, 857, 1875), None],
+    [],
+    ('ip', 1000, 60, 780, 1175),       # 4 MCP altitude/heading (+ transponder code)
+    [], [], [],
+    ('aft', 870, 1195, 530, 1175),     # 8 WXR or TERR switch (Captain)
+    ('aft', 870, 1195, 995, 1175),     # 9 WXR or TERR switch (F/O)
+    [],
+    ('aft', 550, 1250, 765, 2310),     # 11 Transponder
+    [], [], [], [], [],
+    ('ovh', 1100, 2065, 900, 1002),    # 17 STROBE light
+    [], [],
+    ('ovh', 250, 2065, 600, 1002),     # 20 LANDING light switches
+    [], [],
+  ],
   'bstart': [[], [None]*6, [], [], [],
     ('ip', 1207, 780, 600, 1660),      # 5 CDU display
     ('ip', 935, 450, 760, 1440),       # 6 N1 bugs
@@ -59,7 +104,7 @@ LOC = {
   ],
   'estart': [[], [], [], [],
     ('ip', None, None, 773, 1662),     # 4 (NG) secondary engine indications (lower DU)
-    ('ovh', 1210, 1445, 1000, 722),    # 5 PACK switches
+    ('ovh', 1100, 1462, 957, 717),     # 5 PACK switches
     ('ovh', 1210, 1390, 1000, 675),    # 6 (CL) start pressure (duct pressure gauge)
     None,                              # 7 Start sequence (announce)
     ('ovh', 635, 2080, 780, 985),      # 8 ENGINE START switch
@@ -322,6 +367,9 @@ LOC_CHECK['pcap'] = {
 LOC_CHECK['estart'] = {(6, 0, 'CL'): 'Start pressure показан на манометре DUCT PRESS (PSI) на overhead; в OM-B прибор не назван. ⚠ проверить',
   (10, 0, 'CL'): 'На Classic-макете рычаги ENGINE START не подписаны. ⚠ проверить', (10, 0, 'NG'): 'Метка у рычагов ENGINE START под РУД. ⚠ проверить'}
 LOC_CHECK['bstart'] = {(15, 1, 'NG'): 'Метка на шкале STAB TRIM у рукоятки триммера. ⚠ проверить'}
+LOC_CHECK['btaxi'] = {(11, 0, 'CL'): 'APU BLEED на Classic-макете — метка в зоне bleed/pack панели. ⚠ проверить', (11, 0, 'NG'): 'APU BLEED на NG-макете — метка под ISOLATION VALVE в ряду bleed switches. ⚠ проверить',
+  (22, 0, 'CL'): 'RECALL — метка на system annunciator стороны Captain («Captain presses the RECALL»).', (22, 0, 'NG'): 'RECALL — метка на system annunciator стороны Captain («Captain presses the RECALL»).'}
+LOC_CHECK['bto'] = {(8, 0, 'CL'): 'На Classic-макете кнопка WXR на EFIS control panel; отдельной TERR не видно. ⚠ проверить', (9, 0, 'CL'): 'На Classic-макете виден только один EFIS control panel; метка общая для Captain и F/O. ⚠ проверить'}
 LOC_CHECK['pfo'] = {
   (36, 0, 'CL'): 'Метка стоит на индикаторах с надписью QTY на правой части приборной панели; что это именно HYDRAULIC QUANTITY, по макету не видно. ⚠ проверить',
   (39, 0, 'NG'): 'На NG-макете виден только сигнал ANTISKID INOP, самого выключателя ANTISKID нет. Метка у табло. ⚠ проверить',

@@ -1,0 +1,270 @@
+# OM-B 2.2.24 Before Taxi (ch 69–72), 2.2.25 Taxi (ch 72–74), 2.2.26 Before Takeoff (ch 74–76).
+
+#PHASE btaxi | Before Taxi Procedure | 2.2.24 | 69–72
+@trigger Call “FLAPS___ BEFORE TAXI PROCEDURE” (C)
+@intro If needed, review and set up airplane systems according to operating/performance requirements (anti ice, bleed/pack valves etc.), making reference to the Supplementary Procedures section (SP) and answer the checklist according to the actual configuration.
+@who Captain / F/O по колонкам документа
+@callout C | FLAPS___ BEFORE TAXI PROCEDURE
+== - | Note | - | 69
+N Following procedure assumes normal airplane configuration and no specific requirements necessary.
+== - | TR and GEN indications | - | 69
+X Check TR-1, TR-2, TR-3 indications and leave DC meter selector on BAT (CL) AUXBAT (NG) position. TR volt range: 24-30 volts (info only:28-30 normal)
+X Check GEN-1, GEN-2 indications and leave AC meter selector on GEN-2 position.
+X Normal indication for GEN AC power: Voltmeter 115+/-5 volts frequency meter – 400+/-10 CPS
+Q Исполнитель проверки TR и GEN в OM-B не указан (колонка роли пустая).
+== C | Call | - | 69
+K FLAPS___ BEFORE TAXI PROCEDURE
+== FO | Flap lever | - | 69
+A Flap lever || Set takeoff flaps
+X Flap extension may be delayed due to snow/slush or de-/anti-icing consideration in accordance with Supplementary Procedure
+== FO | GENERATOR 1 and 2 switches | - | 69
+A GENERATOR 1 and 2 switches || ON
+K GENERATORS ON BUS
+== FO | PROBE / PITOT HEAT | - | 69
+[NG] A (NG) PROBE HEAT switches || ON
+[CL] A (CL) PITOT HEAT switches || ON
+== FO | WING ANTI-ICE switch | - | 69–70
+A WING ANTI-ICE switch || As needed
+W Ground use of wing Anti-Ice is not intended to replace De-icing, Anti-Icing and Inspection procedures. The leading edge devices, wing, stabilizer, control surfaces, tab surfaces, winglet surfaces, control surface balance panel cavities and other critical airplane components MUST be free of frost, snow and ice. Close inspection just prior to takeoff may be necessary to meet this requirement.
+N Thin hoarfrost is acceptable on the upper surface of the fuselage provided all vents and ports are clear. Thin hoarfrost is a uniform white deposit of fine crystalline texture, which usually occurs on exposed surfaces on a cold and cloudless night, and which is thin enough to distinguish surface features underneath, such as paint lines, markings or lettering. Takeoff with CSFF (cold- soaked fuel frost) on lower wing surfaces is allowable provided all of the following condition are met: Ambient air temperature is at or above +4°C, +39°F; There is no precipitation or visible moisture (rain, snow, drizzle, or fog with less than 1 mile visibility); Tank fuel temperature is at or above -16°C, or +3°F; All leading edge devices, all control surfaces, tab surfaces, winglet surfaces, and control surface balance panel cavities must be free of snow, ice and frost. If all of the above conditions are not met, takeoff with light coatings of frost, up to 1/8 inch (3 mm) in thickness, on lower wing surfaces due to cold fuel is allowable; however, all leading edge devices, all control surfaces, tab surfaces, winglet surfaces and control surface balance panel cavities must be free of snow, ice and frost. If the frost on the lower surface is greater than 1/8 inch (3 mm) in thickness, all snow, ice and frost on the wings must be removed using appropriate deicing/anti-icing procedures.
+N Takeoff with CSFF on upper wing surfaces is allowed provided all of the following conditions are met: The CSFF on the wing tank upper surfaces is only within the lines defining the permissible CSFF area with no ice or frost on the leading edges or control surfaces; Ambient air temperature is at or above +4°C, +39°F; There is no precipitation or visible moisture (rain, snow, drizzle, or fog with less than 1 mile visibility); Tank fuel temperature is at or above -16°C, +3°F. If all of the above conditions are not met, all snow, ice and frost on the wings must be removed using appropriate deicing/anti-icing procedures.
+== FO | ENGINE ANTI-ICE switches | - | 70
+A ENGINE ANTI-ICE switches || As needed
+X If needed ENGINE ANTI-ICE switch on ENGINE START CONT switches first.
+== FO | HYDRAULIC PUMPS switches | - | 70
+A HYDRAULIC PUMPS switches || ON
+== FO | PACK switches | - | 70
+A PACK switches || AUTO
+== FO | ISOLATION VALVE switch | - | 70
+A ISOLATION VALVE switch || AUTO
+== FO | APU BLEED air switch | - | 70–71
+A APU BLEED air switch || OFF
+N APU serve as backup electrical source for LVTO.
+N Do not switch APU OFF in case of No Engine Bleed Takeoff.
+N Do not switch APU OFF in case of LVTO (APU serve as backup electrical source).
+N If de-/anti-icing is needed, follow the Adverse Weather Supplementary Procedure. If APU is running, ingestion of de-icing fluid causes objectionable fumes and odors to enter the airplane. Ingestion of snow, slush, ice, or de-/anti-icing fluid can also cause damage to the APU. Operate the APU during de-icing only if necessary. After engine start shut down the APU unless APU operation is necessary. If No Engine Bleed Takeoff procedure is necessary for performance reason and APU is unavailable or if it was running during de-/anti-icing, then Unpressurized Takeoff must be performed.
+N Crew shall continually monitor the ambient conditions after de-/anti-icing treatment. Holdover Time can be significantly reduced by a number of factors (temperature, wind, jet blast, humidity, heavy precipitations etc.), therefore, the indicated times should be used only in conjunction with a Pre-takeoff Contamination Inspection. This means that if the minimum holdover time expired before the take-off and precipitation occurred at any time after anti-icing procedure was started, a Pre-takeoff Contamination Inspection is mandatory. This inspection is typically conducted by a flight crew member observing the aircraft surfaces from inside the aircraft cabin.
+== FO | FLT/GRD switch | - | 71 | T:3722,3723,3724,3729
+A FLT/GRD switch (UP-B3722, UP-B3723, UP-B3724, UP-B3729) || FLT
+== FO | APU switch | - | 71
+A APU switch (after 1 min of cooling (CL) || As needed
+== FO | ENGINE START switches | - | 71
+A ENGINE START switches || CONT
+== C | Engine start levers | - | 71
+A Engine start levers || IDLE detent
+== - | LE FLAPS EXT | - | 71
+V When the flaps and slats are in commanded position verify that the LE FLAPS EXT green light is illuminated and call: “FLAPS ___, GREEN LIGHT”
+K FLAPS ___, GREEN LIGHT
+Q Кто выполняет проверку LE FLAPS EXT и делает callout «FLAPS ___, GREEN LIGHT», в этом месте OM-B не указано.
+== C | Ground personnel and equipment | - | 71
+A Ground personnel and equipment is clear || Verify
+K FLIGHT CONTROLS CHECK
+Q Исполнитель «Ground personnel and equipment is clear …… Verify» и callout «FLIGHT CONTROLS CHECK» в колонке роли не указан; показаны вместе со строкой Flight controls (C).
+== C | Flight controls | - | 71
+A Flight controls || Check
+X Push the MFD SYS switch to display the flight control surface position indications (as installed) on the lower display unit, if desired (NG if installed)
+X Make slow and deliberate inputs one direction at a time .
+X Move the control wheel and the control column to full travel in both directions and verify
+V freedom of movement.
+V that the controls return to center
+X Hold the nose wheel steering wheel during the rudder check to prevent nose wheel movement.
+X Move the rudder pedals to full travel in both directions and verify:
+V freedom of movement.
+V that the rudder pedals return to center
+N During checking Flight Control, FO’s feet should be on the pedals. Check correct radar pedal position. Follow the radar movement and call out any discrepancy.
+== FO | Lower display unit | - | 71 | NG
+X (NG) Blank the lower display unit
+== FO | WEATHER RADAR | - | 71
+A WEATHER RADAR panel || WX, TILT 5º up
+A WEATHER RADAR switch || ON
+N Set the weather radar display – it is recommended to set weather radar approx. 5 degrees nose up tilt or use “AUTO” mode as installed.
+X Verify that the weather radar indications are not shown on the MAP. It means that Weather radar has just already prepared for use but weather radar transmitters are not energized. Postpone the activation of Weather Radar Display switch on EFIS Control panel till Before Takeoff Procedure or when weather situation is required.
+== FO | TRANSPONDER | - | 72
+A TRANSPONDER || As needed
+X At airports where ground tracking is not available, select STANDBY.
+X At airports equipped to track airplanes on the ground, select an active transponder setting, but not a TCAS mode.
+== B | RECALL | - | 72
+A RECALL || Check
+X Captain presses the RECALL and both pilots verify that all system annunciator panel lights illuminate and then extinguish
+== B | SEAT BELTS AND SHOULDER HARNESSES | - | 72
+A SEAT BELTS AND SHOULDER HARNESSES || Check Fastened
+X Flap extension may be delayed due to snow/slush or de-/anti-icing consideration in accordance with Supplementary Procedure.
+== FO | Call | - | 72
+K BEFORE TAXI PROCEDURE COMPLETED
+== C | Call | - | 72
+K BEFORE TAXI CHECKLIST
+== FO | BEFORE TAXI CHECKLIST | - | 72
+X Do the BEFORE TAXI CHECKLIST
+== B | Ground equipment | - | 72
+V Verify that the ground equipment is clear
+N Do the configuration for No Engine Bleed Takeoff prior to taxi if Anti-Ice is not required for taxi.
+N Do the configuration for No Engine Bleed Takeoff prior to lining up before doing the BEFORE TAKEOFF checklist if Anti0ice is required for taxi.
+== FO | Lights | - | 72
+X The F/O switches Off Dome light. Taxi light ON, Turn off lights (as required), APU as required.
+
+#CHECKLIST btaxi | BEFORE TAXI
+@CL Appendix 1 Normal Checklist B737-300/500 (Classic) | 417 | Page 1
+GENERATORS | ON | R
+PITOT STATIC HEAT | ON | R
+ANTI-ICE | ON/OFF | R
+PACKS | AUTO | R
+ISOLATION VALVE | AUTO | R
+ENGINE START SWITCHES | CONT | R
+RECALL | CHECKED | L R
+AUTOBRAKE | RTO | R
+ENGINE START LEVERS | IDLE DETEND | L
+FLIGHT CONTROLS | CHECKED | L
+GROUND PERSONNEL AND EQUIPMENT | CLEAR | L R
+@NG Appendix 3 Normal Checklist B737-700/800 (NG) | 422 | Page 6
+GENERATORS | ON | R
+PROBE HEAT | ON | R
+ANTI-ICE | ON/OFF | R
+PACKS | AUTO | R
+ISOLATION VALVE | AUTO | R
+ENGINE START SWITCHES | CONT | R
+RECALL | CHECKED | L R
+AUTOBRAKE | RTO | R
+ENGINE START LEVERS | IDLE DETEND | L
+FLIGHT CONTROLS | CHECKED | L
+GROUND PERSONNEL AND EQUIPMENT | CLEAR | L R
+
+#PHASE taxi | Taxi Procedure | 2.2.25 | 72–74
+@trigger Before the commencement taxi procedure, if pushback or towing is not necessary, the flight crew shall verify that the cabin is secure. SCCM report the information “CABIN READY FOR MOVEMENT” via Interphone and after receiving confirmation from C or F/O “CABIN READY FOR MOVEMENT CONFIRM” first movement can be done.
+@intro If jumpseat is occupied, both pilots must check and be sure that jumpseat occupant use seatbelts and take away all personal belongings before commencement of the taxi procedure.
+@who Captain и F/O (колонки CAPT / FO документа)
+== B | Clear of obstructions | - | 72
+X Receive all clear signals from the marshaller and ensure both sides of aircraft are clear of obstructions.
+== C | Call | - | 72
+K LEFT SIDE CLEAR
+== FO | Call | - | 72
+K RIGHT SIDE CLEAR
+C Do not move aircraft until both pilots check that their area is clear
+== C | Call | - | 72
+K LIGHTS FOR TAXI, APU OFF
+X if not needed APU.
+== FO | TAXI / RUNWAY TURNOFF lights | - | 72
+A TAXI light switch || ON
+A RUNWAY TURNOFF light switches || as needed
+== C | Parking brake | - | 72
+X Release parking brake and commence taxi.
+== FO | Off-Block Time | - | 72
+A Off-Block Time || Start
+N Start the Block Time when airplane first moves from its parking place for the purpose of taking off.
+== C | Thrust levers | - | 72–73
+N Limit brake away thrust as much as possible. BE EASY ON THE THRUST LEVERS WHEN TAXIING.
+N It is recommended to avoid N1 more than 40%. Initial movement should be straight ahead with nose wheel centered before starting a turn.
+N Be careful, to achieve the same power setting (for example 40% N1) different thrust lever angles may be needed depending on aircraft type and engines regulation.
+[NG] X (NG) Use N1 Command Sectors which display momentary difference between actual N1 and value commanded by thrust lever position.
+== C | Brakes check | - | 73
+X At the beginning of taxiing, in a straight section of the taxi route, the captain should check the brakes by smoothly pressing the pedals. During pushing the brake pedals - make sure of adequate deceleration.
+K BRAKES CHECK
+X Smoothly press the brake pedals and make sure of adequate deceleration.
+K BRAKES CHECKED
+== FO | Call (F/O or RHS pilot) | - | 73
+K CHECKED
+== - | Taxi technique | - | 73–74
+X It is the F/O's responsibility to complete the checks and procedure to get the aircraft ready for departure while taxiing. If an ATC clearance is obtained while taxiing, the F/O will make the Altitude and transponder changes and ensures the C is aware of the clearance and the changes mentioned above.
+X Do not be diverted from the primary task of safely taxiing the airplane. The flight crew should avoid all unnecessary activity and duties (including paperwork) that can be accomplished at another time.
+X Only essential taxiing and departure clearances will be logged during taxi by F/O.
+X The pilot’s seat and rudder pedals should be adjusted so that it is possible to apply maximum braking with full rudder deflection.
+X During taxiing, the pilot’s heels should be on the rudder pedals.
+X Allow time for airplane response to each thrust change.
+X To break away from the ramp, release the brakes, smoothly increase thrust to the minimum required for the airplane to roll forward, and reduce thrust to idle again. Do not start a turn until sufficient forward speed has been attained to carry the airplane through the turn at idle thrust. Avoid following other airplanes too closely.
+X Allow the nose gear to overshoot turns to ensure the main gear straddles the taxiway centerline. The nose gear may be displaced from centerline to avoid airport lighting. This enhances passenger comfort. Be aware that the tail can scribe the greater arc during turns than wingtips.
+X The normal straight-away taxi speed 20 knots & should not exceed approximately 30 knots.
+X When approaching a turn, speed should be slowed to approximately 10 knots.
+X Some taxi speeds, usually between 10 and 20 knots, can cause an increase in airplane vibration, especially on rough taxiways. If this occurs, a slight increase or decrease in speed will reduce or eliminate the vibration and increase passenger comfort.
+X Maintain a positive pressure on the nose steering wheel in both directions to prevent the nose gear from returning to center abruptly. Straight ahead steering and large radius turns may be accomplished with rudder pedal steering only. If nose wheel "scrubbing" occurs while turning, reduce steering angle and/or taxi speed. Avoid stopping the airplane in a turn as excessive thrust will be required to start taxiing again. Differential thrust may be required for heavy airplanes during tight turns but should only be used as required to maintain the desired speed in the turn. Center the nose wheel and allow the airplane to roll straight ahead to relieve stress on the main and nose gear structure and oleo strut seals prior to stopping after completing a turn.
+X Avoid riding the brakes to control taxi speed as brake heat buildup could become excessive. If taxi speed is too high, reduce speed with a steady brake application and then release the brakes to allow them to cool. Continuous braking should be avoided. Allow for decreased braking effectiveness on slick surfaces.
+X When taxiing on a slick surface at reduced speeds, use of differential engine thrust will assist in maintaining airplane movement through the turn. Differential braking may be more effective than nose wheel steering on very slick surfaces. Reduce speed prior to initiating a turn.
+
+#PHASE bto | Before Takeoff Procedure | 2.2.26 | 74–76
+@trigger If the taxiways and runways are covered with snow, slush, or ice, consideration should be given to the use of anti-ice. Taxi with the flaps up until entering the active runway for takeoff, then select takeoff flaps and complete the BEFORE TAKEOFF checklist. Plan for a short delay on the runway to complete the before takeoff procedure and to ensure proper engine operation by cross-checking all engine instruments.
+@who Captain и F/O (колонки CAPT / F/O документа), PF
+== - | Engine warm-up | - | 74
+X Consider engine warm-up recommendations before selecting takeoff thrust.
+X Engine warm-up requirements:
+V run the engines for at least 3 minutes.
+V verify an increase in engine oil temperature before takeoff.
+== B | Complex intersections / HOLD POSITION | - | 74
+X At complex intersections, the flight crew should verbally coordinate to be sure that the intersection is correctly identified and that the aircraft is transitioning through the intersection to the correct taxiway. When visually scanning the intersections area, flight crewmembers should verbally inform each other about any potential hazard on taxi route in free form in English or Russian language.
+X If during taxing "HOLD POSITION" instruction received, after stopping, Captain switches off TAXI and RWY TURN OFF lights to give the other aircraft or ground vehicles a clear sign that the aircraft is holding. Switch on TAXI and RWY TURN OFF lights before resuming taxing.
+== B | Updated take off data | - | 74
+X If take off data / conditions have changed, or in case of RW / SID change, prepare updated take off data:
+A Takeoff performance data || Recalculate / Check
+A CDU || Load
+A MCP || Set / Check
+A FLAPS/TRIM || Set / Check
+A SID, TRANSITION || Read / Check
+W If any changes in the performance calculations are made, PF and PM must crosscheck the calculated data before CDU load.
+== B | Entering the runway | - | 74
+X Entering the runway, the pilots will confirm that the runway and approach are clear by calling:
+K RIGHT SIDE CLEAR (RUNWAY OCCUPIED or etc.)
+K LEFT SIDE CLEAR (AIRCRAFT ON FINAL or etc.)
+N When required to modify FMC due to revised clearance, use caution to maintain proper outside vigilance to ensure safe taxiing. The F/O shall make the required entries. The Captain then verifies proper entries.
+N If no transponder code is assigned, set appropriate standard code (2000).
+== FO | MCP altitude, heading, transponder code | - | 75
+X Set MCP altitude, heading and transponder code if ATC clearance is received or changes while taxiing.
+N When required to modify FMC due to revised clearance, use caution to maintain proper outside vigilance to ensure safe taxiing. The F/O shall make the required entries. The Captain then verifies proper entries.
+N If no transponder code is assigned, set appropriate standard code (2000).
+Q NOTE «When required to modify FMC…» и «If no transponder code is assigned…» в документе повторяются дважды (стр. 74 и 75). Перенесено как в документе.
+== C | Verify entries | - | 75
+X Verify proper entries.
+== PF | Takeoff briefing | - | 75
+X The pilot who will do the takeoff, completes or updates changes to the takeoff briefing as needed.
+== B | Cabin secure | - | 75
+X Verify that the cabin is secure.
+X (Senior Cabin Crew Member - SCCM – report the information “CABIN SECURE FOR TAKEOFF” via Interphone) and confirmation by C or F/O “CABIN SECURE CONFIRM”
+K CABIN SECURE CONFIRM
+X Do not enter the active runway until the cabin has been reported as secured by the cabin crew.
+== C | WXR or TERR switch | - | 75
+A WXR or TERR switch || As needed
+== FO | WXR or TERR switch | - | 75
+A WXR or TERR switch || As needed
+== FO | Centre tank fuel | - | 75
+X Check the centre tank fuel quantity. Both centre tank fuel pump switches should be OFF for takeoff if centre tank fuel is less than 453 kilograms.
+== FO | Transponder | - | 75
+A Transponder || TA/RA
+== FO | Cabin crew | - | 75
+X Notify the cabin crew to prepare for takeoff:
+K CABIN CREW, TAKEOFF POSITION
+N This instruction should not be given until entering the runway for Take Off, since it means that from then on, until the “Release to work” signal, the Cabin Attendants shall not leave their seats for any reason. It implies that Takeoff is imminent and that the “Interphone Silence” period is in force.
+== PF | Takeoff briefing / displays | - | 75
+X The PF updates changes to the takeoff briefing as needed.
+X Set the weather radar display as needed. Set the terrain display as needed.
+N PF shall monitor Weather Radar and PM – Terrain Mode in adverse weather. At other times both pilots shall monitor Terrain up to 10000 feet or MSA, whichever is higher. Use of the Weather Radar may also be useful when departing from airports where bird activity is present.
+== B | Line up clearance | - | 75
+X When cleared to line up before entering the departure runway, verify that the runway and runway entry point are correct.
+N If GPS not installed, or if installed but GPS updating not available, and departing from any position that is not co-incident with runway threshold, you must enter a runway TO SHIFT to ensure that airplane symbol on EFIS Map updates to the actual aircraft position when TOGA is pressed.
+== C | Call | - | 75
+K BEFORE TAKEOFF CHECKLIST
+== FO | BEFORE TAKEOFF CHECKLIST | - | 75
+X Do the BEFORE TAKEOFF CHECKLIST
+== FO | STROBE light | - | 75
+X When entering the runway, set the STROBE light switch to ON.
+== FO | Runway position | - | 75
+X Update the runway position as needed.
+== C | Align | - | 75
+X Align the airplane with the runway.
+== FO | LANDING lights (F/O or RHP) | - | 76
+X When cleared for takeoff, set the INBOARD/FIXED LANDING light switches to ON, set the OUTBOARD/RETRACTABLE LANDING light switches as needed.
+== C | Hand over control | - | 76
+X Hand over control of the airplane to PF and call:
+K YOU HAVE CONTROL
+== PF | Take controls | - | 76
+X PF takes controls and call:
+K I HAVE CONTROL, READY FOR TAKEOFF
+
+#CHECKLIST bto | BEFORE TAKEOFF
+@CL Appendix 1 Normal Checklist B737-300/500 (Classic) | 417 | Page 1
+FLAPS | ___,GREEN LIGHT | L
+STABILIZER TRIM | ___UNITS | L
+CABIN | SECURED | L
+TRANSPONDER | ON, SET, TA/RA | R
+WEATHER RADAR/TERRAIN | ON | L R
+@NG Appendix 3 Normal Checklist B737-700/800 (NG) | 422 | Page 6
+FLAPS | ___,GREEN LIGHT | L
+STABILIZER TRIM | ___UNITS | L
+CABIN | SECURED | L
+TRANSPONDER | ON, SET, TA/RA | R
+WEATHER RADAR/TERRAIN | ON | L R

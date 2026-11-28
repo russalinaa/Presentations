@@ -216,7 +216,28 @@ function runsOf(B) {
     var tgt = out.filter(function (r) { return r.plates.some(function (p) { return p.num === n.after || p.num.split('.')[0] === n.after; }); })[0] || out[out.length - 1];
     tgt.notes.push(n);
   });
-  return out;
+  // long NOTE/CAUTION/WARNING blocks get their own slide right after the zone slide
+  function nh(n) { return wrap(n.text, 64).length * 18 + 16; }
+  var res = [];
+  out.forEach(function (r) {
+    var tot = r.notes.reduce(function (a, n) { return a + nh(n); }, 0);
+    if (tot > 330) { res.push({ zone: r.zone, plates: r.plates, notes: [] }); res.push({ zone: 'notes', plates: r.plates, notes: r.notes, of: r }); }
+    else res.push(r);
+  });
+  return res;
+}
+function notesSlide(ph, t, run, nav, navIndex) {
+  var inner = '', x = 250, y = 90, colW = 660, col = 0;
+  var COL = { N: ['#e8f0fe', '#1d5fd6', 'NOTE'], C: ['#fff4d6', '#b7791f', 'CAUTION'], W: ['#fde8e8', '#c0262d', 'WARNING'], Q: ['#fff0f6', '#b83280', '⚠ проверить'] };
+  run.notes.forEach(function (n) {
+    var c = COL[n.k], w = wrap(n.text, 82), h = w.length * 19 + 34;
+    if (y + h > 985 && col === 0) { col = 1; x = 250 + colW + 20; y = 90; }
+    inner += '<rect x="' + x + '" y="' + y + '" width="' + colW + '" height="' + h + '" rx="6" fill="' + c[0] + '"/><rect x="' + x + '" y="' + y + '" width="7" height="' + h + '" fill="' + c[1] + '"/>';
+    inner += '<text x="' + (x + 16) + '" y="' + (y + 20) + '" font-size="14" font-weight="800" fill="' + c[1] + '">' + c[2] + ' · к шагу ' + esc(n.after) + ' · стр. ' + esc(n.page.ch) + '</text>';
+    w.forEach(function (sx, i) { inner += '<text x="' + (x + 16) + '" y="' + (y + 40 + i * 19) + '" font-size="14.5" fill="#0b1630">' + esc(sx) + '</text>'; });
+    y += h + 10;
+  });
+  return slideFrame(ph.title, 'NOTE / CAUTION / WARNING', run.plates[0].who, nav, navIndex, inner, t);
 }
 function numLabel(ns) {
   if (ns.length < 3) return ns.join('/');
@@ -274,6 +295,7 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
   var nlines = [];
   run.notes.forEach(function (n) { var w = wrap((n.k === 'N' ? 'NOTE: ' : n.k === 'C' ? 'CAUTION: ' : n.k === 'W' ? 'WARNING: ' : '⚠ ') + n.text, 64); nlines.push({ n: n, w: w }); });
   var notesH = nlines.reduce(function (a, x) { return a + x.w.length * 18 + 16; }, 0) + (nlines.length ? 8 : 0);
+  var noteK = 1, noteMax = BOT - TOP - 300; if (notesH > noteMax) { noteK = noteMax / notesH; notesH = noteMax; }
   var imgH = BOT - TOP - notesH - 30;
   if (run.zone === 'none') {
     inner += '<rect x="' + IMGX + '" y="' + TOP + '" width="' + IMGW + '" height="' + imgH + '" rx="10" fill="#f6f8fc" stroke="#c8d0de" stroke-dasharray="8 6"/><text x="' + (IMGX + IMGW / 2) + '" y="' + (TOP + imgH / 2) + '" text-anchor="middle" font-size="20" fill="#7a869e">макет отсутствует</text>';
@@ -370,7 +392,7 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
   });
   inner += plates;
   // notes under the image
-  var ny = TOP + imgH + 18;
+  var ny = TOP + imgH + 18; inner += '<g transform="translate(' + IMGX + ' ' + ny + ') scale(' + noteK + ') translate(' + (-IMGX) + ' ' + (-ny) + ')">';
   nlines.forEach(function (x) {
     var col = { N: ['#e8f0fe', '#1d5fd6'], C: ['#fff4d6', '#b7791f'], W: ['#fde8e8', '#c0262d'], Q: ['#fff0f6', '#b83280'] }[x.n.k];
     var h = x.w.length * 18 + 10;
@@ -379,6 +401,7 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
     inner += '<text x="' + (IMGX + IMGW - 8) + '" y="' + (ny + 14) + '" font-size="11" fill="#7a869e" text-anchor="end">к шагу ' + esc(x.n.after) + '</text>';
     ny += h + 6;
   });
+  inner += '</g>';
   var nums = run.plates.map(function (p) { return p.num; });
   return slideFrame(ph.title, ZNAME[run.zone] || 'Без макета', role, nav, navIndex, inner, t);
 }
@@ -402,6 +425,7 @@ function overviewSlide(ph, t, runs, nav) {
   // one point per visit = centroid of that visit's controls (exact sub-panel)
   var pts = [], none = [];
   runs.forEach(function (r, i) {
+    if (r.zone === 'notes') return;
     var ps = r.plates.filter(function (p) { return p.loc; });
     if (!ps.length) { none.push({ i: i, r: r }); return; }
     var cx = 0, cy = 0; ps.forEach(function (p) { var q = P(r.zone, p.loc.x, p.loc.y); cx += q[0]; cy += q[1]; });
@@ -461,10 +485,11 @@ function overviewSlide(ph, t, runs, nav) {
 function procSlides(ph, t) {
   var B = buildPlates(ph, t), runs = runsOf(B);
   var nav = [['Обзор кабины', 'порядок зон']].concat(runs.map(function (r, i) {
+    if (r.zone === 'notes') return [(i + 1) + '. NOTE / WARNING', 'к шагам ' + r.plates[0].num.split('.')[0] + '–' + r.plates[r.plates.length - 1].num.split('.')[0]];
     var a = r.plates[0].num, b = r.plates[r.plates.length - 1].num;
     return [(i + 1) + '. ' + (ZNAME[r.zone] || 'Без макета').split(' (')[0].replace(' + glareshield', ' + glare.').replace('Control stand + pedestal', 'Pedestal').replace('Main panel + glare.', 'Main panel').replace('Без макета', 'Без макета'), 'шаги ' + a + (a !== b ? '–' + b : '')];
   }));
-  var svgs = [overviewSlide(ph, t, runs, nav)].concat(runs.map(function (r, i) { return zoneSlide(ph, t, r, i, nav, i + 1); }));
+  var svgs = [overviewSlide(ph, t, runs, nav)].concat(runs.map(function (r, i) { return r.zone === 'notes' ? notesSlide(ph, t, r, nav, i + 1) : zoneSlide(ph, t, r, i, nav, i + 1); }));
   return { svgs: svgs, B: B, runs: runs };
 }
 
@@ -515,7 +540,7 @@ function mapSVG(t) {
     o.push('<g class="node" data-id="' + g.id + '">' + hlText(x, y, g.n + ') ' + g.t, 27) + (g.ck ? '<text x="' + (x + g.t.length * 27 * .53 + 76) + '" y="' + y + '" font-size="22" fill="#2e9e55" font-weight="600">→ ' + esc(g.ck) + '</text>' : '') + '</g>');
     var ph = phase(g.id), inner = '';
     if (ph) {
-      var B = buildPlates(ph, t), runs = runsOf(B), z = runs.filter(function (r) { return r.zone !== 'none'; })[0];
+      var B = buildPlates(ph, t), runs = runsOf(B), z = runs.filter(function (r) { return r.zone !== 'none' && r.zone !== 'notes'; })[0];
       if (z && LOC_READY(g.id)) {
         var Z = ZONE[z.zone], W = SIZE[z.zone][0], H = SIZE[z.zone][1];
         var pts = z.plates.filter(function (p) { return p.loc; });

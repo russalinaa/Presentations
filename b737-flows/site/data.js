@@ -11734,13 +11734,13 @@ window.OMB = {
        "loc": {
         "CL": {
          "img": "ovh",
-         "x": 1210,
-         "y": 1445
+         "x": 1100,
+         "y": 1462
         },
         "NG": {
          "img": "ngovh",
-         "x": 1000,
-         "y": 722
+         "x": 957,
+         "y": 717
         }
        }
       }
@@ -12120,6 +12120,2052 @@ window.OMB = {
      ]
     }
    ]
+  },
+  {
+   "id": "btaxi",
+   "title": "Before Taxi Procedure",
+   "section": "2.2.24",
+   "pages": {
+    "ch": "69–72",
+    "pdf": "137–140"
+   },
+   "trigger": [
+    "Call “FLAPS___ BEFORE TAXI PROCEDURE” (C)"
+   ],
+   "intro": [
+    "If needed, review and set up airplane systems according to operating/performance requirements (anti ice, bleed/pack valves etc.), making reference to the Supplementary Procedures section (SP) and answer the checklist according to the actual configuration."
+   ],
+   "who": "Captain / F/O по колонкам документа",
+   "callouts": [
+    {
+     "who": "C",
+     "text": "FLAPS___ BEFORE TAXI PROCEDURE"
+    }
+   ],
+   "rows": [
+    {
+     "who": "-",
+     "panel": "Note",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "69",
+      "pdf": "137"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Following procedure assumes normal airplane configuration and no specific requirements necessary."
+      }
+     ]
+    },
+    {
+     "who": "-",
+     "panel": "TR and GEN indications",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "69",
+      "pdf": "137"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Check TR-1, TR-2, TR-3 indications and leave DC meter selector on BAT (CL) AUXBAT (NG) position. TR volt range: 24-30 volts (info only:28-30 normal)"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Check GEN-1, GEN-2 indications and leave AC meter selector on GEN-2 position."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Normal indication for GEN AC power: Voltmeter 115+/-5 volts frequency meter – 400+/-10 CPS"
+      },
+      {
+       "k": "Q",
+       "tag": "",
+       "text": "Исполнитель проверки TR и GEN в OM-B не указан (колонка роли пустая)."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Call",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "69",
+      "pdf": "137"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "K",
+       "tag": "",
+       "text": "FLAPS___ BEFORE TAXI PROCEDURE"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Flap lever",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "69",
+      "pdf": "137"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Flap lever",
+       "val": "Set takeoff flaps",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 765,
+         "y": 270
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 857,
+         "y": 1875
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Flap extension may be delayed due to snow/slush or de-/anti-icing consideration in accordance with Supplementary Procedure"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "GENERATOR 1 and 2 switches",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "69",
+      "pdf": "137"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "GENERATOR 1 and 2 switches",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 460,
+         "y": 1815
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 662,
+         "y": 900
+        }
+       }
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "GENERATORS ON BUS"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "PROBE / PITOT HEAT",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "69",
+      "pdf": "137"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "NG",
+       "item": "(NG) PROBE HEAT switches",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 880,
+         "y": 1012
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 855,
+         "y": 535
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "CL",
+       "item": "(CL) PITOT HEAT switches",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 880,
+         "y": 1012
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 855,
+         "y": 535
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "WING ANTI-ICE switch",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "69–70",
+      "pdf": "137–138"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "WING ANTI-ICE switch",
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 850,
+         "y": 1242
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 850,
+         "y": 635
+        }
+       }
+      },
+      {
+       "k": "W",
+       "tag": "",
+       "text": "Ground use of wing Anti-Ice is not intended to replace De-icing, Anti-Icing and Inspection procedures. The leading edge devices, wing, stabilizer, control surfaces, tab surfaces, winglet surfaces, control surface balance panel cavities and other critical airplane components MUST be free of frost, snow and ice. Close inspection just prior to takeoff may be necessary to meet this requirement."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Thin hoarfrost is acceptable on the upper surface of the fuselage provided all vents and ports are clear. Thin hoarfrost is a uniform white deposit of fine crystalline texture, which usually occurs on exposed surfaces on a cold and cloudless night, and which is thin enough to distinguish surface features underneath, such as paint lines, markings or lettering. Takeoff with CSFF (cold- soaked fuel frost) on lower wing surfaces is allowable provided all of the following condition are met: Ambient air temperature is at or above +4°C, +39°F; There is no precipitation or visible moisture (rain, snow, drizzle, or fog with less than 1 mile visibility); Tank fuel temperature is at or above -16°C, or +3°F; All leading edge devices, all control surfaces, tab surfaces, winglet surfaces, and control surface balance panel cavities must be free of snow, ice and frost. If all of the above conditions are not met, takeoff with light coatings of frost, up to 1/8 inch (3 mm) in thickness, on lower wing surfaces due to cold fuel is allowable; however, all leading edge devices, all control surfaces, tab surfaces, winglet surfaces and control surface balance panel cavities must be free of snow, ice and frost. If the frost on the lower surface is greater than 1/8 inch (3 mm) in thickness, all snow, ice and frost on the wings must be removed using appropriate deicing/anti-icing procedures."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Takeoff with CSFF on upper wing surfaces is allowed provided all of the following conditions are met: The CSFF on the wing tank upper surfaces is only within the lines defining the permissible CSFF area with no ice or frost on the leading edges or control surfaces; Ambient air temperature is at or above +4°C, +39°F; There is no precipitation or visible moisture (rain, snow, drizzle, or fog with less than 1 mile visibility); Tank fuel temperature is at or above -16°C, +3°F. If all of the above conditions are not met, all snow, ice and frost on the wings must be removed using appropriate deicing/anti-icing procedures."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "ENGINE ANTI-ICE switches",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "70",
+      "pdf": "138"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "ENGINE ANTI-ICE switches",
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 976,
+         "y": 1252
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 892,
+         "y": 635
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "If needed ENGINE ANTI-ICE switch on ENGINE START CONT switches first."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "HYDRAULIC PUMPS switches",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "70",
+      "pdf": "138"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "HYDRAULIC PUMPS switches",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 912,
+         "y": 1440
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 857,
+         "y": 715
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "PACK switches",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "70",
+      "pdf": "138"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "PACK switches",
+       "val": "AUTO",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1100,
+         "y": 1462
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 957,
+         "y": 717
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "ISOLATION VALVE switch",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "70",
+      "pdf": "138"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "ISOLATION VALVE switch",
+       "val": "AUTO",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 1445
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 738
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "APU BLEED air switch",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "70–71",
+      "pdf": "138–139"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "APU BLEED air switch",
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 1530,
+         "check": "APU BLEED на Classic-макете — метка в зоне bleed/pack панели. ⚠ проверить"
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1000,
+         "y": 790,
+         "check": "APU BLEED на NG-макете — метка под ISOLATION VALVE в ряду bleed switches. ⚠ проверить"
+        }
+       }
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "APU serve as backup electrical source for LVTO."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Do not switch APU OFF in case of No Engine Bleed Takeoff."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Do not switch APU OFF in case of LVTO (APU serve as backup electrical source)."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "If de-/anti-icing is needed, follow the Adverse Weather Supplementary Procedure. If APU is running, ingestion of de-icing fluid causes objectionable fumes and odors to enter the airplane. Ingestion of snow, slush, ice, or de-/anti-icing fluid can also cause damage to the APU. Operate the APU during de-icing only if necessary. After engine start shut down the APU unless APU operation is necessary. If No Engine Bleed Takeoff procedure is necessary for performance reason and APU is unavailable or if it was running during de-/anti-icing, then Unpressurized Takeoff must be performed."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Crew shall continually monitor the ambient conditions after de-/anti-icing treatment. Holdover Time can be significantly reduced by a number of factors (temperature, wind, jet blast, humidity, heavy precipitations etc.), therefore, the indicated times should be used only in conjunction with a Pre-takeoff Contamination Inspection. This means that if the minimum holdover time expired before the take-off and precipitation occurred at any time after anti-icing procedure was started, a Pre-takeoff Contamination Inspection is mandatory. This inspection is typically conducted by a flight crew member observing the aircraft surfaces from inside the aircraft cabin."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "FLT/GRD switch",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "71",
+      "pdf": "139"
+     },
+     "tag": "T:3722,3723,3724,3729",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "FLT/GRD switch (UP-B3722, UP-B3723, UP-B3724, UP-B3729)",
+       "val": "FLT",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 1845
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "APU switch",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "71",
+      "pdf": "139"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "APU switch (after 1 min of cooling (CL)",
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 530,
+         "y": 2095
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 702,
+         "y": 1005
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "ENGINE START switches",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "71",
+      "pdf": "139"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "ENGINE START switches",
+       "val": "CONT",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 635,
+         "y": 2080
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 780,
+         "y": 985
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Engine start levers",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "71",
+      "pdf": "139"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Engine start levers",
+       "val": "IDLE detent",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 545,
+         "y": 520
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 760,
+         "y": 2056
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "-",
+     "panel": "LE FLAPS EXT",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "71",
+      "pdf": "139"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "V",
+       "tag": "",
+       "text": "When the flaps and slats are in commanded position verify that the LE FLAPS EXT green light is illuminated and call: “FLAPS ___, GREEN LIGHT”"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "FLAPS ___, GREEN LIGHT"
+      },
+      {
+       "k": "Q",
+       "tag": "",
+       "text": "Кто выполняет проверку LE FLAPS EXT и делает callout «FLAPS ___, GREEN LIGHT», в этом месте OM-B не указано."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Ground personnel and equipment",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "71",
+      "pdf": "139"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Ground personnel and equipment is clear",
+       "val": "Verify"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "FLIGHT CONTROLS CHECK"
+      },
+      {
+       "k": "Q",
+       "tag": "",
+       "text": "Исполнитель «Ground personnel and equipment is clear …… Verify» и callout «FLIGHT CONTROLS CHECK» в колонке роли не указан; показаны вместе со строкой Flight controls (C)."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Flight controls",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "71",
+      "pdf": "139"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Flight controls",
+       "val": "Check"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Push the MFD SYS switch to display the flight control surface position indications (as installed) on the lower display unit, if desired (NG if installed)"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Make slow and deliberate inputs one direction at a time ."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Move the control wheel and the control column to full travel in both directions and verify"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "freedom of movement."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "that the controls return to center"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Hold the nose wheel steering wheel during the rudder check to prevent nose wheel movement."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Move the rudder pedals to full travel in both directions and verify:"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "freedom of movement."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "that the rudder pedals return to center"
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "During checking Flight Control, FO’s feet should be on the pedals. Check correct radar pedal position. Follow the radar movement and call out any discrepancy."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Lower display unit",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "71",
+      "pdf": "139"
+     },
+     "tag": "NG",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "(NG) Blank the lower display unit"
+      }
+     ],
+     "loc": {
+      "NG": {
+       "img": "ngip",
+       "x": 773,
+       "y": 1662
+      }
+     }
+    },
+    {
+     "who": "FO",
+     "panel": "WEATHER RADAR",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "71",
+      "pdf": "139"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "WEATHER RADAR panel",
+       "val": "WX, TILT 5º up",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2212
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "WEATHER RADAR switch",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 665
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2212
+        }
+       }
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Set the weather radar display – it is recommended to set weather radar approx. 5 degrees nose up tilt or use “AUTO” mode as installed."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Verify that the weather radar indications are not shown on the MAP. It means that Weather radar has just already prepared for use but weather radar transmitters are not energized. Postpone the activation of Weather Radar Display switch on EFIS Control panel till Before Takeoff Procedure or when weather situation is required."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "TRANSPONDER",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "TRANSPONDER",
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 550,
+         "y": 1250
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2310
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "At airports where ground tracking is not available, select STANDBY."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "At airports equipped to track airplanes on the ground, select an active transponder setting, but not a TCAS mode."
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "RECALL",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "RECALL",
+       "val": "Check",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 631,
+         "y": 108,
+         "check": "RECALL — метка на system annunciator стороны Captain («Captain presses the RECALL»)."
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 460,
+         "y": 1175,
+         "check": "RECALL — метка на system annunciator стороны Captain («Captain presses the RECALL»)."
+        }
+       }
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Captain presses the RECALL and both pilots verify that all system annunciator panel lights illuminate and then extinguish"
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "SEAT BELTS AND SHOULDER HARNESSES",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "SEAT BELTS AND SHOULDER HARNESSES",
+       "val": "Check Fastened"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Flap extension may be delayed due to snow/slush or de-/anti-icing consideration in accordance with Supplementary Procedure."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Call",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "K",
+       "tag": "",
+       "text": "BEFORE TAXI PROCEDURE COMPLETED"
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Call",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "K",
+       "tag": "",
+       "text": "BEFORE TAXI CHECKLIST"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "BEFORE TAXI CHECKLIST",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Do the BEFORE TAXI CHECKLIST"
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Ground equipment",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "V",
+       "tag": "",
+       "text": "Verify that the ground equipment is clear"
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Do the configuration for No Engine Bleed Takeoff prior to taxi if Anti-Ice is not required for taxi."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Do the configuration for No Engine Bleed Takeoff prior to lining up before doing the BEFORE TAKEOFF checklist if Anti0ice is required for taxi."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Lights",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "The F/O switches Off Dome light. Taxi light ON, Turn off lights (as required), APU as required."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "taxi",
+   "title": "Taxi Procedure",
+   "section": "2.2.25",
+   "pages": {
+    "ch": "72–74",
+    "pdf": "140–142"
+   },
+   "trigger": [
+    "Before the commencement taxi procedure, if pushback or towing is not necessary, the flight crew shall verify that the cabin is secure. SCCM report the information “CABIN READY FOR MOVEMENT” via Interphone and after receiving confirmation from C or F/O “CABIN READY FOR MOVEMENT CONFIRM” first movement can be done."
+   ],
+   "intro": [
+    "If jumpseat is occupied, both pilots must check and be sure that jumpseat occupant use seatbelts and take away all personal belongings before commencement of the taxi procedure."
+   ],
+   "who": "Captain и F/O (колонки CAPT / FO документа)",
+   "callouts": [],
+   "rows": [
+    {
+     "who": "B",
+     "panel": "Clear of obstructions",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Receive all clear signals from the marshaller and ensure both sides of aircraft are clear of obstructions."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Call",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "K",
+       "tag": "",
+       "text": "LEFT SIDE CLEAR"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Call",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "K",
+       "tag": "",
+       "text": "RIGHT SIDE CLEAR"
+      },
+      {
+       "k": "C",
+       "tag": "",
+       "text": "Do not move aircraft until both pilots check that their area is clear"
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Call",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "K",
+       "tag": "",
+       "text": "LIGHTS FOR TAXI, APU OFF"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "if not needed APU."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "TAXI / RUNWAY TURNOFF lights",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "TAXI light switch",
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 430,
+         "y": 2075
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 660,
+         "y": 998
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "RUNWAY TURNOFF light switches",
+       "val": "as needed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 430,
+         "y": 2075
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 660,
+         "y": 998
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Parking brake",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Release parking brake and commence taxi."
+      }
+     ],
+     "loc": {
+      "CL": {
+       "img": "aft",
+       "x": 385,
+       "y": 610
+      },
+      "NG": {
+       "img": "ngped",
+       "x": 683,
+       "y": 2042
+      }
+     }
+    },
+    {
+     "who": "FO",
+     "panel": "Off-Block Time",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72",
+      "pdf": "140"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Off-Block Time",
+       "val": "Start"
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Start the Block Time when airplane first moves from its parking place for the purpose of taking off."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Thrust levers",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "72–73",
+      "pdf": "140–141"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Limit brake away thrust as much as possible. BE EASY ON THE THRUST LEVERS WHEN TAXIING."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "It is recommended to avoid N1 more than 40%. Initial movement should be straight ahead with nose wheel centered before starting a turn."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "Be careful, to achieve the same power setting (for example 40% N1) different thrust lever angles may be needed depending on aircraft type and engines regulation."
+      },
+      {
+       "k": "X",
+       "tag": "NG",
+       "text": "(NG) Use N1 Command Sectors which display momentary difference between actual N1 and value commanded by thrust lever position."
+      }
+     ],
+     "loc": {
+      "CL": {
+       "img": "aft",
+       "x": 545,
+       "y": 370
+      },
+      "NG": {
+       "img": "ngped",
+       "x": 760,
+       "y": 1910
+      }
+     }
+    },
+    {
+     "who": "C",
+     "panel": "Brakes check",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "73",
+      "pdf": "141"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "At the beginning of taxiing, in a straight section of the taxi route, the captain should check the brakes by smoothly pressing the pedals. During pushing the brake pedals - make sure of adequate deceleration."
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "BRAKES CHECK"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Smoothly press the brake pedals and make sure of adequate deceleration."
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "BRAKES CHECKED"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Call (F/O or RHS pilot)",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "73",
+      "pdf": "141"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "K",
+       "tag": "",
+       "text": "CHECKED"
+      }
+     ]
+    },
+    {
+     "who": "-",
+     "panel": "Taxi technique",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "73–74",
+      "pdf": "141–142"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "It is the F/O's responsibility to complete the checks and procedure to get the aircraft ready for departure while taxiing. If an ATC clearance is obtained while taxiing, the F/O will make the Altitude and transponder changes and ensures the C is aware of the clearance and the changes mentioned above."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Do not be diverted from the primary task of safely taxiing the airplane. The flight crew should avoid all unnecessary activity and duties (including paperwork) that can be accomplished at another time."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Only essential taxiing and departure clearances will be logged during taxi by F/O."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "The pilot’s seat and rudder pedals should be adjusted so that it is possible to apply maximum braking with full rudder deflection."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "During taxiing, the pilot’s heels should be on the rudder pedals."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Allow time for airplane response to each thrust change."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "To break away from the ramp, release the brakes, smoothly increase thrust to the minimum required for the airplane to roll forward, and reduce thrust to idle again. Do not start a turn until sufficient forward speed has been attained to carry the airplane through the turn at idle thrust. Avoid following other airplanes too closely."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Allow the nose gear to overshoot turns to ensure the main gear straddles the taxiway centerline. The nose gear may be displaced from centerline to avoid airport lighting. This enhances passenger comfort. Be aware that the tail can scribe the greater arc during turns than wingtips."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "The normal straight-away taxi speed 20 knots & should not exceed approximately 30 knots."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "When approaching a turn, speed should be slowed to approximately 10 knots."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Some taxi speeds, usually between 10 and 20 knots, can cause an increase in airplane vibration, especially on rough taxiways. If this occurs, a slight increase or decrease in speed will reduce or eliminate the vibration and increase passenger comfort."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Maintain a positive pressure on the nose steering wheel in both directions to prevent the nose gear from returning to center abruptly. Straight ahead steering and large radius turns may be accomplished with rudder pedal steering only. If nose wheel \"scrubbing\" occurs while turning, reduce steering angle and/or taxi speed. Avoid stopping the airplane in a turn as excessive thrust will be required to start taxiing again. Differential thrust may be required for heavy airplanes during tight turns but should only be used as required to maintain the desired speed in the turn. Center the nose wheel and allow the airplane to roll straight ahead to relieve stress on the main and nose gear structure and oleo strut seals prior to stopping after completing a turn."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Avoid riding the brakes to control taxi speed as brake heat buildup could become excessive. If taxi speed is too high, reduce speed with a steady brake application and then release the brakes to allow them to cool. Continuous braking should be avoided. Allow for decreased braking effectiveness on slick surfaces."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "When taxiing on a slick surface at reduced speeds, use of differential engine thrust will assist in maintaining airplane movement through the turn. Differential braking may be more effective than nose wheel steering on very slick surfaces. Reduce speed prior to initiating a turn."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bto",
+   "title": "Before Takeoff Procedure",
+   "section": "2.2.26",
+   "pages": {
+    "ch": "74–76",
+    "pdf": "142–144"
+   },
+   "trigger": [
+    "If the taxiways and runways are covered with snow, slush, or ice, consideration should be given to the use of anti-ice. Taxi with the flaps up until entering the active runway for takeoff, then select takeoff flaps and complete the BEFORE TAKEOFF checklist. Plan for a short delay on the runway to complete the before takeoff procedure and to ensure proper engine operation by cross-checking all engine instruments."
+   ],
+   "intro": [],
+   "who": "Captain и F/O (колонки CAPT / F/O документа), PF",
+   "callouts": [],
+   "rows": [
+    {
+     "who": "-",
+     "panel": "Engine warm-up",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "74",
+      "pdf": "142"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Consider engine warm-up recommendations before selecting takeoff thrust."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Engine warm-up requirements:"
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "run the engines for at least 3 minutes."
+      },
+      {
+       "k": "V",
+       "tag": "",
+       "text": "verify an increase in engine oil temperature before takeoff."
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Complex intersections / HOLD POSITION",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "74",
+      "pdf": "142"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "At complex intersections, the flight crew should verbally coordinate to be sure that the intersection is correctly identified and that the aircraft is transitioning through the intersection to the correct taxiway. When visually scanning the intersections area, flight crewmembers should verbally inform each other about any potential hazard on taxi route in free form in English or Russian language."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "If during taxing \"HOLD POSITION\" instruction received, after stopping, Captain switches off TAXI and RWY TURN OFF lights to give the other aircraft or ground vehicles a clear sign that the aircraft is holding. Switch on TAXI and RWY TURN OFF lights before resuming taxing."
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Updated take off data",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "74",
+      "pdf": "142"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "If take off data / conditions have changed, or in case of RW / SID change, prepare updated take off data:"
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Takeoff performance data",
+       "val": "Recalculate / Check"
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "CDU",
+       "val": "Load",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1207,
+         "y": 780
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 600,
+         "y": 1660
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "MCP",
+       "val": "Set / Check",
+       "loc": {
+        "CL": {
+         "img": "ip",
+         "x": 1000,
+         "y": 60
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 780,
+         "y": 1175
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "FLAPS/TRIM",
+       "val": "Set / Check",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 765,
+         "y": 270
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 857,
+         "y": 1875
+        }
+       }
+      },
+      {
+       "k": "A",
+       "tag": "",
+       "item": "SID, TRANSITION",
+       "val": "Read / Check"
+      },
+      {
+       "k": "W",
+       "tag": "",
+       "text": "If any changes in the performance calculations are made, PF and PM must crosscheck the calculated data before CDU load."
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Entering the runway",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "74",
+      "pdf": "142"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Entering the runway, the pilots will confirm that the runway and approach are clear by calling:"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "RIGHT SIDE CLEAR (RUNWAY OCCUPIED or etc.)"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "LEFT SIDE CLEAR (AIRCRAFT ON FINAL or etc.)"
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "When required to modify FMC due to revised clearance, use caution to maintain proper outside vigilance to ensure safe taxiing. The F/O shall make the required entries. The Captain then verifies proper entries."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "If no transponder code is assigned, set appropriate standard code (2000)."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "MCP altitude, heading, transponder code",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Set MCP altitude, heading and transponder code if ATC clearance is received or changes while taxiing."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "When required to modify FMC due to revised clearance, use caution to maintain proper outside vigilance to ensure safe taxiing. The F/O shall make the required entries. The Captain then verifies proper entries."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "If no transponder code is assigned, set appropriate standard code (2000)."
+      },
+      {
+       "k": "Q",
+       "tag": "",
+       "text": "NOTE «When required to modify FMC…» и «If no transponder code is assigned…» в документе повторяются дважды (стр. 74 и 75). Перенесено как в документе."
+      }
+     ],
+     "loc": {
+      "CL": {
+       "img": "ip",
+       "x": 1000,
+       "y": 60
+      },
+      "NG": {
+       "img": "ngip",
+       "x": 780,
+       "y": 1175
+      }
+     }
+    },
+    {
+     "who": "C",
+     "panel": "Verify entries",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Verify proper entries."
+      }
+     ]
+    },
+    {
+     "who": "PF",
+     "panel": "Takeoff briefing",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "The pilot who will do the takeoff, completes or updates changes to the takeoff briefing as needed."
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Cabin secure",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Verify that the cabin is secure."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "(Senior Cabin Crew Member - SCCM – report the information “CABIN SECURE FOR TAKEOFF” via Interphone) and confirmation by C or F/O “CABIN SECURE CONFIRM”"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "CABIN SECURE CONFIRM"
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Do not enter the active runway until the cabin has been reported as secured by the cabin crew."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "WXR or TERR switch",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "WXR or TERR switch",
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195,
+         "check": "На Classic-макете кнопка WXR на EFIS control panel; отдельной TERR не видно. ⚠ проверить"
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 530,
+         "y": 1175
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "WXR or TERR switch",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "WXR or TERR switch",
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 870,
+         "y": 1195,
+         "check": "На Classic-макете виден только один EFIS control panel; метка общая для Captain и F/O. ⚠ проверить"
+        },
+        "NG": {
+         "img": "ngip",
+         "x": 995,
+         "y": 1175
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Centre tank fuel",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Check the centre tank fuel quantity. Both centre tank fuel pump switches should be OFF for takeoff if centre tank fuel is less than 453 kilograms."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Transponder",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "A",
+       "tag": "",
+       "item": "Transponder",
+       "val": "TA/RA",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 550,
+         "y": 1250
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 765,
+         "y": 2310
+        }
+       }
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "Cabin crew",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Notify the cabin crew to prepare for takeoff:"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "CABIN CREW, TAKEOFF POSITION"
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "This instruction should not be given until entering the runway for Take Off, since it means that from then on, until the “Release to work” signal, the Cabin Attendants shall not leave their seats for any reason. It implies that Takeoff is imminent and that the “Interphone Silence” period is in force."
+      }
+     ]
+    },
+    {
+     "who": "PF",
+     "panel": "Takeoff briefing / displays",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "The PF updates changes to the takeoff briefing as needed."
+      },
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Set the weather radar display as needed. Set the terrain display as needed."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "PF shall monitor Weather Radar and PM – Terrain Mode in adverse weather. At other times both pilots shall monitor Terrain up to 10000 feet or MSA, whichever is higher. Use of the Weather Radar may also be useful when departing from airports where bird activity is present."
+      }
+     ]
+    },
+    {
+     "who": "B",
+     "panel": "Line up clearance",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "When cleared to line up before entering the departure runway, verify that the runway and runway entry point are correct."
+      },
+      {
+       "k": "N",
+       "tag": "",
+       "text": "If GPS not installed, or if installed but GPS updating not available, and departing from any position that is not co-incident with runway threshold, you must enter a runway TO SHIFT to ensure that airplane symbol on EFIS Map updates to the actual aircraft position when TOGA is pressed."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Call",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "K",
+       "tag": "",
+       "text": "BEFORE TAKEOFF CHECKLIST"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "BEFORE TAKEOFF CHECKLIST",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Do the BEFORE TAKEOFF CHECKLIST"
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "STROBE light",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "When entering the runway, set the STROBE light switch to ON."
+      }
+     ],
+     "loc": {
+      "CL": {
+       "img": "ovh",
+       "x": 1100,
+       "y": 2065
+      },
+      "NG": {
+       "img": "ngovh",
+       "x": 900,
+       "y": 1002
+      }
+     }
+    },
+    {
+     "who": "FO",
+     "panel": "Runway position",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Update the runway position as needed."
+      }
+     ]
+    },
+    {
+     "who": "C",
+     "panel": "Align",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "75",
+      "pdf": "143"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Align the airplane with the runway."
+      }
+     ]
+    },
+    {
+     "who": "FO",
+     "panel": "LANDING lights (F/O or RHP)",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "76",
+      "pdf": "144"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "When cleared for takeoff, set the INBOARD/FIXED LANDING light switches to ON, set the OUTBOARD/RETRACTABLE LANDING light switches as needed."
+      }
+     ],
+     "loc": {
+      "CL": {
+       "img": "ovh",
+       "x": 250,
+       "y": 2065
+      },
+      "NG": {
+       "img": "ngovh",
+       "x": 600,
+       "y": 1002
+      }
+     }
+    },
+    {
+     "who": "C",
+     "panel": "Hand over control",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "76",
+      "pdf": "144"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "Hand over control of the airplane to PF and call:"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "YOU HAVE CONTROL"
+      }
+     ]
+    },
+    {
+     "who": "PF",
+     "panel": "Take controls",
+     "mock": null,
+     "mockNG": null,
+     "page": {
+      "ch": "76",
+      "pdf": "144"
+     },
+     "tag": "",
+     "lines": [
+      {
+       "k": "X",
+       "tag": "",
+       "text": "PF takes controls and call:"
+      },
+      {
+       "k": "K",
+       "tag": "",
+       "text": "I HAVE CONTROL, READY FOR TAKEOFF"
+      }
+     ]
+    }
+   ]
   }
  ],
  "checklists": {
@@ -12473,6 +14519,202 @@ window.OMB = {
       "item": "ANTI COLLISION LIGHT",
       "val": "ON",
       "who": "R"
+     }
+    ]
+   }
+  },
+  "btaxi": {
+   "phase": "btaxi",
+   "name": "BEFORE TAXI",
+   "CL": {
+    "src": "Appendix 1 Normal Checklist B737-300/500 (Classic)",
+    "pdf": "417",
+    "page": "Page 1",
+    "items": [
+     {
+      "item": "GENERATORS",
+      "val": "ON",
+      "who": "R"
+     },
+     {
+      "item": "PITOT STATIC HEAT",
+      "val": "ON",
+      "who": "R"
+     },
+     {
+      "item": "ANTI-ICE",
+      "val": "ON/OFF",
+      "who": "R"
+     },
+     {
+      "item": "PACKS",
+      "val": "AUTO",
+      "who": "R"
+     },
+     {
+      "item": "ISOLATION VALVE",
+      "val": "AUTO",
+      "who": "R"
+     },
+     {
+      "item": "ENGINE START SWITCHES",
+      "val": "CONT",
+      "who": "R"
+     },
+     {
+      "item": "RECALL",
+      "val": "CHECKED",
+      "who": "L R"
+     },
+     {
+      "item": "AUTOBRAKE",
+      "val": "RTO",
+      "who": "R"
+     },
+     {
+      "item": "ENGINE START LEVERS",
+      "val": "IDLE DETEND",
+      "who": "L"
+     },
+     {
+      "item": "FLIGHT CONTROLS",
+      "val": "CHECKED",
+      "who": "L"
+     },
+     {
+      "item": "GROUND PERSONNEL AND EQUIPMENT",
+      "val": "CLEAR",
+      "who": "L R"
+     }
+    ]
+   },
+   "NG": {
+    "src": "Appendix 3 Normal Checklist B737-700/800 (NG)",
+    "pdf": "422",
+    "page": "Page 6",
+    "items": [
+     {
+      "item": "GENERATORS",
+      "val": "ON",
+      "who": "R"
+     },
+     {
+      "item": "PROBE HEAT",
+      "val": "ON",
+      "who": "R"
+     },
+     {
+      "item": "ANTI-ICE",
+      "val": "ON/OFF",
+      "who": "R"
+     },
+     {
+      "item": "PACKS",
+      "val": "AUTO",
+      "who": "R"
+     },
+     {
+      "item": "ISOLATION VALVE",
+      "val": "AUTO",
+      "who": "R"
+     },
+     {
+      "item": "ENGINE START SWITCHES",
+      "val": "CONT",
+      "who": "R"
+     },
+     {
+      "item": "RECALL",
+      "val": "CHECKED",
+      "who": "L R"
+     },
+     {
+      "item": "AUTOBRAKE",
+      "val": "RTO",
+      "who": "R"
+     },
+     {
+      "item": "ENGINE START LEVERS",
+      "val": "IDLE DETEND",
+      "who": "L"
+     },
+     {
+      "item": "FLIGHT CONTROLS",
+      "val": "CHECKED",
+      "who": "L"
+     },
+     {
+      "item": "GROUND PERSONNEL AND EQUIPMENT",
+      "val": "CLEAR",
+      "who": "L R"
+     }
+    ]
+   }
+  },
+  "bto": {
+   "phase": "bto",
+   "name": "BEFORE TAKEOFF",
+   "CL": {
+    "src": "Appendix 1 Normal Checklist B737-300/500 (Classic)",
+    "pdf": "417",
+    "page": "Page 1",
+    "items": [
+     {
+      "item": "FLAPS",
+      "val": "___,GREEN LIGHT",
+      "who": "L"
+     },
+     {
+      "item": "STABILIZER TRIM",
+      "val": "___UNITS",
+      "who": "L"
+     },
+     {
+      "item": "CABIN",
+      "val": "SECURED",
+      "who": "L"
+     },
+     {
+      "item": "TRANSPONDER",
+      "val": "ON, SET, TA/RA",
+      "who": "R"
+     },
+     {
+      "item": "WEATHER RADAR/TERRAIN",
+      "val": "ON",
+      "who": "L R"
+     }
+    ]
+   },
+   "NG": {
+    "src": "Appendix 3 Normal Checklist B737-700/800 (NG)",
+    "pdf": "422",
+    "page": "Page 6",
+    "items": [
+     {
+      "item": "FLAPS",
+      "val": "___,GREEN LIGHT",
+      "who": "L"
+     },
+     {
+      "item": "STABILIZER TRIM",
+      "val": "___UNITS",
+      "who": "L"
+     },
+     {
+      "item": "CABIN",
+      "val": "SECURED",
+      "who": "L"
+     },
+     {
+      "item": "TRANSPONDER",
+      "val": "ON, SET, TA/RA",
+      "who": "R"
+     },
+     {
+      "item": "WEATHER RADAR/TERRAIN",
+      "val": "ON",
+      "who": "L R"
      }
     ]
    }
