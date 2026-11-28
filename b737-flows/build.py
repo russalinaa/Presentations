@@ -11,7 +11,7 @@ NG_TAILS = {'3725', '3730', '3731', '3732', '3733', '3734', '3735', '3736', '374
 PDF_OFFSET = 68  # chapter-2 page + 68 = PDF page
 
 # Mockup control locations, in pixels of the exported images (see site/img).
-IMG = {'ovh': (1752, 2250), 'ip': (2014, 1054), 'aft': (1228, 1850)}
+IMG = {'ovh': (1752, 2250), 'ip': (2014, 1054), 'aft': (1228, 1850), 'ngovh': (1546, 2576), 'ngip': (1546, 2576), 'ngped': (1546, 2576)}
 MOCK = {
     'ovh': {'bat': (395, 1157), 'stby': (470, 1297), 'altflaps': (200, 1112), 'wiper': (690, 1955),
             'ehyd': (975, 1440), 'grd': (460, 1630), 'apu': (530, 2100), 'apugen': (465, 1815),
@@ -30,7 +30,11 @@ MOCK = {
             'efis': (870, 1195), 'vhf': (850, 880), 'nav': (850, 1015), 'acp': (850, 1405), 'adf': (260, 1575),
             'hf': (550, 1385), 'xpdr': (550, 1250), 'stabovr': (795, 1725)},
 }
-MOCK_NAMES = {'ovh': 'Overhead panel (forward + aft)', 'ip': 'Main instrument panel / MCP / Electronic panel',
+# NG mockup (single image B737-800/900 cockpit layout): same control keys -> pixel position
+NGMAP = {'ovh:bat': (632, 625), 'ovh:stby': (665, 695), 'ovh:altflaps': (548, 522), 'ovh:wiper': (695, 925),
+         'ovh:ehyd': (866, 715), 'ip:gear': (910, 1430), 'ip:wx': (760, 2215), 'ovh:grd': (665, 805),
+         'aft:fire': (760, 2095), 'ovh:apu': (702, 1005), 'ovh:apugen': (662, 900), 'aft:firetest': (667, 2112)}
+MOCK_NAMES = {'ngovh': 'NG: Forward / Aft overhead panel (P5)', 'ngip': 'NG: Glareshield (P7) и main panel', 'ngped': 'NG: Control stand и aft electronic panel (P8)', 'ovh': 'Overhead panel (forward + aft)', 'ip': 'Main instrument panel / MCP / Electronic panel',
               'aft': 'Aft control stand (pedestal)'}
 
 
@@ -95,7 +99,11 @@ def parse(path):
                 x, y = MOCK[img][key]
                 W, H = IMG[img]
                 m = {'img': img, 'x': round(x / W, 4), 'y': round(y / H, 4)}
-            row = {'who': who, 'panel': panel, 'mock': m, 'page': page_ref(page), 'tag': tag, 'lines': []}
+            mng = None
+            if mock in NGMAP:
+                x, y = NGMAP[mock]
+                mng = {'img': 'ngovh' if y < 1120 else 'ngip' if y < 1720 else 'ngped', 'x': round(x / 1546, 4), 'y': round(y / 2576, 4)}
+            row = {'who': who, 'panel': panel, 'mock': m, 'mockNG': mng, 'page': page_ref(page), 'tag': tag, 'lines': []}
             ph['rows'].append(row)
             continue
         tag = ''

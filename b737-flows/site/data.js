@@ -26,6 +26,11 @@ window.OMB = {
       "x": 0.2255,
       "y": 0.5142
      },
+     "mockNG": {
+      "img": "ngovh",
+      "x": 0.4088,
+      "y": 0.2426
+     },
      "page": {
       "ch": "21",
       "pdf": "89"
@@ -47,6 +52,11 @@ window.OMB = {
       "img": "ovh",
       "x": 0.2683,
       "y": 0.5764
+     },
+     "mockNG": {
+      "img": "ngovh",
+      "x": 0.4301,
+      "y": 0.2698
      },
      "page": {
       "ch": "21",
@@ -70,6 +80,11 @@ window.OMB = {
       "x": 0.1142,
       "y": 0.4942
      },
+     "mockNG": {
+      "img": "ngovh",
+      "x": 0.3545,
+      "y": 0.2026
+     },
      "page": {
       "ch": "21",
       "pdf": "89"
@@ -91,6 +106,11 @@ window.OMB = {
       "img": "ovh",
       "x": 0.3938,
       "y": 0.8689
+     },
+     "mockNG": {
+      "img": "ngovh",
+      "x": 0.4495,
+      "y": 0.3591
      },
      "page": {
       "ch": "21",
@@ -114,6 +134,11 @@ window.OMB = {
       "x": 0.5565,
       "y": 0.64
      },
+     "mockNG": {
+      "img": "ngovh",
+      "x": 0.5602,
+      "y": 0.2776
+     },
      "page": {
       "ch": "21",
       "pdf": "89"
@@ -135,6 +160,11 @@ window.OMB = {
       "img": "ip",
       "x": 0.6291,
       "y": 0.3985
+     },
+     "mockNG": {
+      "img": "ngip",
+      "x": 0.5886,
+      "y": 0.5551
      },
      "page": {
       "ch": "21",
@@ -168,6 +198,11 @@ window.OMB = {
       "x": 0.4965,
       "y": 0.6309
      },
+     "mockNG": {
+      "img": "ngped",
+      "x": 0.4916,
+      "y": 0.8599
+     },
      "page": {
       "ch": "21",
       "pdf": "89"
@@ -189,6 +224,11 @@ window.OMB = {
       "img": "ovh",
       "x": 0.2626,
       "y": 0.7244
+     },
+     "mockNG": {
+      "img": "ngovh",
+      "x": 0.4301,
+      "y": 0.3125
      },
      "page": {
       "ch": "22",
@@ -236,6 +276,11 @@ window.OMB = {
       "img": "aft",
       "x": 0.452,
       "y": 0.4108
+     },
+     "mockNG": {
+      "img": "ngped",
+      "x": 0.4916,
+      "y": 0.8133
      },
      "page": {
       "ch": "22",
@@ -396,6 +441,11 @@ window.OMB = {
       "x": 0.3025,
       "y": 0.9333
      },
+     "mockNG": {
+      "img": "ngovh",
+      "x": 0.4541,
+      "y": 0.3901
+     },
      "page": {
       "ch": "23",
       "pdf": "91"
@@ -437,6 +487,11 @@ window.OMB = {
       "img": "ovh",
       "x": 0.2654,
       "y": 0.8067
+     },
+     "mockNG": {
+      "img": "ngovh",
+      "x": 0.4282,
+      "y": 0.3494
      },
      "page": {
       "ch": "23",
@@ -504,6 +559,11 @@ window.OMB = {
       "img": "aft",
       "x": 0.2769,
       "y": 0.4351
+     },
+     "mockNG": {
+      "img": "ngped",
+      "x": 0.4314,
+      "y": 0.8199
      },
      "page": {
       "ch": "23",
@@ -583,6 +643,7 @@ window.OMB = {
       "x": 0.2637,
       "y": 0.26
      },
+     "mockNG": null,
      "page": {
       "ch": "23",
       "pdf": "91"
@@ -616,6 +677,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Voice recorder",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "24",
       "pdf": "92"
@@ -634,6 +696,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Systems quantities",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "24",
       "pdf": "92"
@@ -696,6 +759,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Crew oxygen (mask panel)",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "24",
       "pdf": "92"
@@ -925,6 +989,7 @@ window.OMB = {
      "who": "B",
      "panel": "Maintenance documents",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "25",
       "pdf": "93"
@@ -958,6 +1023,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Flight deck door",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "26",
       "pdf": "94"
@@ -987,6 +1053,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Observer’s Workplace",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "26",
       "pdf": "94"
@@ -1025,6 +1092,7 @@ window.OMB = {
      "who": "FO",
      "panel": "FIRST OFFICER’S side",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "26",
       "pdf": "94"
@@ -1100,6 +1168,7 @@ window.OMB = {
       "x": 0.6478,
       "y": 0.1844
      },
+     "mockNG": null,
      "page": {
       "ch": "26",
       "pdf": "94"
@@ -1132,6 +1201,7 @@ window.OMB = {
       "x": 0.7363,
       "y": 0.1844
      },
+     "mockNG": null,
      "page": {
       "ch": "26",
       "pdf": "94"
@@ -1159,6 +1229,7 @@ window.OMB = {
       "x": 0.6906,
       "y": 0.2302
      },
+     "mockNG": null,
      "page": {
       "ch": "26",
       "pdf": "94"
@@ -1192,6 +1263,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Emergency EVACUATION",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "26",
       "pdf": "94"
@@ -1219,6 +1291,7 @@ window.OMB = {
       "x": 0.524,
       "y": 0.1822
      },
+     "mockNG": null,
      "page": {
       "ch": "26–27",
       "pdf": "94–95"
@@ -1273,6 +1346,7 @@ window.OMB = {
       "x": 0.5765,
       "y": 0.2467
      },
+     "mockNG": null,
      "page": {
       "ch": "27",
       "pdf": "95"
@@ -1312,6 +1386,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Landing gear indicator lights",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "27",
       "pdf": "95"
@@ -1330,6 +1405,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Secondary Landing gear indicator lights",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "27",
       "pdf": "95"
@@ -1352,6 +1428,7 @@ window.OMB = {
       "x": 0.3938,
       "y": 0.2044
      },
+     "mockNG": null,
      "page": {
       "ch": "27",
       "pdf": "95"
@@ -1370,6 +1447,7 @@ window.OMB = {
      "who": "FO",
      "panel": "ELT",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "27",
       "pdf": "95"
@@ -1399,6 +1477,7 @@ window.OMB = {
      "who": "FO",
      "panel": "PSEU light",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "27",
       "pdf": "95"
@@ -1417,6 +1496,7 @@ window.OMB = {
      "who": "FO",
      "panel": "GPS light",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "27",
       "pdf": "95"
@@ -1435,6 +1515,7 @@ window.OMB = {
      "who": "FO",
      "panel": "ILS / GLS lights",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "27",
       "pdf": "95"
@@ -1459,6 +1540,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Captain’s side",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "27",
       "pdf": "95"
@@ -1564,6 +1646,7 @@ window.OMB = {
       "x": 0.3135,
       "y": 0.3297
      },
+     "mockNG": null,
      "page": {
       "ch": "27",
       "pdf": "95"
@@ -1587,6 +1670,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Flight deck entry video panel/display",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "28",
       "pdf": "96"
@@ -1615,6 +1699,7 @@ window.OMB = {
      "who": "CFO",
      "panel": "PA and Interphone",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "28",
       "pdf": "96"
@@ -1643,6 +1728,7 @@ window.OMB = {
      "who": "B",
      "panel": "EFB",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "28",
       "pdf": "96"
@@ -1680,6 +1766,7 @@ window.OMB = {
      "who": "-",
      "panel": "Refueling",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "28",
       "pdf": "96"
@@ -1697,6 +1784,7 @@ window.OMB = {
      "who": "-",
      "panel": "Fuel Load Distribution",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "28",
       "pdf": "96"
@@ -1739,6 +1827,7 @@ window.OMB = {
      "who": "-",
      "panel": "Fuel Pressure",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "28",
       "pdf": "96"
@@ -1771,6 +1860,7 @@ window.OMB = {
      "who": "-",
      "panel": "Normal Refueling",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "29",
       "pdf": "97"
@@ -1838,6 +1928,7 @@ window.OMB = {
      "who": "-",
      "panel": "Refuelling with Battery Only",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "29",
       "pdf": "97"
@@ -1872,6 +1963,7 @@ window.OMB = {
      "who": "-",
      "panel": "Refuelling with No AC or DC Power Source Available",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "29–30",
       "pdf": "97–98"
@@ -1944,6 +2036,7 @@ window.OMB = {
       "x": 0.0571,
       "y": 0.4542
      },
+     "mockNG": null,
      "page": {
       "ch": "36",
       "pdf": "104"
@@ -2041,6 +2134,7 @@ window.OMB = {
       "x": 0.0913,
       "y": 0.6347
      },
+     "mockNG": null,
      "page": {
       "ch": "36–37",
       "pdf": "104–105"
@@ -2109,6 +2203,7 @@ window.OMB = {
      "who": "FO",
      "panel": "NAVIGATION panel",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "37",
       "pdf": "105"
@@ -2145,6 +2240,7 @@ window.OMB = {
      "who": "FO",
      "panel": "DISPLAYS panel",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "37",
       "pdf": "105"
@@ -2179,6 +2275,7 @@ window.OMB = {
       "x": 0.0942,
       "y": 0.7822
      },
+     "mockNG": null,
      "page": {
       "ch": "37",
       "pdf": "105"
@@ -2243,6 +2340,7 @@ window.OMB = {
       "x": 0.2454,
       "y": 0.52
      },
+     "mockNG": null,
      "page": {
       "ch": "37–38",
       "pdf": "105–106"
@@ -2362,6 +2460,11 @@ window.OMB = {
       "x": 0.452,
       "y": 0.4108
      },
+     "mockNG": {
+      "img": "ngped",
+      "x": 0.4916,
+      "y": 0.8133
+     },
      "page": {
       "ch": "38",
       "pdf": "106"
@@ -2388,6 +2491,11 @@ window.OMB = {
       "img": "ovh",
       "x": 0.3025,
       "y": 0.9333
+     },
+     "mockNG": {
+      "img": "ngovh",
+      "x": 0.4541,
+      "y": 0.3901
      },
      "page": {
       "ch": "38",
@@ -2447,6 +2555,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Lavatory SMOKE light",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "38",
       "pdf": "106"
@@ -2479,6 +2588,7 @@ window.OMB = {
       "x": 0.3739,
       "y": 0.6098
      },
+     "mockNG": null,
      "page": {
       "ch": "38",
       "pdf": "106"
@@ -2506,6 +2616,7 @@ window.OMB = {
       "x": 0.3978,
       "y": 0.6822
      },
+     "mockNG": null,
      "page": {
       "ch": "38",
       "pdf": "106"
@@ -2533,6 +2644,7 @@ window.OMB = {
       "x": 0.3921,
       "y": 0.7311
      },
+     "mockNG": null,
      "page": {
       "ch": "38",
       "pdf": "106"
@@ -2560,6 +2672,11 @@ window.OMB = {
       "img": "ovh",
       "x": 0.3938,
       "y": 0.8689
+     },
+     "mockNG": {
+      "img": "ngovh",
+      "x": 0.4495,
+      "y": 0.3591
      },
      "page": {
       "ch": "38",
@@ -2594,6 +2711,7 @@ window.OMB = {
       "x": 0.5137,
       "y": 0.4187
      },
+     "mockNG": null,
      "page": {
       "ch": "38",
       "pdf": "106"
@@ -2631,6 +2749,7 @@ window.OMB = {
       "x": 0.5023,
       "y": 0.4498
      },
+     "mockNG": null,
      "page": {
       "ch": "38–39",
       "pdf": "106–107"
@@ -2664,6 +2783,7 @@ window.OMB = {
       "x": 0.4852,
       "y": 0.552
      },
+     "mockNG": null,
      "page": {
       "ch": "39",
       "pdf": "107"
@@ -2691,6 +2811,7 @@ window.OMB = {
       "x": 0.5571,
       "y": 0.5564
      },
+     "mockNG": null,
      "page": {
       "ch": "39",
       "pdf": "107"
@@ -2723,6 +2844,7 @@ window.OMB = {
       "x": 0.5205,
       "y": 0.64
      },
+     "mockNG": null,
      "page": {
       "ch": "39",
       "pdf": "107"
@@ -2772,6 +2894,7 @@ window.OMB = {
       "x": 0.6884,
       "y": 0.4476
      },
+     "mockNG": null,
      "page": {
       "ch": "39–40",
       "pdf": "107–108"
@@ -2935,6 +3058,7 @@ window.OMB = {
       "x": 0.6906,
       "y": 0.82
      },
+     "mockNG": null,
      "page": {
       "ch": "40",
       "pdf": "108"
@@ -3018,6 +3142,7 @@ window.OMB = {
       "x": 0.1427,
       "y": 0.9178
      },
+     "mockNG": null,
      "page": {
       "ch": "40",
       "pdf": "108"
@@ -3058,6 +3183,7 @@ window.OMB = {
       "x": 0.4195,
       "y": 0.9178
      },
+     "mockNG": null,
      "page": {
       "ch": "40",
       "pdf": "108"
@@ -3090,6 +3216,7 @@ window.OMB = {
       "x": 0.3624,
       "y": 0.9244
      },
+     "mockNG": null,
      "page": {
       "ch": "40",
       "pdf": "108"
@@ -3112,6 +3239,7 @@ window.OMB = {
       "x": 0.6393,
       "y": 0.9178
      },
+     "mockNG": null,
      "page": {
       "ch": "40",
       "pdf": "108"
@@ -3171,6 +3299,7 @@ window.OMB = {
      "who": "FO",
      "panel": "HSI Switch",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "40",
       "pdf": "108"
@@ -3189,6 +3318,7 @@ window.OMB = {
      "who": "FO",
      "panel": "NAV MODE selector",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "40",
       "pdf": "108"
@@ -3211,6 +3341,7 @@ window.OMB = {
       "x": 0.4965,
       "y": 0.0569
      },
+     "mockNG": null,
      "page": {
       "ch": "40–41",
       "pdf": "108–109"
@@ -3257,6 +3388,7 @@ window.OMB = {
      "who": "FO",
      "panel": "EFIS control panel",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "41",
       "pdf": "109"
@@ -3358,6 +3490,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Oxygen (crew mask)",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "41–43",
       "pdf": "109–111"
@@ -3668,6 +3801,7 @@ window.OMB = {
       "x": 0.9791,
       "y": 0.3653
      },
+     "mockNG": null,
      "page": {
       "ch": "43",
       "pdf": "111"
@@ -3690,6 +3824,7 @@ window.OMB = {
       "x": 0.9469,
       "y": 0.4649
      },
+     "mockNG": null,
      "page": {
       "ch": "43",
       "pdf": "111"
@@ -3719,6 +3854,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Display select panel",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "43",
       "pdf": "111"
@@ -3749,6 +3885,7 @@ window.OMB = {
      "who": "FO",
      "panel": "TAKEOFF CONFIG / CABIN ALTITUDE lights",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "43",
       "pdf": "111"
@@ -3777,6 +3914,7 @@ window.OMB = {
       "x": 0.5993,
       "y": 0.74
      },
+     "mockNG": null,
      "page": {
       "ch": "43",
       "pdf": "111"
@@ -3798,6 +3936,7 @@ window.OMB = {
       "x": 0.7249,
       "y": 0.3605
      },
+     "mockNG": null,
      "page": {
       "ch": "43–44",
       "pdf": "111–112"
@@ -3896,6 +4035,7 @@ window.OMB = {
       "x": 0.7234,
       "y": 0.2419
      },
+     "mockNG": null,
      "page": {
       "ch": "44",
       "pdf": "112"
@@ -3954,6 +4094,7 @@ window.OMB = {
       "x": 0.5248,
       "y": 0.4459
      },
+     "mockNG": null,
      "page": {
       "ch": "44",
       "pdf": "112"
@@ -3976,6 +4117,7 @@ window.OMB = {
       "x": 0.6951,
       "y": 0.6926
      },
+     "mockNG": null,
      "page": {
       "ch": "44",
       "pdf": "112"
@@ -4082,6 +4224,11 @@ window.OMB = {
       "x": 0.6291,
       "y": 0.3985
      },
+     "mockNG": {
+      "img": "ngip",
+      "x": 0.5886,
+      "y": 0.5551
+     },
      "page": {
       "ch": "44",
       "pdf": "112"
@@ -4120,6 +4267,7 @@ window.OMB = {
       "x": 0.5869,
       "y": 0.389
      },
+     "mockNG": null,
      "page": {
       "ch": "44",
       "pdf": "112"
@@ -4147,6 +4295,7 @@ window.OMB = {
       "x": 0.5869,
       "y": 0.4981
      },
+     "mockNG": null,
      "page": {
       "ch": "45",
       "pdf": "113"
@@ -4174,6 +4323,7 @@ window.OMB = {
       "x": 0.4643,
       "y": 0.5503
      },
+     "mockNG": null,
      "page": {
       "ch": "45",
       "pdf": "113"
@@ -4207,6 +4357,7 @@ window.OMB = {
       "x": 0.4965,
       "y": 0.2562
      },
+     "mockNG": null,
      "page": {
       "ch": "45",
       "pdf": "113"
@@ -4253,6 +4404,7 @@ window.OMB = {
       "x": 0.4643,
       "y": 0.4269
      },
+     "mockNG": null,
      "page": {
       "ch": "45",
       "pdf": "113"
@@ -4287,6 +4439,7 @@ window.OMB = {
       "x": 0.4643,
       "y": 0.4269
      },
+     "mockNG": null,
      "page": {
       "ch": "45",
       "pdf": "113"
@@ -4321,6 +4474,7 @@ window.OMB = {
      "who": "FO",
      "panel": "MFD Cancel/Recall switch",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "45",
       "pdf": "113"
@@ -4348,6 +4502,7 @@ window.OMB = {
       "x": 0.4438,
       "y": 0.4757
      },
+     "mockNG": null,
      "page": {
       "ch": "45",
       "pdf": "113"
@@ -4429,6 +4584,7 @@ window.OMB = {
      "who": "FO",
      "panel": "CARGO FIRE panel / CDSCP",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "45–46",
       "pdf": "113–114"
@@ -4534,6 +4690,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Hollingsead Lower Cargo Fire Suppression",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "46",
       "pdf": "114"
@@ -4555,6 +4712,7 @@ window.OMB = {
       "x": 0.7085,
       "y": 0.6459
      },
+     "mockNG": null,
      "page": {
       "ch": "46",
       "pdf": "114"
@@ -4619,6 +4777,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Radio tuning panel",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "46",
       "pdf": "114"
@@ -4651,6 +4810,7 @@ window.OMB = {
       "x": 0.6922,
       "y": 0.4757
      },
+     "mockNG": null,
      "page": {
       "ch": "46",
       "pdf": "114"
@@ -4673,6 +4833,7 @@ window.OMB = {
       "x": 0.6922,
       "y": 0.5486
      },
+     "mockNG": null,
      "page": {
       "ch": "46",
       "pdf": "114"
@@ -4695,6 +4856,7 @@ window.OMB = {
       "x": 0.7085,
       "y": 0.6459
      },
+     "mockNG": null,
      "page": {
       "ch": "46–47",
       "pdf": "114–115"
@@ -4768,6 +4930,7 @@ window.OMB = {
       "x": 0.6922,
       "y": 0.7595
      },
+     "mockNG": null,
      "page": {
       "ch": "47",
       "pdf": "115"
@@ -4790,6 +4953,7 @@ window.OMB = {
       "x": 0.2117,
       "y": 0.8514
      },
+     "mockNG": null,
      "page": {
       "ch": "47",
       "pdf": "115"
@@ -4812,6 +4976,7 @@ window.OMB = {
       "x": 0.4479,
       "y": 0.7486
      },
+     "mockNG": null,
      "page": {
       "ch": "47",
       "pdf": "115"
@@ -4849,6 +5014,11 @@ window.OMB = {
       "x": 0.4965,
       "y": 0.6309
      },
+     "mockNG": {
+      "img": "ngped",
+      "x": 0.4916,
+      "y": 0.8599
+     },
      "page": {
       "ch": "47",
       "pdf": "115"
@@ -4876,6 +5046,7 @@ window.OMB = {
       "x": 0.4479,
       "y": 0.6757
      },
+     "mockNG": null,
      "page": {
       "ch": "47",
       "pdf": "115"
@@ -4921,6 +5092,7 @@ window.OMB = {
       "x": 0.6474,
       "y": 0.9324
      },
+     "mockNG": null,
      "page": {
       "ch": "47",
       "pdf": "115"
@@ -4939,6 +5111,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Seat",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "47",
       "pdf": "115"
@@ -4977,6 +5150,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Rudder pedals",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "47",
       "pdf": "115"
@@ -5005,6 +5179,7 @@ window.OMB = {
      "who": "FO",
      "panel": "Seat belt and shoulder harness",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "48",
       "pdf": "116"
@@ -5023,6 +5198,7 @@ window.OMB = {
      "who": "B",
      "panel": "PREFLIGHT checklist",
      "mock": null,
+     "mockNG": null,
      "page": {
       "ch": "48",
       "pdf": "116"
@@ -5049,6 +5225,7 @@ window.OMB = {
       "x": 0.4479,
       "y": 0.6757
      },
+     "mockNG": null,
      "page": {
       "ch": "48",
       "pdf": "116"
@@ -5100,6 +5277,11 @@ window.OMB = {
       "img": "ip",
       "x": 0.4965,
       "y": 0.6309
+     },
+     "mockNG": {
+      "img": "ngped",
+      "x": 0.4916,
+      "y": 0.8599
      },
      "page": {
       "ch": "48",
@@ -5186,6 +5368,11 @@ window.OMB = {
       "img": "ip",
       "x": 0.4965,
       "y": 0.6309
+     },
+     "mockNG": {
+      "img": "ngped",
+      "x": 0.4916,
+      "y": 0.8599
      },
      "page": {
       "ch": "48–49",
@@ -5285,6 +5472,7 @@ window.OMB = {
       "x": 0.6951,
       "y": 0.6926
      },
+     "mockNG": null,
      "page": {
       "ch": "49",
       "pdf": "117"
@@ -5481,6 +5669,9 @@ window.OMB = {
   "3741"
  ],
  "mockNames": {
+  "ngovh": "NG: Forward / Aft overhead panel (P5)",
+  "ngip": "NG: Glareshield (P7) и main panel",
+  "ngped": "NG: Control stand и aft electronic panel (P8)",
   "ovh": "Overhead panel (forward + aft)",
   "ip": "Main instrument panel / MCP / Electronic panel",
   "aft": "Aft control stand (pedestal)"
@@ -5497,6 +5688,18 @@ window.OMB = {
   "aft": [
    1228,
    1850
+  ],
+  "ngovh": [
+   1546,
+   2576
+  ],
+  "ngip": [
+   1546,
+   2576
+  ],
+  "ngped": [
+   1546,
+   2576
   ]
  }
 };
