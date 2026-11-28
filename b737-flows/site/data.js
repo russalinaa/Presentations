@@ -908,7 +908,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "IRS mode selectors",
-       "val": "OFF, then NAV"
+       "val": "OFF, then NAV",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 462,
+         "y": 585
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 663,
+         "y": 290
+        }
+       }
       },
       {
        "k": "V",
@@ -942,7 +954,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(NG only) VOICE RECORDER switch",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 1015,
+         "y": 457
+        }
+       }
       }
      ]
     },
@@ -1438,7 +1457,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Flight recorder switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1135,
+         "y": 415
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 960,
+         "y": 225
+        }
+       }
       },
       {
        "k": "V",
@@ -1466,7 +1497,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "MACH AIRSPEED WARNING TEST switches",
-       "val": "Push, one at a time"
+       "val": "Push, one at a time",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1290,
+         "y": 415
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 1034,
+         "y": 227
+        }
+       }
       },
       {
        "k": "V",
@@ -1494,7 +1537,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "STALL WARNING TEST switches",
-       "val": "Push and hold, one at a time"
+       "val": "Push and hold, one at a time",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1210,
+         "y": 518
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 996,
+         "y": 264
+        }
+       }
       },
       {
        "k": "V",
@@ -1556,7 +1611,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "ENGINE panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 918,
+         "y": 410
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 866,
+         "y": 219
+        }
+       }
       },
       {
        "k": "V",
@@ -1572,13 +1639,27 @@ window.OMB = {
        "k": "A",
        "tag": "NG",
        "item": "(NG) EEC switches",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 866,
+         "y": 219
+        }
+       }
       },
       {
        "k": "A",
        "tag": "CL",
        "item": "(CL) PMC switches",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 918,
+         "y": 410
+        }
+       }
       },
       {
        "k": "V",
@@ -1611,7 +1692,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Oxygen panel",
-       "val": "Set"
+       "val": "Set",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1010,
+         "y": 555
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 906,
+         "y": 277
+        }
+       }
       },
       {
        "k": "N",
@@ -1622,7 +1715,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "PASSENGER OXYGEN switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 1010,
+         "y": 555
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 906,
+         "y": 277
+        }
+       }
       },
       {
        "k": "V",
@@ -1651,7 +1756,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(NG) Landing gear indicator lights",
-       "val": "Verify illuminated"
+       "val": "Verify illuminated",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 830,
+         "y": 330
+        }
+       }
       }
      ]
     },
@@ -1693,7 +1805,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "SERVICE INTERPHONE switch",
-       "val": "OFF"
+       "val": "OFF",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 690,
+         "y": 460
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 763,
+         "y": 238
+        }
+       }
       }
      ]
     },
@@ -1718,7 +1842,14 @@ window.OMB = {
        "k": "A",
        "tag": "NG",
        "item": "(NG) ELT switch",
-       "val": "Guard closed"
+       "val": "Guard closed",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 556,
+         "y": 227
+        }
+       }
       },
       {
        "k": "V",
@@ -1742,7 +1873,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(NG) PSEU light",
-       "val": "Verify extinguished"
+       "val": "Verify extinguished",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 567,
+         "y": 344
+        }
+       }
       }
      ]
     },
@@ -1761,7 +1899,14 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "(NG and UP-B3721, UP-B3729) GPS light",
-       "val": "Verify extinguished"
+       "val": "Verify extinguished",
+       "loc": {
+        "NG": {
+         "img": "ngovh",
+         "x": 663,
+         "y": 236
+        }
+       }
       }
      ]
     },
@@ -1911,7 +2056,19 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Parking brake",
-       "val": "As needed"
+       "val": "As needed",
+       "loc": {
+        "CL": {
+         "img": "aft",
+         "x": 385,
+         "y": 610
+        },
+        "NG": {
+         "img": "ngped",
+         "x": 683,
+         "y": 2042
+        }
+       }
       },
       {
        "k": "X",
@@ -2198,13 +2355,37 @@ window.OMB = {
        "k": "A",
        "tag": "",
        "item": "Battery switch",
-       "val": "ON"
+       "val": "ON",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 395,
+         "y": 1157
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 632,
+         "y": 625
+        }
+       }
       },
       {
        "k": "A",
        "tag": "",
        "item": "Standby power switch",
-       "val": "BAT"
+       "val": "BAT",
+       "loc": {
+        "CL": {
+         "img": "ovh",
+         "x": 470,
+         "y": 1297
+        },
+        "NG": {
+         "img": "ngovh",
+         "x": 665,
+         "y": 695
+        }
+       }
       },
       {
        "k": "X",

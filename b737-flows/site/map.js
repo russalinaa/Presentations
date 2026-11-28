@@ -6,6 +6,7 @@ window.MAP = {
   ground: [ // numbered list next to the stand; card = slot on the left
     { id: 'epu',    n: 1,  t: 'Electrical Power Up – F/O',                   sec: '2.2.9',  ch: '21' },
     { id: 'prelim', n: 2,  t: 'Preliminary Preflight Procedure – F/O',      sec: '2.2.10', ch: '23' },
+    { id: 'refuel', n: '2a', t: 'Refueling (2.2.10.1)',                     sec: '2.2.10.1', ch: '28' },
     { id: 'ext',    n: 3,  t: 'Exterior Inspection – Captain',               sec: '2.2.11', ch: '30' },
     { id: 'cdu',    n: 4,  t: 'CDU Preflight Procedure – Captain and First Officer', sec: '2.2.12', ch: '34' },
     { id: 'pfo',    n: 5,  t: 'Preflight Procedure – First Officer',         sec: '2.2.13', ch: '36', ck: 'PREFLIGHT' },

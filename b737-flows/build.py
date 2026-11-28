@@ -38,6 +38,30 @@ NGMAP = {'ovh:bat': (632, 625), 'ovh:stby': (665, 695), 'ovh:altflaps': (548, 52
 # Each entry: (CL image, x, y, NG x, y) in pixels of site/img/*.jpg; NG image is ng-all.jpg (zones by y).
 # None = control not on mockup.  '?' suffix in note = position to be verified.
 LOC = {
+  'refuel': [[], [], [], [], [('ovh', 395, 1157, 632, 625), ('ovh', 470, 1297, 665, 695)], None],
+  'prelim': [
+    [('ovh', 462, 585, 663, 290)],             # IRS mode selectors
+    [('ovh', None, None, 1015, 457)],          # (NG only) VOICE RECORDER switch
+    [],                                        # quantities (no A)
+    None,                                      # crew oxygen mask panel: not on mockups
+    None, None, None, None,                    # maintenance docs, flight deck door, observer, F/O side
+    [('ovh', 1135, 415, 960, 225)],            # Flight recorder switch
+    [('ovh', 1290, 415, 1034, 227)],           # MACH AIRSPEED WARNING TEST switches
+    [('ovh', 1210, 518, 996, 264)],            # STALL WARNING TEST switches
+    None,                                      # (UP-B3724) EVACUATION switch: not on mockup
+    [('ovh', 918, 410, 866, 219), ('ovh', None, None, 866, 219), ('ovh', 918, 410, None, None)],  # ENGINE panel, EEC, PMC
+    [('ovh', 1010, 555, 906, 277), ('ovh', 1010, 555, 906, 277)],   # Oxygen panel, PASSENGER OXYGEN switch
+    [('ovh', None, None, 830, 330)],           # (NG) Landing gear indicator lights (aft overhead)
+    None,                                      # (UP-B3724) secondary gear lights
+    [('ovh', 690, 460, 763, 238)],             # SERVICE INTERPHONE switch
+    [None, ('ovh', None, None, 556, 227)],     # (CL) ELT: not on CL mockup; (NG) ELT switch
+    [('ovh', None, None, 567, 344)],           # (NG) PSEU light
+    [('ovh', None, None, 663, 236)],           # GPS light (NG; CL tails not on mockup)
+    None,                                      # (UP-B3741) ILS / GLS lights: not found on NG mockup
+    None,                                      # Captain's side
+    [('aft', 385, 610, 683, 2042)],            # Parking brake
+    None, None, [],                            # video, PA, EFB
+  ],
   'epu': [
     [('ovh', 395, 1157, 632, 625)],            # BATTERY switch
     [('ovh', 470, 1297, 665, 695)],            # STANDBY POWER switch
@@ -160,14 +184,19 @@ def attach_locs(phases):
         assert len(L) == len(ph['rows']), (ph['id'], len(L), len(ph['rows']))
         for ri, (row, locs) in enumerate(zip(ph['rows'], L)):
             acts = [l for l in row['lines'] if l['k'] == 'A']
+            if locs is None:
+                locs = [None] * len(acts)
             assert len(acts) == len(locs), (ph['id'], ri, len(acts), len(locs))
             for ai, (a, lc) in enumerate(zip(acts, locs)):
                 if lc is None:
                     continue
                 img, x, y, nx, ny = lc
-                a['loc'] = {'CL': {'img': img, 'x': x, 'y': y},
-                            'NG': {'img': 'ngovh' if ny < 1120 else 'ngip' if ny < 1720 else 'ngped', 'x': nx, 'y': ny}}
-                for t in ('CL', 'NG'):
+                a['loc'] = {}
+                if x is not None:
+                    a['loc']['CL'] = {'img': img, 'x': x, 'y': y}
+                if nx is not None:
+                    a['loc']['NG'] = {'img': 'ngovh' if ny < 1120 else 'ngip' if ny < 1720 else 'ngped', 'x': nx, 'y': ny}
+                for t in [k for k in ('CL', 'NG') if k in a['loc']]:
                     q = LOC_CHECK.get(ph['id'], {}).get((ri, ai, t))
                     if q:
                         a['loc'][t]['check'] = q

@@ -178,6 +178,11 @@ function buildPlates(ph, t) {
   var rows = rowsFor(ph, t), plates = [], notes = [], qs = [];
   rows.forEach(function (r) {
     var nA = r.lines.filter(function (l) { return l.k === 'A'; }).length, k = 0, cur = null, pre = [];
+    if (!nA) { // row without a switch action: keep its text on the slide as a heading plate
+      cur = { num: String(r.n), who: r.who, item: r.panel, val: '', tag: r.tag, pre: [], post: [], page: r.page, panel: r.panel, loc: null, textOnly: true };
+      var hasText = r.lines.some(function (l) { return l.k === 'X' || l.k === 'V' || l.k === 'H'; });
+      if (hasText) plates.push(cur);
+    }
     r.lines.forEach(function (l) {
       if (l.k === 'A') {
         k++;
@@ -188,6 +193,7 @@ function buildPlates(ph, t) {
       } else if (l.k === 'N' || l.k === 'C' || l.k === 'W' || l.k === 'Q') {
         notes.push({ k: l.k, text: l.text, tag: l.tag, after: cur ? cur.num : String(r.n), page: r.page });
       } else if (!cur) pre.push(l);
+      else if (l.k === 'H' && cur.textOnly) cur.post.push({ k: 'X', text: l.text });
       else cur.post.push(l);
     });
   });
@@ -216,7 +222,7 @@ var PW = 378, FS = 15, CH = 46;
 function plateLines(p) {
   var L = [];
   p.pre.forEach(function (l) { wrap(l.text, 42).forEach(function (s) { L.push({ c: 'pre', s: s }); }); });
-  var head = wrap(p.item + ' …… ' + p.val, 34), after = false;
+  var head = wrap(p.textOnly ? p.item : p.item + ' …… ' + p.val, 34), after = false;
   head.forEach(function (s) {
     var i = s.indexOf('……');
     if (i >= 0) { L.push({ c: 'head', a: s.slice(0, i + 2), v: s.slice(i + 2).trim() }); after = true; }
@@ -271,6 +277,9 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
     var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs), y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
     var pad = Math.max(120, (x1 - x0) * .15, (y1 - y0) * .15);
     x0 -= pad; x1 += pad; y0 -= pad; y1 += pad;
+    var MW = ZONE[run.zone] && run.zone.indexOf('ng') === 0 ? 420 : 640; // never zoom in past the mockup's real detail
+    if (x1 - x0 < MW) { var mx = (x0 + x1) / 2; x0 = mx - MW / 2; x1 = mx + MW / 2; }
+    if (y1 - y0 < MW * .8) { var my = (y0 + y1) / 2; y0 = my - MW * .4; y1 = my + MW * .4; }
     // match box aspect
     var asp = IMGW / imgH, cw = x1 - x0, chh = y1 - y0;
     if (cw / chh < asp) { var nw = chh * asp; x0 -= (nw - cw) / 2; x1 = x0 + nw; } else { var nh = cw / asp; y0 -= (nh - chh) / 2; y1 = y0 + nh; }
@@ -308,12 +317,11 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
   while (sumH(right) > BOT - TOP + 20 && sumH(left) < sumH(right) - 200) left.push(right.pop());
   function stack(arr) {
     arr.sort(function (a, b) { return a._ty - b._ty; });
-    var y = TOP, tot = sumH(arr), avail = BOT - TOP;
-    var sc = tot > avail ? avail / tot : 1;
-    arr.forEach(function (p) { p._y = Math.max(y, Math.min(p._ty - 20, BOT - p._h * sc)); y = p._y + (p._h + 10) * sc; p._sc = sc; });
-    // push up if overflow
-    var over = y - BOT;
-    if (over > 0) for (var j = arr.length - 1; j >= 0; j--) { arr[j]._y -= over; if (j && arr[j]._y > arr[j - 1]._y + (arr[j - 1]._h + 10) * arr[j - 1]._sc) break; }
+    var avail = BOT - TOP, tot = sumH(arr), sc = tot > avail ? avail / tot : 1, y = TOP;
+    arr.forEach(function (p) { p._sc = sc; p._y = Math.max(y, p._ty - 22 * sc); y = p._y + (p._h + 10) * sc; });
+    // pull back up from the bottom so nothing leaves the slide and nothing overlaps
+    var lim = BOT;
+    for (var j = arr.length - 1; j >= 0; j--) { var hh = arr[j]._h * sc; if (arr[j]._y + hh > lim) arr[j]._y = lim - hh; lim = arr[j]._y - 10 * sc; }
   }
   stack(left); stack(right);
   function plate(p, side) {
@@ -322,7 +330,7 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
     s += '<rect width="' + w + '" height="' + h + '" rx="8" fill="#fff" stroke="' + roleC + '" stroke-width="2"/><rect width="8" height="' + h + '" rx="3" fill="' + roleC + '"/>';
     s += '<circle cx="26" cy="22" r="15" fill="' + roleC + '"/><text x="26" y="27" font-size="' + (p.num.length > 3 ? 11 : 14) + '" font-weight="800" fill="#fff" text-anchor="middle">' + esc(p.num) + '</text>';
     s += '<text x="' + (w - 8) + '" y="15" font-size="11" fill="#7a869e" text-anchor="end">стр. ' + esc(p.page.ch) + '</text>';
-    if (p.loc && p.loc.check) s += '<rect x="' + (w - 112) + '" y="' + (h - 22) + '" width="104" height="18" rx="4" fill="#b83280"/><text x="' + (w - 60) + '" y="' + (h - 9) + '" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">⚠ проверить место</text>';
+    if (p.loc && p.loc.check) s += '<rect x="48" y="' + (h - 24) + '" width="150" height="18" rx="4" fill="#b83280"/><text x="123" y="' + (h - 11) + '" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">⚠ проверить место метки</text>';
     var y = 22;
     if (p.tag) { s += '<text x="48" y="' + (y - 6) + '" font-size="12" font-weight="700" fill="' + (p.tag === 'NG' ? '#0f7b8a' : p.tag === 'CL' ? '#6b3fd1' : '#5b6b88') + '">' + esc(shortTag(p.tag)) + '</text>'; y += 14; }
     L.forEach(function (l) {
@@ -363,59 +371,78 @@ function zoneSlide(ph, t, run, ri, nav, navIndex) {
 }
 
 function overviewSlide(ph, t, runs, nav) {
-  var inner = '';
-  // cockpit composite with zone frames
-  var zones = {};
+  var inner = '', zones = {}, P;
   if (t === 'CL') {
-    // overhead left, main panel top-right, pedestal bottom-right
-    zones.ovh = { x: 260, y: 84, w: 700, h: 899, src: 'clovh', W: 1752, H: 2250 };
-    zones.ip = { x: 980, y: 84, w: 600, h: 314, src: 'clip', W: 2014, H: 1054 };
-    zones.aft = { x: 1130, y: 410, w: 380, h: 573, src: 'claft', W: 1228, H: 1850 };
+    zones.ovh = { x: 250, y: 80, w: 610, h: 783, W: 1752, H: 2250, src: 'clovh' };
+    zones.ip = { x: 965, y: 80, w: 620, h: 324, W: 2014, H: 1054, src: 'clip' };
+    zones.aft = { x: 1110, y: 420, w: 372, h: 560, W: 1228, H: 1850, src: 'claft' };
     ['ovh', 'ip', 'aft'].forEach(function (k) { var z = zones[k]; inner += '<image href="' + IMG[z.src] + '" xlink:href="' + IMG[z.src] + '" x="' + z.x + '" y="' + z.y + '" width="' + z.w + '" height="' + z.h + '" preserveAspectRatio="none"/>'; });
+    P = function (zone, x, y) { var z = zones[zone]; return [z.x + x / z.W * z.w, z.y + y / z.H * z.h]; };
   } else {
-    var s = 900 / 2576, ox = 520;
-    inner += '<image href="' + IMG.ng + '" xlink:href="' + IMG.ng + '" x="' + ox + '" y="84" width="' + (1546 * s) + '" height="900"/>';
-    function z(k, a) { zones[k] = { x: ox + a[0] * s, y: 84 + a[1] * s, w: (a[2] - a[0]) * s, h: (a[3] - a[1]) * s }; }
-    z('ngovh', ZONE.ngovh); z('ngip', ZONE.ngip); z('ngped', ZONE.ngped);
+    var s = 900 / 2576, ox = 380;
+    inner += '<image href="' + IMG.ng + '" xlink:href="' + IMG.ng + '" x="' + ox + '" y="80" width="' + (1546 * s) + '" height="900"/>';
+    ['ngovh', 'ngip', 'ngped'].forEach(function (k) { var a = ZONE[k]; zones[k] = { x: ox + a[0] * s, y: 80 + a[1] * s, w: (a[2] - a[0]) * s, h: (a[3] - a[1]) * s }; });
+    P = function (zone, x, y) { return [ox + x * s, 80 + y * s]; };
   }
-  var used = {};
-  runs.forEach(function (r) { used[r.zone] = 1; });
-  Object.keys(zones).forEach(function (k) {
-    var z = zones[k];
-    inner += '<rect x="' + z.x + '" y="' + z.y + '" width="' + z.w + '" height="' + z.h + '" fill="' + (used[k] ? 'rgba(255,226,122,.18)' : 'rgba(255,255,255,.55)') + '" stroke="' + (used[k] ? '#d62828' : '#9aa6bd') + '" stroke-width="' + (used[k] ? 5 : 2) + '" rx="8"/>';
+  var used = {}; runs.forEach(function (r) { used[r.zone] = 1; });
+  Object.keys(zones).forEach(function (k) { var z = zones[k]; inner += '<rect x="' + z.x + '" y="' + z.y + '" width="' + z.w + '" height="' + z.h + '" fill="none" stroke="' + (used[k] ? '#0b1f3f' : '#c8d0de') + '" stroke-width="2" stroke-dasharray="' + (used[k] ? '0' : '6 6') + '" rx="6"/>'; });
+  // one point per visit = centroid of that visit's controls (exact sub-panel)
+  var pts = [], none = [];
+  runs.forEach(function (r, i) {
+    var ps = r.plates.filter(function (p) { return p.loc; });
+    if (!ps.length) { none.push({ i: i, r: r }); return; }
+    var cx = 0, cy = 0; ps.forEach(function (p) { var q = P(r.zone, p.loc.x, p.loc.y); cx += q[0]; cy += q[1]; });
+    var pt = { x: cx / ps.length, y: cy / ps.length, i: i, r: r };
+    pts.forEach(function (o) { if (Math.hypot(o.x - pt.x, o.y - pt.y) < 46) pt.y += 46; });
+    pts.push(pt);
   });
-  // visit order: numbered circles + arrows between consecutive visits
-  var cnt = {};
-  var pos = runs.map(function (r, i) {
-    var z = zones[r.zone]; if (!z) return null;
-    cnt[r.zone] = (cnt[r.zone] || 0) + 1;
-    var k = cnt[r.zone];
-    return { x: z.x + 46 + (k - 1) * 76, y: z.y + 46, i: i };
+  // smooth route 1->2->3... (Catmull-Rom), each leg its own shade, arrow at the end
+  var COLS = ['#d62828', '#f77f00', '#7b2cbf', '#0b8a5a', '#1d5fd6', '#c2185b', '#8d6e00', '#00838f', '#5d4037', '#6a1b9a'];
+  var defs = COLS.map(function (c, k) { return '<marker id="oa' + k + '" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10z" fill="' + c + '"/></marker>'; }).join('');
+  inner += '<defs>' + defs + '</defs>';
+  for (var k = 0; k + 1 < pts.length; k++) {
+    var p0 = pts[k - 1] || pts[k], p1 = pts[k], p2 = pts[k + 1], p3 = pts[k + 2] || p2;
+    var c1x = p1.x + (p2.x - p0.x) / 6, c1y = p1.y + (p2.y - p0.y) / 6, c2x = p2.x - (p3.x - p1.x) / 6, c2y = p2.y - (p3.y - p1.y) / 6;
+    var d = Math.hypot(p2.x - c2x, p2.y - c2y) || 1, ex = p2.x - (p2.x - c2x) / d * 24, ey = p2.y - (p2.y - c2y) / d * 24;
+    var col = COLS[k % COLS.length];
+    inner += '<path d="M' + p1.x + ' ' + p1.y + ' C' + c1x + ' ' + c1y + ' ' + c2x + ' ' + c2y + ' ' + ex + ' ' + ey + '" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".8"/>';
+    inner += '<path d="M' + p1.x + ' ' + p1.y + ' C' + c1x + ' ' + c1y + ' ' + c2x + ' ' + c2y + ' ' + ex + ' ' + ey + '" fill="none" stroke="' + col + '" stroke-width="5" stroke-linecap="round"' + (k % 2 ? ' stroke-dasharray="14 8"' : '') + ' marker-end="url(#oa' + (k % COLS.length) + ')"/>';
+  }
+  function label(r) {
+    var names = []; r.plates.forEach(function (p) { var n = p.panel.replace(/ \(.*?\)/g, ''); if (names.indexOf(n) < 0) names.push(n); });
+    var a = r.plates[0].num.split('.')[0], b = r.plates[r.plates.length - 1].num.split('.')[0];
+    return { t: names.join(', '), s: 'шаги ' + a + (a !== b ? '–' + b : '') };
+  }
+  // labels: greedy placement without overlaps (labels never cover circles), leader line when moved away
+  var boxes = pts.map(function (p) { return [p.x - 20, p.y - 20, p.x + 20, p.y + 20]; });
+  function hit(r) { if (r[0] < 240 || r[2] > 1595 || r[1] < 70 || r[3] > 992) return true; return boxes.some(function (b) { return r[0] < b[2] && r[2] > b[0] && r[1] < b[3] && r[3] > b[1]; }); }
+  var labs = '', dots = '';
+  pts.forEach(function (p, k) {
+    var lb = label(p.r), txt = lb.t.length > 40 ? lb.t.slice(0, 39) + '…' : lb.t;
+    var sub = (p.i + 1) + ' · ' + ZNAME[p.r.zone].split(' (')[0] + ' · ' + lb.s;
+    var w = Math.max(txt.length * 7.3, sub.length * 6.6) + 22, h = 40, col = COLS[k % COLS.length], pos = null;
+    var cands = [];
+    if (t === 'NG') cands.push([960, p.y - h / 2]);
+    cands.push([p.x + 26, p.y - h / 2], [p.x - 26 - w, p.y - h / 2]);
+    for (var dy = 46; dy < 700 && !pos; dy += 23) {
+      [1, -1].forEach(function (sg) { if (t === 'NG') cands.push([960, p.y - h / 2 + sg * dy]); cands.push([p.x + 26, p.y - h / 2 + sg * dy], [p.x - 26 - w, p.y - h / 2 + sg * dy]); });
+    }
+    for (var c = 0; c < cands.length; c++) { var r = [cands[c][0], cands[c][1], cands[c][0] + w, cands[c][1] + h]; if (!hit(r)) { pos = r; break; } }
+    if (!pos) pos = [p.x + 26, p.y - h / 2, p.x + 26 + w, p.y + h / 2];
+    boxes.push([pos[0] - 4, pos[1] - 4, pos[2] + 4, pos[3] + 4]);
+    var ax = pos[0] > p.x ? pos[0] : pos[2], ay = (pos[1] + pos[3]) / 2;
+    labs += '<g data-slide="' + (p.i + 1) + '"><line x1="' + p.x + '" y1="' + p.y + '" x2="' + ax + '" y2="' + ay + '" stroke="' + col + '" stroke-width="2"/><rect x="' + pos[0] + '" y="' + pos[1] + '" width="' + w + '" height="' + h + '" rx="6" fill="#fff" fill-opacity=".95" stroke="' + col + '" stroke-width="2"/>' +
+      '<text x="' + (pos[0] + 10) + '" y="' + (pos[1] + 16) + '" font-size="13" font-weight="700" fill="#0b1f3f">' + esc(txt) + '</text><text x="' + (pos[0] + 10) + '" y="' + (pos[1] + 33) + '" font-size="12" fill="#44526e">' + esc(sub) + '</text></g>';
+    dots += '<g data-slide="' + (p.i + 1) + '"><circle cx="' + p.x + '" cy="' + p.y + '" r="17" fill="' + col + '" stroke="#fff" stroke-width="4"/><text x="' + p.x + '" y="' + (p.y + 6) + '" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">' + (p.i + 1) + '</text></g>';
   });
-  for (var i = 1; i < pos.length; i++) if (pos[i] && pos[i - 1]) {
-    var a = pos[i - 1], b = pos[i];
-    var dx = b.x - a.x, dy = b.y - a.y, dd = Math.hypot(dx, dy) || 1, sx = a.x + dx / dd * 32, sy = a.y + dy / dd * 32, ex = b.x - dx / dd * 38, ey = b.y - dy / dd * 38;
-    inner += '<path d="M' + sx + ' ' + sy + ' Q ' + ((sx + ex) / 2 - dy / dd * 40) + ' ' + ((sy + ey) / 2 + dx / dd * 40) + ' ' + ex + ' ' + ey + '" fill="none" stroke="#d62828" stroke-width="5" stroke-opacity=".8" marker-end="url(#zarr)"/>';
+  inner += labs + dots;
+  if (none.length) {
+    var nx0 = t === 'CL' ? 245 : 1000, ny = t === 'CL' ? 905 : 600;
+    if (t === 'CL' && none.length > 2) { nx0 = 870; ny = 440; }
+    inner += '<rect x="' + nx0 + '" y="' + (ny - 34) + '" width="' + (t === 'CL' && nx0 === 870 ? 235 : 590) + '" height="' + (none.length * 26 + 44) + '" rx="8" fill="#fff8e6" stroke="#b7791f"/><text x="' + (nx0 + 12) + '" y="' + (ny - 12) + '" font-size="14" font-weight="700" fill="#8a5a00">Этапы без макета:</text>';
+    none.forEach(function (n, k) { var lb = label(n.r), mx = nx0 === 870 ? 26 : 70; inner += '<text x="' + (nx0 + 12) + '" y="' + (ny + 12 + k * 26) + '" font-size="13" fill="#0b1630" data-slide="' + (n.i + 1) + '">' + (n.i + 1) + ' · ' + esc((lb.t.length > mx ? lb.t.slice(0, mx - 1) + '…' : lb.t)) + '</text>'; });
   }
-  var lgx = t === 'CL' ? 1300 : 1080, lgy = t === 'CL' ? 112 : 560;
-  if (t === 'CL') { lgx = 975; lgy = 112; }
-  pos.forEach(function (p) { if (!p) return; inner += '<g data-slide="' + (p.i + 1) + '"><circle cx="' + p.x + '" cy="' + p.y + '" r="30" fill="#d62828" stroke="#fff" stroke-width="5"/><text x="' + p.x + '" y="' + (p.y + 11) + '" font-size="30" font-weight="800" fill="#fff" text-anchor="middle">' + (p.i + 1) + '</text></g>'; });
-  // order list (bottom-left of image area)
-  var lx = t === 'CL' ? 980 : 1080, ly = t === 'CL' ? 430 : 120;
-  if (t === 'CL') { lx = 262; ly = 1000; }
-  var list = '<g>';
-  var bx = t === 'CL' ? 980 : 1090, by = t === 'CL' ? 420 : 110;
-  if (t === 'CL') { bx = 1520; by = 0; }
-  list += '</g>';
-  inner += list;
-  var trig = ph.trigger.concat(ph.intro).join(' ');
-  var tw = wrap(trig, t === 'CL' ? 30 : 46).slice(0, 18);
-  var tx = t === 'CL' ? 980 : 1080, ty = t === 'CL' ? 440 : 110, twd = t === 'CL' ? 140 : 500;
-  if (t === 'NG') {
-    inner += '<rect x="' + tx + '" y="' + ty + '" width="500" height="' + (tw.length * 21 + 50) + '" rx="10" fill="#f4f6fa" stroke="#c8d0de"/><text x="' + (tx + 16) + '" y="' + (ty + 30) + '" font-size="16" font-weight="700" fill="#0b1f3f">Когда выполняется (OM-B ' + esc(ph.section) + ')</text>';
-    tw.forEach(function (s, i) { inner += '<text x="' + (tx + 16) + '" y="' + (ty + 56 + i * 21) + '" font-size="15" fill="#22324f">' + esc(s) + '</text>'; });
-  }
-  return slideFrame(ph.title, 'Обзор: порядок зон кабины', runs[0].plates[0].who, nav, 0, inner, t);
+  return slideFrame(ph.title, 'Обзор: порядок этапов по кабине', runs[0].plates[0].who, nav, 0, inner, t);
 }
 
 function procSlides(ph, t) {
